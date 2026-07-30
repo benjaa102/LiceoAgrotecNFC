@@ -99,7 +99,7 @@ export default function ControlSemanal() {
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 10, padding: '6px 14px', fontSize: 13, color: 'var(--text-secondary)', fontWeight: 600 }}>
-          <Calendar size={14} /> Semana del {format(start, 'd', { locale: es })} al {format(addDays(start, 4), 'd de MMMM yyyy', { locale: es })}
+          <Calendar size={14} /> Semana del {format(start, 'd', { locale: es })} al {format(addDays(start, 4), "d 'de' MMMM yyyy", { locale: es })}
         </div>
 
         <button className="btn btn-secondary btn-sm" onClick={loadData} disabled={loading} style={{ marginLeft: 'auto' }}>

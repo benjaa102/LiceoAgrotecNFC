@@ -7,6 +7,7 @@ import { exportToExcel, exportToPDF } from '../lib/exportUtils'
 export default function Recorridos() {
   const [data, setData] = useState([])
   const [busesData, setBusesData] = useState([])
+  const [supervisoresData, setSupervisoresData] = useState([])
   const [estudiantesData, setEstudiantesData] = useState([])
   const [loading, setLoading] = useState(true)
   const [modal, setModal] = useState(null)
@@ -18,14 +19,16 @@ export default function Recorridos() {
 
   const loadData = async () => {
     setLoading(true)
-    const [resRec, resBus, resEst] = await Promise.all([
+    const [resRec, resBus, resEst, resSup] = await Promise.all([
       supabase.from('recorridos').select('*').order('nombre'),
-      supabase.from('buses').select('id, id_recorrido, numero_bus, patente'),
-      supabase.from('estudiantes').select('id, id_recorrido, nombre, curso, rut').order('nombre')
+      supabase.from('buses').select('id, id_recorrido, id_recorrido_viernes, numero_bus, patente, id_supervisor'),
+      supabase.from('estudiantes').select('id, id_recorrido, nombre, curso, rut').order('nombre'),
+      supabase.from('supervisores').select('id, nombre')
     ])
     if (resRec.data) setData(resRec.data)
     if (resBus.data) setBusesData(resBus.data)
     if (resEst.data) setEstudiantesData(resEst.data)
+    if (resSup.data) setSupervisoresData(resSup.data)
     setLoading(false)
   }
 
@@ -116,7 +119,8 @@ export default function Recorridos() {
       ) : (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: 16 }}>
           {data.map(rec => {
-            const busesCount = busesData.filter(b => b.id_recorrido === rec.id).length
+            const routeBuses = busesData.filter(b => b.id_recorrido === rec.id || (Array.isArray(b.id_recorrido_viernes) && b.id_recorrido_viernes.includes(rec.id)))
+            const busesCount = routeBuses.length
             const estCount = getStudentsForRoute(rec.id).length
             return (
               <div key={rec.id} className="card">
@@ -147,17 +151,25 @@ export default function Recorridos() {
                     <div style={{ marginTop: 5 }}>
                       <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 8 }}>Vehículos en ruta</div>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                        {busesData.filter(b => b.id_recorrido === rec.id).map(b => (
-                          <div key={b.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'var(--bg-app)', border: '1px solid var(--border-bright)', padding: '6px 12px', borderRadius: 8 }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                              <div style={{ background: 'var(--primary-bg)', color: 'var(--primary)', padding: 4, borderRadius: 6, display: 'flex' }}>
-                                <Bus size={14} />
+                        {routeBuses.map(b => {
+                          const chofer = supervisoresData.find(s => s.id === b.id_supervisor)?.nombre || 'Sin chofer';
+                          return (
+                            <div key={b.id} style={{ display: 'flex', flexDirection: 'column', gap: 6, background: 'var(--bg-app)', border: '1px solid var(--border-bright)', padding: '8px 12px', borderRadius: 8 }}>
+                              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                                  <div style={{ background: 'var(--primary-bg)', color: 'var(--primary)', padding: 4, borderRadius: 6, display: 'flex' }}>
+                                    <Bus size={14} />
+                                  </div>
+                                  <span style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: 13 }}>{b.numero_bus}</span>
+                                </div>
+                                <span className="font-mono" style={{ fontSize: 11, color: 'var(--text-secondary)', background: 'var(--bg-card)', padding: '2px 6px', borderRadius: 4, border: '1px solid var(--border)' }}>{b.patente}</span>
                               </div>
-                              <span style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: 13 }}>{b.numero_bus}</span>
+                              <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>
+                                Chofer: <strong style={{ color: 'var(--text-primary)' }}>{chofer}</strong>
+                              </div>
                             </div>
-                            <span className="font-mono" style={{ fontSize: 11, color: 'var(--text-secondary)', background: 'var(--bg-card)', padding: '2px 6px', borderRadius: 4, border: '1px solid var(--border)' }}>{b.patente}</span>
-                          </div>
-                        ))}
+                          )
+                        })}
                       </div>
                     </div>
                   )}

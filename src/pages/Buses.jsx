@@ -29,7 +29,7 @@ export default function Buses() {
   useEffect(() => { loadData() }, [])
 
   const openNew = () => { setForm({ estado: 'ACTIVO' }); setModal('new') }
-  const openEdit = (rec) => { setForm({ ...rec }); setModal(rec) }
+  const openEdit = (rec) => { setForm({ ...rec, id_recorrido_viernes: Array.isArray(rec.id_recorrido_viernes) ? rec.id_recorrido_viernes : (rec.id_recorrido_viernes ? [rec.id_recorrido_viernes] : []) }); setModal(rec) }
   const closeModal = () => { setModal(null); setForm({}) }
 
   const save = async () => {
@@ -92,8 +92,12 @@ export default function Buses() {
                 </div>
                 <div style={{ borderTop: '1px solid var(--border)', padding: '14px 20px', display: 'flex', flexDirection: 'column', gap: 8 }}>
                   <InfoRow label="Recorrido (Lun-Jue)" value={rec?.nombre ?? 'Sin asignar'} />
-                  {bus.id_recorrido_viernes && (
-                    <InfoRow label="Recorrido (Viernes)" value={recorridos.find(r => r.id === bus.id_recorrido_viernes)?.nombre ?? 'Sin asignar'} />
+                  {bus.id_recorrido_viernes && bus.id_recorrido_viernes.length > 0 && (
+                    <InfoRow label="Recorrido (Viernes)" value={
+                      Array.isArray(bus.id_recorrido_viernes) 
+                        ? bus.id_recorrido_viernes.map(id => recorridos.find(r => r.id === id)?.nombre).filter(Boolean).join(' + ')
+                        : recorridos.find(r => r.id === bus.id_recorrido_viernes)?.nombre
+                    } />
                   )}
                   <InfoRow label="Chofer" value={sup?.nombre ?? <span style={{ color: 'var(--warning)' }}>Sin asignar</span>} />
                 </div>
@@ -135,11 +139,28 @@ export default function Buses() {
                   </select>
                 </div>
                 <div className="form-field">
-                  <label>Recorrido (Viernes) <span className="text-muted text-sm">— Opcional</span></label>
-                  <select className="input" value={form.id_recorrido_viernes || ''} onChange={e => setForm(f => ({ ...f, id_recorrido_viernes: e.target.value }))}>
-                    <option value="">Mismo recorrido de siempre (Por defecto)</option>
-                    {recorridos.map(r => <option key={r.id} value={r.id}>{r.nombre}</option>)}
-                  </select>
+                  <label>Recorridos (Viernes) <span className="text-muted text-sm">— Opcional</span></label>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 6, maxHeight: 150, overflowY: 'auto', padding: '10px 14px', background: 'var(--bg-app)', border: '1px solid var(--border)', borderRadius: 6 }}>
+                    {recorridos.map(r => {
+                      const currentArr = Array.isArray(form.id_recorrido_viernes) ? form.id_recorrido_viernes : (form.id_recorrido_viernes ? [form.id_recorrido_viernes] : []);
+                      const isChecked = currentArr.includes(r.id);
+                      return (
+                        <label key={r.id} style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 13 }}>
+                          <input 
+                            type="checkbox" 
+                            checked={isChecked}
+                            onChange={(e) => {
+                              const next = e.target.checked 
+                                ? [...currentArr, r.id] 
+                                : currentArr.filter(id => id !== r.id);
+                              setForm(f => ({ ...f, id_recorrido_viernes: next.length > 0 ? next : null }));
+                            }}
+                          />
+                          {r.nombre}
+                        </label>
+                      )
+                    })}
+                  </div>
                 </div>
                 <div className="form-field">
                   <label>Chofer asignado</label>

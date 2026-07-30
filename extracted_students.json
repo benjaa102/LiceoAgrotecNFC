@@ -1,0 +1,5830 @@
+{
+  "cursos\\lista_curso_1a_agro": [
+    {
+      "lista": "01",
+      "matricula": "3",
+      "nombres": "ALARCÓN CANQUIL AILYN DANAAE",
+      "sexo": "M",
+      "fecha_nacimiento": "11/04/2011",
+      "rut": "23619222-9"
+    },
+    {
+      "lista": "02",
+      "matricula": "4",
+      "nombres": "ÁLVAREZ MILLAQUIPAI FERNANDA AYELÉN",
+      "sexo": "M",
+      "fecha_nacimiento": "05/07/2011",
+      "rut": "23687892-9"
+    },
+    {
+      "lista": "03",
+      "matricula": "5",
+      "nombres": "ARGEL SCHOETTGE STEPHANIE PAULINA",
+      "sexo": "M",
+      "fecha_nacimiento": "01/05/2011",
+      "rut": "23632671-3"
+    },
+    {
+      "lista": "04",
+      "matricula": "6",
+      "nombres": "AROS MONTESINOS VICENTE IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "03/02/2011",
+      "rut": "23555775-4"
+    },
+    {
+      "lista": "05",
+      "matricula": "7",
+      "nombres": "ARRIAGADA ÁLVAREZ NAYSA DENISSE",
+      "sexo": "M",
+      "fecha_nacimiento": "07/12/2011",
+      "rut": "23814958-4"
+    },
+    {
+      "lista": "06",
+      "matricula": "8",
+      "nombres": "BARRÍA ACUM MONSERRAT IGNACIA",
+      "sexo": "M",
+      "fecha_nacimiento": "19/05/2012",
+      "rut": "23956206-K"
+    },
+    {
+      "lista": "07",
+      "matricula": "10",
+      "nombres": "CÁRDENAS CORONADO BENJAMÍN ANDRÉS",
+      "sexo": "H",
+      "fecha_nacimiento": "17/11/2011",
+      "rut": "23803371-3"
+    },
+    {
+      "lista": "08",
+      "matricula": "11",
+      "nombres": "CASTRO CASTRO JOSSELYN ANAHIS",
+      "sexo": "M",
+      "fecha_nacimiento": "07/12/2011",
+      "rut": "23816049-9"
+    },
+    {
+      "lista": "09",
+      "matricula": "12",
+      "nombres": "CONTRERAS SAÉZ CONSTANZA MARTINA",
+      "sexo": "M",
+      "fecha_nacimiento": "14/11/2011",
+      "rut": "23795921-3"
+    },
+    {
+      "lista": "10",
+      "matricula": "13",
+      "nombres": "GATICA RUIZ NATANIHEL ELÍAS",
+      "sexo": "H",
+      "fecha_nacimiento": "13/10/2011",
+      "rut": "23772963-3"
+    },
+    {
+      "lista": "11",
+      "matricula": "14",
+      "nombres": "GÓMEZ RODRÍGUEZ LUIS ALEJANDRO MISAEL",
+      "sexo": "H",
+      "fecha_nacimiento": "30/03/2012",
+      "rut": "23917370-5"
+    },
+    {
+      "lista": "12",
+      "matricula": "15",
+      "nombres": "HUAQUÍN MOLINA ALYS ODETT",
+      "sexo": "M",
+      "fecha_nacimiento": "04/10/2011",
+      "rut": "23768075-8"
+    },
+    {
+      "lista": "13",
+      "matricula": "16",
+      "nombres": "HUEICHÁN IMILMAQUI ISIDORA JOSEFINA",
+      "sexo": "M",
+      "fecha_nacimiento": "16/02/2012",
+      "rut": "23879216-9"
+    },
+    {
+      "lista": "14",
+      "matricula": "17",
+      "nombres": "JARA CAMAN CHRISTIAN BENJAMÍN",
+      "sexo": "H",
+      "fecha_nacimiento": "24/05/2012",
+      "rut": "23956491-7"
+    },
+    {
+      "lista": "15",
+      "matricula": "18",
+      "nombres": "JARA HUENQUIAO RICHARD ANTONIO",
+      "sexo": "H",
+      "fecha_nacimiento": "15/07/2011",
+      "rut": "23693213-3"
+    },
+    {
+      "lista": "16",
+      "matricula": "20",
+      "nombres": "KREMA AUCAPÁN LISETTE FERNANDA",
+      "sexo": "M",
+      "fecha_nacimiento": "26/06/2011",
+      "rut": "23677181-4"
+    },
+    {
+      "lista": "17",
+      "matricula": "21",
+      "nombres": "LEAL ALVARADO IGNACIA ELIZABETH",
+      "sexo": "M",
+      "fecha_nacimiento": "20/11/2011",
+      "rut": "23806813-4"
+    },
+    {
+      "lista": "18",
+      "matricula": "22",
+      "nombres": "LÓPEZ ARRIAGADA IAN ABEL",
+      "sexo": "H",
+      "fecha_nacimiento": "26/11/2011",
+      "rut": "23807419-3"
+    },
+    {
+      "lista": "19",
+      "matricula": "23",
+      "nombres": "MARTÍNEZ VALDOVINO GERARDO MAXIMILIANO",
+      "sexo": "H",
+      "fecha_nacimiento": "06/01/2012",
+      "rut": "23850942-4"
+    },
+    {
+      "lista": "20",
+      "matricula": "24",
+      "nombres": "MOLINA HERNÁNDEZ CHANTAL JUSLEIDY",
+      "sexo": "M",
+      "fecha_nacimiento": "24/01/2012",
+      "rut": "23866744-5"
+    },
+    {
+      "lista": "21",
+      "matricula": "25",
+      "nombres": "MONASTERIO VARGAS FELIPE MATÍAS",
+      "sexo": "M",
+      "fecha_nacimiento": "05/07/2011",
+      "rut": "23684994-5"
+    },
+    {
+      "lista": "22",
+      "matricula": "26",
+      "nombres": "MORA MANZANAREZ LUISANNA GABRIELLE",
+      "sexo": "M",
+      "fecha_nacimiento": "11/09/2011",
+      "rut": "23742103-5"
+    },
+    {
+      "lista": "23",
+      "matricula": "27",
+      "nombres": "MUÑOZ BRAVO THIARE VALENTINA",
+      "sexo": "M",
+      "fecha_nacimiento": "22/05/2012",
+      "rut": "23956064-4"
+    },
+    {
+      "lista": "24",
+      "matricula": "29",
+      "nombres": "OJEDA SEPÚLVEDA MÁXIMO GABRIEL",
+      "sexo": "H",
+      "fecha_nacimiento": "09/08/2010",
+      "rut": "23393745-2"
+    },
+    {
+      "lista": "25",
+      "matricula": "30",
+      "nombres": "OLIVARES ROJAS BENJAMÍN FERNANDO",
+      "sexo": "H",
+      "fecha_nacimiento": "28/03/2012",
+      "rut": "23920408-2"
+    },
+    {
+      "lista": "26",
+      "matricula": "32",
+      "nombres": "PARRA DEUMACÁN SIMÓN ANDRÉS",
+      "sexo": "H",
+      "fecha_nacimiento": "05/12/2009",
+      "rut": "23194983-6"
+    },
+    {
+      "lista": "27",
+      "matricula": "33",
+      "nombres": "PAZ SANCHEZ ADRIAN EDUARDO",
+      "sexo": "H",
+      "fecha_nacimiento": "01/10/2011",
+      "rut": "27915596-3"
+    },
+    {
+      "lista": "28",
+      "matricula": "34",
+      "nombres": "PÉREZ CÁRCAMO ANTONELLA ESTEFANÍA",
+      "sexo": "M",
+      "fecha_nacimiento": "14/12/2011",
+      "rut": "02383252-6"
+    },
+    {
+      "lista": "29",
+      "matricula": "35",
+      "nombres": "QUILODRÁN CHAIPUL CATALINA ANDREA",
+      "sexo": "M",
+      "fecha_nacimiento": "01/11/2011",
+      "rut": "23786066-7"
+    },
+    {
+      "lista": "30",
+      "matricula": "37",
+      "nombres": "SOTO MUÑOZ PAULA FABIOLA",
+      "sexo": "M",
+      "fecha_nacimiento": "02/01/2012",
+      "rut": "23841579-9"
+    },
+    {
+      "lista": "31",
+      "matricula": "38",
+      "nombres": "TORO BELTRÁN ALONZO ANTONIO",
+      "sexo": "H",
+      "fecha_nacimiento": "18/11/2011",
+      "rut": "23801005-5"
+    },
+    {
+      "lista": "32",
+      "matricula": "39",
+      "nombres": "URIBE MOLINA FRANCISCO JAVIER",
+      "sexo": "H",
+      "fecha_nacimiento": "26/06/2011",
+      "rut": "23683447-6"
+    },
+    {
+      "lista": "33",
+      "matricula": "40",
+      "nombres": "VARGAS VALLEJOS NAKARA CONSTANZA",
+      "sexo": "M",
+      "fecha_nacimiento": "10/01/2012",
+      "rut": "23847135-4"
+    },
+    {
+      "lista": "34",
+      "matricula": "41",
+      "nombres": "VÁSQUEZ ZAMBRANO ANTONIA ELIZABETH",
+      "sexo": "M",
+      "fecha_nacimiento": "21/05/2012",
+      "rut": "23956040-7"
+    },
+    {
+      "lista": "35",
+      "matricula": "42",
+      "nombres": "VELÁSQUEZ VIDAL CARLOS JOHAN",
+      "sexo": "H",
+      "fecha_nacimiento": "16/07/2011",
+      "rut": "23695677-6"
+    },
+    {
+      "lista": "36",
+      "matricula": "43",
+      "nombres": "VILLALÓN ÁLVAREZ JEREMY AGUSTÍN",
+      "sexo": "H",
+      "fecha_nacimiento": "22/06/2012",
+      "rut": "23996725-6"
+    },
+    {
+      "lista": "37",
+      "matricula": "44",
+      "nombres": "VILLARROEL POZAS CRISTOPHER DANIEL",
+      "sexo": "H",
+      "fecha_nacimiento": "06/05/2011",
+      "rut": "23637300-2"
+    },
+    {
+      "lista": "38",
+      "matricula": "45",
+      "nombres": "YUNG PÉREZ JOSÉ MIGUEL",
+      "sexo": "H",
+      "fecha_nacimiento": "16/01/2012",
+      "rut": "23846420-K"
+    },
+    {
+      "lista": "39",
+      "matricula": "400",
+      "nombres": "HIDALGO MUÑOZ JEZABEL DAIR MABEL",
+      "sexo": "M",
+      "fecha_nacimiento": "23/07/2011",
+      "rut": "23699451-1"
+    },
+    {
+      "lista": "40",
+      "matricula": "27",
+      "nombres": "NUÑEZ STEGER PRISCILA ROSE-MERIE",
+      "sexo": "M",
+      "fecha_nacimiento": "25/10/2011",
+      "rut": "23782226-9"
+    },
+    {
+      "lista": "41",
+      "matricula": "84",
+      "nombres": "VERA GUTIÉRREZ SAMARIA CELESTE",
+      "sexo": "M",
+      "fecha_nacimiento": "13/01/2012",
+      "rut": "23852064-9"
+    }
+  ],
+  "cursos\\lista_curso_1b_agro": [
+    {
+      "lista": "01",
+      "matricula": "46",
+      "nombres": "ADAMAS LEIVA BENJAMÍN EDUARDO",
+      "sexo": "H",
+      "fecha_nacimiento": "11/08/2011",
+      "rut": "23720121-3"
+    },
+    {
+      "lista": "02",
+      "matricula": "49",
+      "nombres": "ANDRADE AGUAYO ANTONELLA DOMINIQUE CONSTA...",
+      "sexo": "M",
+      "fecha_nacimiento": "07/07/2011",
+      "rut": "23696546-5"
+    },
+    {
+      "lista": "03",
+      "matricula": "50",
+      "nombres": "ARANCIBIA RAMÍREZ JUAN BENJAMÍN EDUARDO",
+      "sexo": "H",
+      "fecha_nacimiento": "14/06/2011",
+      "rut": "23668570-5"
+    },
+    {
+      "lista": "04",
+      "matricula": "51",
+      "nombres": "ARAYA CARREÑO KAMILA FAIZA",
+      "sexo": "M",
+      "fecha_nacimiento": "30/04/2011",
+      "rut": "23633724-3"
+    },
+    {
+      "lista": "05",
+      "matricula": "52",
+      "nombres": "AREL CORRALES NORETH IGNACIA",
+      "sexo": "M",
+      "fecha_nacimiento": "02/01/2012",
+      "rut": "23837087-6"
+    },
+    {
+      "lista": "06",
+      "matricula": "53",
+      "nombres": "ARENAS CASTRO KAROLL DAYANA",
+      "sexo": "M",
+      "fecha_nacimiento": "27/12/2011",
+      "rut": "28157025-0"
+    },
+    {
+      "lista": "07",
+      "matricula": "54",
+      "nombres": "ARIAS ARRIAGADA FRANCISCA ANTONIA",
+      "sexo": "M",
+      "fecha_nacimiento": "14/09/2011",
+      "rut": "23748917-9"
+    },
+    {
+      "lista": "08",
+      "matricula": "55",
+      "nombres": "BARRÍA DÍAZ FELIPE HERNÁN",
+      "sexo": "H",
+      "fecha_nacimiento": "08/09/2011",
+      "rut": "23739924-2"
+    },
+    {
+      "lista": "09",
+      "matricula": "56",
+      "nombres": "CAMBRANO BÓRQUEZ DERNISS JEAN PIERRE",
+      "sexo": "H",
+      "fecha_nacimiento": "04/03/2012",
+      "rut": "23890344-0"
+    },
+    {
+      "lista": "10",
+      "matricula": "58",
+      "nombres": "CARRASCO PLACENCIA SOFÍA CONSTANZA",
+      "sexo": "M",
+      "fecha_nacimiento": "05/04/2012",
+      "rut": "23917730-1"
+    },
+    {
+      "lista": "11",
+      "matricula": "59",
+      "nombres": "CARRASCO SÁNCHEZ THIARE ELIZABETH IGNACIA",
+      "sexo": "M",
+      "fecha_nacimiento": "01/07/2011",
+      "rut": "23685603-8"
+    },
+    {
+      "lista": "12",
+      "matricula": "60",
+      "nombres": "CARVALLO PAREDES ANGEL ALEXANDER",
+      "sexo": "H",
+      "fecha_nacimiento": "24/05/2012",
+      "rut": "23978066-0"
+    },
+    {
+      "lista": "13",
+      "matricula": "61",
+      "nombres": "CHEUQUEPAL ÁVILA EMILIO THOMAS",
+      "sexo": "H",
+      "fecha_nacimiento": "05/09/2011",
+      "rut": "23736503-8"
+    },
+    {
+      "lista": "14",
+      "matricula": "62",
+      "nombres": "COLIMIL ACUM FELIPE SAMUEL",
+      "sexo": "H",
+      "fecha_nacimiento": "15/04/2011",
+      "rut": "23619964-9"
+    },
+    {
+      "lista": "15",
+      "matricula": "63",
+      "nombres": "FLORES DELGADO MARTINA ANTONIA",
+      "sexo": "M",
+      "fecha_nacimiento": "11/09/2011",
+      "rut": "23741376-8"
+    },
+    {
+      "lista": "16",
+      "matricula": "64",
+      "nombres": "FLORES MANCILLA CRISTÓBAL ANTONIO",
+      "sexo": "H",
+      "fecha_nacimiento": "21/09/2009",
+      "rut": "23130626-9"
+    },
+    {
+      "lista": "17",
+      "matricula": "65",
+      "nombres": "GACITÚA CONCHA KRISTEL BELÉN",
+      "sexo": "M",
+      "fecha_nacimiento": "07/02/2012",
+      "rut": "23865343-6"
+    },
+    {
+      "lista": "18",
+      "matricula": "66",
+      "nombres": "GARCÍA VERA CONSTANZA IGNACIA",
+      "sexo": "M",
+      "fecha_nacimiento": "12/09/2011",
+      "rut": "23751153-0"
+    },
+    {
+      "lista": "19",
+      "matricula": "67",
+      "nombres": "GODOY EPUYAO CRISTIAN JHONATAN",
+      "sexo": "H",
+      "fecha_nacimiento": "26/01/2011",
+      "rut": "23546533-7"
+    },
+    {
+      "lista": "20",
+      "matricula": "68",
+      "nombres": "GUZMÁN QUEULO CLAUDIO ANDRÉS",
+      "sexo": "H",
+      "fecha_nacimiento": "20/03/2012",
+      "rut": "23903506-K"
+    },
+    {
+      "lista": "21",
+      "matricula": "69",
+      "nombres": "HERNANDEZ HERNANDEZ MARTINA ISIDORA",
+      "sexo": "M",
+      "fecha_nacimiento": "24/03/2012",
+      "rut": "23907045-0"
+    },
+    {
+      "lista": "22",
+      "matricula": "70",
+      "nombres": "HERNÁNDEZ JARAMILLO ANGEL MAXIMILIANO",
+      "sexo": "M",
+      "fecha_nacimiento": "17/03/2011",
+      "rut": "23597168-2"
+    },
+    {
+      "lista": "23",
+      "matricula": "71",
+      "nombres": "HINOSTROZA MUÑOZ EDUARDO JOSÉ",
+      "sexo": "H",
+      "fecha_nacimiento": "31/05/2011",
+      "rut": "23658093-8"
+    },
+    {
+      "lista": "24",
+      "matricula": "73",
+      "nombres": "LEVÍN SILVA FRANCISCA SOFÍA",
+      "sexo": "M",
+      "fecha_nacimiento": "14/12/2010",
+      "rut": "23503925-7"
+    },
+    {
+      "lista": "25",
+      "matricula": "74",
+      "nombres": "LLAULÉN ROGEL JONATHAN ALEXANDER",
+      "sexo": "M",
+      "fecha_nacimiento": "21/02/2012",
+      "rut": "23880308-K"
+    },
+    {
+      "lista": "26",
+      "matricula": "75",
+      "nombres": "MARIPAN ALUN KATALINA ANDREA",
+      "sexo": "M",
+      "fecha_nacimiento": "08/04/2012",
+      "rut": "23919973-9"
+    },
+    {
+      "lista": "27",
+      "matricula": "77",
+      "nombres": "MOLINA MEJÍAS NICOLÁS DAMIAN",
+      "sexo": "H",
+      "fecha_nacimiento": "22/02/2012",
+      "rut": "23879073-5"
+    },
+    {
+      "lista": "28",
+      "matricula": "78",
+      "nombres": "MOLINA VALLEJOS ESTEBAN MAXIMILIANO",
+      "sexo": "H",
+      "fecha_nacimiento": "29/02/2012",
+      "rut": "23898832-2"
+    },
+    {
+      "lista": "29",
+      "matricula": "79",
+      "nombres": "MONTESINOS FUENTEALBA TAMAHITI RAYEN",
+      "sexo": "M",
+      "fecha_nacimiento": "18/10/2011",
+      "rut": "23774573-6"
+    },
+    {
+      "lista": "30",
+      "matricula": "81",
+      "nombres": "ORELLANA OLEA VICENTE",
+      "sexo": "M",
+      "fecha_nacimiento": "14/04/2012",
+      "rut": "23930794-9"
+    },
+    {
+      "lista": "32",
+      "matricula": "82",
+      "nombres": "PERALTA ARANEDA FLORENCIA ISABEL",
+      "sexo": "M",
+      "fecha_nacimiento": "06/07/2011",
+      "rut": "23712970-9"
+    },
+    {
+      "lista": "33",
+      "matricula": "83",
+      "nombres": "ROCHOW GALLARDO CRISTOFER ALEJANDRO",
+      "sexo": "M",
+      "fecha_nacimiento": "03/02/2011",
+      "rut": "23551759-0"
+    },
+    {
+      "lista": "34",
+      "matricula": "84",
+      "nombres": "SANDOVAL OBREQUE TRINIDAD AMPARO",
+      "sexo": "M",
+      "fecha_nacimiento": "22/08/2011",
+      "rut": "23723227-5"
+    },
+    {
+      "lista": "35",
+      "matricula": "85",
+      "nombres": "SILVA AZÓCAR PÍA ISIDORA",
+      "sexo": "M",
+      "fecha_nacimiento": "15/08/2011",
+      "rut": "23725587-9"
+    },
+    {
+      "lista": "36",
+      "matricula": "86",
+      "nombres": "SOTO HENRÍQUEZ MIA PASCAL JANETT",
+      "sexo": "M",
+      "fecha_nacimiento": "21/06/2011",
+      "rut": "23680898-k"
+    },
+    {
+      "lista": "37",
+      "matricula": "87",
+      "nombres": "TORREALBA CHODIL ANGELA BELÉN",
+      "sexo": "M",
+      "fecha_nacimiento": "02/11/2011",
+      "rut": "23793266-8"
+    },
+    {
+      "lista": "38",
+      "matricula": "88",
+      "nombres": "ULLOA BAEZ CAMILO ALONSO",
+      "sexo": "H",
+      "fecha_nacimiento": "17/08/2011",
+      "rut": "23725611-5"
+    },
+    {
+      "lista": "39",
+      "matricula": "90",
+      "nombres": "VERGARA MILLING MICHELLE POLLET",
+      "sexo": "M",
+      "fecha_nacimiento": "09/08/2011",
+      "rut": "23716298-6"
+    },
+    {
+      "lista": "40",
+      "matricula": "401",
+      "nombres": "CHEUQUEPAL ÁVILA MARTÍN ANTONIO",
+      "sexo": "H",
+      "fecha_nacimiento": "05/09/2011",
+      "rut": "23736488-0"
+    },
+    {
+      "lista": "41",
+      "matricula": "807",
+      "nombres": "RUIZ PÉREZ YOHAIRA SIMEY",
+      "sexo": "M",
+      "fecha_nacimiento": "30/04/2011",
+      "rut": "23637133-6"
+    },
+    {
+      "lista": "42",
+      "matricula": "9",
+      "nombres": "BARRUETO CAMPOS JUAN MANUEL",
+      "sexo": "H",
+      "fecha_nacimiento": "04/10/2011",
+      "rut": "23766306-3"
+    }
+  ],
+  "cursos\\lista_curso_1c_gastronomia": [
+    {
+      "lista": "01",
+      "matricula": "403",
+      "nombres": "AGUDELO MUÑOZ ISABEL CRISTINA",
+      "sexo": "M",
+      "fecha_nacimiento": "16/06/2011",
+      "rut": "25321848-7"
+    },
+    {
+      "lista": "02",
+      "matricula": "1",
+      "nombres": "ALVARADO TORRES BELÉN IGNACIA",
+      "sexo": "M",
+      "fecha_nacimiento": "30/11/2011",
+      "rut": "23809628-6"
+    },
+    {
+      "lista": "03",
+      "matricula": "2",
+      "nombres": "ANCAYE CURAL JOHN CRISTÓBAL",
+      "sexo": "H",
+      "fecha_nacimiento": "13/01/2009",
+      "rut": "22936283-6"
+    },
+    {
+      "lista": "04",
+      "matricula": "3",
+      "nombres": "ARANCIBIA CATILLO CATALINA IGNACIA",
+      "sexo": "M",
+      "fecha_nacimiento": "18/10/2011",
+      "rut": "23775053-5"
+    },
+    {
+      "lista": "05",
+      "matricula": "4",
+      "nombres": "AUCAPAN AUCAPAN XIOMARA MILLARAY",
+      "sexo": "M",
+      "fecha_nacimiento": "04/01/2012",
+      "rut": "23840652-8"
+    },
+    {
+      "lista": "06",
+      "matricula": "6",
+      "nombres": "BARRÍA LAGOS PAZ MONSERRAT",
+      "sexo": "M",
+      "fecha_nacimiento": "13/10/2011",
+      "rut": "23768875-9"
+    },
+    {
+      "lista": "07",
+      "matricula": "7",
+      "nombres": "BÓRQUEZ JARA CLAUDIA ANTONIA",
+      "sexo": "M",
+      "fecha_nacimiento": "08/06/2012",
+      "rut": "23976196-8"
+    },
+    {
+      "lista": "08",
+      "matricula": "9",
+      "nombres": "CARIÑANCO CARRASCO ANAHÍS FRANCISCA",
+      "sexo": "M",
+      "fecha_nacimiento": "19/10/2011",
+      "rut": "23776572-9"
+    },
+    {
+      "lista": "09",
+      "matricula": "10",
+      "nombres": "CARRASCO GUALA ISIDORA CONSTANZA",
+      "sexo": "M",
+      "fecha_nacimiento": "23/01/2012",
+      "rut": "23856831-5"
+    },
+    {
+      "lista": "10",
+      "matricula": "11",
+      "nombres": "CEA RIOS BLANCA NOEMÍ",
+      "sexo": "M",
+      "fecha_nacimiento": "09/10/2010",
+      "rut": "23457030-7"
+    },
+    {
+      "lista": "11",
+      "matricula": "13",
+      "nombres": "DAMIAN BAEZA BÁRBARA ANTONIA",
+      "sexo": "M",
+      "fecha_nacimiento": "06/08/2011",
+      "rut": "23711913-4"
+    },
+    {
+      "lista": "12",
+      "matricula": "14",
+      "nombres": "DELGADO ÁLVAREZ CAMILA MARGARITA",
+      "sexo": "M",
+      "fecha_nacimiento": "15/02/2012",
+      "rut": "23880483-3"
+    },
+    {
+      "lista": "13",
+      "matricula": "219",
+      "nombres": "FERNÁNDEZ PACHECO VALENTINA ALEJANDRA",
+      "sexo": "M",
+      "fecha_nacimiento": "20/12/2011",
+      "rut": "23839870-3"
+    },
+    {
+      "lista": "14",
+      "matricula": "16",
+      "nombres": "GATICA ELGUETA FERNANDA ANTONELLA",
+      "sexo": "M",
+      "fecha_nacimiento": "03/12/2011",
+      "rut": "23823271-6"
+    },
+    {
+      "lista": "15",
+      "matricula": "18",
+      "nombres": "GONZÁLEZ CÁRCAMO EVOLET ELIZABETH",
+      "sexo": "M",
+      "fecha_nacimiento": "07/12/2011",
+      "rut": "23814215-6"
+    },
+    {
+      "lista": "16",
+      "matricula": "19",
+      "nombres": "GUTIÉRREZ ALVARADO ICKER MAXIMILIANO",
+      "sexo": "H",
+      "fecha_nacimiento": "10/09/2011",
+      "rut": "23739888-2"
+    },
+    {
+      "lista": "17",
+      "matricula": "20",
+      "nombres": "MANSILLA AGUIRRE ANGEL EDUARDO",
+      "sexo": "H",
+      "fecha_nacimiento": "25/02/2010",
+      "rut": "23258533-1"
+    },
+    {
+      "lista": "18",
+      "matricula": "22",
+      "nombres": "MATAMALA BUSTOS YAIR ALEJANDRO",
+      "sexo": "H",
+      "fecha_nacimiento": "14/09/2011",
+      "rut": "23748869-5"
+    },
+    {
+      "lista": "19",
+      "matricula": "23",
+      "nombres": "MELILLANCA DELGADO JUAN RICARDO ANDRÉS",
+      "sexo": "H",
+      "fecha_nacimiento": "29/05/2012",
+      "rut": "23969335-0"
+    },
+    {
+      "lista": "20",
+      "matricula": "24",
+      "nombres": "MIRANDA CAMPOS ANGELY NATASHA",
+      "sexo": "M",
+      "fecha_nacimiento": "02/06/2011",
+      "rut": "23657433-4"
+    },
+    {
+      "lista": "21",
+      "matricula": "25",
+      "nombres": "MORA SANHUEZA DOMINICK SCARLETT",
+      "sexo": "M",
+      "fecha_nacimiento": "16/11/2011",
+      "rut": "23797958-3"
+    },
+    {
+      "lista": "22",
+      "matricula": "410",
+      "nombres": "MUÑOZ MONCADA KRISHMI XIAMOARA",
+      "sexo": "M",
+      "fecha_nacimiento": "24/07/2011",
+      "rut": "23701254-2"
+    },
+    {
+      "lista": "23",
+      "matricula": "26",
+      "nombres": "NUÑEZ MUÑOZ FERNANDA NICOL",
+      "sexo": "M",
+      "fecha_nacimiento": "14/05/2012",
+      "rut": "23948722-K"
+    },
+    {
+      "lista": "24",
+      "matricula": "28",
+      "nombres": "OSSA BURGOS VALENTINA IGNACIA",
+      "sexo": "M",
+      "fecha_nacimiento": "03/10/2011",
+      "rut": "23763997-9"
+    },
+    {
+      "lista": "25",
+      "matricula": "29",
+      "nombres": "PAILAPICHÚN OYARZO JONATHAN ANDRÉS",
+      "sexo": "H",
+      "fecha_nacimiento": "10/11/2011",
+      "rut": "23799113-3"
+    },
+    {
+      "lista": "26",
+      "matricula": "30",
+      "nombres": "PANEZ SOTO ANAÍS ANDREA",
+      "sexo": "M",
+      "fecha_nacimiento": "01/03/2012",
+      "rut": "23889346-1"
+    },
+    {
+      "lista": "27",
+      "matricula": "31",
+      "nombres": "REUQUÉN PUCHI LOGAN DEIVID",
+      "sexo": "H",
+      "fecha_nacimiento": "25/03/2012",
+      "rut": "23910172-0"
+    },
+    {
+      "lista": "28",
+      "matricula": "32",
+      "nombres": "REYES SÁNCHEZ JAVIERA (SEBASTIÁN LEON.",
+      "sexo": "H",
+      "fecha_nacimiento": "11/01/2012",
+      "rut": "23845730-0"
+    },
+    {
+      "lista": "29",
+      "matricula": "33",
+      "nombres": "REYES VARGAS CRISTÓBAL MAXIMILIANO",
+      "sexo": "H",
+      "fecha_nacimiento": "26/12/2011",
+      "rut": "23840883-0"
+    },
+    {
+      "lista": "30",
+      "matricula": "34",
+      "nombres": "SÁEZ HUENULEF CRISTÓBAL ANDRÉS",
+      "sexo": "H",
+      "fecha_nacimiento": "28/05/2012",
+      "rut": "23975065-6"
+    },
+    {
+      "lista": "31",
+      "matricula": "35",
+      "nombres": "SALAZAR ALBARRÁN CATALINA ESTEFANIA",
+      "sexo": "M",
+      "fecha_nacimiento": "03/10/2011",
+      "rut": "23762888-8"
+    },
+    {
+      "lista": "32",
+      "matricula": "399",
+      "nombres": "SEGUEL LLAITUL LORETO ANAHIS",
+      "sexo": "M",
+      "fecha_nacimiento": "07/11/2011",
+      "rut": "23792240-9"
+    },
+    {
+      "lista": "33",
+      "matricula": "37",
+      "nombres": "SILVA MARTÍNEZ EMILIA ALEJANDRA",
+      "sexo": "M",
+      "fecha_nacimiento": "10/04/2011",
+      "rut": "23627295-8"
+    },
+    {
+      "lista": "34",
+      "matricula": "248",
+      "nombres": "SILVA NAVEA ISIDORA PAZ",
+      "sexo": "M",
+      "fecha_nacimiento": "19/07/2011",
+      "rut": "23697370-0"
+    },
+    {
+      "lista": "35",
+      "matricula": "38",
+      "nombres": "SOTO CASTRO ISABELLA RAYEN",
+      "sexo": "M",
+      "fecha_nacimiento": "10/04/2012",
+      "rut": "23921105-4"
+    },
+    {
+      "lista": "36",
+      "matricula": "39",
+      "nombres": "ULLOA HUICHAMÁN BENJAMÍN EMANUEL",
+      "sexo": "H",
+      "fecha_nacimiento": "11/10/2011",
+      "rut": "23770652-8"
+    },
+    {
+      "lista": "37",
+      "matricula": "40",
+      "nombres": "URIBE ALUN AMYLEE CAROLINA",
+      "sexo": "M",
+      "fecha_nacimiento": "05/08/2011",
+      "rut": "23714528-3"
+    },
+    {
+      "lista": "38",
+      "matricula": "43",
+      "nombres": "VILLAR VILLAR SARAI ABIGAIL",
+      "sexo": "M",
+      "fecha_nacimiento": "21/01/2012",
+      "rut": "23854241-3"
+    },
+    {
+      "lista": "39",
+      "matricula": "85",
+      "nombres": "VIDAL ALVARADO ESTEBAN ALEXIS",
+      "sexo": "H",
+      "fecha_nacimiento": "27/10/2011",
+      "rut": "23782699-K"
+    },
+    {
+      "lista": "40",
+      "matricula": "81",
+      "nombres": "ULLOA PICHICONA TÓMAS IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "06/05/2012",
+      "rut": "23945620-0"
+    }
+  ],
+  "cursos\\lista_curso_1d_gastronomia": [
+    {
+      "lista": "01",
+      "matricula": "44",
+      "nombres": "ALARCÓN ARAYA MAGDALENA ANAHIS",
+      "sexo": "M",
+      "fecha_nacimiento": "30/09/2011",
+      "rut": "23760300-1"
+    },
+    {
+      "lista": "02",
+      "matricula": "45",
+      "nombres": "ASENJO DUARTE JUAN PEDRO ALBERTO",
+      "sexo": "H",
+      "fecha_nacimiento": "13/09/2011",
+      "rut": "23759941-1"
+    },
+    {
+      "lista": "03",
+      "matricula": "409",
+      "nombres": "ÁVALOS VERGARA JORDANO ALEXANDER",
+      "sexo": "H",
+      "fecha_nacimiento": "16/12/2011",
+      "rut": "23820840-8"
+    },
+    {
+      "lista": "04",
+      "matricula": "46",
+      "nombres": "BARRIGA DEL RIO ANTONELLA IGNACIA",
+      "sexo": "M",
+      "fecha_nacimiento": "20/07/2011",
+      "rut": "23725740-5"
+    },
+    {
+      "lista": "05",
+      "matricula": "47",
+      "nombres": "BRAVO MAC-VICAR JAVIER ALONSO",
+      "sexo": "H",
+      "fecha_nacimiento": "28/07/2011",
+      "rut": "23704489-4"
+    },
+    {
+      "lista": "06",
+      "matricula": "406",
+      "nombres": "BARRIENTOS CHAURA EDUARDO NICOLAS",
+      "sexo": "H",
+      "fecha_nacimiento": "21/11/2010",
+      "rut": "23504375-0"
+    },
+    {
+      "lista": "07",
+      "matricula": "49",
+      "nombres": "CARTES MARTÍNEZ JEAN KAROL SEBASTIÁN",
+      "sexo": "H",
+      "fecha_nacimiento": "24/09/2010",
+      "rut": "23439101-1"
+    },
+    {
+      "lista": "08",
+      "matricula": "51",
+      "nombres": "COSSIO MONTECINOS CRISTÓBAL IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "28/09/2011",
+      "rut": "23759654-4"
+    },
+    {
+      "lista": "09",
+      "matricula": "53",
+      "nombres": "DELGADO ALMONACID YENDELAYN DEL CARMEN",
+      "sexo": "M",
+      "fecha_nacimiento": "26/01/2012",
+      "rut": "23864256-6"
+    },
+    {
+      "lista": "10",
+      "matricula": "54",
+      "nombres": "DELGADO PACHECO VALENTINA FERNANDA",
+      "sexo": "M",
+      "fecha_nacimiento": "06/10/2011",
+      "rut": "23768325-0"
+    },
+    {
+      "lista": "11",
+      "matricula": "391",
+      "nombres": "DÍAZ VALLEJOS JOAQUÍN IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "10/11/2010",
+      "rut": "23474817-3"
+    },
+    {
+      "lista": "12",
+      "matricula": "56",
+      "nombres": "ESPINOZA MORA FRANCO ALFONSO",
+      "sexo": "H",
+      "fecha_nacimiento": "31/03/2011",
+      "rut": "23607581-8"
+    },
+    {
+      "lista": "13",
+      "matricula": "57",
+      "nombres": "ESPINOZA PALMA MATÍAS IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "03/11/2011",
+      "rut": "23787175-8"
+    },
+    {
+      "lista": "14",
+      "matricula": "58",
+      "nombres": "FAÚNDEZ TORRES KARINA IVONNE",
+      "sexo": "M",
+      "fecha_nacimiento": "04/10/2011",
+      "rut": "23768778-7"
+    },
+    {
+      "lista": "15",
+      "matricula": "62",
+      "nombres": "LORCA VARGAS MAITE VALENTINA",
+      "sexo": "M",
+      "fecha_nacimiento": "07/07/2011",
+      "rut": "23686061-2"
+    },
+    {
+      "lista": "16",
+      "matricula": "63",
+      "nombres": "MARÍN REBOLLEDO MAXIMILIANO ANTONIO",
+      "sexo": "M",
+      "fecha_nacimiento": "21/11/2011",
+      "rut": "23801852-8"
+    },
+    {
+      "lista": "17",
+      "matricula": "21",
+      "nombres": "MARTÍNEZ CUMPLIDO MAXIMILIANO IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "17/03/2011",
+      "rut": "23670444-0"
+    },
+    {
+      "lista": "18",
+      "matricula": "64",
+      "nombres": "MARTÍNEZ CURRIAN CAROLINA ABIGAIL",
+      "sexo": "M",
+      "fecha_nacimiento": "28/01/2012",
+      "rut": "23857025-5"
+    },
+    {
+      "lista": "19",
+      "matricula": "65",
+      "nombres": "MARTÍNEZ TORRES MANUEL ERNESTO",
+      "sexo": "H",
+      "fecha_nacimiento": "05/02/2012",
+      "rut": "23865580-3"
+    },
+    {
+      "lista": "20",
+      "matricula": "66",
+      "nombres": "MÉNDEZ CARES KEITHY MARTINA ANAHIS",
+      "sexo": "M",
+      "fecha_nacimiento": "18/06/2012",
+      "rut": "23990161-1"
+    },
+    {
+      "lista": "21",
+      "matricula": "67",
+      "nombres": "MILLAR DELGADO BELÉN SARAI",
+      "sexo": "M",
+      "fecha_nacimiento": "25/11/2011",
+      "rut": "23805316-1"
+    },
+    {
+      "lista": "22",
+      "matricula": "68",
+      "nombres": "MONCADA MONCADA MARTINA BELÉN",
+      "sexo": "M",
+      "fecha_nacimiento": "20/11/2011",
+      "rut": "23803321-7"
+    },
+    {
+      "lista": "23",
+      "matricula": "70",
+      "nombres": "MORA CANQUIL LUCIANA YVONETTY",
+      "sexo": "M",
+      "fecha_nacimiento": "13/10/2011",
+      "rut": "23772916-1"
+    },
+    {
+      "lista": "24",
+      "matricula": "71",
+      "nombres": "MORALES ÑANCUCHEO TAMARA VALENTINA",
+      "sexo": "M",
+      "fecha_nacimiento": "02/10/2011",
+      "rut": "23764177-9"
+    },
+    {
+      "lista": "25",
+      "matricula": "73",
+      "nombres": "PEDREROS CASANOVA CAMILA IGNACIA",
+      "sexo": "M",
+      "fecha_nacimiento": "06/03/2012",
+      "rut": "23889603-7"
+    },
+    {
+      "lista": "26",
+      "matricula": "74",
+      "nombres": "PINUER ESTUARDO PALOMA YUDITH",
+      "sexo": "M",
+      "fecha_nacimiento": "06/05/2010",
+      "rut": "23317543-9"
+    },
+    {
+      "lista": "27",
+      "matricula": "76",
+      "nombres": "QUILIMPAN QUILIMPAN FERNANDO ALEJANDRO",
+      "sexo": "H",
+      "fecha_nacimiento": "05/11/2011",
+      "rut": "23796748-8"
+    },
+    {
+      "lista": "28",
+      "matricula": "77",
+      "nombres": "RAMÍREZ SOBARZO VALENTINA ISIDORA",
+      "sexo": "M",
+      "fecha_nacimiento": "17/04/2012",
+      "rut": "23929019-1"
+    },
+    {
+      "lista": "29",
+      "matricula": "78",
+      "nombres": "REYES MANCILLA BRIAN ALEXANDER",
+      "sexo": "H",
+      "fecha_nacimiento": "27/05/2012",
+      "rut": "23969723-2"
+    },
+    {
+      "lista": "30",
+      "matricula": "79",
+      "nombres": "SANHUEZA LEAL EDUARDO JAVIER",
+      "sexo": "H",
+      "fecha_nacimiento": "06/05/2012",
+      "rut": "23941797-3"
+    },
+    {
+      "lista": "31",
+      "matricula": "80",
+      "nombres": "TORRES CUEVAS DASTAN EDUARDO",
+      "sexo": "H",
+      "fecha_nacimiento": "04/03/2012",
+      "rut": "23892493-6"
+    },
+    {
+      "lista": "32",
+      "matricula": "83",
+      "nombres": "VÁSQUEZ MANQUI MAITE IGNACIA",
+      "sexo": "M",
+      "fecha_nacimiento": "27/11/2011",
+      "rut": "23813889-2"
+    },
+    {
+      "lista": "33",
+      "matricula": "86",
+      "nombres": "ZUÑIGA URIBE FLORENCIA TRINIDAD",
+      "sexo": "M",
+      "fecha_nacimiento": "06/01/2012",
+      "rut": "23838716-7"
+    },
+    {
+      "lista": "34",
+      "matricula": "253",
+      "nombres": "PATIÑO LÓPEZ AXEL DIDIER",
+      "sexo": "H",
+      "fecha_nacimiento": "19/05/2011",
+      "rut": "23648783-0"
+    },
+    {
+      "lista": "35",
+      "matricula": "1",
+      "nombres": "AGUILERA PACHECO MARTÍN ALONSO",
+      "sexo": "H",
+      "fecha_nacimiento": "27/04/2012",
+      "rut": "23934209-4"
+    },
+    {
+      "lista": "36",
+      "matricula": "806",
+      "nombres": "ASENJO DUARTE CLAUDIO ANDRÉS HIPÓL.",
+      "sexo": "H",
+      "fecha_nacimiento": "13/09/2011",
+      "rut": "23759966-7"
+    },
+    {
+      "lista": "37",
+      "matricula": "19",
+      "nombres": "JOPIA VEGA PALOMA TRINIDAD",
+      "sexo": "M",
+      "fecha_nacimiento": "22/08/2011",
+      "rut": "23726809-1"
+    }
+  ],
+  "cursos\\lista_curso_2a_agropecuaria": [
+    {
+      "lista": "01",
+      "matricula": "91",
+      "nombres": "ÁLVAREZ PAILANCA ÁLVARO SADOC",
+      "sexo": "H",
+      "fecha_nacimiento": "21/03/2010",
+      "rut": "23287285-3"
+    },
+    {
+      "lista": "02",
+      "matricula": "92",
+      "nombres": "ARAVENA FIGUEROA RAFAEL IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "11/01/2011",
+      "rut": "23532366-4"
+    },
+    {
+      "lista": "03",
+      "matricula": "93",
+      "nombres": "BARRIA LAGOS JOEL MAXIMILIANO",
+      "sexo": "H",
+      "fecha_nacimiento": "28/08/2010",
+      "rut": "23409366-5"
+    },
+    {
+      "lista": "04",
+      "matricula": "94",
+      "nombres": "BASSO GONZÁLEZ ANTONELLA FERNANDA",
+      "sexo": "M",
+      "fecha_nacimiento": "12/06/2010",
+      "rut": "23359012-6"
+    },
+    {
+      "lista": "05",
+      "matricula": "95",
+      "nombres": "BELMAR FOITZICK HELEN MONSERRAT",
+      "sexo": "M",
+      "fecha_nacimiento": "16/04/2011",
+      "rut": "23619973-8"
+    },
+    {
+      "lista": "06",
+      "matricula": "96",
+      "nombres": "BELMAR GACITÚA SAMARA AYLIN",
+      "sexo": "M",
+      "fecha_nacimiento": "22/02/2011",
+      "rut": "23568629-5"
+    },
+    {
+      "lista": "07",
+      "matricula": "97",
+      "nombres": "BELMAR RUPAYÁN JAVIERA IGNACIA DEL CARME",
+      "sexo": "M",
+      "fecha_nacimiento": "28/09/2010",
+      "rut": "23440843-7"
+    },
+    {
+      "lista": "08",
+      "matricula": "98",
+      "nombres": "BEROÍZA MUÑOZ CIARA SCARLETT",
+      "sexo": "M",
+      "fecha_nacimiento": "01/11/2010",
+      "rut": "23464793-8"
+    },
+    {
+      "lista": "09",
+      "matricula": "99",
+      "nombres": "BOBADILLA CONTRERAS MARTÍN ARTURO",
+      "sexo": "H",
+      "fecha_nacimiento": "16/10/2010",
+      "rut": "23450905-5"
+    },
+    {
+      "lista": "10",
+      "matricula": "101",
+      "nombres": "CANIO ARAVENA GEORGINA ANGÉLICA",
+      "sexo": "M",
+      "fecha_nacimiento": "20/01/2011",
+      "rut": "23540473-7"
+    },
+    {
+      "lista": "11",
+      "matricula": "102",
+      "nombres": "CÁRDENAS DELGADO MILEY NAZARETT",
+      "sexo": "M",
+      "fecha_nacimiento": "08/03/2011",
+      "rut": "23597056-2"
+    },
+    {
+      "lista": "12",
+      "matricula": "103",
+      "nombres": "CARRASCO TORRES IGNACIA ANTONELLA",
+      "sexo": "M",
+      "fecha_nacimiento": "18/03/2011",
+      "rut": "23600261-6"
+    },
+    {
+      "lista": "13",
+      "matricula": "104",
+      "nombres": "CATALÁN CÁRDENAS GABRIEL IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "17/11/2008",
+      "rut": "22887870-7"
+    },
+    {
+      "lista": "14",
+      "matricula": "105",
+      "nombres": "CATALÁN KACHELE CHRISTOPHER IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "16/11/2010",
+      "rut": "23490852-9"
+    },
+    {
+      "lista": "15",
+      "matricula": "106",
+      "nombres": "CERDA MONTESINOS IVAN ALONSO",
+      "sexo": "H",
+      "fecha_nacimiento": "06/10/2010",
+      "rut": "23444765-3"
+    },
+    {
+      "lista": "16",
+      "matricula": "107",
+      "nombres": "FLÁNDEZ NAIPE VALENTINA ANTONIA",
+      "sexo": "M",
+      "fecha_nacimiento": "22/06/2009",
+      "rut": "23060631-5"
+    },
+    {
+      "lista": "17",
+      "matricula": "108",
+      "nombres": "GALLARDO VALENCIA DIEGO ALBERTO",
+      "sexo": "H",
+      "fecha_nacimiento": "27/09/2010",
+      "rut": "23441722-3"
+    },
+    {
+      "lista": "18",
+      "matricula": "109",
+      "nombres": "GARCÉS CAMAN ANTONIA MILLANTÜ",
+      "sexo": "M",
+      "fecha_nacimiento": "24/08/2010",
+      "rut": "23408671-5"
+    },
+    {
+      "lista": "19",
+      "matricula": "110",
+      "nombres": "GUTIERREZ CASTRO MAXIMILIANO ELIAS",
+      "sexo": "H",
+      "fecha_nacimiento": "13/12/2010",
+      "rut": "23499570-7"
+    },
+    {
+      "lista": "20",
+      "matricula": "111",
+      "nombres": "HENRIQUEZ NAVARRO MARTINA YAZMIN",
+      "sexo": "M",
+      "fecha_nacimiento": "25/08/2009",
+      "rut": "23105569-K"
+    },
+    {
+      "lista": "21",
+      "matricula": "112",
+      "nombres": "HUENUPÁN PINIAO NATALIA EDITH",
+      "sexo": "M",
+      "fecha_nacimiento": "19/10/2010",
+      "rut": "23456539-7"
+    },
+    {
+      "lista": "22",
+      "matricula": "114",
+      "nombres": "MÁRQUEZ RIQUELME BÁRBARA RAYEN",
+      "sexo": "M",
+      "fecha_nacimiento": "25/06/2009",
+      "rut": "23064140-4"
+    },
+    {
+      "lista": "23",
+      "matricula": "115",
+      "nombres": "MONTECINO DOUGLAS CATHALINA ANTONELLA",
+      "sexo": "M",
+      "fecha_nacimiento": "04/02/2011",
+      "rut": "23556427-0"
+    },
+    {
+      "lista": "24",
+      "matricula": "116",
+      "nombres": "MORALES PAILLÁN ERWIN ANTONIO",
+      "sexo": "H",
+      "fecha_nacimiento": "23/07/2009",
+      "rut": "23076684-3"
+    },
+    {
+      "lista": "25",
+      "matricula": "117",
+      "nombres": "NEIRA RODRIGUEZ MANUEL JESUS",
+      "sexo": "H",
+      "fecha_nacimiento": "20/06/2009",
+      "rut": "23060346-4"
+    },
+    {
+      "lista": "26",
+      "matricula": "118",
+      "nombres": "ORELLANA ACUÑA FLORENCIA ISIDORA",
+      "sexo": "M",
+      "fecha_nacimiento": "02/07/2010",
+      "rut": "23363166-3"
+    },
+    {
+      "lista": "27",
+      "matricula": "119",
+      "nombres": "OYARZO GUARDA ABDIAS SEBASTIÁN",
+      "sexo": "H",
+      "fecha_nacimiento": "07/09/2009",
+      "rut": "23130141-0"
+    },
+    {
+      "lista": "28",
+      "matricula": "120",
+      "nombres": "OYARZÚN LLANCAMIL JAVIERA ANTONIA",
+      "sexo": "M",
+      "fecha_nacimiento": "19/02/2011",
+      "rut": "23571428-0"
+    },
+    {
+      "lista": "29",
+      "matricula": "121",
+      "nombres": "RODRÍGUEZ MARQUARDTT THYARE ALEJANDRA",
+      "sexo": "M",
+      "fecha_nacimiento": "08/12/2010",
+      "rut": "23521490-3"
+    },
+    {
+      "lista": "30",
+      "matricula": "122",
+      "nombres": "RUBIO VARGAS FRANCOISE DE JESÚS",
+      "sexo": "M",
+      "fecha_nacimiento": "05/04/2009",
+      "rut": "23032578-2"
+    },
+    {
+      "lista": "31",
+      "matricula": "123",
+      "nombres": "SALGADO GARCÍA FRANCO ENRIQUE",
+      "sexo": "H",
+      "fecha_nacimiento": "07/03/2011",
+      "rut": "23578884-5"
+    },
+    {
+      "lista": "32",
+      "matricula": "125",
+      "nombres": "SÁNCHEZ CASTAÑEDA PALOMA ANTONIA",
+      "sexo": "M",
+      "fecha_nacimiento": "04/04/2011",
+      "rut": "23614763-0"
+    },
+    {
+      "lista": "33",
+      "matricula": "127",
+      "nombres": "TORREALBA NEGRÓN SASHA ANAIS",
+      "sexo": "M",
+      "fecha_nacimiento": "02/11/2009",
+      "rut": "23164873-9"
+    },
+    {
+      "lista": "34",
+      "matricula": "128",
+      "nombres": "TORRES MONSALVE TOMÁS ANDRES",
+      "sexo": "H",
+      "fecha_nacimiento": "12/02/2011",
+      "rut": "23557551-5"
+    },
+    {
+      "lista": "35",
+      "matricula": "129",
+      "nombres": "VÁSQUEZ GUARDA DEBANY AYLIN",
+      "sexo": "M",
+      "fecha_nacimiento": "16/11/2010",
+      "rut": "23479708-5"
+    },
+    {
+      "lista": "36",
+      "matricula": "131",
+      "nombres": "VERGARA PADGET ALEJANDRO MAXIMILIANO",
+      "sexo": "H",
+      "fecha_nacimiento": "14/05/2011",
+      "rut": "23642721-8"
+    },
+    {
+      "lista": "37",
+      "matricula": "132",
+      "nombres": "VILLALOBOS VILLANUEVA EDISON JUAN CARLOS",
+      "sexo": "H",
+      "fecha_nacimiento": "14/02/2009",
+      "rut": "22952963-3"
+    },
+    {
+      "lista": "38",
+      "matricula": "133",
+      "nombres": "VILLANUEVA GOMEZ CARLA CONSTANZA",
+      "sexo": "M",
+      "fecha_nacimiento": "15/04/2011",
+      "rut": "23643358-7"
+    },
+    {
+      "lista": "39",
+      "matricula": "134",
+      "nombres": "ZAPATA MARTINEZ YARITZA ALEJANDRA",
+      "sexo": "M",
+      "fecha_nacimiento": "05/12/2010",
+      "rut": "23510711-2"
+    },
+    {
+      "lista": "40",
+      "matricula": "385",
+      "nombres": "OLIVARES LAGOS MATÍAS IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "02/11/2009",
+      "rut": "23162801-0"
+    }
+  ],
+  "cursos\\lista_curso_2b_agropecuaria": [
+    {
+      "lista": "01",
+      "matricula": "135",
+      "nombres": "ÁGUILA ÁLVAREZ JHENDERLYN NEMORY",
+      "sexo": "M",
+      "fecha_nacimiento": "17/08/2010",
+      "rut": "23400773-4"
+    },
+    {
+      "lista": "02",
+      "matricula": "136",
+      "nombres": "ALARCON AMPUERO JULIETA AMELIA DOMINGA",
+      "sexo": "M",
+      "fecha_nacimiento": "10/05/2011",
+      "rut": "23649102-1"
+    },
+    {
+      "lista": "03",
+      "matricula": "137",
+      "nombres": "ALMONACID VARGAS ANÍBAL LEOPOLDO",
+      "sexo": "H",
+      "fecha_nacimiento": "26/04/2011",
+      "rut": "23628678-9"
+    },
+    {
+      "lista": "04",
+      "matricula": "138",
+      "nombres": "ÁLVAREZ GATICA MAXIMILIANO ANDRÉS",
+      "sexo": "H",
+      "fecha_nacimiento": "12/08/2010",
+      "rut": "23397101-4"
+    },
+    {
+      "lista": "05",
+      "matricula": "139",
+      "nombres": "ARCE RIVAS YANARA JIMENA",
+      "sexo": "M",
+      "fecha_nacimiento": "27/11/2010",
+      "rut": "23496428-3"
+    },
+    {
+      "lista": "06",
+      "matricula": "140",
+      "nombres": "BARRIGA MUÑOZ IAN KENNETH",
+      "sexo": "H",
+      "fecha_nacimiento": "20/02/2011",
+      "rut": "23580420-4"
+    },
+    {
+      "lista": "07",
+      "matricula": "141",
+      "nombres": "CADEGAN LIENLAF FERNANDA ANDREA",
+      "sexo": "M",
+      "fecha_nacimiento": "23/08/2009",
+      "rut": "23102726-2"
+    },
+    {
+      "lista": "08",
+      "matricula": "142",
+      "nombres": "CÁRDENAS MÁRQUEZ JOAQUÍN ELEACER",
+      "sexo": "H",
+      "fecha_nacimiento": "02/06/2010",
+      "rut": "23347095-3"
+    },
+    {
+      "lista": "09",
+      "matricula": "143",
+      "nombres": "CÁRDENAS MUÑOZ MAURICIO CÉSAR FABIÁN",
+      "sexo": "H",
+      "fecha_nacimiento": "16/09/2010",
+      "rut": "23455898-6"
+    },
+    {
+      "lista": "10",
+      "matricula": "144",
+      "nombres": "CATALÁN DUMENES MARTINA MONSERRATT",
+      "sexo": "M",
+      "fecha_nacimiento": "22/05/2010",
+      "rut": "23335069-9"
+    },
+    {
+      "lista": "11",
+      "matricula": "146",
+      "nombres": "DUARTE MERCADOS ROMINA AHILYN",
+      "sexo": "M",
+      "fecha_nacimiento": "05/06/2010",
+      "rut": "23344238-0"
+    },
+    {
+      "lista": "12",
+      "matricula": "147",
+      "nombres": "ESCALONA MARTEL NICOLÁS ALEXANDER",
+      "sexo": "H",
+      "fecha_nacimiento": "13/03/2011",
+      "rut": "23597543-2"
+    },
+    {
+      "lista": "13",
+      "matricula": "148",
+      "nombres": "FERNÁNDEZ HUENCHUGUAL DANNY RODRIGO",
+      "sexo": "H",
+      "fecha_nacimiento": "29/12/2010",
+      "rut": "23514653-3"
+    },
+    {
+      "lista": "14",
+      "matricula": "149",
+      "nombres": "FRIDERICKSEN ADAMAS ANTONELLA AMANDA",
+      "sexo": "M",
+      "fecha_nacimiento": "15/07/2010",
+      "rut": "23373073-4"
+    },
+    {
+      "lista": "15",
+      "matricula": "150",
+      "nombres": "GALLARDO ALVARADO FERNANDO JAVIER",
+      "sexo": "H",
+      "fecha_nacimiento": "01/08/2010",
+      "rut": "23394111-5"
+    },
+    {
+      "lista": "16",
+      "matricula": "152",
+      "nombres": "HERNÁNDEZ VALENZUELA CONSTANZA MAGDALENA",
+      "sexo": "M",
+      "fecha_nacimiento": "13/03/2011",
+      "rut": "23584127-4"
+    },
+    {
+      "lista": "17",
+      "matricula": "153",
+      "nombres": "HERNANDEZ VARGAS TAHIA ANGELICA",
+      "sexo": "M",
+      "fecha_nacimiento": "14/09/2010",
+      "rut": "23428607-2"
+    },
+    {
+      "lista": "18",
+      "matricula": "154",
+      "nombres": "HIGUERAS OBANDO FERNANDO JAVIER",
+      "sexo": "H",
+      "fecha_nacimiento": "11/05/2011",
+      "rut": "23645793-1"
+    },
+    {
+      "lista": "19",
+      "matricula": "155",
+      "nombres": "LEAL GUARDA TATIANA ALEJANDRA",
+      "sexo": "M",
+      "fecha_nacimiento": "15/11/2010",
+      "rut": "23484623-K"
+    },
+    {
+      "lista": "20",
+      "matricula": "156",
+      "nombres": "LOAIZA AGUILAR MONSERRAT IGNACIA",
+      "sexo": "M",
+      "fecha_nacimiento": "18/10/2010",
+      "rut": "23455666-5"
+    },
+    {
+      "lista": "21",
+      "matricula": "157",
+      "nombres": "LORCA MANCILLA FRANCISCA YAMILET",
+      "sexo": "M",
+      "fecha_nacimiento": "21/09/2010",
+      "rut": "23435087-0"
+    },
+    {
+      "lista": "22",
+      "matricula": "158",
+      "nombres": "MAUTZ SÁEZ MATÍAS IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "17/02/2011",
+      "rut": "23567585-4"
+    },
+    {
+      "lista": "23",
+      "matricula": "159",
+      "nombres": "MUÑOZ MONCADA SAYEN ANTONELLA",
+      "sexo": "M",
+      "fecha_nacimiento": "12/03/2010",
+      "rut": "23271227-9"
+    },
+    {
+      "lista": "24",
+      "matricula": "160",
+      "nombres": "NAIPÁN LEIVA FELIPE ANDRÉS",
+      "sexo": "H",
+      "fecha_nacimiento": "17/11/2010",
+      "rut": "23487496-9"
+    },
+    {
+      "lista": "25",
+      "matricula": "161",
+      "nombres": "NAVARRO SILVA FELIPE ANDRÉS",
+      "sexo": "H",
+      "fecha_nacimiento": "22/10/2010",
+      "rut": "23460858-4"
+    },
+    {
+      "lista": "26",
+      "matricula": "163",
+      "nombres": "OJEDA SOTO THIARE SAMANTHA ESTE",
+      "sexo": "M",
+      "fecha_nacimiento": "18/08/2010",
+      "rut": "23403161-9"
+    },
+    {
+      "lista": "27",
+      "matricula": "164",
+      "nombres": "OLIVERA PEREIRA BELÉN AIDÉ",
+      "sexo": "M",
+      "fecha_nacimiento": "13/08/2010",
+      "rut": "23397599-0"
+    },
+    {
+      "lista": "28",
+      "matricula": "165",
+      "nombres": "PAILLÁN OYARZÚN BERNARDO JOAQUÍN",
+      "sexo": "H",
+      "fecha_nacimiento": "30/11/2010",
+      "rut": "23508369-8"
+    },
+    {
+      "lista": "29",
+      "matricula": "167",
+      "nombres": "PICHINTINI GUENTREPAN ANDREA BELÉN",
+      "sexo": "M",
+      "fecha_nacimiento": "31/07/2010",
+      "rut": "23388059-0"
+    },
+    {
+      "lista": "30",
+      "matricula": "168",
+      "nombres": "PIZARRO MONDACA AGUSTÍN IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "03/06/2010",
+      "rut": "23344517-7"
+    },
+    {
+      "lista": "31",
+      "matricula": "169",
+      "nombres": "PORTALES PACHECO HENRY YOVANNY",
+      "sexo": "H",
+      "fecha_nacimiento": "16/04/2011",
+      "rut": "23622698-0"
+    },
+    {
+      "lista": "32",
+      "matricula": "170",
+      "nombres": "RAIHUANQUE GÓMEZ LAURA DENIS",
+      "sexo": "M",
+      "fecha_nacimiento": "18/01/2010",
+      "rut": "23230745-5"
+    },
+    {
+      "lista": "33",
+      "matricula": "171",
+      "nombres": "RÍOS YÁÑEZ CONSTANZA ABIGAIL",
+      "sexo": "M",
+      "fecha_nacimiento": "28/06/2010",
+      "rut": "23384370-9"
+    },
+    {
+      "lista": "34",
+      "matricula": "172",
+      "nombres": "SAGREDO DE LA FUENTE NAHIM SAIMON",
+      "sexo": "H",
+      "fecha_nacimiento": "03/09/2010",
+      "rut": "23417313-8"
+    },
+    {
+      "lista": "35",
+      "matricula": "174",
+      "nombres": "URIBE VEGA PÍA ANTONELLA",
+      "sexo": "M",
+      "fecha_nacimiento": "01/11/2010",
+      "rut": "23468277-6"
+    },
+    {
+      "lista": "36",
+      "matricula": "175",
+      "nombres": "VEJAR MUÑOZ DARLING ALEXANDRA AM.",
+      "sexo": "M",
+      "fecha_nacimiento": "29/05/2010",
+      "rut": "23336420-7"
+    },
+    {
+      "lista": "37",
+      "matricula": "176",
+      "nombres": "VILLANUEVA HUEITRA KAREN MARIBEL",
+      "sexo": "M",
+      "fecha_nacimiento": "31/03/2011",
+      "rut": "23615167-0"
+    },
+    {
+      "lista": "38",
+      "matricula": "177",
+      "nombres": "VIVAR FLORES VICENTE TOMÁS",
+      "sexo": "H",
+      "fecha_nacimiento": "20/02/2011",
+      "rut": "23572746-3"
+    },
+    {
+      "lista": "39",
+      "matricula": "398",
+      "nombres": "MARTÍNEZ CÁRDENAS JEAN FRANCO",
+      "sexo": "H",
+      "fecha_nacimiento": "09/06/2010",
+      "rut": "23351326-1"
+    },
+    {
+      "lista": "40",
+      "matricula": "813",
+      "nombres": "ARRIAGADA PÉREZ GUIANELLA FERNANDA",
+      "sexo": "M",
+      "fecha_nacimiento": "05/12/2011",
+      "rut": "23510868-2"
+    },
+    {
+      "lista": "41",
+      "matricula": "816",
+      "nombres": "ESTRADA LEMUI KARINA ELISET",
+      "sexo": "M",
+      "fecha_nacimiento": "13/02/2011",
+      "rut": "23558135-3"
+    }
+  ],
+  "cursos\\lista_curso_2c_gastronomia": [
+    {
+      "lista": "01",
+      "matricula": "179",
+      "nombres": "ÁLVAREZ VEGA ESTEFANÍA MONSERRAT AM.",
+      "sexo": "M",
+      "fecha_nacimiento": "12/10/2010",
+      "rut": "23455896-K"
+    },
+    {
+      "lista": "02",
+      "matricula": "180",
+      "nombres": "ANDLER SEPÚLVEDA CATALINA FRANCOISE",
+      "sexo": "M",
+      "fecha_nacimiento": "24/11/2010",
+      "rut": "23487757-7"
+    },
+    {
+      "lista": "03",
+      "matricula": "181",
+      "nombres": "ARCOS QUINTUL VALENTINA FLORENCIA",
+      "sexo": "M",
+      "fecha_nacimiento": "16/08/2010",
+      "rut": "23410149-8"
+    },
+    {
+      "lista": "04",
+      "matricula": "182",
+      "nombres": "AVILA VIVANCO ROCÍO STEFANIA",
+      "sexo": "M",
+      "fecha_nacimiento": "25/12/2010",
+      "rut": "23528056-6"
+    },
+    {
+      "lista": "05",
+      "matricula": "183",
+      "nombres": "BEROÍZA MUÑOZ ASHLEY ESTEFANY",
+      "sexo": "M",
+      "fecha_nacimiento": "01/11/2010",
+      "rut": "23464753-9"
+    },
+    {
+      "lista": "06",
+      "matricula": "184",
+      "nombres": "BRAVO CÁRDENAS REBECA VALENTINA",
+      "sexo": "M",
+      "fecha_nacimiento": "29/01/2011",
+      "rut": "23550537-1"
+    },
+    {
+      "lista": "07",
+      "matricula": "185",
+      "nombres": "CALDERÓN MANSILLA CLAUDIA LORETO",
+      "sexo": "M",
+      "fecha_nacimiento": "07/09/2010",
+      "rut": "23424638-0"
+    },
+    {
+      "lista": "08",
+      "matricula": "186",
+      "nombres": "CANDIA SILVA JUAN LUIS",
+      "sexo": "H",
+      "fecha_nacimiento": "06/04/2010",
+      "rut": "23292468-3"
+    },
+    {
+      "lista": "09",
+      "matricula": "187",
+      "nombres": "CÁRCAMO GARCÍA FLORENCIA SOFÍA",
+      "sexo": "M",
+      "fecha_nacimiento": "03/02/2011",
+      "rut": "23549384-5"
+    },
+    {
+      "lista": "10",
+      "matricula": "188",
+      "nombres": "CARRASCO VÁSQUEZ ISABELLA VICTORIA",
+      "sexo": "M",
+      "fecha_nacimiento": "18/04/2011",
+      "rut": "23622373-6"
+    },
+    {
+      "lista": "12",
+      "matricula": "191",
+      "nombres": "FERRÓN SOTO LAURA SIMONNE LEONA",
+      "sexo": "M",
+      "fecha_nacimiento": "22/04/2009",
+      "rut": "23007601-4"
+    },
+    {
+      "lista": "13",
+      "matricula": "192",
+      "nombres": "GONZÁLEZ BARRIA CAMILO ANTONIO",
+      "sexo": "H",
+      "fecha_nacimiento": "27/08/2010",
+      "rut": "23409303-7"
+    },
+    {
+      "lista": "14",
+      "matricula": "194",
+      "nombres": "GONZÁLEZ HERNÁNDEZ ESCARLETH ANDREA",
+      "sexo": "M",
+      "fecha_nacimiento": "22/01/2010",
+      "rut": "23231886-4"
+    },
+    {
+      "lista": "15",
+      "matricula": "195",
+      "nombres": "GORMAZ ANABALON MAITE MONSERRAT",
+      "sexo": "M",
+      "fecha_nacimiento": "20/08/2010",
+      "rut": "23418902-6"
+    },
+    {
+      "lista": "16",
+      "matricula": "197",
+      "nombres": "LEIVA BUSTAMANTE GABRIELA MARTINA",
+      "sexo": "M",
+      "fecha_nacimiento": "16/08/2010",
+      "rut": "23401707-1"
+    },
+    {
+      "lista": "17",
+      "matricula": "198",
+      "nombres": "MANSILLA LIGNAY MARÍA ELENA",
+      "sexo": "M",
+      "fecha_nacimiento": "24/08/2010",
+      "rut": "23407659-0"
+    },
+    {
+      "lista": "18",
+      "matricula": "199",
+      "nombres": "MARTÍNEZ ALVIAL EBBER JOHANN",
+      "sexo": "H",
+      "fecha_nacimiento": "27/03/2011",
+      "rut": "23606078-0"
+    },
+    {
+      "lista": "19",
+      "matricula": "200",
+      "nombres": "MENESES SILVA VALENTINA ISIDORA",
+      "sexo": "M",
+      "fecha_nacimiento": "18/12/2010",
+      "rut": "23504284-3"
+    },
+    {
+      "lista": "20",
+      "matricula": "201",
+      "nombres": "MERA QUEZADA BENJAMIN SEBASTIÁN",
+      "sexo": "H",
+      "fecha_nacimiento": "08/05/2009",
+      "rut": "23014826-0"
+    },
+    {
+      "lista": "21",
+      "matricula": "202",
+      "nombres": "MILANCA SOTO MARTÍN ABRAHAM",
+      "sexo": "H",
+      "fecha_nacimiento": "02/07/2010",
+      "rut": "23387049-8"
+    },
+    {
+      "lista": "22",
+      "matricula": "203",
+      "nombres": "MOLINA PRIETO MONTSERRAT ANAHI",
+      "sexo": "M",
+      "fecha_nacimiento": "21/01/2011",
+      "rut": "23542815-6"
+    },
+    {
+      "lista": "23",
+      "matricula": "204",
+      "nombres": "MONSALVE CÁRDENAS MARTINA ESTEFANÍA",
+      "sexo": "M",
+      "fecha_nacimiento": "22/08/2010",
+      "rut": "23407338-9"
+    },
+    {
+      "lista": "24",
+      "matricula": "205",
+      "nombres": "MUJICA PÉREZ ALMENDRA HAYDÉE",
+      "sexo": "M",
+      "fecha_nacimiento": "20/12/2010",
+      "rut": "23507670-5"
+    },
+    {
+      "lista": "25",
+      "matricula": "206",
+      "nombres": "NAVARRETE OJEDA BRITHANY ANNETH",
+      "sexo": "M",
+      "fecha_nacimiento": "25/06/2011",
+      "rut": "23682078-5"
+    },
+    {
+      "lista": "26",
+      "matricula": "207",
+      "nombres": "OBREQUE URRA CRISTIAN AGUSTÍN",
+      "sexo": "H",
+      "fecha_nacimiento": "17/11/2009",
+      "rut": "23178904-9"
+    },
+    {
+      "lista": "27",
+      "matricula": "208",
+      "nombres": "ORTEGA INAYADO AILYN ESTEFANÍA",
+      "sexo": "M",
+      "fecha_nacimiento": "17/09/2010",
+      "rut": "23431507-2"
+    },
+    {
+      "lista": "28",
+      "matricula": "209",
+      "nombres": "OVANDO MELLADO GISLAINE MAIRA ARLET",
+      "sexo": "M",
+      "fecha_nacimiento": "28/06/2011",
+      "rut": "23680656-1"
+    },
+    {
+      "lista": "29",
+      "matricula": "210",
+      "nombres": "PACHECO JARA MATIAS ALEJANDRO",
+      "sexo": "H",
+      "fecha_nacimiento": "22/10/2010",
+      "rut": "23464403-3"
+    },
+    {
+      "lista": "30",
+      "matricula": "211",
+      "nombres": "RAMÍREZ DELGADO BENJAMIN ALONSO",
+      "sexo": "H",
+      "fecha_nacimiento": "29/05/2011",
+      "rut": "23657311-7"
+    },
+    {
+      "lista": "31",
+      "matricula": "212",
+      "nombres": "REYES VARGAS WLADIMIR ANDRÉS",
+      "sexo": "H",
+      "fecha_nacimiento": "20/09/2010",
+      "rut": "23434664-4"
+    },
+    {
+      "lista": "32",
+      "matricula": "213",
+      "nombres": "RIVERA VERA JAIRO HELLMUTH",
+      "sexo": "H",
+      "fecha_nacimiento": "31/03/2011",
+      "rut": "21215571-3"
+    },
+    {
+      "lista": "33",
+      "matricula": "214",
+      "nombres": "RODRÍGUEZ MUTIZABAL FRANCISCO ARIEL",
+      "sexo": "H",
+      "fecha_nacimiento": "04/01/2011",
+      "rut": "23537440-4"
+    },
+    {
+      "lista": "34",
+      "matricula": "215",
+      "nombres": "RUIZ NIETO KEVIN IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "05/03/2011",
+      "rut": "23576509-8"
+    },
+    {
+      "lista": "35",
+      "matricula": "216",
+      "nombres": "SANTANA PÉREZ CAMILA ANTONIA",
+      "sexo": "M",
+      "fecha_nacimiento": "03/03/2011",
+      "rut": "23578127-1"
+    },
+    {
+      "lista": "36",
+      "matricula": "217",
+      "nombres": "SILVA ASENJO CARLOS BALTAZAR",
+      "sexo": "H",
+      "fecha_nacimiento": "01/10/2009",
+      "rut": "23139691-8"
+    },
+    {
+      "lista": "37",
+      "matricula": "218",
+      "nombres": "SILVA MANSILLA MONSERRAT ANTONIA",
+      "sexo": "M",
+      "fecha_nacimiento": "27/04/2011",
+      "rut": "23632871-6"
+    },
+    {
+      "lista": "38",
+      "matricula": "219",
+      "nombres": "SOBARZO CABEZAS MATILDE EMELIE ALEXIA",
+      "sexo": "M",
+      "fecha_nacimiento": "11/04/2011",
+      "rut": "23617113-2"
+    },
+    {
+      "lista": "39",
+      "matricula": "220",
+      "nombres": "VARGAS MEEDER MONSERRAT ANTONIA",
+      "sexo": "M",
+      "fecha_nacimiento": "31/08/2010",
+      "rut": "23414376-K"
+    },
+    {
+      "lista": "40",
+      "matricula": "221",
+      "nombres": "VÁSQUEZ HUENCHULLAN KARLA DENISSE",
+      "sexo": "M",
+      "fecha_nacimiento": "30/07/2010",
+      "rut": "23388109-0"
+    },
+    {
+      "lista": "41",
+      "matricula": "222",
+      "nombres": "VERGARA ALVARADO JOSÉ FELIPE",
+      "sexo": "H",
+      "fecha_nacimiento": "21/01/2011",
+      "rut": "23539233-K"
+    },
+    {
+      "lista": "42",
+      "matricula": "223",
+      "nombres": "ZUMELZU CIFUENTES ELINA SAREH DEL CARMEN",
+      "sexo": "M",
+      "fecha_nacimiento": "26/08/2010",
+      "rut": "23551885-6"
+    }
+  ],
+  "cursos\\lista_curso_2d_gastronomia": [
+    {
+      "lista": "01",
+      "matricula": "87",
+      "nombres": "ÁGUILA MOLINA ELIZABETH ISABEL",
+      "sexo": "M",
+      "fecha_nacimiento": "21/08/2010",
+      "rut": "23405483-K"
+    },
+    {
+      "lista": "02",
+      "matricula": "88",
+      "nombres": "AGUILAR GARNICA MAITE ALEJANDRA",
+      "sexo": "M",
+      "fecha_nacimiento": "06/02/2011",
+      "rut": "23554465-2"
+    },
+    {
+      "lista": "03",
+      "matricula": "89",
+      "nombres": "ALVARADO OYARZO NICOLÁS IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "21/10/2009",
+      "rut": "23152837-7"
+    },
+    {
+      "lista": "04",
+      "matricula": "90",
+      "nombres": "ALVAREZ CHAURA EMILIE ANTONIA",
+      "sexo": "M",
+      "fecha_nacimiento": "03/03/2011",
+      "rut": "23580359-3"
+    },
+    {
+      "lista": "05",
+      "matricula": "91",
+      "nombres": "ÁLVAREZ VELÁSQUEZ GEREMY FRANCISCO",
+      "sexo": "H",
+      "fecha_nacimiento": "08/11/2010",
+      "rut": "23476814-K"
+    },
+    {
+      "lista": "06",
+      "matricula": "92",
+      "nombres": "ANCACURA CHAURA FRANCISCA ANAIS",
+      "sexo": "M",
+      "fecha_nacimiento": "17/08/2009",
+      "rut": "23119350-2"
+    },
+    {
+      "lista": "07",
+      "matricula": "94",
+      "nombres": "BEROÍZA CATRIHUAL FRANCHESCA ANTONELLA",
+      "sexo": "M",
+      "fecha_nacimiento": "13/06/2009",
+      "rut": "23058630-6"
+    },
+    {
+      "lista": "08",
+      "matricula": "95",
+      "nombres": "CAÑOLES REBOLLEDO ESPERANZA LISBETTE",
+      "sexo": "M",
+      "fecha_nacimiento": "26/05/2011",
+      "rut": "23652858-8"
+    },
+    {
+      "lista": "09",
+      "matricula": "96",
+      "nombres": "CAÑOLES VÁSQUEZ AGUSTINA IGNACIA",
+      "sexo": "M",
+      "fecha_nacimiento": "12/07/2010",
+      "rut": "23369664-1"
+    },
+    {
+      "lista": "10",
+      "matricula": "97",
+      "nombres": "CARVALLO CONTRERAS ALEXANDRA ESTRELLA",
+      "sexo": "M",
+      "fecha_nacimiento": "24/07/2009",
+      "rut": "23081749-9"
+    },
+    {
+      "lista": "11",
+      "matricula": "98",
+      "nombres": "COLONELLI MONTOYA SOFÍA VALENTINA",
+      "sexo": "M",
+      "fecha_nacimiento": "16/11/2010",
+      "rut": "23484937-9"
+    },
+    {
+      "lista": "12",
+      "matricula": "99",
+      "nombres": "CORTÉS BARRIENTOS FERNANDA ANDREA",
+      "sexo": "M",
+      "fecha_nacimiento": "26/05/2010",
+      "rut": "23334537-7"
+    },
+    {
+      "lista": "13",
+      "matricula": "100",
+      "nombres": "CRUCES PACHECO DAVID SAMUEL ELISEO",
+      "sexo": "H",
+      "fecha_nacimiento": "08/02/2010",
+      "rut": "23243964-5"
+    },
+    {
+      "lista": "14",
+      "matricula": "101",
+      "nombres": "DELGADO OVALLE CONSTANZA ISIDORA",
+      "sexo": "M",
+      "fecha_nacimiento": "14/04/2011",
+      "rut": "23631927-K"
+    },
+    {
+      "lista": "15",
+      "matricula": "102",
+      "nombres": "DUARTE CID DAMARYS FRANCHESKA AM.",
+      "sexo": "M",
+      "fecha_nacimiento": "23/09/2010",
+      "rut": "23430358-9"
+    },
+    {
+      "lista": "16",
+      "matricula": "103",
+      "nombres": "ESTRADA SALDIVIA ROSE MARY ANTONELLA",
+      "sexo": "M",
+      "fecha_nacimiento": "28/02/2011",
+      "rut": "23574451-1"
+    },
+    {
+      "lista": "17",
+      "matricula": "104",
+      "nombres": "GARNICA BARRIENTOS MADELINE JAZMÍN",
+      "sexo": "M",
+      "fecha_nacimiento": "07/12/2010",
+      "rut": "23495859-3"
+    },
+    {
+      "lista": "18",
+      "matricula": "105",
+      "nombres": "JARA JARA VICENTE ANDRES ALEJANDRO",
+      "sexo": "H",
+      "fecha_nacimiento": "22/09/2010",
+      "rut": "23432880-8"
+    },
+    {
+      "lista": "19",
+      "matricula": "106",
+      "nombres": "JARA MOLINA KRISHNA MONSERRAT",
+      "sexo": "M",
+      "fecha_nacimiento": "22/07/2010",
+      "rut": "23377663-7"
+    },
+    {
+      "lista": "20",
+      "matricula": "107",
+      "nombres": "KRAUSE HERNANDEZ LEOPOLDO ALONSO",
+      "sexo": "H",
+      "fecha_nacimiento": "24/12/2010",
+      "rut": "23511425-9"
+    },
+    {
+      "lista": "21",
+      "matricula": "108",
+      "nombres": "MANZANO VELÁSQUEZ HUAIQUILEN",
+      "sexo": "M",
+      "fecha_nacimiento": "22/10/2010",
+      "rut": "23463539-5"
+    },
+    {
+      "lista": "22",
+      "matricula": "109",
+      "nombres": "MOLINA MORA FRANCINI ARACELI",
+      "sexo": "M",
+      "fecha_nacimiento": "25/10/2010",
+      "rut": "23470586-5"
+    },
+    {
+      "lista": "23",
+      "matricula": "110",
+      "nombres": "MONTECINOS NASTRO CÉSAR ANTONIO",
+      "sexo": "H",
+      "fecha_nacimiento": "29/04/2011",
+      "rut": "23630261-K"
+    },
+    {
+      "lista": "24",
+      "matricula": "111",
+      "nombres": "MORALES GÓMEZ JHENDELYN DAYANA",
+      "sexo": "M",
+      "fecha_nacimiento": "04/11/2010",
+      "rut": "23481625-k"
+    },
+    {
+      "lista": "25",
+      "matricula": "113",
+      "nombres": "OSSES DELGADO JAVIERA AGUSTINA",
+      "sexo": "M",
+      "fecha_nacimiento": "06/12/2010",
+      "rut": "23494398-7"
+    },
+    {
+      "lista": "26",
+      "matricula": "114",
+      "nombres": "OYARZÚN SEGUEL CARLA EDITH",
+      "sexo": "M",
+      "fecha_nacimiento": "30/07/2010",
+      "rut": "23386473-0"
+    },
+    {
+      "lista": "27",
+      "matricula": "115",
+      "nombres": "PAREDES ALVIAL MAYTE ANAHYS",
+      "sexo": "M",
+      "fecha_nacimiento": "28/09/2010",
+      "rut": "23437909-7"
+    },
+    {
+      "lista": "28",
+      "matricula": "116",
+      "nombres": "QUINTANA VAN BEBER LUCAS MATEO",
+      "sexo": "H",
+      "fecha_nacimiento": "30/01/2011",
+      "rut": "23547446-8"
+    },
+    {
+      "lista": "29",
+      "matricula": "117",
+      "nombres": "RAMÍREZ SOBARZO BENJAMÍN",
+      "sexo": "H",
+      "fecha_nacimiento": "29/09/2010",
+      "rut": "23440390-7"
+    },
+    {
+      "lista": "30",
+      "matricula": "118",
+      "nombres": "RISCO CARRASCO KATHERINE ESCARLET",
+      "sexo": "M",
+      "fecha_nacimiento": "08/08/2010",
+      "rut": "23394435-1"
+    },
+    {
+      "lista": "31",
+      "matricula": "119",
+      "nombres": "ROBLES SALAS AMARO MAXIMILIANO",
+      "sexo": "H",
+      "fecha_nacimiento": "01/11/2010",
+      "rut": "23466828-5"
+    },
+    {
+      "lista": "32",
+      "matricula": "120",
+      "nombres": "SÁEZ GARNICA PASCUALA ISIDORA",
+      "sexo": "M",
+      "fecha_nacimiento": "27/12/2010",
+      "rut": "23515723-3"
+    },
+    {
+      "lista": "33",
+      "matricula": "121",
+      "nombres": "SANDOVAL VARGAS CARLA MONSERRAT",
+      "sexo": "M",
+      "fecha_nacimiento": "18/08/2009",
+      "rut": "23110275-2"
+    },
+    {
+      "lista": "34",
+      "matricula": "122",
+      "nombres": "SANTANA PAILAPÁN MATÍAS IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "15/01/2011",
+      "rut": "23540520-2"
+    },
+    {
+      "lista": "35",
+      "matricula": "123",
+      "nombres": "SILVA ARANEDA ANAHIS BELÉN",
+      "sexo": "M",
+      "fecha_nacimiento": "13/01/2011",
+      "rut": "23534938-8"
+    },
+    {
+      "lista": "36",
+      "matricula": "124",
+      "nombres": "SOLÍS SILVA YANARA FLORENCIA",
+      "sexo": "M",
+      "fecha_nacimiento": "02/12/2010",
+      "rut": "23495449-0"
+    },
+    {
+      "lista": "37",
+      "matricula": "125",
+      "nombres": "SOTO GATICA SCARLET AYLIN",
+      "sexo": "M",
+      "fecha_nacimiento": "14/08/2010",
+      "rut": "23404410-9"
+    },
+    {
+      "lista": "38",
+      "matricula": "126",
+      "nombres": "UARAC PAREDES YAMIL BALTAZAR",
+      "sexo": "H",
+      "fecha_nacimiento": "12/05/2010",
+      "rut": "23320787-k"
+    },
+    {
+      "lista": "39",
+      "matricula": "127",
+      "nombres": "ULLOA ALVARADO CONSTANZA ISIDORA",
+      "sexo": "H",
+      "fecha_nacimiento": "29/11/2010",
+      "rut": "23490475-2"
+    },
+    {
+      "lista": "40",
+      "matricula": "128",
+      "nombres": "VARGAS HUANQUIL DAVID SEBASTIÁN",
+      "sexo": "H",
+      "fecha_nacimiento": "02/09/2010",
+      "rut": "23413370-5"
+    },
+    {
+      "lista": "41",
+      "matricula": "130",
+      "nombres": "VERA SALVO KATIA ANALY",
+      "sexo": "M",
+      "fecha_nacimiento": "11/01/2011",
+      "rut": "23538785-9"
+    },
+    {
+      "lista": "42",
+      "matricula": "131",
+      "nombres": "VERGARA CARDENAS CRISTOBAL MARIANO",
+      "sexo": "H",
+      "fecha_nacimiento": "12/10/2010",
+      "rut": "23447377-8"
+    },
+    {
+      "lista": "43",
+      "matricula": "132",
+      "nombres": "YOUTT SILVA MARTINA DANAE",
+      "sexo": "M",
+      "fecha_nacimiento": "25/06/2010",
+      "rut": "23359136-K"
+    },
+    {
+      "lista": "44",
+      "matricula": "396",
+      "nombres": "LARA ÑANCUS DANIELA NATALIA",
+      "sexo": "H",
+      "fecha_nacimiento": "22/09/2010",
+      "rut": "23430005-9"
+    },
+    {
+      "lista": "45",
+      "matricula": "254",
+      "nombres": "PAISIL TORRES MATEO OSCAR",
+      "sexo": "H",
+      "fecha_nacimiento": "14/04/2011",
+      "rut": "23621059-6"
+    }
+  ],
+  "cursos\\lista_curso_3a_agro": [
+    {
+      "lista": "01",
+      "matricula": "224",
+      "nombres": "ADAMAS MONTECINOS CONSTANZA VALENTINA",
+      "sexo": "M",
+      "fecha_nacimiento": "06/07/2009",
+      "rut": "23066165-0"
+    },
+    {
+      "lista": "02",
+      "matricula": "225",
+      "nombres": "AGUILERA JARA AGUSTÍN IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "04/12/2009",
+      "rut": "23204180-3"
+    },
+    {
+      "lista": "03",
+      "matricula": "226",
+      "nombres": "ARANEDA SILVA AILIN ALEJANDRA",
+      "sexo": "M",
+      "fecha_nacimiento": "05/11/2009",
+      "rut": "23173591-7"
+    },
+    {
+      "lista": "04",
+      "matricula": "227",
+      "nombres": "ARÉVALO SALAZAR SEBASTIÁN AMARO",
+      "sexo": "H",
+      "fecha_nacimiento": "17/01/2010",
+      "rut": "23228961-9"
+    },
+    {
+      "lista": "05",
+      "matricula": "228",
+      "nombres": "BAIMA MOMBERG BENJAMÍN EDUARDO",
+      "sexo": "H",
+      "fecha_nacimiento": "23/10/2009",
+      "rut": "23153598-5"
+    },
+    {
+      "lista": "06",
+      "matricula": "231",
+      "nombres": "CÁRDENAS CABRERA HANS PHILLIPS",
+      "sexo": "H",
+      "fecha_nacimiento": "11/10/2009",
+      "rut": "23160634-3"
+    },
+    {
+      "lista": "07",
+      "matricula": "232",
+      "nombres": "CASTILLO DIAZ LESLIE ANYELINA",
+      "sexo": "M",
+      "fecha_nacimiento": "27/09/2009",
+      "rut": "23140568-2"
+    },
+    {
+      "lista": "08",
+      "matricula": "233",
+      "nombres": "CATRILEF GUALAMAN MATÍAS JOAQUIN",
+      "sexo": "H",
+      "fecha_nacimiento": "26/01/2010",
+      "rut": "23237770-4"
+    },
+    {
+      "lista": "09",
+      "matricula": "234",
+      "nombres": "CEA ROSAS BORIS GABRIEL",
+      "sexo": "H",
+      "fecha_nacimiento": "15/06/2009",
+      "rut": "23047621-7"
+    },
+    {
+      "lista": "10",
+      "matricula": "236",
+      "nombres": "GARCÍA CÁRCAMO ALEXANDRA BELÉN",
+      "sexo": "M",
+      "fecha_nacimiento": "17/09/2009",
+      "rut": "23127940-7"
+    },
+    {
+      "lista": "11",
+      "matricula": "239",
+      "nombres": "LAGOS MANSILLA BENJAMÍN ALEJANDRO",
+      "sexo": "H",
+      "fecha_nacimiento": "14/01/2010",
+      "rut": "23226118-8"
+    },
+    {
+      "lista": "12",
+      "matricula": "240",
+      "nombres": "LAVOZ LAVOZ DAFNE YENDELYN",
+      "sexo": "M",
+      "fecha_nacimiento": "25/03/2010",
+      "rut": "23280761-k"
+    },
+    {
+      "lista": "13",
+      "matricula": "241",
+      "nombres": "LONCOCHINO TRIPAYÁN HERICH BERNABÉ",
+      "sexo": "H",
+      "fecha_nacimiento": "27/02/2010",
+      "rut": "23271666-5"
+    },
+    {
+      "lista": "14",
+      "matricula": "242",
+      "nombres": "LÓPEZ PACHECO PABLO ANTONIO",
+      "sexo": "H",
+      "fecha_nacimiento": "23/03/2010",
+      "rut": "23280207-3"
+    },
+    {
+      "lista": "15",
+      "matricula": "243",
+      "nombres": "MARIPÁN ALUN PIA AILYN",
+      "sexo": "M",
+      "fecha_nacimiento": "01/12/2009",
+      "rut": "23189661-9"
+    },
+    {
+      "lista": "16",
+      "matricula": "244",
+      "nombres": "MARTÍNEZ ARANEDA VICENTE ALEJANDRO",
+      "sexo": "M",
+      "fecha_nacimiento": "09/10/2009",
+      "rut": "23148263-6"
+    },
+    {
+      "lista": "17",
+      "matricula": "245",
+      "nombres": "MILLACHEO CAIGUAN VÍCTOR ARTURO",
+      "sexo": "H",
+      "fecha_nacimiento": "10/09/2009",
+      "rut": "23130888-1"
+    },
+    {
+      "lista": "18",
+      "matricula": "247",
+      "nombres": "MONTECINOS HUENULEF JAVIERA YASMIN",
+      "sexo": "M",
+      "fecha_nacimiento": "29/03/2008",
+      "rut": "22680399-8"
+    },
+    {
+      "lista": "19",
+      "matricula": "248",
+      "nombres": "MORALES MIRANDA ANTONELA DEL CARMEN",
+      "sexo": "M",
+      "fecha_nacimiento": "20/04/2009",
+      "rut": "23005722-2"
+    },
+    {
+      "lista": "20",
+      "matricula": "249",
+      "nombres": "NAVARRO SOLÍS BRAYAN EXEQUIEL",
+      "sexo": "H",
+      "fecha_nacimiento": "22/02/2010",
+      "rut": "23260668-1"
+    },
+    {
+      "lista": "21",
+      "matricula": "250",
+      "nombres": "NAVARRO SOTO ALEJANDRA ODETH",
+      "sexo": "M",
+      "fecha_nacimiento": "04/06/2009",
+      "rut": "23036182-7"
+    },
+    {
+      "lista": "22",
+      "matricula": "251",
+      "nombres": "OBREQUE VERGARA VICENTE JOSÉ",
+      "sexo": "H",
+      "fecha_nacimiento": "07/09/2009",
+      "rut": "23120084-3"
+    },
+    {
+      "lista": "23",
+      "matricula": "253",
+      "nombres": "PEREZ PEREZ AYLINE BELEN",
+      "sexo": "M",
+      "fecha_nacimiento": "06/01/2010",
+      "rut": "23223908-5"
+    },
+    {
+      "lista": "24",
+      "matricula": "254",
+      "nombres": "PROBOSTE OYARZÚN ROMINA ANAÍS",
+      "sexo": "M",
+      "fecha_nacimiento": "29/11/2009",
+      "rut": "23188088-7"
+    },
+    {
+      "lista": "25",
+      "matricula": "255",
+      "nombres": "RAMIREZ CURINAO ANGEL FABÍAN",
+      "sexo": "H",
+      "fecha_nacimiento": "23/10/2009",
+      "rut": "23307024-6"
+    },
+    {
+      "lista": "26",
+      "matricula": "256",
+      "nombres": "RODRÍGUEZ MARQUARDTT CARLOS IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "06/03/2008",
+      "rut": "22676267-1"
+    },
+    {
+      "lista": "27",
+      "matricula": "257",
+      "nombres": "RODRÍGUEZ SÁNCHEZ CONSTANZA MILLARAY",
+      "sexo": "M",
+      "fecha_nacimiento": "08/04/2009",
+      "rut": "22994957-8"
+    },
+    {
+      "lista": "28",
+      "matricula": "258",
+      "nombres": "ROSAS MARTÍNEZ YISLENKA ANAMEY",
+      "sexo": "M",
+      "fecha_nacimiento": "07/01/2009",
+      "rut": "22919301-5"
+    },
+    {
+      "lista": "29",
+      "matricula": "259",
+      "nombres": "SANZANA BRIONES AGUSTINA DANIELA",
+      "sexo": "M",
+      "fecha_nacimiento": "06/06/2010",
+      "rut": "23346501-1"
+    },
+    {
+      "lista": "30",
+      "matricula": "260",
+      "nombres": "SEPÚLVEDA CÁRDENAS HANS MILOVAN",
+      "sexo": "H",
+      "fecha_nacimiento": "26/09/2009",
+      "rut": "23137928-2"
+    },
+    {
+      "lista": "31",
+      "matricula": "261",
+      "nombres": "SILVA MOLL OSCAR ALBERTO",
+      "sexo": "H",
+      "fecha_nacimiento": "31/07/2009",
+      "rut": "23093201-8"
+    },
+    {
+      "lista": "32",
+      "matricula": "262",
+      "nombres": "SILVA SANTIBÁÑEZ BENJAMÍN JONATHAN IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "22/04/2010",
+      "rut": "23305814-9"
+    },
+    {
+      "lista": "33",
+      "matricula": "170",
+      "nombres": "SOBARZO RIVERA YANIRA MONSERRAT",
+      "sexo": "M",
+      "fecha_nacimiento": "18/09/2009",
+      "rut": "23125539-7"
+    },
+    {
+      "lista": "34",
+      "matricula": "263",
+      "nombres": "SOTO GONZÁLEZ ANTONELLA COLOMBA",
+      "sexo": "M",
+      "fecha_nacimiento": "04/09/2009",
+      "rut": "23120926-3"
+    },
+    {
+      "lista": "35",
+      "matricula": "264",
+      "nombres": "SOTO ÑANCUCHEO CONSTANZA ELIZABETH",
+      "sexo": "M",
+      "fecha_nacimiento": "03/08/2008",
+      "rut": "22855062-0"
+    },
+    {
+      "lista": "36",
+      "matricula": "265",
+      "nombres": "ULLOA CABEZAS HANS ALONZO",
+      "sexo": "H",
+      "fecha_nacimiento": "29/11/2008",
+      "rut": "22883761-K"
+    },
+    {
+      "lista": "37",
+      "matricula": "267",
+      "nombres": "YULI SEPULVEDA LUCAS EDUARDO",
+      "sexo": "H",
+      "fecha_nacimiento": "12/09/2009",
+      "rut": "23170313-6"
+    },
+    {
+      "lista": "38",
+      "matricula": "389",
+      "nombres": "LÓPEZ GONZALEZ CONSUELO ANTONIA",
+      "sexo": "M",
+      "fecha_nacimiento": "07/05/2010",
+      "rut": "23316269-8"
+    },
+    {
+      "lista": "39",
+      "matricula": "405",
+      "nombres": "PICHINTINI GUENTREPAN YANARETT POLETT",
+      "sexo": "M",
+      "fecha_nacimiento": "22/03/2010",
+      "rut": "23283474-9"
+    },
+    {
+      "lista": "40",
+      "matricula": "419",
+      "nombres": "ARRATIA LEIVA MAITE ISIDORA",
+      "sexo": "M",
+      "fecha_nacimiento": "19/02/2010",
+      "rut": "23257343-0"
+    },
+    {
+      "lista": "41",
+      "matricula": "421",
+      "nombres": "TRIVIÑO VIDAL MONSERRAT VALENTINA",
+      "sexo": "M",
+      "fecha_nacimiento": "05/06/2009",
+      "rut": "23060889-K"
+    },
+    {
+      "lista": "42",
+      "matricula": "808",
+      "nombres": "URIBE REYES JULIETA SIOMARA",
+      "sexo": "M",
+      "fecha_nacimiento": "05/05/2009",
+      "rut": "23022007-7"
+    },
+    {
+      "lista": "43",
+      "matricula": "815",
+      "nombres": "JARA ORTIZ VÍCTOR MANUEL",
+      "sexo": "H",
+      "fecha_nacimiento": "01/09/2009",
+      "rut": "23114966-K"
+    }
+  ],
+  "cursos\\lista_curso_3b_agropecuaria": [
+    {
+      "lista": "01",
+      "matricula": "269",
+      "nombres": "ÁLVAREZ GUTIERREZ JUAN IGNACIO",
+      "sexo": "M",
+      "fecha_nacimiento": "06/12/2008",
+      "rut": "22909964-7"
+    },
+    {
+      "lista": "02",
+      "matricula": "270",
+      "nombres": "AMPUERO CARDENAS LUCAS",
+      "sexo": "M",
+      "fecha_nacimiento": "03/06/2009",
+      "rut": "23038355-3"
+    },
+    {
+      "lista": "03",
+      "matricula": "271",
+      "nombres": "ARAVENA CORONADO DEVIN HERNAN",
+      "sexo": "H",
+      "fecha_nacimiento": "16/01/2008",
+      "rut": "22625262-2"
+    },
+    {
+      "lista": "04",
+      "matricula": "272",
+      "nombres": "ASENJO JARAMILLO CAMILA YVETT",
+      "sexo": "M",
+      "fecha_nacimiento": "30/12/2009",
+      "rut": "23211591-2"
+    },
+    {
+      "lista": "05",
+      "matricula": "273",
+      "nombres": "BAHAMONDEZ MUÑOZ BRUNO MARTÍN ALONSO",
+      "sexo": "H",
+      "fecha_nacimiento": "11/10/2009",
+      "rut": "23145342-3"
+    },
+    {
+      "lista": "06",
+      "matricula": "274",
+      "nombres": "BÓRQUEZ MIRANDA ALEXANDER PATRICIO",
+      "sexo": "H",
+      "fecha_nacimiento": "04/05/2010",
+      "rut": "23316456-9"
+    },
+    {
+      "lista": "07",
+      "matricula": "275",
+      "nombres": "BRAVO BRAVO MARÍA FERNANDA",
+      "sexo": "M",
+      "fecha_nacimiento": "27/12/2009",
+      "rut": "23220993-3"
+    },
+    {
+      "lista": "08",
+      "matricula": "276",
+      "nombres": "BUSTOS LLENEL ANTONELLA ANDREA",
+      "sexo": "M",
+      "fecha_nacimiento": "22/10/2009",
+      "rut": "23156828-k"
+    },
+    {
+      "lista": "09",
+      "matricula": "277",
+      "nombres": "CADAGÁN CIFUENTES DENNISE MONSERRAT",
+      "sexo": "M",
+      "fecha_nacimiento": "21/07/2009",
+      "rut": "23085426-2"
+    },
+    {
+      "lista": "10",
+      "matricula": "278",
+      "nombres": "CAMPOS AVELLO BENJAMÍN ALEJANDRO",
+      "sexo": "H",
+      "fecha_nacimiento": "03/01/2009",
+      "rut": "22912389-0"
+    },
+    {
+      "lista": "11",
+      "matricula": "279",
+      "nombres": "CASTILLO CASTRO GONZALO ALEJANDRO",
+      "sexo": "H",
+      "fecha_nacimiento": "08/07/2009",
+      "rut": "23068084-1"
+    },
+    {
+      "lista": "12",
+      "matricula": "280",
+      "nombres": "CIFUENTES FLORES SOFÍA ALEJANDRA",
+      "sexo": "M",
+      "fecha_nacimiento": "11/03/2010",
+      "rut": "23269068-2"
+    },
+    {
+      "lista": "13",
+      "matricula": "281",
+      "nombres": "CORONADO STUARDO VICENTE MAXIMILIANO",
+      "sexo": "H",
+      "fecha_nacimiento": "12/12/2008",
+      "rut": "22905953-k"
+    },
+    {
+      "lista": "14",
+      "matricula": "282",
+      "nombres": "DELGADO ARISMENDI FRANCISCA ANTONIA",
+      "sexo": "M",
+      "fecha_nacimiento": "14/10/2009",
+      "rut": "23149704-8"
+    },
+    {
+      "lista": "15",
+      "matricula": "283",
+      "nombres": "GATICA NAVARRO NICOLAS IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "04/07/2008",
+      "rut": "22760265-1"
+    },
+    {
+      "lista": "16",
+      "matricula": "284",
+      "nombres": "GUALAMAN CHEUQUIÁN LUIS BENJAMÍN",
+      "sexo": "H",
+      "fecha_nacimiento": "01/03/2008",
+      "rut": "22656720-8"
+    },
+    {
+      "lista": "17",
+      "matricula": "285",
+      "nombres": "GUALAMAN CHEUQUIÁN SERGIO WLADIMIR",
+      "sexo": "H",
+      "fecha_nacimiento": "10/05/2010",
+      "rut": "23332926-6"
+    },
+    {
+      "lista": "18",
+      "matricula": "286",
+      "nombres": "IMIL SOTO CAROLINA MONSERRATH",
+      "sexo": "M",
+      "fecha_nacimiento": "03/03/2010",
+      "rut": "23263308-5"
+    },
+    {
+      "lista": "19",
+      "matricula": "287",
+      "nombres": "JARA CANDIA MATIAS BENJAMÍN",
+      "sexo": "H",
+      "fecha_nacimiento": "29/09/2009",
+      "rut": "23139461-3"
+    },
+    {
+      "lista": "20",
+      "matricula": "288",
+      "nombres": "MARTÍNEZ BARRIL KEVIN ANDRÉS",
+      "sexo": "H",
+      "fecha_nacimiento": "28/03/2009",
+      "rut": "22982932-7"
+    },
+    {
+      "lista": "21",
+      "matricula": "289",
+      "nombres": "MARTÍNEZ CISTERNAS CONSTANZA ANTONELLA",
+      "sexo": "M",
+      "fecha_nacimiento": "18/09/2009",
+      "rut": "23125124-3"
+    },
+    {
+      "lista": "22",
+      "matricula": "290",
+      "nombres": "MARTÍNEZ TÉLLEZ DANIXA MILLARAY",
+      "sexo": "M",
+      "fecha_nacimiento": "31/12/2009",
+      "rut": "23215500-0"
+    },
+    {
+      "lista": "23",
+      "matricula": "291",
+      "nombres": "MILLAL LIGAIS BENJAMÍN LEANDRO MANUEL",
+      "sexo": "H",
+      "fecha_nacimiento": "25/06/2009",
+      "rut": "23066632-6"
+    },
+    {
+      "lista": "24",
+      "matricula": "292",
+      "nombres": "MIRANDA EPUYAO FRANCO ANDRÉS",
+      "sexo": "H",
+      "fecha_nacimiento": "19/09/2009",
+      "rut": "23126364-0"
+    },
+    {
+      "lista": "25",
+      "matricula": "293",
+      "nombres": "MOMBERG SAEZ AMANDA LISSETTE",
+      "sexo": "M",
+      "fecha_nacimiento": "22/02/2010",
+      "rut": "23257481-K"
+    },
+    {
+      "lista": "26",
+      "matricula": "295",
+      "nombres": "OJEDA MORA JULIAN ALBERTO",
+      "sexo": "H",
+      "fecha_nacimiento": "09/11/2009",
+      "rut": "23167907-3"
+    },
+    {
+      "lista": "27",
+      "matricula": "296",
+      "nombres": "OYARZÚN GALAZ DAVID IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "02/10/2009",
+      "rut": "23136854-k"
+    },
+    {
+      "lista": "28",
+      "matricula": "297",
+      "nombres": "PEREZ VARGAS FRANCHESCA ANDREA",
+      "sexo": "M",
+      "fecha_nacimiento": "29/10/2009",
+      "rut": "23162062-1"
+    },
+    {
+      "lista": "29",
+      "matricula": "298",
+      "nombres": "POZO CARDENAS BENJAMIN IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "04/09/2009",
+      "rut": "23128016-2"
+    },
+    {
+      "lista": "30",
+      "matricula": "299",
+      "nombres": "QUEUPUÁN ANTIÑIR MAYRA DANITZA",
+      "sexo": "M",
+      "fecha_nacimiento": "15/10/2009",
+      "rut": "23153282-K"
+    },
+    {
+      "lista": "31",
+      "matricula": "300",
+      "nombres": "QUINTANA CÁRDENAS GEREMY ALEXANDER DAMIÁN",
+      "sexo": "H",
+      "fecha_nacimiento": "11/06/2010",
+      "rut": "23349998-6"
+    },
+    {
+      "lista": "32",
+      "matricula": "301",
+      "nombres": "REUQUÉN PUCHI ANAI DAILIN",
+      "sexo": "M",
+      "fecha_nacimiento": "19/04/2010",
+      "rut": "23312619-5"
+    },
+    {
+      "lista": "33",
+      "matricula": "302",
+      "nombres": "REYES BELLO CRISTOPHER FELIPE",
+      "sexo": "H",
+      "fecha_nacimiento": "14/11/2009",
+      "rut": "23171232-1"
+    },
+    {
+      "lista": "34",
+      "matricula": "303",
+      "nombres": "RUIZ VELÁSQUEZ ANGEL AGUSTÍN",
+      "sexo": "H",
+      "fecha_nacimiento": "29/01/2010",
+      "rut": "23243607-7"
+    },
+    {
+      "lista": "35",
+      "matricula": "304",
+      "nombres": "SALVO SALVO SURITH LILIAN",
+      "sexo": "M",
+      "fecha_nacimiento": "01/08/2009",
+      "rut": "23088296-7"
+    },
+    {
+      "lista": "36",
+      "matricula": "305",
+      "nombres": "SANTIBAÑEZ RAMIREZ JOSÉ IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "06/05/2008",
+      "rut": "22715194-3"
+    },
+    {
+      "lista": "37",
+      "matricula": "306",
+      "nombres": "SILVA BRAVO CESAR AUGUSTO",
+      "sexo": "H",
+      "fecha_nacimiento": "26/09/2009",
+      "rut": "27212179-6"
+    },
+    {
+      "lista": "38",
+      "matricula": "307",
+      "nombres": "TEJEDA MARTIN CLAUDIA ANDREA",
+      "sexo": "M",
+      "fecha_nacimiento": "21/01/2010",
+      "rut": "23233230-1"
+    },
+    {
+      "lista": "39",
+      "matricula": "308",
+      "nombres": "URIBE VERA RENATO IVAN",
+      "sexo": "H",
+      "fecha_nacimiento": "25/02/2009",
+      "rut": "22954423-3"
+    },
+    {
+      "lista": "40",
+      "matricula": "309",
+      "nombres": "VELASQUEZ BRAVO MARTINA IGNACIA",
+      "sexo": "M",
+      "fecha_nacimiento": "19/04/2010",
+      "rut": "23301727-2"
+    },
+    {
+      "lista": "41",
+      "matricula": "310",
+      "nombres": "VERA GUTIÉRREZ EMANUEL JEREMÍAS",
+      "sexo": "H",
+      "fecha_nacimiento": "27/02/2010",
+      "rut": "23261518-4"
+    },
+    {
+      "lista": "42",
+      "matricula": "311",
+      "nombres": "VERGARA ANTILLANCA JUAN PABLO ANDRÉS",
+      "sexo": "H",
+      "fecha_nacimiento": "29/08/2009",
+      "rut": "23119112-7"
+    },
+    {
+      "lista": "43",
+      "matricula": "312",
+      "nombres": "ZAMBRANO GUTIÉRREZ FELIPE JOAQUÍN",
+      "sexo": "H",
+      "fecha_nacimiento": "15/10/2009",
+      "rut": "23149179-1"
+    },
+    {
+      "lista": "44",
+      "matricula": "386",
+      "nombres": "OJEDA LICANDEO FELIPE BASTIÁN",
+      "sexo": "H",
+      "fecha_nacimiento": "15/02/2010",
+      "rut": "23255614-5"
+    },
+    {
+      "lista": "45",
+      "matricula": "388",
+      "nombres": "ACUM VERGARA CLAUDIA MICHELLE",
+      "sexo": "M",
+      "fecha_nacimiento": "26/08/2009",
+      "rut": "23110187-k"
+    }
+  ],
+  "cursos\\lista_curso_3c_gastronomia": [
+    {
+      "lista": "01",
+      "matricula": "133",
+      "nombres": "ANGULO PÉREZ AGUSTÍN ALONSO",
+      "sexo": "H",
+      "fecha_nacimiento": "22/06/2009",
+      "rut": "23054159-0"
+    },
+    {
+      "lista": "02",
+      "matricula": "135",
+      "nombres": "ARRIAGADA MARTÍNEZ FABIÁN BENJAMÍN",
+      "sexo": "H",
+      "fecha_nacimiento": "13/06/2009",
+      "rut": "23048424-4"
+    },
+    {
+      "lista": "03",
+      "matricula": "136",
+      "nombres": "BARRÍA REYES KARLA ANDREA",
+      "sexo": "M",
+      "fecha_nacimiento": "28/03/2010",
+      "rut": "23285946-6"
+    },
+    {
+      "lista": "04",
+      "matricula": "137",
+      "nombres": "CAMÁN DEL RIO LEYLA YAMILET",
+      "sexo": "M",
+      "fecha_nacimiento": "11/06/2009",
+      "rut": "23069340-4"
+    },
+    {
+      "lista": "05",
+      "matricula": "138",
+      "nombres": "CARRASCO HERNÁNDEZ AGUSTINA PÍA",
+      "sexo": "M",
+      "fecha_nacimiento": "16/11/2009",
+      "rut": "23172675-6"
+    },
+    {
+      "lista": "06",
+      "matricula": "139",
+      "nombres": "CARVALLO PAREDES BENJAMIN ALEJANDRO",
+      "sexo": "H",
+      "fecha_nacimiento": "04/09/2009",
+      "rut": "23128072-3"
+    },
+    {
+      "lista": "07",
+      "matricula": "140",
+      "nombres": "CASTRO MARTEL LIRAYEN ESPERANZA",
+      "sexo": "M",
+      "fecha_nacimiento": "30/07/2009",
+      "rut": "23085680-k"
+    },
+    {
+      "lista": "08",
+      "matricula": "141",
+      "nombres": "CORTEZ POBLETE BELÉN ALEJANDRA",
+      "sexo": "M",
+      "fecha_nacimiento": "02/11/2009",
+      "rut": "23166715-6"
+    },
+    {
+      "lista": "09",
+      "matricula": "143",
+      "nombres": "ESPINOZA MORA ANAÍS ANTONELLA",
+      "sexo": "M",
+      "fecha_nacimiento": "23/10/2009",
+      "rut": "23154759-2"
+    },
+    {
+      "lista": "10",
+      "matricula": "144",
+      "nombres": "FLORES MALDONADO VALENTINA ANTONIA",
+      "sexo": "M",
+      "fecha_nacimiento": "15/08/2009",
+      "rut": "23100083-6"
+    },
+    {
+      "lista": "11",
+      "matricula": "145",
+      "nombres": "GARCÍA SILVA EZEQUIEL ELÍAS",
+      "sexo": "H",
+      "fecha_nacimiento": "19/09/2007",
+      "rut": "22509086-6"
+    },
+    {
+      "lista": "12",
+      "matricula": "147",
+      "nombres": "GOMEZ AGUAYO ROBERTO AGUSTIN",
+      "sexo": "H",
+      "fecha_nacimiento": "24/02/2010",
+      "rut": "23284116-8"
+    },
+    {
+      "lista": "13",
+      "matricula": "150",
+      "nombres": "JARA CIFUENTES SIMON JAVIER",
+      "sexo": "H",
+      "fecha_nacimiento": "10/12/2009",
+      "rut": "23196072-4"
+    },
+    {
+      "lista": "14",
+      "matricula": "153",
+      "nombres": "MARTÍNEZ CÁRDENAS MARITZA ANDREA",
+      "sexo": "M",
+      "fecha_nacimiento": "30/05/2009",
+      "rut": "23032226-0"
+    },
+    {
+      "lista": "15",
+      "matricula": "154",
+      "nombres": "MENDEZ LOPEZ IVANIA DANAE ALEJANDRA",
+      "sexo": "M",
+      "fecha_nacimiento": "26/02/2009",
+      "rut": "22958257-7"
+    },
+    {
+      "lista": "16",
+      "matricula": "155",
+      "nombres": "MONTECINOS ORTEGA JUAN CARLOS",
+      "sexo": "H",
+      "fecha_nacimiento": "16/12/2008",
+      "rut": "22901054-9"
+    },
+    {
+      "lista": "17",
+      "matricula": "294",
+      "nombres": "MORALES GÓMEZ ESCARLET ANTONIA",
+      "sexo": "M",
+      "fecha_nacimiento": "11/08/2009",
+      "rut": "23099868-K"
+    },
+    {
+      "lista": "18",
+      "matricula": "156",
+      "nombres": "MUÑOZ JARA FERNANDA DENISE",
+      "sexo": "M",
+      "fecha_nacimiento": "13/05/2010",
+      "rut": "23328797-0"
+    },
+    {
+      "lista": "19",
+      "matricula": "157",
+      "nombres": "PALACIOS SOTO SAMANTHA SOFÍA",
+      "sexo": "M",
+      "fecha_nacimiento": "28/01/2010",
+      "rut": "23238679-7"
+    },
+    {
+      "lista": "20",
+      "matricula": "158",
+      "nombres": "PEREZ CARRILLO ISABEL VALENTINA",
+      "sexo": "M",
+      "fecha_nacimiento": "18/11/2009",
+      "rut": "23189674-0"
+    },
+    {
+      "lista": "21",
+      "matricula": "160",
+      "nombres": "PINO CAMPOS BENJAMIN IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "08/09/2008",
+      "rut": "22819904-4"
+    },
+    {
+      "lista": "22",
+      "matricula": "161",
+      "nombres": "PUCHI CUCHIPE MILLARAY ANTONIA",
+      "sexo": "M",
+      "fecha_nacimiento": "28/02/2010",
+      "rut": "23261436-6"
+    },
+    {
+      "lista": "23",
+      "matricula": "162",
+      "nombres": "QUINTANA HORMAZÁBAL BRYANT ANDRES",
+      "sexo": "H",
+      "fecha_nacimiento": "22/08/2009",
+      "rut": "23106059-6"
+    },
+    {
+      "lista": "24",
+      "matricula": "163",
+      "nombres": "REBOLLEDO TRARO NICOLÁS IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "25/11/2009",
+      "rut": "23200009-0"
+    },
+    {
+      "lista": "25",
+      "matricula": "164",
+      "nombres": "ROJAS AMOYAO ISIDORA AYELEN",
+      "sexo": "M",
+      "fecha_nacimiento": "08/06/2009",
+      "rut": "23045383-7"
+    },
+    {
+      "lista": "26",
+      "matricula": "165",
+      "nombres": "ROSAS CALFULEF THIARE ANDREA",
+      "sexo": "M",
+      "fecha_nacimiento": "22/03/2010",
+      "rut": "23278521-7"
+    },
+    {
+      "lista": "27",
+      "matricula": "166",
+      "nombres": "SALINAS JIMÉNEZ ISIDORA ANTONIA",
+      "sexo": "M",
+      "fecha_nacimiento": "22/08/2009",
+      "rut": "23105868-0"
+    },
+    {
+      "lista": "28",
+      "matricula": "167",
+      "nombres": "SANHUEZA ABURTO JAVIERA AILYN",
+      "sexo": "M",
+      "fecha_nacimiento": "19/08/2009",
+      "rut": "23110499-2"
+    },
+    {
+      "lista": "29",
+      "matricula": "168",
+      "nombres": "SANTANA PÉREZ IGNACIA ELIZABETH",
+      "sexo": "M",
+      "fecha_nacimiento": "09/09/2009",
+      "rut": "23118201-2"
+    },
+    {
+      "lista": "30",
+      "matricula": "169",
+      "nombres": "SILVA MUÑOZ HÉCTOR BENJAMÍN ANDRÉ",
+      "sexo": "H",
+      "fecha_nacimiento": "15/04/2009",
+      "rut": "22995685-K"
+    },
+    {
+      "lista": "31",
+      "matricula": "171",
+      "nombres": "SOLÍS RIQUELME PALOMA CAROLINA",
+      "sexo": "M",
+      "fecha_nacimiento": "14/10/2009",
+      "rut": "23151417-1"
+    },
+    {
+      "lista": "32",
+      "matricula": "172",
+      "nombres": "SOTO LONCOMILLA VALENTINA ANTONIA FERN",
+      "sexo": "M",
+      "fecha_nacimiento": "25/03/2010",
+      "rut": "23279609-K"
+    },
+    {
+      "lista": "33",
+      "matricula": "173",
+      "nombres": "TORO BELTRÁN ANTONELLA CATALINA",
+      "sexo": "M",
+      "fecha_nacimiento": "16/12/2009",
+      "rut": "23203041-0"
+    },
+    {
+      "lista": "34",
+      "matricula": "174",
+      "nombres": "TORRES COLIHUINCA CAMILA ALEJANDRA",
+      "sexo": "M",
+      "fecha_nacimiento": "03/08/2009",
+      "rut": "23094180-7"
+    },
+    {
+      "lista": "35",
+      "matricula": "175",
+      "nombres": "TORRES MARTÍNEZ THIARE MONSERRAT ANAH",
+      "sexo": "M",
+      "fecha_nacimiento": "10/06/2010",
+      "rut": "23349441-0"
+    },
+    {
+      "lista": "36",
+      "matricula": "176",
+      "nombres": "VEGA ACUM ALEJANDRA SOFÍA",
+      "sexo": "M",
+      "fecha_nacimiento": "01/10/2009",
+      "rut": "23138358-1"
+    },
+    {
+      "lista": "37",
+      "matricula": "387",
+      "nombres": "HENRÍQUEZ ANGULO EMILIA ANTONIA",
+      "sexo": "M",
+      "fecha_nacimiento": "19/05/2008",
+      "rut": "22722441-K"
+    },
+    {
+      "lista": "38",
+      "matricula": "411",
+      "nombres": "LLANCAPICHÚN CARRASCO CONSTANZA CATALINA",
+      "sexo": "M",
+      "fecha_nacimiento": "06/02/2010",
+      "rut": "23243461-9"
+    },
+    {
+      "lista": "39",
+      "matricula": "812",
+      "nombres": "JARA ORTIZ DANIELA ANAHÍ",
+      "sexo": "M",
+      "fecha_nacimiento": "01/09/2009",
+      "rut": "23115007-2"
+    }
+  ],
+  "cursos\\lista_curso_3d_gastronomia": [
+    {
+      "lista": "01",
+      "matricula": "177",
+      "nombres": "AEDO LLEUFO CRISTÓBAL HÉCTOR",
+      "sexo": "H",
+      "fecha_nacimiento": "21/03/2009",
+      "rut": "22988915-K"
+    },
+    {
+      "lista": "02",
+      "matricula": "178",
+      "nombres": "ALVAREZ RAICAHUIN TANIA PASCAL",
+      "sexo": "M",
+      "fecha_nacimiento": "01/07/2009",
+      "rut": "23105247-k"
+    },
+    {
+      "lista": "03",
+      "matricula": "179",
+      "nombres": "ANTIFILO MONTOYA JENIFFER DEL PILAR",
+      "sexo": "M",
+      "fecha_nacimiento": "21/09/2009",
+      "rut": "23136695-4"
+    },
+    {
+      "lista": "04",
+      "matricula": "180",
+      "nombres": "ARANEDA ARIAS JASMÍN AILEN",
+      "sexo": "M",
+      "fecha_nacimiento": "11/04/2010",
+      "rut": "23295473-6"
+    },
+    {
+      "lista": "05",
+      "matricula": "181",
+      "nombres": "ARANEDA MÁRQUEZ AGUSTINA IGNACIA",
+      "sexo": "M",
+      "fecha_nacimiento": "08/12/2009",
+      "rut": "23200886-5"
+    },
+    {
+      "lista": "06",
+      "matricula": "182",
+      "nombres": "ARREDONDO VELASQUEZ AMARA FERNANDA",
+      "sexo": "M",
+      "fecha_nacimiento": "21/07/2009",
+      "rut": "23084162-4"
+    },
+    {
+      "lista": "07",
+      "matricula": "183",
+      "nombres": "BARICHIVICH PINUER AILEEN JASIEL",
+      "sexo": "M",
+      "fecha_nacimiento": "09/10/2009",
+      "rut": "23175668-k"
+    },
+    {
+      "lista": "08",
+      "matricula": "184",
+      "nombres": "CALISTO ZÚÑIGA ANGÉLICA MILLARAY",
+      "sexo": "M",
+      "fecha_nacimiento": "10/05/2009",
+      "rut": "23016391-k"
+    },
+    {
+      "lista": "09",
+      "matricula": "185",
+      "nombres": "CAMAN AGÜERO EVELIN MARGARITA",
+      "sexo": "M",
+      "fecha_nacimiento": "03/06/2010",
+      "rut": "23349290-6"
+    },
+    {
+      "lista": "10",
+      "matricula": "186",
+      "nombres": "CÁRDENAS ORTEGA AMANDA BELÉN",
+      "sexo": "M",
+      "fecha_nacimiento": "07/04/2010",
+      "rut": "23293711-4"
+    },
+    {
+      "lista": "11",
+      "matricula": "187",
+      "nombres": "CATALÁN VEGA MARTINA ESCARLET",
+      "sexo": "M",
+      "fecha_nacimiento": "14/11/2009",
+      "rut": "23186586-1"
+    },
+    {
+      "lista": "12",
+      "matricula": "188",
+      "nombres": "CIFUENTES DURÁN CONSTANZA ANDREA",
+      "sexo": "M",
+      "fecha_nacimiento": "05/08/2009",
+      "rut": "23091865-1"
+    },
+    {
+      "lista": "13",
+      "matricula": "190",
+      "nombres": "GARRIDO ZUMELZU CATALINA CRISTHELL JUS",
+      "sexo": "M",
+      "fecha_nacimiento": "15/09/2007",
+      "rut": "22510169-8"
+    },
+    {
+      "lista": "14",
+      "matricula": "191",
+      "nombres": "GONZÁLEZ ÁLAMOS COLOMBA ALEJANDRA",
+      "sexo": "M",
+      "fecha_nacimiento": "03/03/2010",
+      "rut": "23268026-1"
+    },
+    {
+      "lista": "15",
+      "matricula": "192",
+      "nombres": "GONZALEZ ULLOA THIARE MARTINA",
+      "sexo": "M",
+      "fecha_nacimiento": "09/09/2009",
+      "rut": "23124940-0"
+    },
+    {
+      "lista": "16",
+      "matricula": "393",
+      "nombres": "GUENUMAN MENESES ANGIELINA ASHLIE",
+      "sexo": "M",
+      "fecha_nacimiento": "07/12/2009",
+      "rut": "23210718-9"
+    },
+    {
+      "lista": "17",
+      "matricula": "193",
+      "nombres": "GUEVARA SIBADA VALERIA SOFIA",
+      "sexo": "M",
+      "fecha_nacimiento": "02/02/2009",
+      "rut": "100496518-K"
+    },
+    {
+      "lista": "18",
+      "matricula": "194",
+      "nombres": "JARAMILLO RAIL MARTINA ANAÍS",
+      "sexo": "M",
+      "fecha_nacimiento": "02/09/2009",
+      "rut": "23115403-5"
+    },
+    {
+      "lista": "19",
+      "matricula": "195",
+      "nombres": "LEGAL MILLAHUINC DAMARIS DANAE",
+      "sexo": "M",
+      "fecha_nacimiento": "22/11/2009",
+      "rut": "23190946-K"
+    },
+    {
+      "lista": "20",
+      "matricula": "196",
+      "nombres": "MANCILLA CARMONA JUAN RODRIGO",
+      "sexo": "H",
+      "fecha_nacimiento": "04/07/2009",
+      "rut": "23062846-7"
+    },
+    {
+      "lista": "21",
+      "matricula": "197",
+      "nombres": "MOLINA MONTIEL EVELIN LISETH",
+      "sexo": "M",
+      "fecha_nacimiento": "21/04/2010",
+      "rut": "23304861-5"
+    },
+    {
+      "lista": "22",
+      "matricula": "199",
+      "nombres": "MONTESINOS LORCA MONSERRAT DANIELA",
+      "sexo": "M",
+      "fecha_nacimiento": "10/01/2010",
+      "rut": "23223657-4"
+    },
+    {
+      "lista": "23",
+      "matricula": "200",
+      "nombres": "MUÑOZ BRIONES PAUL",
+      "sexo": "M",
+      "fecha_nacimiento": "13/02/2010",
+      "rut": "23249174-4"
+    },
+    {
+      "lista": "24",
+      "matricula": "201",
+      "nombres": "NAIGUAL MIRANDA KARINA ANDREA",
+      "sexo": "M",
+      "fecha_nacimiento": "15/02/2010",
+      "rut": "23251482-5"
+    },
+    {
+      "lista": "25",
+      "matricula": "202",
+      "nombres": "NEIRA BARRIENTOS DYLAN ALEXIS ALBERTO",
+      "sexo": "M",
+      "fecha_nacimiento": "12/07/2009",
+      "rut": "23076556-1"
+    },
+    {
+      "lista": "26",
+      "matricula": "203",
+      "nombres": "PACHECO SEPÚLVEDA BENJAMÍN ARIEL IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "19/06/2009",
+      "rut": "23052809-8"
+    },
+    {
+      "lista": "27",
+      "matricula": "205",
+      "nombres": "PINDAL GAETE GENESIS AILYNE",
+      "sexo": "M",
+      "fecha_nacimiento": "24/09/2008",
+      "rut": "22838403-8"
+    },
+    {
+      "lista": "28",
+      "matricula": "206",
+      "nombres": "RIVERA VERA ELVIS JOSUE",
+      "sexo": "H",
+      "fecha_nacimiento": "01/01/2010",
+      "rut": "23218989-4"
+    },
+    {
+      "lista": "29",
+      "matricula": "207",
+      "nombres": "SAEZ ÑANCUCHEO CAMILO ANDRÉS",
+      "sexo": "H",
+      "fecha_nacimiento": "07/09/2009",
+      "rut": "23122118-2"
+    },
+    {
+      "lista": "30",
+      "matricula": "209",
+      "nombres": "SALINAS ULLOA MAX ALEJANDRO",
+      "sexo": "H",
+      "fecha_nacimiento": "30/04/2010",
+      "rut": "23111244-8"
+    },
+    {
+      "lista": "31",
+      "matricula": "211",
+      "nombres": "SEPÚLVEDA ORTIZ CATALINA ISIDORA",
+      "sexo": "M",
+      "fecha_nacimiento": "06/04/2010",
+      "rut": "23300050-7"
+    },
+    {
+      "lista": "32",
+      "matricula": "212",
+      "nombres": "SILVA BARRIENTOS ELÍAS IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "22/03/2010",
+      "rut": "23286828-7"
+    },
+    {
+      "lista": "33",
+      "matricula": "213",
+      "nombres": "SILVA GÓMEZ JUAN PABLO",
+      "sexo": "H",
+      "fecha_nacimiento": "29/03/2010",
+      "rut": "23285502-9"
+    },
+    {
+      "lista": "34",
+      "matricula": "215",
+      "nombres": "TORRES ARAVENA ABIGAIL ESMERALDA",
+      "sexo": "M",
+      "fecha_nacimiento": "11/12/2008",
+      "rut": "22907069-k"
+    },
+    {
+      "lista": "35",
+      "matricula": "216",
+      "nombres": "TORRIJOS PEREIRA CARLOS BENJAMÍN",
+      "sexo": "H",
+      "fecha_nacimiento": "08/10/2009",
+      "rut": "23151711-1"
+    },
+    {
+      "lista": "36",
+      "matricula": "217",
+      "nombres": "URIBE MEZA KARINA BELÉN",
+      "sexo": "M",
+      "fecha_nacimiento": "14/08/2009",
+      "rut": "23097862-k"
+    },
+    {
+      "lista": "37",
+      "matricula": "392",
+      "nombres": "SILVA DELGADO KRISNA THIARE",
+      "sexo": "M",
+      "fecha_nacimiento": "12/05/2010",
+      "rut": "23322871-0"
+    },
+    {
+      "lista": "38",
+      "matricula": "246",
+      "nombres": "VALENZUELA DURÁN VICTORIA FLORENCIA",
+      "sexo": "M",
+      "fecha_nacimiento": "08/07/2009",
+      "rut": "23067370-5"
+    }
+  ],
+  "cursos\\lista_curso_4a_agropecuaria": [
+    {
+      "lista": "01",
+      "matricula": "313",
+      "nombres": "AGUILEF SANZANA NADIA ISABEL",
+      "sexo": "M",
+      "fecha_nacimiento": "19/06/2009",
+      "rut": "23057933-4"
+    },
+    {
+      "lista": "02",
+      "matricula": "314",
+      "nombres": "ANDRADE SANCHEZ MARTÍN ALEXANDER",
+      "sexo": "H",
+      "fecha_nacimiento": "05/10/2008",
+      "rut": "22829503-5"
+    },
+    {
+      "lista": "03",
+      "matricula": "315",
+      "nombres": "ARMSTRONG URIBE MAXIMILIANO GABRIEL",
+      "sexo": "H",
+      "fecha_nacimiento": "18/01/2009",
+      "rut": "22929736-8"
+    },
+    {
+      "lista": "04",
+      "matricula": "316",
+      "nombres": "ARRIAGADA PACHECO AXEL AGUSTÍN",
+      "sexo": "H",
+      "fecha_nacimiento": "16/12/2008",
+      "rut": "22910846-8"
+    },
+    {
+      "lista": "05",
+      "matricula": "317",
+      "nombres": "BAHAMÓNDEZ FUENTEALBA DARKO ELIOTT",
+      "sexo": "H",
+      "fecha_nacimiento": "01/02/2009",
+      "rut": "22941430-5"
+    },
+    {
+      "lista": "06",
+      "matricula": "318",
+      "nombres": "BARRÍA LUCERO RICARDO ANTONIO",
+      "sexo": "H",
+      "fecha_nacimiento": "03/08/2008",
+      "rut": "22784787-5"
+    },
+    {
+      "lista": "07",
+      "matricula": "319",
+      "nombres": "BELMAR ASENJO CONSTANZA JAVIERA",
+      "sexo": "M",
+      "fecha_nacimiento": "12/04/2009",
+      "rut": "23001633-K"
+    },
+    {
+      "lista": "08",
+      "matricula": "320",
+      "nombres": "CARRASCO GONZÁLEZ DAFNE PALOMA",
+      "sexo": "M",
+      "fecha_nacimiento": "16/06/2008",
+      "rut": "22764637-3"
+    },
+    {
+      "lista": "09",
+      "matricula": "321",
+      "nombres": "CONTRERAS RIFFO LUCAS FELIPE",
+      "sexo": "H",
+      "fecha_nacimiento": "26/08/2008",
+      "rut": "22806642-7"
+    },
+    {
+      "lista": "10",
+      "matricula": "322",
+      "nombres": "FUENTEALBA VELÁSQUEZ ANTONELLA NATALI",
+      "sexo": "M",
+      "fecha_nacimiento": "02/09/2008",
+      "rut": "22818615-5"
+    },
+    {
+      "lista": "11",
+      "matricula": "323",
+      "nombres": "GONZÁLEZ DEL RÍO JAVIERA ANAÍS",
+      "sexo": "M",
+      "fecha_nacimiento": "18/06/2009",
+      "rut": "23052756-3"
+    },
+    {
+      "lista": "12",
+      "matricula": "324",
+      "nombres": "GONZÁLEZ TORRES CAMILO ANDRÉS",
+      "sexo": "H",
+      "fecha_nacimiento": "25/05/2008",
+      "rut": "22725934-5"
+    },
+    {
+      "lista": "13",
+      "matricula": "325",
+      "nombres": "HINOJOSA GONZÁLEZ FERNANDO ANTONIO",
+      "sexo": "H",
+      "fecha_nacimiento": "01/04/2008",
+      "rut": "22693111-2"
+    },
+    {
+      "lista": "14",
+      "matricula": "326",
+      "nombres": "ITURRIAGA ARANEDA MARÍA PAZ",
+      "sexo": "M",
+      "fecha_nacimiento": "09/11/2007",
+      "rut": "22616560-6"
+    },
+    {
+      "lista": "15",
+      "matricula": "327",
+      "nombres": "JARAMILLO VARAS MARYORY LISSETTE",
+      "sexo": "M",
+      "fecha_nacimiento": "01/12/2008",
+      "rut": "22887610-0"
+    },
+    {
+      "lista": "16",
+      "matricula": "328",
+      "nombres": "MARIÓ BARRERA ESTEFANI ABIGAIL",
+      "sexo": "M",
+      "fecha_nacimiento": "20/05/2009",
+      "rut": "23022713-6"
+    },
+    {
+      "lista": "17",
+      "matricula": "329",
+      "nombres": "MARTÍNEZ SOTO YAN CAYLEEN NAYOVI",
+      "sexo": "M",
+      "fecha_nacimiento": "23/10/2008",
+      "rut": "22853016-6"
+    },
+    {
+      "lista": "18",
+      "matricula": "330",
+      "nombres": "MATURANA RODRÍGUEZ GASPAR ANTONIO",
+      "sexo": "H",
+      "fecha_nacimiento": "04/10/2008",
+      "rut": "22854908-8"
+    },
+    {
+      "lista": "19",
+      "matricula": "331",
+      "nombres": "MOLINA PAILAPÁN BELÉN ANAHIS",
+      "sexo": "M",
+      "fecha_nacimiento": "30/03/2009",
+      "rut": "22989564-8"
+    },
+    {
+      "lista": "20",
+      "matricula": "332",
+      "nombres": "MONTECINOS VIDAL FERNANDO VALENTÍN",
+      "sexo": "H",
+      "fecha_nacimiento": "04/02/2009",
+      "rut": "22939337-5"
+    },
+    {
+      "lista": "21",
+      "matricula": "333",
+      "nombres": "NEIRA ROZAS MIGUEL HERNÁN",
+      "sexo": "H",
+      "fecha_nacimiento": "19/02/2009",
+      "rut": "22957121-4"
+    },
+    {
+      "lista": "22",
+      "matricula": "334",
+      "nombres": "NEIRA SOLÍS FELIPE ANDRÉS",
+      "sexo": "H",
+      "fecha_nacimiento": "28/01/2009",
+      "rut": "22935016-1"
+    },
+    {
+      "lista": "23",
+      "matricula": "335",
+      "nombres": "PARRAGUEZ SILVA CATALINA IGNACIA",
+      "sexo": "M",
+      "fecha_nacimiento": "10/01/2009",
+      "rut": "22917477-0"
+    },
+    {
+      "lista": "24",
+      "matricula": "336",
+      "nombres": "PEÑA GUZMÁN AMARO AUGUSTO",
+      "sexo": "H",
+      "fecha_nacimiento": "11/11/2008",
+      "rut": "22866515-0"
+    },
+    {
+      "lista": "25",
+      "matricula": "337",
+      "nombres": "PÉREZ MONTIEL BRAYAN MAURICIO",
+      "sexo": "H",
+      "fecha_nacimiento": "24/01/2009",
+      "rut": "22930151-9"
+    },
+    {
+      "lista": "26",
+      "matricula": "338",
+      "nombres": "PONCE LEIVA KATHERINE MASIEL",
+      "sexo": "M",
+      "fecha_nacimiento": "24/05/2008",
+      "rut": "22728859-0"
+    },
+    {
+      "lista": "27",
+      "matricula": "339",
+      "nombres": "PUNOL NITOR CRISTOPHER FABÍAN",
+      "sexo": "H",
+      "fecha_nacimiento": "22/09/2008",
+      "rut": "22835414-7"
+    },
+    {
+      "lista": "28",
+      "matricula": "340",
+      "nombres": "SOLÍS JARAMILLO PÍA IGNACIA",
+      "sexo": "M",
+      "fecha_nacimiento": "03/02/2009",
+      "rut": "22955749-1"
+    },
+    {
+      "lista": "29",
+      "matricula": "341",
+      "nombres": "SOTO JARAMILLO BÁRBARA ELIZABETH",
+      "sexo": "M",
+      "fecha_nacimiento": "28/04/2009",
+      "rut": "23012916-9"
+    },
+    {
+      "lista": "30",
+      "matricula": "342",
+      "nombres": "TRIVIÑO BARRÍA KEYLA DANAE",
+      "sexo": "M",
+      "fecha_nacimiento": "09/02/2009",
+      "rut": "22946979-7"
+    },
+    {
+      "lista": "31",
+      "matricula": "343",
+      "nombres": "VALDIVIA APABLAZA DEVIN KLEYN",
+      "sexo": "H",
+      "fecha_nacimiento": "16/05/2007",
+      "rut": "22400770-1"
+    },
+    {
+      "lista": "32",
+      "matricula": "344",
+      "nombres": "VALLADARES PARRA KELLY ALLHISSON",
+      "sexo": "M",
+      "fecha_nacimiento": "13/12/2008",
+      "rut": "22897834-5"
+    },
+    {
+      "lista": "33",
+      "matricula": "345",
+      "nombres": "VELÁSQUEZ BARRÍA GONZALO ALEJANDRO",
+      "sexo": "H",
+      "fecha_nacimiento": "01/10/2008",
+      "rut": "22833037-K"
+    },
+    {
+      "lista": "34",
+      "matricula": "346",
+      "nombres": "VERA CORREA ANGELIZ CAMILA",
+      "sexo": "M",
+      "fecha_nacimiento": "28/01/2009",
+      "rut": "100559598-K"
+    },
+    {
+      "lista": "35",
+      "matricula": "347",
+      "nombres": "VERGARA CÁRCAMO BENJAMÍN ALBERTO",
+      "sexo": "M",
+      "fecha_nacimiento": "14/09/2008",
+      "rut": "22821313-6"
+    },
+    {
+      "lista": "36",
+      "matricula": "348",
+      "nombres": "YAEGER YÁÑEZ FLORENCIA RAQUEL",
+      "sexo": "M",
+      "fecha_nacimiento": "05/03/2009",
+      "rut": "22962914-K"
+    },
+    {
+      "lista": "37",
+      "matricula": "367",
+      "nombres": "MARTÍNEZ CAÑULEF NICOL ANDREA",
+      "sexo": "M",
+      "fecha_nacimiento": "12/10/2008",
+      "rut": "22839107-7"
+    },
+    {
+      "lista": "38",
+      "matricula": "390",
+      "nombres": "YAEGER ARANEDA ESTEBAN EDUARDO ENR",
+      "sexo": "H",
+      "fecha_nacimiento": "14/06/2008",
+      "rut": "22751171-0"
+    },
+    {
+      "lista": "39",
+      "matricula": "394",
+      "nombres": "URIBE FLORES CRISTIAN ALFONSO",
+      "sexo": "H",
+      "fecha_nacimiento": "03/11/2008",
+      "rut": "22872403-3"
+    }
+  ],
+  "cursos\\lista_curso_4b_agropecuaria": [
+    {
+      "lista": "01",
+      "matricula": "349",
+      "nombres": "AEDO ABARCA ALLISON JOSEFINA",
+      "sexo": "M",
+      "fecha_nacimiento": "20/01/2009",
+      "rut": "22942613-3"
+    },
+    {
+      "lista": "02",
+      "matricula": "350",
+      "nombres": "ÁGUILA ÁLVAREZ MEREDITH GENESIS",
+      "sexo": "M",
+      "fecha_nacimiento": "26/08/2007",
+      "rut": "22528070-3"
+    },
+    {
+      "lista": "03",
+      "matricula": "351",
+      "nombres": "AGUILAR HERRERA BENJAMIN ELIAS",
+      "sexo": "H",
+      "fecha_nacimiento": "10/09/2008",
+      "rut": "22831989-9"
+    },
+    {
+      "lista": "04",
+      "matricula": "352",
+      "nombres": "ALMONACID ANGULO NERY ANASTASIA",
+      "sexo": "M",
+      "fecha_nacimiento": "29/08/2007",
+      "rut": "22490693-5"
+    },
+    {
+      "lista": "05",
+      "matricula": "353",
+      "nombres": "AVENDAÑO OJEDA MANUEL PHILIPH",
+      "sexo": "H",
+      "fecha_nacimiento": "19/08/2008",
+      "rut": "22806998-1"
+    },
+    {
+      "lista": "06",
+      "matricula": "354",
+      "nombres": "CAMAN MALDONADO DAMIÁN ESTEBAN",
+      "sexo": "H",
+      "fecha_nacimiento": "16/12/2008",
+      "rut": "22900759-9"
+    },
+    {
+      "lista": "07",
+      "matricula": "355",
+      "nombres": "CASANOVA SÁNCHEZ CATALINA ANTONIA",
+      "sexo": "M",
+      "fecha_nacimiento": "26/05/2008",
+      "rut": "22733883-0"
+    },
+    {
+      "lista": "08",
+      "matricula": "356",
+      "nombres": "CUADRA LAGOS JOSÉ OMAR",
+      "sexo": "H",
+      "fecha_nacimiento": "30/03/2009",
+      "rut": "22985427-5"
+    },
+    {
+      "lista": "09",
+      "matricula": "357",
+      "nombres": "DÍAZ ALVAREZ IVANIA CATALINA",
+      "sexo": "M",
+      "fecha_nacimiento": "14/01/2009",
+      "rut": "22919373-2"
+    },
+    {
+      "lista": "10",
+      "matricula": "358",
+      "nombres": "GACITÚA CONCHA BERNARDO IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "14/03/2008",
+      "rut": "22669564-8"
+    },
+    {
+      "lista": "11",
+      "matricula": "359",
+      "nombres": "GARNICA VERA MATÍAS AARON",
+      "sexo": "H",
+      "fecha_nacimiento": "28/12/2008",
+      "rut": "22908881-5"
+    },
+    {
+      "lista": "12",
+      "matricula": "360",
+      "nombres": "HEIMPEL ORTIZ DÁMARIS ESTER",
+      "sexo": "M",
+      "fecha_nacimiento": "04/08/2008",
+      "rut": "22787811-8"
+    },
+    {
+      "lista": "13",
+      "matricula": "361",
+      "nombres": "HUERAMÁN ESCALONA DANIELA BELÉN",
+      "sexo": "M",
+      "fecha_nacimiento": "28/11/2008",
+      "rut": "22889755-8"
+    },
+    {
+      "lista": "14",
+      "matricula": "362",
+      "nombres": "JARA PARDO TOMÁS ANIBAL",
+      "sexo": "H",
+      "fecha_nacimiento": "15/02/2009",
+      "rut": "22949458-9"
+    },
+    {
+      "lista": "15",
+      "matricula": "363",
+      "nombres": "JARA SALAZAR EVELYN DANIELA",
+      "sexo": "M",
+      "fecha_nacimiento": "02/04/2008",
+      "rut": "22687554-9"
+    },
+    {
+      "lista": "16",
+      "matricula": "364",
+      "nombres": "LAGOS ULLOA PATRICIO IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "25/04/2008",
+      "rut": "22710387-6"
+    },
+    {
+      "lista": "17",
+      "matricula": "365",
+      "nombres": "LLANQUILEF ÁLVAREZ YUT-ZEN NAYÉN ANAHI",
+      "sexo": "M",
+      "fecha_nacimiento": "08/11/2008",
+      "rut": "22890825-8"
+    },
+    {
+      "lista": "18",
+      "matricula": "366",
+      "nombres": "MARIGUAL MANCILLA FERNANDA ESTEFANÍA",
+      "sexo": "M",
+      "fecha_nacimiento": "20/11/2008",
+      "rut": "22878441-9"
+    },
+    {
+      "lista": "19",
+      "matricula": "368",
+      "nombres": "MORAGA CÁRDENAS KEVIN JESÚS",
+      "sexo": "H",
+      "fecha_nacimiento": "03/01/2007",
+      "rut": "22299598-1"
+    },
+    {
+      "lista": "20",
+      "matricula": "369",
+      "nombres": "MUÑOZ MOREIRA BÁRBARA CONSUELO",
+      "sexo": "M",
+      "fecha_nacimiento": "18/08/2008",
+      "rut": "22796246-1"
+    },
+    {
+      "lista": "21",
+      "matricula": "370",
+      "nombres": "MUÑOZ QUEZADA ANTONIA BETZABET",
+      "sexo": "M",
+      "fecha_nacimiento": "14/12/2008",
+      "rut": "22899830-3"
+    },
+    {
+      "lista": "22",
+      "matricula": "371",
+      "nombres": "NEIRA NANCUPEL MEILYN RAYEN ANAHÍ",
+      "sexo": "M",
+      "fecha_nacimiento": "10/03/2009",
+      "rut": "22969035-3"
+    },
+    {
+      "lista": "23",
+      "matricula": "372",
+      "nombres": "OVALLE SANDOVAL BENJAMÍN ALEJANDRO",
+      "sexo": "H",
+      "fecha_nacimiento": "17/07/2008",
+      "rut": "22769745-8"
+    },
+    {
+      "lista": "24",
+      "matricula": "373",
+      "nombres": "PARRA DEUMACÁN JOSÉ MARCELINO",
+      "sexo": "H",
+      "fecha_nacimiento": "04/10/2007",
+      "rut": "22523250-4"
+    },
+    {
+      "lista": "25",
+      "matricula": "374",
+      "nombres": "POBLETE ORTEGA JOAQUÍN ABEL",
+      "sexo": "H",
+      "fecha_nacimiento": "19/02/2009",
+      "rut": "22950779-6"
+    },
+    {
+      "lista": "26",
+      "matricula": "375",
+      "nombres": "RIVERA MONTECINOS RODRIGO DAVID",
+      "sexo": "H",
+      "fecha_nacimiento": "21/07/2008",
+      "rut": "22775960-7"
+    },
+    {
+      "lista": "27",
+      "matricula": "376",
+      "nombres": "SÁEZ HENRÍQUEZ ANGELO DAVID",
+      "sexo": "H",
+      "fecha_nacimiento": "10/10/2008",
+      "rut": "22857974-2"
+    },
+    {
+      "lista": "28",
+      "matricula": "377",
+      "nombres": "SALINAS RÍOS ALEXIS ADRIÁN",
+      "sexo": "H",
+      "fecha_nacimiento": "14/09/2008",
+      "rut": "22825755-9"
+    },
+    {
+      "lista": "29",
+      "matricula": "378",
+      "nombres": "SÁNCHEZ PÉREZ FLORENCIA LOURDES",
+      "sexo": "M",
+      "fecha_nacimiento": "11/08/2007",
+      "rut": "22473521-9"
+    },
+    {
+      "lista": "30",
+      "matricula": "379",
+      "nombres": "SANTIBÁÑEZ MARTÍNEZ ALLAN DANIEL",
+      "sexo": "H",
+      "fecha_nacimiento": "17/03/2009",
+      "rut": "23022196-0"
+    },
+    {
+      "lista": "31",
+      "matricula": "380",
+      "nombres": "SOLÍS PENNEKAMP EMILY ESTEFANÍA",
+      "sexo": "M",
+      "fecha_nacimiento": "11/07/2008",
+      "rut": "22853812-4"
+    },
+    {
+      "lista": "32",
+      "matricula": "381",
+      "nombres": "SOTOMAYOR GATICA FRANCO ANTONIO",
+      "sexo": "H",
+      "fecha_nacimiento": "21/08/2008",
+      "rut": "22813564-k"
+    },
+    {
+      "lista": "33",
+      "matricula": "382",
+      "nombres": "SUBIABRE MOLINA VALENTINA JAZMÍN",
+      "sexo": "M",
+      "fecha_nacimiento": "13/06/2007",
+      "rut": "22426449-6"
+    },
+    {
+      "lista": "34",
+      "matricula": "384",
+      "nombres": "VERA MILLAPE FRANCISCA DEL PILAR",
+      "sexo": "M",
+      "fecha_nacimiento": "26/12/2008",
+      "rut": "22927761-8"
+    }
+  ],
+  "cursos\\lista_curso_4c_gastronomia": [
+    {
+      "lista": "01",
+      "matricula": "218",
+      "nombres": "AEDO RAUQUE KRYSHNA ZAYEN",
+      "sexo": "M",
+      "fecha_nacimiento": "20/02/2009",
+      "rut": "22955720-3"
+    },
+    {
+      "lista": "02",
+      "matricula": "219",
+      "nombres": "BORQUEZ VILLANUEVA KEVIN IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "03/01/2009",
+      "rut": "22988467-0"
+    },
+    {
+      "lista": "03",
+      "matricula": "220",
+      "nombres": "CALAPAI SOLÍS VALERIA ALEXANDRA",
+      "sexo": "M",
+      "fecha_nacimiento": "20/04/2008",
+      "rut": "22704809-3"
+    },
+    {
+      "lista": "04",
+      "matricula": "221",
+      "nombres": "CAMAN SEPÚLVEDA GERALD ELÍAS",
+      "sexo": "H",
+      "fecha_nacimiento": "12/11/2008",
+      "rut": "22876582-1"
+    },
+    {
+      "lista": "05",
+      "matricula": "222",
+      "nombres": "CAMPOS DÍAZ ANTONELA YASMIN",
+      "sexo": "M",
+      "fecha_nacimiento": "04/06/2009",
+      "rut": "23036184-3"
+    },
+    {
+      "lista": "06",
+      "matricula": "223",
+      "nombres": "CASANOVA OLAVARRÍA MARCELO ALEXIS",
+      "sexo": "H",
+      "fecha_nacimiento": "24/06/2008",
+      "rut": "22759629-5"
+    },
+    {
+      "lista": "07",
+      "matricula": "224",
+      "nombres": "CASTRO ANTILLANCA FERNANDA ARACELI",
+      "sexo": "M",
+      "fecha_nacimiento": "10/06/2009",
+      "rut": "23049948-9"
+    },
+    {
+      "lista": "08",
+      "matricula": "225",
+      "nombres": "CASTRO ANTILLANCA JAVIERA PAZ",
+      "sexo": "M",
+      "fecha_nacimiento": "10/06/2009",
+      "rut": "23049935-7"
+    },
+    {
+      "lista": "09",
+      "matricula": "226",
+      "nombres": "ESPINOZA CABRERA IGNACIO ALEJANDRO",
+      "sexo": "H",
+      "fecha_nacimiento": "25/06/2009",
+      "rut": "23057275-5"
+    },
+    {
+      "lista": "10",
+      "matricula": "227",
+      "nombres": "ESTRADA MELILLÁN JAIRO ALEXANDER",
+      "sexo": "H",
+      "fecha_nacimiento": "22/05/2008",
+      "rut": "22733129-1"
+    },
+    {
+      "lista": "11",
+      "matricula": "228",
+      "nombres": "FERNANDEZ CORTÉS JOAQUÍN ESTEBAN",
+      "sexo": "H",
+      "fecha_nacimiento": "24/06/2009",
+      "rut": "23069668-3"
+    },
+    {
+      "lista": "12",
+      "matricula": "229",
+      "nombres": "GARCÉS FERNÁNDEZ MARTINA MARLY",
+      "sexo": "M",
+      "fecha_nacimiento": "02/08/2008",
+      "rut": "22783818-3"
+    },
+    {
+      "lista": "13",
+      "matricula": "230",
+      "nombres": "GARCÍA VARGAS VICTORIA LUZ ESTEFANÍA",
+      "sexo": "M",
+      "fecha_nacimiento": "18/02/2009",
+      "rut": "22950383-9"
+    },
+    {
+      "lista": "14",
+      "matricula": "231",
+      "nombres": "GUAIQUE GARCÍA VICTORIA ABIGAIL",
+      "sexo": "M",
+      "fecha_nacimiento": "20/06/2009",
+      "rut": "23060109-7"
+    },
+    {
+      "lista": "15",
+      "matricula": "232",
+      "nombres": "GUARDA CARRILLO LEONARDO BASTIÁN",
+      "sexo": "H",
+      "fecha_nacimiento": "19/04/2009",
+      "rut": "22997917-5"
+    },
+    {
+      "lista": "16",
+      "matricula": "233",
+      "nombres": "GUARDA YÁÑEZ FLORENCIA ZALET",
+      "sexo": "M",
+      "fecha_nacimiento": "03/01/2009",
+      "rut": "22914370-0"
+    },
+    {
+      "lista": "17",
+      "matricula": "234",
+      "nombres": "HAQUIN VARGAS MARTINA VICTORIA",
+      "sexo": "M",
+      "fecha_nacimiento": "19/09/2008",
+      "rut": "22826881-K"
+    },
+    {
+      "lista": "18",
+      "matricula": "235",
+      "nombres": "HERNANDEZ LARA MARIANA ABIGAIL",
+      "sexo": "M",
+      "fecha_nacimiento": "25/03/2009",
+      "rut": "22981443-5"
+    },
+    {
+      "lista": "19",
+      "matricula": "236",
+      "nombres": "JARA BARRÍA EMERSON DEALESANDRO",
+      "sexo": "H",
+      "fecha_nacimiento": "27/03/2009",
+      "rut": "22991564-9"
+    },
+    {
+      "lista": "20",
+      "matricula": "239",
+      "nombres": "LÓPEZ ANTIGUAL VALENTINA AUDALIA SOFI",
+      "sexo": "M",
+      "fecha_nacimiento": "20/08/2008",
+      "rut": "22802480-5"
+    },
+    {
+      "lista": "21",
+      "matricula": "240",
+      "nombres": "LÓPEZ MARTIN ALEJANDRA DARLYN",
+      "sexo": "M",
+      "fecha_nacimiento": "05/01/2009",
+      "rut": "22918832-1"
+    },
+    {
+      "lista": "22",
+      "matricula": "241",
+      "nombres": "MIRANDA EPUYAO KELLY ALEXANDRA",
+      "sexo": "M",
+      "fecha_nacimiento": "26/07/2008",
+      "rut": "22842107-3"
+    },
+    {
+      "lista": "23",
+      "matricula": "242",
+      "nombres": "MONTECINOS NASTRO AMAYA JULIANA",
+      "sexo": "M",
+      "fecha_nacimiento": "28/05/2008",
+      "rut": "22731577-6"
+    },
+    {
+      "lista": "24",
+      "matricula": "243",
+      "nombres": "MONTESINOS CONTRERAS NICOLÁS ANDRÉS",
+      "sexo": "H",
+      "fecha_nacimiento": "09/01/2009",
+      "rut": "22916442-2"
+    },
+    {
+      "lista": "25",
+      "matricula": "244",
+      "nombres": "MORA ANCAPI FERNANDA BEATRIZ",
+      "sexo": "M",
+      "fecha_nacimiento": "07/11/2008",
+      "rut": "22873858-1"
+    },
+    {
+      "lista": "26",
+      "matricula": "245",
+      "nombres": "MORA HUISCAÑANCO BÁRBARA ANTONIA",
+      "sexo": "M",
+      "fecha_nacimiento": "15/09/2008",
+      "rut": "22855233-K"
+    },
+    {
+      "lista": "27",
+      "matricula": "246",
+      "nombres": "OJEDA SILVA ALEXANDER BERNABÉ",
+      "sexo": "H",
+      "fecha_nacimiento": "08/03/2009",
+      "rut": "22976115-3"
+    },
+    {
+      "lista": "28",
+      "matricula": "247",
+      "nombres": "OLIVA BARTO GUISSELLE NOEMÍ",
+      "sexo": "M",
+      "fecha_nacimiento": "28/09/2008",
+      "rut": "22846902-5"
+    },
+    {
+      "lista": "29",
+      "matricula": "248",
+      "nombres": "ÓRDENES ESPINOZA PILAR AYELÉN",
+      "sexo": "M",
+      "fecha_nacimiento": "29/09/2008",
+      "rut": "22849499-2"
+    },
+    {
+      "lista": "30",
+      "matricula": "249",
+      "nombres": "OYARCE BAEZ FRANCO IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "13/02/2009",
+      "rut": "22958667-K"
+    },
+    {
+      "lista": "31",
+      "matricula": "251",
+      "nombres": "PONCE NAGUIL LISSELOTT ELIA",
+      "sexo": "M",
+      "fecha_nacimiento": "01/12/2007",
+      "rut": "22571866-0"
+    },
+    {
+      "lista": "32",
+      "matricula": "252",
+      "nombres": "PROBOSTE ALBARRÁN DENISSE VALENTINA",
+      "sexo": "M",
+      "fecha_nacimiento": "22/01/2009",
+      "rut": "22937119-3"
+    },
+    {
+      "lista": "33",
+      "matricula": "253",
+      "nombres": "REBOLLEDO TRARO MATÍAS EDUARDO",
+      "sexo": "H",
+      "fecha_nacimiento": "02/05/2008",
+      "rut": "22720862-7"
+    },
+    {
+      "lista": "34",
+      "matricula": "254",
+      "nombres": "REYES MERINO SOFÍA SAYEN",
+      "sexo": "M",
+      "fecha_nacimiento": "04/08/2008",
+      "rut": "22788412-6"
+    },
+    {
+      "lista": "35",
+      "matricula": "402",
+      "nombres": "RISCO CÁRDENAS KLAUSS FÉLIX",
+      "sexo": "H",
+      "fecha_nacimiento": "10/11/2008",
+      "rut": "22876109-5"
+    },
+    {
+      "lista": "36",
+      "matricula": "255",
+      "nombres": "ROJAS VALDERA ANALIS PASCAL",
+      "sexo": "M",
+      "fecha_nacimiento": "21/05/2009",
+      "rut": "23058783-3"
+    },
+    {
+      "lista": "37",
+      "matricula": "256",
+      "nombres": "SEGUEL LLAITUL HASHLY JASSMIN",
+      "sexo": "M",
+      "fecha_nacimiento": "09/08/2008",
+      "rut": "22792713-5"
+    },
+    {
+      "lista": "38",
+      "matricula": "257",
+      "nombres": "SILVA TORRES RAFAEL ANDRÉS",
+      "sexo": "H",
+      "fecha_nacimiento": "19/01/2009",
+      "rut": "22927531-3"
+    },
+    {
+      "lista": "39",
+      "matricula": "258",
+      "nombres": "TORRES CORDARO ANNA JAVIERA",
+      "sexo": "M",
+      "fecha_nacimiento": "27/01/2009",
+      "rut": "22932401-2"
+    },
+    {
+      "lista": "40",
+      "matricula": "259",
+      "nombres": "YEFI PINEA EDUARDO ESTEBAN",
+      "sexo": "H",
+      "fecha_nacimiento": "12/10/2008",
+      "rut": "22841283-k"
+    },
+    {
+      "lista": "41",
+      "matricula": "260",
+      "nombres": "ZUÑIGA CÁRCAMO TOMÁS FRANCISCO JAVIE",
+      "sexo": "H",
+      "fecha_nacimiento": "07/10/2008",
+      "rut": "22832303-9"
+    },
+    {
+      "lista": "42",
+      "matricula": "814",
+      "nombres": "JARAMILLO RAMÍREZ CATALINA FERNANDA",
+      "sexo": "M",
+      "fecha_nacimiento": "30/09/2008",
+      "rut": "22834721-3"
+    }
+  ],
+  "cursos\\lista_curso_4d_gastronomia": [
+    {
+      "lista": "01",
+      "matricula": "261",
+      "nombres": "ÁGUILA MOLINA VÍCTOR FABIÁN",
+      "sexo": "H",
+      "fecha_nacimiento": "27/05/2008",
+      "rut": "22736650-8"
+    },
+    {
+      "lista": "02",
+      "matricula": "262",
+      "nombres": "AGUILERA PLACENCIA CRISTIAN ANDRÉS",
+      "sexo": "H",
+      "fecha_nacimiento": "29/09/2008",
+      "rut": "22860952-8"
+    },
+    {
+      "lista": "03",
+      "matricula": "263",
+      "nombres": "AMOYAO VALENZUELA THYARE YASMIN ANDREA",
+      "sexo": "M",
+      "fecha_nacimiento": "23/10/2008",
+      "rut": "22855624-6"
+    },
+    {
+      "lista": "04",
+      "matricula": "264",
+      "nombres": "CÁCERES CORTEZ JAZMÍN YESSENIA SOLE",
+      "sexo": "M",
+      "fecha_nacimiento": "21/03/2009",
+      "rut": "22982064-8"
+    },
+    {
+      "lista": "05",
+      "matricula": "265",
+      "nombres": "CALFUEQUE ALVARADO YOJAN RODRIGO",
+      "sexo": "H",
+      "fecha_nacimiento": "13/08/2007",
+      "rut": "22477418-4"
+    },
+    {
+      "lista": "06",
+      "matricula": "266",
+      "nombres": "CÁRDENAS CARRASCO MAXIMILIANO JESÚS",
+      "sexo": "H",
+      "fecha_nacimiento": "09/04/2009",
+      "rut": "23001215-6"
+    },
+    {
+      "lista": "07",
+      "matricula": "801",
+      "nombres": "CARRILLO BARRÍA CARLOS JAVIER",
+      "sexo": "H",
+      "fecha_nacimiento": "08/02/2007",
+      "rut": "22325390-3"
+    },
+    {
+      "lista": "08",
+      "matricula": "268",
+      "nombres": "CATALÁN CANDIA ALONDRA ESTEFANÍA",
+      "sexo": "M",
+      "fecha_nacimiento": "19/01/2009",
+      "rut": "22933782-3"
+    },
+    {
+      "lista": "09",
+      "matricula": "269",
+      "nombres": "CATALÁN VERA SOFÍA ANTONIA",
+      "sexo": "M",
+      "fecha_nacimiento": "23/12/2008",
+      "rut": "22909305-3"
+    },
+    {
+      "lista": "10",
+      "matricula": "270",
+      "nombres": "CEA SALGADO IVONNE SCARLETH",
+      "sexo": "M",
+      "fecha_nacimiento": "27/03/2008",
+      "rut": "22684067-2"
+    },
+    {
+      "lista": "11",
+      "matricula": "271",
+      "nombres": "CONA RICOUZ GUISELE SOLEDAD",
+      "sexo": "M",
+      "fecha_nacimiento": "27/10/2008",
+      "rut": "22859281-1"
+    },
+    {
+      "lista": "12",
+      "matricula": "272",
+      "nombres": "CURRIMIL ALBARRÁN JAVIERA ALEJANDRA",
+      "sexo": "M",
+      "fecha_nacimiento": "07/12/2008",
+      "rut": "22890893-2"
+    },
+    {
+      "lista": "13",
+      "matricula": "273",
+      "nombres": "DE LA FUENTE VALLEJOS MARTINA JAVIERA",
+      "sexo": "M",
+      "fecha_nacimiento": "14/11/2008",
+      "rut": "22886450-1"
+    },
+    {
+      "lista": "14",
+      "matricula": "274",
+      "nombres": "DELGADO ÁLVAREZ KARLA IGNACIA",
+      "sexo": "M",
+      "fecha_nacimiento": "15/03/2009",
+      "rut": "22978234-7"
+    },
+    {
+      "lista": "15",
+      "matricula": "275",
+      "nombres": "DÍAZ DÍAZ BEATRIZ ANTONIA",
+      "sexo": "M",
+      "fecha_nacimiento": "25/03/2009",
+      "rut": "22982540-2"
+    },
+    {
+      "lista": "16",
+      "matricula": "276",
+      "nombres": "DÍAZ VIDAL SOFÍA ANASTASIA",
+      "sexo": "M",
+      "fecha_nacimiento": "01/01/2009",
+      "rut": "22919084-9"
+    },
+    {
+      "lista": "17",
+      "matricula": "277",
+      "nombres": "EPUYAO HIJERRA EDGARDO JESÚS",
+      "sexo": "H",
+      "fecha_nacimiento": "21/08/2008",
+      "rut": "22799538-6"
+    },
+    {
+      "lista": "18",
+      "matricula": "278",
+      "nombres": "FLORES MANCILLA LAURA DENISSE",
+      "sexo": "M",
+      "fecha_nacimiento": "06/03/2009",
+      "rut": "22964766-0"
+    },
+    {
+      "lista": "19",
+      "matricula": "279",
+      "nombres": "GIL BARAHONA MARTINA FERNANDA",
+      "sexo": "M",
+      "fecha_nacimiento": "06/07/2008",
+      "rut": "22766051-1"
+    },
+    {
+      "lista": "20",
+      "matricula": "280",
+      "nombres": "GÓMEZ HERMOSILLA BENJAMÍN ALEXANDER F",
+      "sexo": "H",
+      "fecha_nacimiento": "06/06/2008",
+      "rut": "22738961-3"
+    },
+    {
+      "lista": "21",
+      "matricula": "281",
+      "nombres": "GONZALEZ VIVANCO MATIAS IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "04/12/2008",
+      "rut": "22889640-3"
+    },
+    {
+      "lista": "22",
+      "matricula": "282",
+      "nombres": "HUENULEF CAMAN FRANCISCA ANDREA",
+      "sexo": "M",
+      "fecha_nacimiento": "13/10/2008",
+      "rut": "22849537-9"
+    },
+    {
+      "lista": "23",
+      "matricula": "283",
+      "nombres": "VILLARROEL MUÑOZ CATALINA BEATRIZ",
+      "sexo": "M",
+      "fecha_nacimiento": "22/12/2008",
+      "rut": "22909770-9"
+    },
+    {
+      "lista": "24",
+      "matricula": "284",
+      "nombres": "JARA JARAMILLO EMILIA ELIZABETH",
+      "sexo": "M",
+      "fecha_nacimiento": "17/08/2008",
+      "rut": "22803181-K"
+    },
+    {
+      "lista": "25",
+      "matricula": "285",
+      "nombres": "JARAMILLO KAHLER MILLARAY DE YANIRA",
+      "sexo": "M",
+      "fecha_nacimiento": "03/09/2008",
+      "rut": "22811285-2"
+    },
+    {
+      "lista": "26",
+      "matricula": "286",
+      "nombres": "LEFIMAN HUENUPÁN BENJAMÍN ALEJANDRO",
+      "sexo": "H",
+      "fecha_nacimiento": "15/09/2008",
+      "rut": "22821517-1"
+    },
+    {
+      "lista": "27",
+      "matricula": "287",
+      "nombres": "LESPAI SANDOVAL FERNANDA LISETT",
+      "sexo": "M",
+      "fecha_nacimiento": "13/04/2009",
+      "rut": "22995725-2"
+    },
+    {
+      "lista": "28",
+      "matricula": "288",
+      "nombres": "MANSILLA OPORTO BRITANY ALEJANDRA",
+      "sexo": "M",
+      "fecha_nacimiento": "20/05/2009",
+      "rut": "23035686-6"
+    },
+    {
+      "lista": "29",
+      "matricula": "289",
+      "nombres": "MENDOZA BAEZ TANIA FRANCESCA",
+      "sexo": "M",
+      "fecha_nacimiento": "28/08/2008",
+      "rut": "22814366-9"
+    },
+    {
+      "lista": "30",
+      "matricula": "290",
+      "nombres": "MOLL BARTO VALENTINA MERCEDES",
+      "sexo": "M",
+      "fecha_nacimiento": "26/08/2008",
+      "rut": "22845309-9"
+    },
+    {
+      "lista": "31",
+      "matricula": "291",
+      "nombres": "MOREIRA CASTRO ANTONIA KATALINA IGNA",
+      "sexo": "M",
+      "fecha_nacimiento": "20/06/2009",
+      "rut": "23059603-4"
+    },
+    {
+      "lista": "32",
+      "matricula": "292",
+      "nombres": "OPITZ SANTANA EMILIA BELÉN",
+      "sexo": "M",
+      "fecha_nacimiento": "24/08/2008",
+      "rut": "22802163-6"
+    },
+    {
+      "lista": "33",
+      "matricula": "293",
+      "nombres": "PAINENAO VALLEJOS CRISTÓBAL DAVID ANTO",
+      "sexo": "H",
+      "fecha_nacimiento": "17/12/2008",
+      "rut": "22903433-2"
+    },
+    {
+      "lista": "34",
+      "matricula": "294",
+      "nombres": "PARDO MONTECINOS ALEXANDER BENJAMÍN",
+      "sexo": "H",
+      "fecha_nacimiento": "13/04/2009",
+      "rut": "22995407-5"
+    },
+    {
+      "lista": "35",
+      "matricula": "295",
+      "nombres": "PÉREZ ALMONACID MARCELA IGNACIA",
+      "sexo": "M",
+      "fecha_nacimiento": "27/04/2008",
+      "rut": "22710178-4"
+    },
+    {
+      "lista": "36",
+      "matricula": "296",
+      "nombres": "PETERS ESPINOZA ANTONIA SOLEDAD",
+      "sexo": "M",
+      "fecha_nacimiento": "16/10/2008",
+      "rut": "22857130-k"
+    },
+    {
+      "lista": "37",
+      "matricula": "297",
+      "nombres": "RAMOS KRAMM FERNANDA DANIELA",
+      "sexo": "M",
+      "fecha_nacimiento": "08/06/2008",
+      "rut": "22758327-4"
+    },
+    {
+      "lista": "38",
+      "matricula": "298",
+      "nombres": "ROSAS JIMÉNEZ BAITIARE ANTONELLA",
+      "sexo": "M",
+      "fecha_nacimiento": "20/04/2009",
+      "rut": "22997812-8"
+    },
+    {
+      "lista": "39",
+      "matricula": "299",
+      "nombres": "SÁNCHEZ ÁLVAREZ HELEN KRISS",
+      "sexo": "M",
+      "fecha_nacimiento": "27/06/2009",
+      "rut": "23067443-4"
+    },
+    {
+      "lista": "40",
+      "matricula": "300",
+      "nombres": "TRONCOZO VALENZUELA DANIELA NICOL",
+      "sexo": "M",
+      "fecha_nacimiento": "22/09/2008",
+      "rut": "22830830-7"
+    },
+    {
+      "lista": "41",
+      "matricula": "301",
+      "nombres": "VALDERA OJEDA MAREN VYANEA",
+      "sexo": "M",
+      "fecha_nacimiento": "26/06/2009",
+      "rut": "23062050-4"
+    },
+    {
+      "lista": "42",
+      "matricula": "302",
+      "nombres": "VALLEJOS ANTILLANCA PALOMA ELIZABETH",
+      "sexo": "M",
+      "fecha_nacimiento": "25/05/2009",
+      "rut": "23030975-2"
+    },
+    {
+      "lista": "43",
+      "matricula": "303",
+      "nombres": "VARGAS HERNÁNDEZ SOPHIA MONSERRATH",
+      "sexo": "M",
+      "fecha_nacimiento": "20/10/2008",
+      "rut": "22848330-3"
+    },
+    {
+      "lista": "44",
+      "matricula": "304",
+      "nombres": "VELASQUEZ BASCUR YASHARY ANAIS",
+      "sexo": "M",
+      "fecha_nacimiento": "15/08/2007",
+      "rut": "22477682-9"
+    },
+    {
+      "lista": "45",
+      "matricula": "305",
+      "nombres": "VERA MATUZ NICOLE ANDREA",
+      "sexo": "M",
+      "fecha_nacimiento": "22/06/2009",
+      "rut": "23056844-8"
+    }
+  ],
+  "cursos\\lista_curso_7_basico": [
+    {
+      "lista": "02",
+      "matricula": "2",
+      "nombres": "ANGULO HERNÁNDEZ EMILY ALEJANDRA",
+      "sexo": "M",
+      "fecha_nacimiento": "01/02/2014",
+      "rut": "24529845-5"
+    },
+    {
+      "lista": "03",
+      "matricula": "3",
+      "nombres": "BEROÍZA CAMPOS MARYAN MAITE",
+      "sexo": "M",
+      "fecha_nacimiento": "24/05/2013",
+      "rut": "24291442-2"
+    },
+    {
+      "lista": "04",
+      "matricula": "4",
+      "nombres": "CARCAMO CARCAMO AGUSTINA MONSERRATT",
+      "sexo": "M",
+      "fecha_nacimiento": "12/07/2013",
+      "rut": "24302905-8"
+    },
+    {
+      "lista": "05",
+      "matricula": "5",
+      "nombres": "CARRASCO TORRES TERESA DANIELA",
+      "sexo": "M",
+      "fecha_nacimiento": "30/05/2013",
+      "rut": "24292832-6"
+    },
+    {
+      "lista": "06",
+      "matricula": "6",
+      "nombres": "DELGADO HERNÁNDEZ CLAUDIO ALFONSO",
+      "sexo": "H",
+      "fecha_nacimiento": "24/10/2013",
+      "rut": "24427751-9"
+    },
+    {
+      "lista": "07",
+      "matricula": "7",
+      "nombres": "DOEPKING SANTANA BASTIÁN EDUARDO",
+      "sexo": "H",
+      "fecha_nacimiento": "19/12/2012",
+      "rut": "24183972-9"
+    },
+    {
+      "lista": "08",
+      "matricula": "8",
+      "nombres": "FUENTEALBA MUNZENMAYER MAITHE FERNANDA",
+      "sexo": "M",
+      "fecha_nacimiento": "02/02/2014",
+      "rut": "24531611-9"
+    },
+    {
+      "lista": "09",
+      "matricula": "9",
+      "nombres": "FUENTES RAMÍREZ SOFÍA ISIDORA",
+      "sexo": "M",
+      "fecha_nacimiento": "08/08/2013",
+      "rut": "24355633-3"
+    },
+    {
+      "lista": "10",
+      "matricula": "11",
+      "nombres": "GUZMÁN PAREDES JAIRO NICOLÁS",
+      "sexo": "H",
+      "fecha_nacimiento": "02/05/2014",
+      "rut": "24613417-0"
+    },
+    {
+      "lista": "11",
+      "matricula": "12",
+      "nombres": "GUZMÁN VEGA LEANDRO ANDRÉS",
+      "sexo": "H",
+      "fecha_nacimiento": "26/10/2013",
+      "rut": "24431743-K"
+    },
+    {
+      "lista": "12",
+      "matricula": "13",
+      "nombres": "REYES CANDIA ANTHONY CRISTÓBAL",
+      "sexo": "H",
+      "fecha_nacimiento": "18/06/2013",
+      "rut": "24311011-4"
+    },
+    {
+      "lista": "13",
+      "matricula": "14",
+      "nombres": "RISCO VELÁSQUEZ GUSTAVO MAXIMILIANO",
+      "sexo": "H",
+      "fecha_nacimiento": "10/01/2014",
+      "rut": "24505073-9"
+    },
+    {
+      "lista": "14",
+      "matricula": "16",
+      "nombres": "SAN MARTÍN YANQUEL CONSTANZA DEL CARMEN",
+      "sexo": "M",
+      "fecha_nacimiento": "06/08/2013",
+      "rut": "24384372-3"
+    },
+    {
+      "lista": "15",
+      "matricula": "17",
+      "nombres": "SOTO CASTRO FLORENCIA AMANKAY",
+      "sexo": "M",
+      "fecha_nacimiento": "20/10/2013",
+      "rut": "24422955-7"
+    },
+    {
+      "lista": "16",
+      "matricula": "18",
+      "nombres": "VEGA DE LA FUENTE ALYSSON DOMINIC",
+      "sexo": "M",
+      "fecha_nacimiento": "18/12/2013",
+      "rut": "24492011-K"
+    },
+    {
+      "lista": "17",
+      "matricula": "19",
+      "nombres": "VEGA DE LA FUENTE EMILY DANIELA",
+      "sexo": "M",
+      "fecha_nacimiento": "18/12/2013",
+      "rut": "24491970-7"
+    },
+    {
+      "lista": "18",
+      "matricula": "20",
+      "nombres": "VEGA ZÚÑIGA IKER ALONSO",
+      "sexo": "H",
+      "fecha_nacimiento": "11/03/2014",
+      "rut": "24558994-8"
+    },
+    {
+      "lista": "19",
+      "matricula": "21",
+      "nombres": "VEGAS DELGADO EDUARDO NICOLÁS",
+      "sexo": "H",
+      "fecha_nacimiento": "21/06/2013",
+      "rut": "24312616-9"
+    },
+    {
+      "lista": "20",
+      "matricula": "22",
+      "nombres": "VEJAR ÑANCUCHEO SOL VICTORIA",
+      "sexo": "M",
+      "fecha_nacimiento": "26/01/2014",
+      "rut": "24526980-3"
+    },
+    {
+      "lista": "21",
+      "matricula": "23",
+      "nombres": "VISCAYA MENDOZA SEBASTIAN ANDRES",
+      "sexo": "H",
+      "fecha_nacimiento": "22/10/2013",
+      "rut": "27831265-8"
+    },
+    {
+      "lista": "22",
+      "matricula": "69",
+      "nombres": "FLÁNDEZ NAIPE AYLIN STEPHANIA",
+      "sexo": "M",
+      "fecha_nacimiento": "28/09/2011",
+      "rut": "23762678-8"
+    },
+    {
+      "lista": "23",
+      "matricula": "70",
+      "nombres": "ÁVALOS VERGARA MARIO VICTOR",
+      "sexo": "H",
+      "fecha_nacimiento": "03/12/2013",
+      "rut": "24471726-8"
+    },
+    {
+      "lista": "24",
+      "matricula": "71",
+      "nombres": "ÁVALOS VERGARA THALIA PASKAR",
+      "sexo": "M",
+      "fecha_nacimiento": "03/12/2013",
+      "rut": "24471740-3"
+    },
+    {
+      "lista": "25",
+      "matricula": "72",
+      "nombres": "SALAS AUCAL BRYAN JESÚS ORLANDO",
+      "sexo": "H",
+      "fecha_nacimiento": "24/09/2013",
+      "rut": "24394559-3"
+    },
+    {
+      "lista": "26",
+      "matricula": "247",
+      "nombres": "CORRAL AMBAR NAHIARA",
+      "sexo": "M",
+      "fecha_nacimiento": "17/03/2014",
+      "rut": "25797003-5"
+    },
+    {
+      "lista": "27",
+      "matricula": "251",
+      "nombres": "GAJARDO ABARCA FABIÁN EDUARDO",
+      "sexo": "M",
+      "fecha_nacimiento": "24/04/2013",
+      "rut": "24261204-3"
+    },
+    {
+      "lista": "28",
+      "matricula": "252",
+      "nombres": "VARGAS HERNÁNDEZ BASTIAN ALEXIS",
+      "sexo": "H",
+      "fecha_nacimiento": "17/10/2013",
+      "rut": "24424531-5"
+    },
+    {
+      "lista": "29",
+      "matricula": "81",
+      "nombres": "JARA ORTIZ JOSÉ GABINO",
+      "sexo": "H",
+      "fecha_nacimiento": "02/09/2013",
+      "rut": "24375702-9"
+    }
+  ],
+  "cursos\\lista_curso_8_basico": [
+    {
+      "lista": "01",
+      "matricula": "24",
+      "nombres": "AMPUERO LEAL DIEGO AGUSTÍN",
+      "sexo": "H",
+      "fecha_nacimiento": "27/07/2012",
+      "rut": "24021871-2"
+    },
+    {
+      "lista": "02",
+      "matricula": "25",
+      "nombres": "ANDLER SEPÚLVEDA ANTONELLA CAROLINA",
+      "sexo": "M",
+      "fecha_nacimiento": "09/06/2013",
+      "rut": "24303164-8"
+    },
+    {
+      "lista": "03",
+      "matricula": "26",
+      "nombres": "ARIAS GARCÍA ROSE IVON VALENTINA",
+      "sexo": "M",
+      "fecha_nacimiento": "05/07/2012",
+      "rut": "23997714-6"
+    },
+    {
+      "lista": "04",
+      "matricula": "27",
+      "nombres": "BRAVO MAC-VICAR FERNANDO MAURICIO",
+      "sexo": "H",
+      "fecha_nacimiento": "20/03/2013",
+      "rut": "24223739-0"
+    },
+    {
+      "lista": "05",
+      "matricula": "28",
+      "nombres": "BURGOS STEINER CRISTIAN ALBERTO",
+      "sexo": "H",
+      "fecha_nacimiento": "13/11/2012",
+      "rut": "24115253-7"
+    },
+    {
+      "lista": "06",
+      "matricula": "29",
+      "nombres": "BUSTOS ALVARADO ANTONELLA AYLIN",
+      "sexo": "M",
+      "fecha_nacimiento": "15/02/2013",
+      "rut": "24193586-8"
+    },
+    {
+      "lista": "07",
+      "matricula": "30",
+      "nombres": "CHACÓN OYARZÚN PAZ ALEJANDRA",
+      "sexo": "M",
+      "fecha_nacimiento": "17/01/2013",
+      "rut": "24173098-0"
+    },
+    {
+      "lista": "08",
+      "matricula": "31",
+      "nombres": "CHEUQUIÁN CASTRO DARÍO MOISÉS",
+      "sexo": "H",
+      "fecha_nacimiento": "10/02/2013",
+      "rut": "24189977-2"
+    },
+    {
+      "lista": "09",
+      "matricula": "32",
+      "nombres": "DELGADO CATALÁN JOAQUÍN ESTEBAN",
+      "sexo": "H",
+      "fecha_nacimiento": "11/07/2012",
+      "rut": "24007476-1"
+    },
+    {
+      "lista": "10",
+      "matricula": "33",
+      "nombres": "DELGADO HUENCHO LÍA DANAE",
+      "sexo": "M",
+      "fecha_nacimiento": "28/05/2013",
+      "rut": "24287730-6"
+    },
+    {
+      "lista": "11",
+      "matricula": "34",
+      "nombres": "FERNÁNDEZ MALDONADO JOAQUÍN IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "03/01/2013",
+      "rut": "24158354-6"
+    },
+    {
+      "lista": "12",
+      "matricula": "35",
+      "nombres": "FERRER FERRER CRISTOFER DANIEL",
+      "sexo": "H",
+      "fecha_nacimiento": "23/02/2012",
+      "rut": "23882514-8"
+    },
+    {
+      "lista": "13",
+      "matricula": "36",
+      "nombres": "GARCÉS CAÑULEF DIEGO IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "26/05/2012",
+      "rut": "23958421-7"
+    },
+    {
+      "lista": "14",
+      "matricula": "37",
+      "nombres": "GÓMEZ CUCHIPE LISANDRO MISAEL",
+      "sexo": "H",
+      "fecha_nacimiento": "10/02/2013",
+      "rut": "24190375-3"
+    },
+    {
+      "lista": "15",
+      "matricula": "38",
+      "nombres": "LEÓN GÓMEZ MÁXIMO ANTONIO",
+      "sexo": "H",
+      "fecha_nacimiento": "18/01/2013",
+      "rut": "24169316-3"
+    },
+    {
+      "lista": "16",
+      "matricula": "39",
+      "nombres": "MANCILLA VALDERA DENYSE ANTONELA",
+      "sexo": "M",
+      "fecha_nacimiento": "15/11/2012",
+      "rut": "24114315-5"
+    },
+    {
+      "lista": "17",
+      "matricula": "40",
+      "nombres": "MÁRQUEZ RIQUELME SOFÍA DAYANA",
+      "sexo": "M",
+      "fecha_nacimiento": "02/06/2012",
+      "rut": "23975177-6"
+    },
+    {
+      "lista": "18",
+      "matricula": "41",
+      "nombres": "MARTÍNEZ SOLÍS ESTEFANÍA AMARAL",
+      "sexo": "M",
+      "fecha_nacimiento": "11/01/2013",
+      "rut": "24172554-5"
+    },
+    {
+      "lista": "19",
+      "matricula": "42",
+      "nombres": "MARTÍNEZ VALLEJOS SCARLET ALEJANDRA",
+      "sexo": "M",
+      "fecha_nacimiento": "19/04/2012",
+      "rut": "23930766-3"
+    },
+    {
+      "lista": "20",
+      "matricula": "43",
+      "nombres": "MARTINEZ VEGA CRISTIAN ALEJANDRO",
+      "sexo": "H",
+      "fecha_nacimiento": "29/12/2012",
+      "rut": "24152723-9"
+    },
+    {
+      "lista": "21",
+      "matricula": "45",
+      "nombres": "MIRANDA MIRANDA CRISTÓBAL IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "26/10/2011",
+      "rut": "23780769-3"
+    },
+    {
+      "lista": "22",
+      "matricula": "46",
+      "nombres": "MONTECINO TRIVIÑOS ALAN ARMANDO",
+      "sexo": "H",
+      "fecha_nacimiento": "24/08/2010",
+      "rut": "23417130-5"
+    },
+    {
+      "lista": "23",
+      "matricula": "47",
+      "nombres": "MÜLLER BARRIA EMILIA VICTORIA",
+      "sexo": "M",
+      "fecha_nacimiento": "25/07/2012",
+      "rut": "24017400-6"
+    },
+    {
+      "lista": "24",
+      "matricula": "48",
+      "nombres": "OLIVERA PEREIRA DAYANNE ABIGAIL",
+      "sexo": "M",
+      "fecha_nacimiento": "25/02/2013",
+      "rut": "24208658-9"
+    },
+    {
+      "lista": "25",
+      "matricula": "49",
+      "nombres": "OPORTO VARGAS ANGELINA BETZABÉ",
+      "sexo": "M",
+      "fecha_nacimiento": "09/11/2012",
+      "rut": "24114568-9"
+    },
+    {
+      "lista": "26",
+      "matricula": "50",
+      "nombres": "OPORTO VARGAS FLORENCIA MONSERRAT",
+      "sexo": "M",
+      "fecha_nacimiento": "09/11/2012",
+      "rut": "24114580-8"
+    },
+    {
+      "lista": "27",
+      "matricula": "51",
+      "nombres": "PADILLA CERNA DIEGO IGNACIO",
+      "sexo": "H",
+      "fecha_nacimiento": "26/08/2012",
+      "rut": "24046206-0"
+    },
+    {
+      "lista": "28",
+      "matricula": "52",
+      "nombres": "PÉREZ ALMONACID PABLO ALEJANDRO",
+      "sexo": "H",
+      "fecha_nacimiento": "06/07/2012",
+      "rut": "24004987-2"
+    },
+    {
+      "lista": "29",
+      "matricula": "53",
+      "nombres": "PÉREZ ALVARADO VICTORIA PRISCILA",
+      "sexo": "M",
+      "fecha_nacimiento": "10/06/2012",
+      "rut": "23978956-0"
+    },
+    {
+      "lista": "30",
+      "matricula": "54",
+      "nombres": "POBLETE VARGAS ROCIO ANTONELLA",
+      "sexo": "M",
+      "fecha_nacimiento": "22/11/2012",
+      "rut": "24129596-6"
+    },
+    {
+      "lista": "31",
+      "matricula": "55",
+      "nombres": "ROCHOW GALLARDO VICENTE ALEXIS",
+      "sexo": "H",
+      "fecha_nacimiento": "28/02/2013",
+      "rut": "24207662-1"
+    },
+    {
+      "lista": "32",
+      "matricula": "56",
+      "nombres": "RODRÍGUEZ MUTIZABAL STEFANNY PASKAL",
+      "sexo": "M",
+      "fecha_nacimiento": "12/01/2013",
+      "rut": "24164477-4"
+    },
+    {
+      "lista": "33",
+      "matricula": "58",
+      "nombres": "SAN MARTÍN YANQUEL IGNACIO ANDRÉS",
+      "sexo": "H",
+      "fecha_nacimiento": "06/02/2012",
+      "rut": "23867619-3"
+    },
+    {
+      "lista": "34",
+      "matricula": "59",
+      "nombres": "SÁNCHEZ ROSALES MAITE AÍDA CONSUELO",
+      "sexo": "M",
+      "fecha_nacimiento": "24/01/2012",
+      "rut": "23854220-0"
+    },
+    {
+      "lista": "35",
+      "matricula": "60",
+      "nombres": "SANTIBAÑEZ TREMIGUAL VICTOR ALEJANDRO",
+      "sexo": "H",
+      "fecha_nacimiento": "01/02/2012",
+      "rut": "23860246-7"
+    },
+    {
+      "lista": "36",
+      "matricula": "62",
+      "nombres": "TRIVIÑO BARRÍA ELÍAS ANDRÉS",
+      "sexo": "H",
+      "fecha_nacimiento": "09/04/2013",
+      "rut": "24244046-3"
+    },
+    {
+      "lista": "37",
+      "matricula": "64",
+      "nombres": "VALDEBENIT MÉNDEZ ISAIAS ANGEL",
+      "sexo": "H",
+      "fecha_nacimiento": "17/08/2012",
+      "rut": "24044140-3"
+    },
+    {
+      "lista": "38",
+      "matricula": "65",
+      "nombres": "VARELA SOTO ESTEFANI AURORA",
+      "sexo": "M",
+      "fecha_nacimiento": "29/08/2012",
+      "rut": "24057113-7"
+    },
+    {
+      "lista": "39",
+      "matricula": "66",
+      "nombres": "VASQUEZ ALTAMIRANO ALEXANDRA EUGENIA",
+      "sexo": "M",
+      "fecha_nacimiento": "10/01/2013",
+      "rut": "24168919-0"
+    },
+    {
+      "lista": "40",
+      "matricula": "67",
+      "nombres": "VERA MORA JOAQUÍN ESTEBAN",
+      "sexo": "H",
+      "fecha_nacimiento": "30/05/2012",
+      "rut": "23975332-9"
+    },
+    {
+      "lista": "41",
+      "matricula": "68",
+      "nombres": "YÁÑEZ LONCOMILLA CONSTANZA MACARENA",
+      "sexo": "M",
+      "fecha_nacimiento": "07/06/2012",
+      "rut": "23976368-5"
+    },
+    {
+      "lista": "42",
+      "matricula": "75",
+      "nombres": "CORTEZ POBLETE SOFIA ELIZABETH",
+      "sexo": "M",
+      "fecha_nacimiento": "02/08/2012",
+      "rut": "24038842-1"
+    },
+    {
+      "lista": "43",
+      "matricula": "78",
+      "nombres": "FERNÁNDEZ SANDOVAL BENJAMIN ALEJANDRO",
+      "sexo": "H",
+      "fecha_nacimiento": "20/07/2012",
+      "rut": "24016488-4"
+    },
+    {
+      "lista": "44",
+      "matricula": "79",
+      "nombres": "SALAZAR URIBE ANGELINA SORAYA",
+      "sexo": "M",
+      "fecha_nacimiento": "30/08/2012",
+      "rut": "24051243-2"
+    },
+    {
+      "lista": "45",
+      "matricula": "80",
+      "nombres": "CARRASCO BRAVO MÁXIMO DE MARCOS",
+      "sexo": "H",
+      "fecha_nacimiento": "28/10/2012",
+      "rut": "24102643-4"
+    }
+  ]
+}

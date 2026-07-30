@@ -37,7 +37,7 @@ export default function Buses() {
       const id = 'b_' + Date.now()
       const { data: newRow, error } = await supabase.from('buses').insert([{ ...form, id }]).select().single()
       if (!error && newRow) setData(d => [...d, newRow])
-      else if(error) alert('Error al crear: ' + error.message)
+      else if (error) alert('Error al crear: ' + error.message)
     } else {
       const { error } = await supabase.from('buses').update(form).eq('id', form.id)
       if (!error) setData(d => d.map(b => b.id === form.id ? form : b))
@@ -47,7 +47,7 @@ export default function Buses() {
   }
 
   const remove = async (id) => {
-    if(!window.confirm('¿Seguro que quieres eliminar este bus?')) return
+    if (!window.confirm('¿Seguro que quieres eliminar este bus?')) return
     const { error } = await supabase.from('buses').delete().eq('id', id)
     if (!error) setData(d => d.filter(b => b.id !== id))
     else alert('Error al eliminar.')
@@ -91,9 +91,10 @@ export default function Buses() {
                   <span className={`badge badge-${color}`}>{bus.estado}</span>
                 </div>
                 <div style={{ borderTop: '1px solid var(--border)', padding: '14px 20px', display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <InfoRow label="Recorrido" value={rec?.nombre ?? 'Sin asignar'} />
-                  <InfoRow label="Destino"   value={rec?.destino ?? '—'} />
-                  <InfoRow label="Salida"    value={rec?.horario_salida ?? '—'} mono />
+                  <InfoRow label="Recorrido (Lun-Jue)" value={rec?.nombre ?? 'Sin asignar'} />
+                  {bus.id_recorrido_viernes && (
+                    <InfoRow label="Recorrido (Viernes)" value={recorridos.find(r => r.id === bus.id_recorrido_viernes)?.nombre ?? 'Sin asignar'} />
+                  )}
                   <InfoRow label="Chofer" value={sup?.nombre ?? <span style={{ color: 'var(--warning)' }}>Sin asignar</span>} />
                 </div>
                 <div style={{ borderTop: '1px solid var(--border)', padding: '12px 20px', display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
@@ -104,7 +105,7 @@ export default function Buses() {
             )
           })}
           {data.length === 0 && (
-             <div style={{ gridColumn: '1 / -1', padding: 40, textAlign: 'center', color: 'var(--text-muted)' }}>No hay buses registrados.</div>
+            <div style={{ gridColumn: '1 / -1', padding: 40, textAlign: 'center', color: 'var(--text-muted)' }}>No hay buses registrados.</div>
           )}
         </div>
       )}
@@ -127,9 +128,16 @@ export default function Buses() {
                   <input className="input font-mono" value={form.patente || ''} onChange={e => setForm(f => ({ ...f, patente: e.target.value }))} placeholder="ABCD-12" />
                 </div>
                 <div className="form-field">
-                  <label>Recorrido</label>
+                  <label>Recorrido (Lunes a Jueves)</label>
                   <select className="input" value={form.id_recorrido || ''} onChange={e => setForm(f => ({ ...f, id_recorrido: e.target.value }))}>
                     <option value="">Sin asignar</option>
+                    {recorridos.map(r => <option key={r.id} value={r.id}>{r.nombre}</option>)}
+                  </select>
+                </div>
+                <div className="form-field">
+                  <label>Recorrido (Viernes) <span className="text-muted text-sm">— Opcional</span></label>
+                  <select className="input" value={form.id_recorrido_viernes || ''} onChange={e => setForm(f => ({ ...f, id_recorrido_viernes: e.target.value }))}>
+                    <option value="">Mismo recorrido de siempre (Por defecto)</option>
                     {recorridos.map(r => <option key={r.id} value={r.id}>{r.nombre}</option>)}
                   </select>
                 </div>

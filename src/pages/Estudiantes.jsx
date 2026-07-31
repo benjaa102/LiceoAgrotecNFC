@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Plus, Search, Pencil, Trash2, X, Users, RefreshCw, Save } from 'lucide-react'
+import { QRCodeSVG } from 'qrcode.react'
 import { supabase } from '../lib/supabase'
 
 const TIPOS   = ['INTERNO', 'EXTERNO']
@@ -253,6 +254,19 @@ export default function Estudiantes() {
                   </select>
                 </div>
               </div>
+              {form.id && (
+                <div style={{ marginTop: 24, padding: 16, background: 'var(--bg-card)', border: '1px dashed var(--primary)', borderRadius: 12, display: 'flex', alignItems: 'center', gap: 20 }}>
+                  <div style={{ background: 'white', padding: 8, borderRadius: 8, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+                    <QRCodeSVG value={JSON.stringify({ id: form.id, rut: form.rut })} size={90} />
+                  </div>
+                  <div>
+                    <h4 style={{ margin: '0 0 6px', fontSize: 14, color: 'var(--primary)', fontWeight: 700 }}>Código QR (Credencial)</h4>
+                    <p style={{ margin: 0, fontSize: 12, color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                      Este código se genera automáticamente. Contiene el identificador único de <strong>{form.nombre || 'este estudiante'}</strong>.
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
             <div className="modal-footer">
               <button className="btn btn-secondary" onClick={closeModal}>Cancelar</button>

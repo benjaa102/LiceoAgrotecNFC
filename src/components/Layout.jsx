@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import {
   LayoutDashboard, Users, UserCheck, Bus, MapPin,
   CreditCard, ClipboardList, Bell, BarChart3, LogOut, Wifi,
-  UtensilsCrossed, Scan, CalendarDays, BookOpen
+  UtensilsCrossed, Scan, CalendarDays, BookOpen, Menu, Printer
 } from 'lucide-react'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../context/AuthContext'
@@ -15,6 +15,7 @@ const getNavBuses = (alertCount = 0) => [
   { to: '/buses',        icon: Bus,             label: 'Buses' },
   { to: '/recorridos',   icon: MapPin,          label: 'Recorridos' },
   { to: '/credenciales', icon: CreditCard,      label: 'Credenciales NFC' },
+  { to: '/imprimir-qr',  icon: Printer,         label: 'Imprimir QR' },
   { to: '/asistencia',   icon: ClipboardList,   label: 'Asistencia Buses' },
   { to: '/alertas',      icon: Bell,            label: 'Alertas', badge: alertCount, badgeType: 'danger' },
   { to: '/reportes',     icon: BarChart3,       label: 'Reportes Buses' },
@@ -36,6 +37,7 @@ const PAGE_META = {
   '/buses':               { title: 'Buses',                 desc: 'Estado y asignación de buses' },
   '/recorridos':          { title: 'Recorridos',            desc: 'Rutas y horarios de transporte' },
   '/credenciales':        { title: 'Credenciales NFC',      desc: 'Registro y asignación de tarjetas NTAG213' },
+  '/imprimir-qr':         { title: 'Imprimir Credenciales QR', desc: 'Generación masiva de credenciales QR' },
   '/asistencia':          { title: 'Asistencia Buses',      desc: 'Historial de registros — Módulo Buses' },
   '/alertas':             { title: 'Alertas',               desc: 'Intentos no autorizados y buses incorrectos' },
   '/reportes':            { title: 'Reportes Buses',        desc: 'Exportación y estadísticas del módulo buses' },
@@ -52,10 +54,17 @@ export default function Layout() {
   const navigate = useNavigate()
   const { user, profile, signOut } = useAuth()
   const [alertCount, setAlertCount] = useState(0)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  
   const meta = PAGE_META[pathname] ?? { title: '', desc: '' }
   const now = new Date().toLocaleDateString('es-CL', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
   const isComedor = pathname.startsWith('/comedor')
   const navBuses = getNavBuses(alertCount)
+
+  // Close sidebar on route change
+  useEffect(() => {
+    setIsSidebarOpen(false)
+  }, [pathname])
 
   useEffect(() => {
     supabase.from('alertas_buses').select('id', { count: 'exact', head: true }).eq('estado', 'NUEVA')
@@ -74,11 +83,14 @@ export default function Layout() {
 
   return (
     <div className="app-layout">
+      {/* Backdrop for mobile sidebar */}
+      {isSidebarOpen && <div className="sidebar-backdrop" onClick={() => setIsSidebarOpen(false)} />}
+
       {/* ── Sidebar ── */}
-      <aside className="sidebar">
+      <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-logo">
           <div className="sidebar-logo-icon">
-            <Bus size={20} color="white" />
+            <Bus size={20} strokeWidth={2.5} />
           </div>
           <div className="sidebar-logo-text">
             <h1>LiceoControl NFC</h1>
@@ -133,12 +145,17 @@ export default function Layout() {
       {/* ── Main ── */}
       <div className="main-content">
         <header className="topbar">
-          <div className="topbar-title">
-            <h2 style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              {isComedor && <UtensilsCrossed size={18} style={{ color: 'var(--warning)' }} />}
-              {meta.title}
-            </h2>
-            <p>{meta.desc}</p>
+          <div className="topbar-title" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <button className="hamburger-btn" onClick={() => setIsSidebarOpen(true)}>
+              <Menu size={24} />
+            </button>
+            <div>
+              <h2 style={{ display: 'flex', alignItems: 'center', gap: 8, margin: 0 }}>
+                {isComedor && <UtensilsCrossed size={18} style={{ color: 'var(--warning)' }} />}
+                {meta.title}
+              </h2>
+              <p style={{ margin: 0 }}>{meta.desc}</p>
+            </div>
           </div>
           <div className="topbar-actions">
             <div className="d-flex gap-1" style={{ fontSize: 12, color: 'var(--success)', background: 'var(--success-bg)', padding: '5px 10px', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(34,197,94,0.2)' }}>

@@ -11,6 +11,7 @@ import Supervisores    from './pages/Supervisores'
 import Buses           from './pages/Buses'
 import Recorridos      from './pages/Recorridos'
 import CredencialesNFC from './pages/CredencialesNFC'
+import ImprimirCredenciales from './pages/ImprimirCredenciales'
 import Asistencia      from './pages/Asistencia'
 import Alertas         from './pages/Alertas'
 import Reportes        from './pages/Reportes'
@@ -46,6 +47,7 @@ const AppRoutes = () => {
           <Route path="/buses"        element={<Buses />} />
           <Route path="/recorridos"   element={<Recorridos />} />
           <Route path="/credenciales" element={<CredencialesNFC />} />
+          <Route path="/imprimir-qr"  element={<ImprimirCredenciales />} />
           <Route path="/asistencia"   element={<Asistencia />} />
           <Route path="/alertas"      element={<Alertas />} />
           <Route path="/reportes"     element={<Reportes />} />

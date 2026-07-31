@@ -3,6 +3,7 @@ import { AuthProvider, useAuth } from './context/AuthContext'
 import ProtectedRoute from './components/ProtectedRoute'
 import Layout from './components/Layout'
 import Login from './pages/Login'
+import PublicProfile from './pages/PublicProfile'
 // ─ Módulo Buses ───────────────────────────────────────────────────────────────
 import Dashboard       from './pages/Dashboard'
 import Estudiantes     from './pages/Estudiantes'
@@ -27,8 +28,9 @@ const AppRoutes = () => {
 
   return (
     <Routes>
-        {/* Login público */}
+        {/* Rutas Públicas */}
         <Route path="/login" element={<Login />} />
+        <Route path="/perfil/:id" element={<PublicProfile />} />
 
         {/* Rutas protegidas */}
         <Route element={

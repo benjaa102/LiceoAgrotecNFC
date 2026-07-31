@@ -48,6 +48,29 @@ export default function Estudiantes() {
   const openEdit = (rec) => { setForm({ ...rec }); setModal(rec) }
   const closeModal = () => { setModal(null); setForm({}) }
 
+  const downloadQR = () => {
+    const svg = document.getElementById("qr-code-estudiante");
+    if (!svg) return;
+    const svgData = new XMLSerializer().serializeToString(svg);
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+    const img = new Image();
+    img.onload = () => {
+      // Add some padding and white background
+      canvas.width = img.width + 40;
+      canvas.height = img.height + 40;
+      ctx.fillStyle = "white";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 20, 20);
+      const pngFile = canvas.toDataURL("image/png");
+      const downloadLink = document.createElement("a");
+      downloadLink.download = `QR_${form.nombre.replace(/\\s+/g, '_')}_${form.rut}.png`;
+      downloadLink.href = `${pngFile}`;
+      downloadLink.click();
+    };
+    img.src = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svgData)));
+  }
+
   const save = async () => {
     const payload = { ...form }
     if (payload.id_recorrido === '') payload.id_recorrido = null
@@ -257,13 +280,20 @@ export default function Estudiantes() {
               {form.id && (
                 <div style={{ marginTop: 24, padding: 16, background: 'var(--bg-card)', border: '1px dashed var(--primary)', borderRadius: 12, display: 'flex', alignItems: 'center', gap: 20 }}>
                   <div style={{ background: 'white', padding: 8, borderRadius: 8, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
-                    <QRCodeSVG value={JSON.stringify({ id: form.id, rut: form.rut })} size={90} />
+                    <QRCodeSVG 
+                      id="qr-code-estudiante" 
+                      value={`${window.location.origin}/perfil/${form.id}`} 
+                      size={90} 
+                    />
                   </div>
-                  <div>
+                  <div style={{ flex: 1 }}>
                     <h4 style={{ margin: '0 0 6px', fontSize: 14, color: 'var(--primary)', fontWeight: 700 }}>Código QR (Credencial)</h4>
-                    <p style={{ margin: 0, fontSize: 12, color: 'var(--text-muted)', lineHeight: 1.5 }}>
-                      Este código se genera automáticamente. Contiene el identificador único de <strong>{form.nombre || 'este estudiante'}</strong>.
+                    <p style={{ margin: '0 0 10px', fontSize: 12, color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                      Al escanearlo con cualquier cámara, enviará al perfil público de <strong>{form.nombre || 'este estudiante'}</strong>.
                     </p>
+                    <button className="btn btn-secondary btn-sm" onClick={downloadQR} type="button">
+                      <Download size={14} /> Descargar Imagen QR
+                    </button>
                   </div>
                 </div>
               )}

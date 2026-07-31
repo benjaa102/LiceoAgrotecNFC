@@ -86,37 +86,38 @@ export default function ImprimirCredenciales() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-      <div className="no-print" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
-        <div>
-          <h2 style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 24, fontWeight: 700, margin: '0 0 4px', color: 'var(--text-primary)' }}>
-            <Printer size={24} style={{ color: 'var(--primary)' }} />
-            Generador de Credenciales QR
-          </h2>
-          <div style={{ color: 'var(--text-muted)', fontSize: 14 }}>
-            Genera, descarga e imprime códigos QR masivos para credenciales
-          </div>
+      <div className="no-print">
+        <h2 style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 24, fontWeight: 700, margin: '0 0 4px', color: 'var(--text-primary)' }}>
+          <Printer size={24} style={{ color: 'var(--primary)' }} />
+          Generador de Credenciales QR
+        </h2>
+        <div style={{ color: 'var(--text-muted)', fontSize: 14, marginBottom: 20 }}>
+          Genera, descarga e imprime códigos QR masivos para credenciales
         </div>
-        
-        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
-          <div style={{ position: 'relative' }}>
-            <Search size={16} style={{ position: 'absolute', left: 12, top: 11, color: 'var(--text-muted)' }} />
+      </div>
+      
+      <div className="toolbar no-print">
+        <div className="toolbar-left">
+          <div className="input-group" style={{ maxWidth: 280, flex: 1 }}>
+            <Search size={15} className="input-group-icon" />
             <input 
               className="input" 
               placeholder="Buscar por RUT, Nombre..." 
               value={search}
               onChange={e => setSearch(e.target.value)}
-              style={{ paddingLeft: 36, width: 220 }}
             />
           </div>
-          <select className="input" value={filterCurso} onChange={e => setFilterCurso(e.target.value)} style={{ minWidth: 150 }}>
+          <select className="input" value={filterCurso} onChange={e => setFilterCurso(e.target.value)} style={{ width: 180 }}>
             <option value="">Todos los cursos</option>
             {CURSOS.map(c => <option key={c} value={c}>{c}</option>)}
           </select>
+        </div>
+        <div className="toolbar-right">
           <button className="btn btn-secondary" onClick={downloadSelectedQR} title="Descarga las imágenes PNG de los seleccionados">
-            <Download size={16} /> Descargar {selected.length > 0 ? selected.length : filtered.length}
+            <Download size={15} /> Descargar {selected.length > 0 ? selected.length : filtered.length}
           </button>
           <button className="btn btn-primary" onClick={handlePrint}>
-            <Printer size={16} /> Imprimir {selected.length > 0 ? selected.length : filtered.length}
+            <Printer size={15} /> Imprimir {selected.length > 0 ? selected.length : filtered.length}
           </button>
         </div>
       </div>

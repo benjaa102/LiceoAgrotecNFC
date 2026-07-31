@@ -84,10 +84,6 @@ export default function ImprimirCredenciales() {
     }
   }
 
-  const handlePrint = () => {
-    window.print()
-  }
-
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
       <div className="no-print" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>

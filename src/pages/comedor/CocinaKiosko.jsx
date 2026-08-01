@@ -58,6 +58,8 @@ export default function CocinaKiosko() {
   const nfcRef    = useRef(null)
   const timerRef  = useRef(null)
   const bufferRef = useRef('')
+  const procesarUIDRef = useRef(null)
+  const [isWebNfcReading, setIsWebNfcReading] = useState(false)
 
   useEffect(() => {
     supabase.from('estudiantes').select('*').then(({data}) => {
@@ -177,6 +179,10 @@ export default function CocinaKiosko() {
     })
   }, [servicio, registros, resetIdle, credencialesDb, estudiantesDb])
 
+  useEffect(() => {
+    procesarUIDRef.current = procesarUID
+  }, [procesarUID])
+
   // Captura de HID teclado (YARONGTECH) — acumula chars y dispara al Enter/CR
   const handleNFCKeyDown = (e) => {
     if (e.key === 'Enter') {
@@ -184,6 +190,34 @@ export default function CocinaKiosko() {
       bufferRef.current = ''
     } else if (e.key.length === 1) {
       bufferRef.current += e.key
+    }
+  }
+
+  // Lectura Nativa con Celular (Web NFC API)
+  const scanNFCWebAPI = async () => {
+    if (!('NDEFReader' in window)) {
+      alert("Tu navegador no soporta lectura NFC nativa. Usa Chrome en Android o un lector USB en PC.")
+      return
+    }
+    
+    try {
+      setIsWebNfcReading(true)
+      const ndef = new window.NDEFReader()
+      await ndef.scan()
+      
+      ndef.onreading = event => {
+        if (event.serialNumber) {
+          const uid = event.serialNumber.replace(/:/g, '').toUpperCase()
+          if (procesarUIDRef.current) procesarUIDRef.current(uid)
+        }
+      }
+      
+      ndef.onreadingerror = () => {
+        console.warn("NFC read error")
+      }
+    } catch (error) {
+      alert("Error al iniciar el sensor NFC: " + error.message)
+      setIsWebNfcReading(false)
     }
   }
 
@@ -327,7 +361,7 @@ export default function CocinaKiosko() {
       {!modoManual ? (
         <div style={{ border: `2px solid ${estado.border}`, borderRadius: 20, background: estado.bg, transition: 'all 0.3s ease', minHeight: 340, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 20, padding: 32, position: 'relative', overflow: 'hidden' }}>
 
-          {resultado === 'idle' && <IdleScreen servicio={servicio} servColor={servColor} onClick={() => procesarUID('1A2B3C4D')} />}
+          {resultado === 'idle' && <IdleScreen servicio={servicio} servColor={servColor} isWebNfcReading={isWebNfcReading} />}
           {resultado === 'reading' && <ReadingScreen />}
           {resultado === 'success' && estudiante && <SuccessScreen est={estudiante} servicio={servicio} hora={horaReg} />}
           {resultado === 'duplicate' && estudiante && <DuplicateScreen est={estudiante} servicio={servicio} hora={prevHora} />}
@@ -420,8 +454,8 @@ export default function CocinaKiosko() {
           {modoManual ? <><RotateCcw size={14} /> Volver a lectura NFC</> : <><Search size={14} /> Registro Manual</>}
         </button>
         {!modoManual && (
-          <button className="btn btn-secondary" onClick={() => procesarUID('1A2B3C4D')} title="Simular lectura NFC (demo)">
-            <Wifi size={14} /> Simular NFC (demo)
+          <button className="btn btn-primary" onClick={scanNFCWebAPI} disabled={isWebNfcReading}>
+            <Wifi size={14} /> {isWebNfcReading ? 'Lector de celular activo' : 'Activar lector del celular'}
           </button>
         )}
       </div>
@@ -463,7 +497,7 @@ export default function CocinaKiosko() {
 }
 
 // ── Sub-pantallas ─────────────────────────────────────────────────────────────
-function IdleScreen({ servicio, servColor, onClick }) {
+function IdleScreen({ servicio, servColor, isWebNfcReading }) {
   return (
     <>
       <div style={{ position: 'relative', width: 100, height: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -480,10 +514,12 @@ function IdleScreen({ servicio, servColor, onClick }) {
         <div style={{ fontSize: 14, color: 'var(--text-muted)' }}>
           Servicio activo: <span style={{ color: servColor, fontWeight: 700 }}>{servicio}</span>
         </div>
+        {isWebNfcReading && (
+          <div style={{ marginTop: 12, display: 'inline-block', padding: '6px 12px', background: 'var(--primary-glow)', color: 'var(--primary)', borderRadius: 10, fontSize: 12, fontWeight: 700 }}>
+            Lector de celular (Web NFC) encendido y listo.
+          </div>
+        )}
       </div>
-      <button onClick={onClick} style={{ padding: '6px 16px', borderRadius: 8, border: '1px solid var(--border)', background: 'var(--bg-card-hover)', color: 'var(--text-muted)', fontSize: 12, cursor: 'pointer', fontFamily: 'inherit' }}>
-        Demo: simular lectura
-      </button>
     </>
   )
 }

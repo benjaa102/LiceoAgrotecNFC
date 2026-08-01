@@ -96,6 +96,39 @@ export default function CredencialesNFC() {
     }, 1800)
   }
 
+  // Lectura Nativa con Celular (Web NFC API)
+  const scanNFCWebAPI = async () => {
+    if (!('NDEFReader' in window)) {
+      alert("Tu navegador no soporta lectura NFC nativa. Usa Chrome en Android o un lector USB en PC.")
+      return
+    }
+    
+    try {
+      setNfcReading(true)
+      const ndef = new window.NDEFReader()
+      await ndef.scan()
+      
+      ndef.onreading = event => {
+        if (event.serialNumber) {
+          const uid = event.serialNumber.replace(/:/g, '').toUpperCase()
+          setForm(f => ({ ...f, uid_nfc: uid }))
+        } else {
+          // Fallback if serialNumber is not present
+          alert("Tarjeta leída, pero no se detectó un UID (serialNumber).")
+        }
+        setNfcReading(false)
+      }
+      
+      ndef.onreadingerror = () => {
+        alert("Acercaste la tarjeta pero no se pudo leer correctamente. Intenta de nuevo.")
+        setNfcReading(false)
+      }
+    } catch (error) {
+      alert("Error al iniciar el sensor NFC: " + error.message)
+      setNfcReading(false)
+    }
+  }
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
       {/* Info banner YARONGTECH */}
@@ -191,11 +224,16 @@ export default function CredencialesNFC() {
             <div className="modal-body">
               <div className="form-grid">
                 <div className="form-field full" style={{ background: 'var(--bg-surface)', padding: 16, borderRadius: 'var(--radius-md)', border: '1px dashed var(--primary)', position: 'relative' }}>
-                  <label style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <label style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
                     <span>UID NFC de la Tarjeta</span>
-                    <button className="btn btn-primary btn-sm" onClick={simulateNFC} disabled={nfcReading}>
-                      {nfcReading ? 'Leyendo...' : 'Simular Lectura NFC'}
-                    </button>
+                    <div style={{ display: 'flex', gap: 8 }}>
+                      <button className="btn btn-secondary btn-sm" onClick={simulateNFC} disabled={nfcReading} title="Simula ingreso por teclado de lector USB">
+                        Simulador PC
+                      </button>
+                      <button className="btn btn-primary btn-sm" onClick={scanNFCWebAPI} disabled={nfcReading}>
+                        <Wifi size={14} /> Leer con Celular
+                      </button>
+                    </div>
                   </label>
                   <input 
                     ref={uidRef}
@@ -205,7 +243,7 @@ export default function CredencialesNFC() {
                     onChange={e => setForm(f => ({ ...f, uid_nfc: e.target.value.toUpperCase() }))} 
                     placeholder="Ej: A1B2C3D4" 
                   />
-                  {nfcReading && <div style={{ textAlign: 'center', fontSize: 11, color: 'var(--primary)', marginTop: 8 }}>Esperando lectura del teclado (YARONGTECH)...</div>}
+                  {nfcReading && <div style={{ textAlign: 'center', fontSize: 11, color: 'var(--primary)', marginTop: 8 }}>Acerca la tarjeta a tu celular o usa el lector USB...</div>}
                 </div>
 
                 <div className="form-field">

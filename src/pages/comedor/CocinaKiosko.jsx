@@ -92,10 +92,10 @@ export default function CocinaKiosko() {
 
   // Auto-refoco del campo NFC (quiosco siempre activo)
   useEffect(() => {
-    if (modoManual) return
+    if (modoManual || isWebNfcReading) return
     const id = setInterval(() => nfcRef.current?.focus(), 600)
     return () => clearInterval(id)
-  }, [modoManual])
+  }, [modoManual, isWebNfcReading])
 
   // Resetear a idle después de 4s
   const resetIdle = useCallback(() => {
@@ -203,18 +203,29 @@ export default function CocinaKiosko() {
     try {
       setIsWebNfcReading(true)
       const ndef = new window.NDEFReader()
-      await ndef.scan()
       
       ndef.onreading = event => {
+        if (window.navigator.vibrate) window.navigator.vibrate(100)
+        
         if (event.serialNumber) {
           const uid = event.serialNumber.replace(/:/g, '').toUpperCase()
-          if (procesarUIDRef.current) procesarUIDRef.current(uid)
+          try {
+            if (procesarUIDRef.current) procesarUIDRef.current(uid)
+          } catch (err) {
+            alert("Error procesando tarjeta: " + err.message)
+          }
+        } else {
+          alert("Tarjeta leída, pero no se detectó un UID (serialNumber).")
         }
       }
       
       ndef.onreadingerror = () => {
+        if (window.navigator.vibrate) window.navigator.vibrate([100, 50, 100])
         console.warn("NFC read error")
       }
+
+      await ndef.scan()
+      
     } catch (error) {
       alert("Error al iniciar el sensor NFC: " + error.message)
       setIsWebNfcReading(false)

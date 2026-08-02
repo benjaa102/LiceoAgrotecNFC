@@ -71,6 +71,22 @@ export default function CocinaKiosko() {
     supabase.from('registros_comedor').select('*').eq('fecha', HOY).then(({data}) => {
       if (data) setRegistros(data)
     })
+
+    const channel = supabase.channel('realtime_comedor')
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'registros_comedor' }, payload => {
+        if (payload.new && payload.new.fecha === HOY) {
+          setRegistros(prev => {
+            // Evitar duplicados por optimistic updates locales
+            if (prev.find(r => r.id === payload.new.id)) return prev
+            return [...prev, payload.new]
+          })
+        }
+      })
+      .subscribe()
+
+    return () => {
+      supabase.removeChannel(channel)
+    }
   }, [])
 
   // Hora en tiempo real y auto-cambio de servicio

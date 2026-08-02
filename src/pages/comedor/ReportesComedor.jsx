@@ -64,7 +64,7 @@ export default function ReportesComedor() {
       if (filterCurso && est.curso !== filterCurso) return false
 
       // Servicio
-      if (filterServicio && r.tipo_servicio !== filterServicio) return false
+      if (filterServicio && (r.tipo_servicio || '').toUpperCase() !== filterServicio.toUpperCase()) return false
 
       // Método
       if (filterMetodo && r.metodo !== filterMetodo) return false
@@ -92,9 +92,9 @@ export default function ReportesComedor() {
 
   // ─── Stats calculados sobre los filtrados ───
   const totalRegs     = filteredRegs.length
-  const totalAlmuerzo = filteredRegs.filter(r => r.tipo_servicio === 'ALMUERZO').length
-  const totalDesayuno = filteredRegs.filter(r => r.tipo_servicio === 'DESAYUNO').length
-  const totalCena     = filteredRegs.filter(r => r.tipo_servicio === 'CENA').length
+  const totalAlmuerzo = filteredRegs.filter(r => (r.tipo_servicio || '').toUpperCase() === 'ALMUERZO').length
+  const totalDesayuno = filteredRegs.filter(r => (r.tipo_servicio || '').toUpperCase() === 'DESAYUNO').length
+  const totalCena     = filteredRegs.filter(r => (r.tipo_servicio || '').toUpperCase() === 'CENA').length
   const totalNFC      = filteredRegs.filter(r => r.metodo === 'NFC').length
   const totalManual   = filteredRegs.filter(r => r.metodo === 'MANUAL').length
   const pctNFC        = totalRegs > 0 ? Math.round((totalNFC / totalRegs) * 100) : 0
@@ -105,9 +105,9 @@ export default function ReportesComedor() {
     const label = new Date(fecha + 'T12:00:00').toLocaleDateString('es-CL', { weekday: 'short', day: 'numeric' })
     return {
       dia: label,
-      Almuerzo: filteredRegs.filter(r => r.fecha === fecha && r.tipo_servicio === 'ALMUERZO').length,
-      Desayuno: filteredRegs.filter(r => r.fecha === fecha && r.tipo_servicio === 'DESAYUNO').length,
-      Cena:     filteredRegs.filter(r => r.fecha === fecha && r.tipo_servicio === 'CENA').length,
+      Almuerzo: filteredRegs.filter(r => r.fecha === fecha && (r.tipo_servicio || '').toUpperCase() === 'ALMUERZO').length,
+      Desayuno: filteredRegs.filter(r => r.fecha === fecha && (r.tipo_servicio || '').toUpperCase() === 'DESAYUNO').length,
+      Cena:     filteredRegs.filter(r => r.fecha === fecha && (r.tipo_servicio || '').toUpperCase() === 'CENA').length,
     }
   })
 
@@ -121,8 +121,8 @@ export default function ReportesComedor() {
     const map = {}
     filteredRegs.forEach(r => {
       if (!map[r.id_estudiante]) map[r.id_estudiante] = { alm: 0, des: 0, cen: 0 }
-      if (r.tipo_servicio === 'ALMUERZO') map[r.id_estudiante].alm++
-      else if (r.tipo_servicio === 'CENA') map[r.id_estudiante].cen++
+      if ((r.tipo_servicio || '').toUpperCase() === 'ALMUERZO') map[r.id_estudiante].alm++
+      else if ((r.tipo_servicio || '').toUpperCase() === 'CENA') map[r.id_estudiante].cen++
       else map[r.id_estudiante].des++
     })
     return Object.entries(map)
@@ -149,9 +149,9 @@ export default function ReportesComedor() {
     const filteredEst = filterCursoRes ? estudiantes.filter(e => e.curso === filterCursoRes) : estudiantes
     return filteredEst.map(e => {
       const regs = registrosComedor.filter(r => r.id_estudiante === e.id && r.fecha.startsWith(filterMes))
-      const dias_alm = regs.filter(r => r.tipo_servicio === 'ALMUERZO').length
-      const dias_des = regs.filter(r => r.tipo_servicio === 'DESAYUNO').length
-      const dias_cen = regs.filter(r => r.tipo_servicio === 'CENA').length
+      const dias_alm = regs.filter(r => (r.tipo_servicio || '').toUpperCase() === 'ALMUERZO').length
+      const dias_des = regs.filter(r => (r.tipo_servicio || '').toUpperCase() === 'DESAYUNO').length
+      const dias_cen = regs.filter(r => (r.tipo_servicio || '').toUpperCase() === 'CENA').length
       return {
         nombre: e.nombre,
         rut: e.rut,

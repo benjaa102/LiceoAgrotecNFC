@@ -161,7 +161,7 @@ export default function CocinaKiosko() {
     const newReg = {
       id: 'rc_' + Date.now(),
       id_estudiante: est.id,
-      tipo_servicio: servicio,
+      tipo_servicio: servicio.toUpperCase(),
       fecha: HOY,
       hora: horaAhora,
       metodo: 'NFC',
@@ -301,8 +301,8 @@ export default function CocinaKiosko() {
     setModoManual(false)
   }
 
-  const regHoy = registros.filter(r => r.fecha === HOY && r.tipo_servicio === servicio.toUpperCase())
-  const totalInscritos = registros.filter(r => r.fecha === HOY && r.tipo_servicio === servicio.toUpperCase()).length
+  const regHoy = registros.filter(r => r.fecha === HOY && (r.tipo_servicio || '').toUpperCase() === servicio.toUpperCase())
+  const totalInscritos = registros.filter(r => r.fecha === HOY && (r.tipo_servicio || '').toUpperCase() === servicio.toUpperCase()).length
 
   const servicioMeta = serviciosComedor.find(s => s.nombre === servicio)
   const servColor    = servicioMeta?.color ?? '#4f8ef7'

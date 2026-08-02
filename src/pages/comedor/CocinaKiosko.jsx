@@ -59,6 +59,7 @@ export default function CocinaKiosko() {
   const timerRef  = useRef(null)
   const bufferRef = useRef('')
   const procesarUIDRef = useRef(null)
+  const recentScansRef = useRef({}) // { id_estudiante: timestamp }
   const [isWebNfcReading, setIsWebNfcReading] = useState(false)
 
   useEffect(() => {
@@ -156,13 +157,20 @@ export default function CocinaKiosko() {
     const est = estudiantesDb.find(e => e.id === cred.id_usuario)
     setEstudiante(est)
 
+    const nowMs = Date.now()
+    if (recentScansRef.current[est.id] && nowMs - recentScansRef.current[est.id] < 5000) {
+      // Ignorar rebote del sensor NFC (doble lectura en menos de 5 segundos)
+      return
+    }
+    recentScansRef.current[est.id] = nowMs
+
     if (!checkInscripcion(est, servicio)) {
       setResultado('noInscripto')
       resetIdle()
       return
     }
 
-    const yaReg = registros.find(r => r.id_estudiante === est.id && r.tipo_servicio === servicio.toUpperCase() && r.fecha === HOY)
+    const yaReg = registros.find(r => r.id_estudiante === est.id && (r.tipo_servicio || '').toUpperCase() === servicio.toUpperCase() && r.fecha === HOY)
     if (yaReg) {
       setResultado('duplicate')
       setPrevHora(yaReg.hora)

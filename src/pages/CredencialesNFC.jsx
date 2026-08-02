@@ -85,16 +85,7 @@ export default function CredencialesNFC() {
     else alert('Error al eliminar.')
   }
 
-  // Simula lectura NFC (YARONGTECH HID keyboard)
-  const simulateNFC = () => {
-    setNfcReading(true)
-    uidRef.current?.focus()
-    setTimeout(() => {
-      const uid = Array.from({ length: 8 }, () => Math.floor(Math.random() * 16).toString(16).toUpperCase()).join('')
-      setForm(f => ({ ...f, uid_nfc: uid }))
-      setNfcReading(false)
-    }, 1800)
-  }
+
 
   // Lectura Nativa con Celular (Web NFC API)
   const scanNFCWebAPI = async () => {
@@ -227,15 +218,13 @@ export default function CredencialesNFC() {
                   <label style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
                     <span>UID NFC de la Tarjeta</span>
                     <div style={{ display: 'flex', gap: 8 }}>
-                      <button className="btn btn-secondary btn-sm" onClick={simulateNFC} disabled={nfcReading} title="Simula ingreso por teclado de lector USB">
-                        Simulador PC
-                      </button>
                       <button className="btn btn-primary btn-sm" onClick={scanNFCWebAPI} disabled={nfcReading}>
                         <Wifi size={14} /> Leer con Celular
                       </button>
                     </div>
                   </label>
                   <input 
+                    autoFocus
                     ref={uidRef}
                     className="input font-mono" 
                     style={{ fontSize: 20, textAlign: 'center', letterSpacing: 2, padding: 12, background: nfcReading ? 'var(--primary-glow)' : 'var(--bg-input)' }} 

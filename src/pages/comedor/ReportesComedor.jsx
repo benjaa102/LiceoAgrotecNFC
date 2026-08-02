@@ -88,7 +88,7 @@ export default function ReportesComedor() {
 
       return true
     })
-  }, [fechaDesde, fechaHasta, filterCurso, filterServicio, filterMetodo, filterTipo, filterDiaSemana, searchNombre])
+  }, [fechaDesde, fechaHasta, filterCurso, filterServicio, filterMetodo, filterTipo, filterDiaSemana, searchNombre, registrosComedor, estudiantes])
 
   // ─── Stats calculados sobre los filtrados ───
   const totalRegs     = filteredRegs.length
@@ -130,7 +130,7 @@ export default function ReportesComedor() {
       .filter(x => x.est)
       .sort((a, b) => b.total - a.total)
       .slice(0, 10)
-  }, [filteredRegs])
+  }, [filteredRegs, estudiantes])
 
   // ─── Exportaciones ───
   const colsResumen = [

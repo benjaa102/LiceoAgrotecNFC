@@ -113,14 +113,22 @@ export default function PerfilEstudiante() {
     try {
       const doc = new jsPDF()
       
-      // Try to add Logo (won't fail if image can't load)
+      // Try to add Logos (won't fail if images can't load)
       try {
         const logoBase64 = await getBase64Image('/logo-liceo.png')
         if (logoBase64) {
           doc.addImage(logoBase64, 'PNG', 14, 10, 20, 25)
         }
       } catch (logoErr) {
-        console.warn('Logo could not be loaded, continuing without it.')
+        console.warn('Logo Agrotec could not be loaded, continuing without it.')
+      }
+      try {
+        const snaBase64 = await getBase64Image('/logo_sna.png')
+        if (snaBase64) {
+          doc.addImage(snaBase64, 'PNG', 172, 10, 20, 25)
+        }
+      } catch (logoErr) {
+        console.warn('Logo SNA could not be loaded, continuing without it.')
       }
 
       doc.setFontSize(16)

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import { Plus, Search, Pencil, Trash2, X, Users, RefreshCw, Save, Download } from 'lucide-react'
 import { QRCodeSVG } from 'qrcode.react'
 import { supabase } from '../lib/supabase'
@@ -181,43 +181,72 @@ export default function Estudiantes() {
                 {filtered.length === 0 && (
                   <tr><td colSpan={9}><div className="empty-state"><Users size={32} /><p>No se encontraron estudiantes</p></div></td></tr>
                 )}
-                {filtered.map(est => {
-                  return (
-                    <tr key={est.id} id={`row-${est.id}`} style={{ transition: 'background 0.5s' }}>
-                      <td style={{ whiteSpace: 'nowrap', minWidth: 180, maxWidth: 220, overflow: 'hidden', textOverflow: 'ellipsis' }}><strong>{est.nombre}</strong></td>
-                      <td className="font-mono" style={{ fontSize: 13 }}>{est.rut}</td>
-                      <td className="font-mono" style={{ fontSize: 13 }}>{est.matricula}</td>
-                      <td><span className="chip" style={{ whiteSpace: 'nowrap', padding: '4px 10px', fontSize: 12 }}>{est.curso}</span></td>
-                      <td>
-                        <select className="input" style={{ padding: '4px 28px 4px 10px', fontSize: 12, height: '28px', background: est.tipo === 'INTERNO' ? 'var(--info-bg)' : 'var(--purple-bg)', color: est.tipo === 'INTERNO' ? 'var(--info)' : 'var(--purple)', border: 'none', fontWeight: 600, minWidth: 100 }} value={est.tipo} onChange={e => quickUpdate(est.id, 'tipo', e.target.value)}>
-                          {TIPOS.map(t => <option key={t} value={t}>{t}</option>)}
-                        </select>
-                      </td>
-                      <td>
-                         <select className="input" style={{ padding: '4px 24px 4px 10px', fontSize: 12, height: '28px', minWidth: 130 }} value={est.id_recorrido || ''} onChange={e => quickUpdate(est.id, 'id_recorrido', e.target.value)}>
-                          <option value="">Sin recorrido asignado</option>
-                          {recorridos.map(r => <option key={r.id} value={r.id}>{r.nombre}</option>)}
-                        </select>
-                      </td>
-                      <td style={{ maxWidth: 150 }}>
-                        <input className="input" style={{ padding: '4px 10px', fontSize: 12, height: '28px', width: '100%', minWidth: 110 }} value={est.direccion || ''} placeholder="Ej: Sector..." 
-                          onChange={e => {
-                            // Optimistic local update only for typing, save on blur
-                            setData(d => d.map(x => x.id === est.id ? { ...x, direccion: e.target.value } : x))
-                          }}
-                          onBlur={e => quickUpdate(est.id, 'direccion', e.target.value)}
-                        />
-                      </td>
-                      <td>{estadoBadge(est.estado_autorizacion)}</td>
-                      <td>
-                        <div className="d-flex gap-2">
-                          <button className="btn btn-secondary btn-sm btn-icon" onClick={() => openEdit(est)} title="Editar Detalles"><Pencil size={13} /></button>
-                          <button className="btn btn-danger btn-sm btn-icon" onClick={() => remove(est.id)} title="Eliminar"><Trash2 size={13} /></button>
-                        </div>
-                      </td>
-                    </tr>
-                  )
-                })}
+                
+                {(() => {
+                  const groupedEstudiantes = filtered.reduce((acc, est) => {
+                    const c = est.curso || 'Sin Curso'
+                    if (!acc[c]) acc[c] = []
+                    acc[c].push(est)
+                    return acc
+                  }, {})
+                  
+                  const sortedCursos = Object.keys(groupedEstudiantes).sort((a, b) => {
+                    const idxA = CURSOS.indexOf(a)
+                    const idxB = CURSOS.indexOf(b)
+                    if (idxA !== -1 && idxB !== -1) return idxA - idxB
+                    if (idxA !== -1) return -1
+                    if (idxB !== -1) return 1
+                    return a.localeCompare(b)
+                  })
+
+                  return sortedCursos.map(curso => (
+                    <Fragment key={curso}>
+                      <tr>
+                        <td colSpan={9} style={{ background: 'var(--bg-elevated)', padding: '12px 16px', fontWeight: 700, color: 'var(--text-primary)', borderBottom: '1px solid var(--border)', fontSize: 14 }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                            <span className="chip" style={{ background: 'var(--primary)', color: 'white', border: 'none' }}>{curso}</span>
+                            <span style={{ fontSize: 12, color: 'var(--text-muted)', fontWeight: 500 }}>{groupedEstudiantes[curso].length} estudiantes</span>
+                          </div>
+                        </td>
+                      </tr>
+                      {groupedEstudiantes[curso].map(est => (
+                        <tr key={est.id} id={`row-${est.id}`} style={{ transition: 'background 0.5s' }}>
+                          <td style={{ whiteSpace: 'nowrap', minWidth: 180, maxWidth: 220, overflow: 'hidden', textOverflow: 'ellipsis' }}><strong>{est.nombre}</strong></td>
+                          <td className="font-mono" style={{ fontSize: 13 }}>{est.rut}</td>
+                          <td className="font-mono" style={{ fontSize: 13 }}>{est.matricula}</td>
+                          <td><span className="chip" style={{ whiteSpace: 'nowrap', padding: '4px 10px', fontSize: 12 }}>{est.curso}</span></td>
+                          <td>
+                            <select className="input" style={{ padding: '4px 28px 4px 10px', fontSize: 12, height: '28px', background: est.tipo === 'INTERNO' ? 'var(--info-bg)' : 'var(--purple-bg)', color: est.tipo === 'INTERNO' ? 'var(--info)' : 'var(--purple)', border: 'none', fontWeight: 600, minWidth: 100 }} value={est.tipo} onChange={e => quickUpdate(est.id, 'tipo', e.target.value)}>
+                              {TIPOS.map(t => <option key={t} value={t}>{t}</option>)}
+                            </select>
+                          </td>
+                          <td>
+                             <select className="input" style={{ padding: '4px 24px 4px 10px', fontSize: 12, height: '28px', minWidth: 130 }} value={est.id_recorrido || ''} onChange={e => quickUpdate(est.id, 'id_recorrido', e.target.value)}>
+                              <option value="">Sin recorrido asignado</option>
+                              {recorridos.map(r => <option key={r.id} value={r.id}>{r.nombre}</option>)}
+                            </select>
+                          </td>
+                          <td style={{ maxWidth: 150 }}>
+                            <input className="input" style={{ padding: '4px 10px', fontSize: 12, height: '28px', width: '100%', minWidth: 110 }} value={est.direccion || ''} placeholder="Ej: Sector..." 
+                              onChange={e => {
+                                // Optimistic local update only for typing, save on blur
+                                setData(d => d.map(x => x.id === est.id ? { ...x, direccion: e.target.value } : x))
+                              }}
+                              onBlur={e => quickUpdate(est.id, 'direccion', e.target.value)}
+                            />
+                          </td>
+                          <td>{estadoBadge(est.estado_autorizacion)}</td>
+                          <td>
+                            <div className="d-flex gap-2">
+                              <button className="btn btn-secondary btn-sm btn-icon" onClick={() => openEdit(est)} title="Editar Detalles"><Pencil size={13} /></button>
+                              <button className="btn btn-danger btn-sm btn-icon" onClick={() => remove(est.id)} title="Eliminar"><Trash2 size={13} /></button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </Fragment>
+                  ))
+                })()}
               </tbody>
             </table>
           )}

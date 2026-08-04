@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react'
-import { Plus, Search, Pencil, Trash2, X, Users, RefreshCw, Save, Download, Folder, FolderOpen } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import { Plus, Search, Pencil, Trash2, X, Users, RefreshCw, Save, Download, Folder, FolderOpen, User } from 'lucide-react'
 import { QRCodeSVG } from 'qrcode.react'
 import { supabase } from '../lib/supabase'
 
@@ -8,6 +9,7 @@ const ESTADOS = ['ACTIVO', 'PENDIENTE', 'REVOCADO']
 const CURSOS  = ['7° Básico', '8° Básico', '1°A', '1°B', '1°C', '1°D', '2°A', '2°B', '2°C', '2°D', '3°A', '3°B', '3°C', '3°D', '4°A', '4°B', '4°C', '4°D']
 
 export default function Estudiantes() {
+  const navigate = useNavigate()
   const [data, setData]         = useState([])
   const [recorridos, setRecorridos] = useState([])
   const [loading, setLoading]   = useState(true)
@@ -257,6 +259,7 @@ export default function Estudiantes() {
                           <td>{estadoBadge(est.estado_autorizacion)}</td>
                           <td>
                             <div className="d-flex gap-2">
+                              <button className="btn btn-primary btn-sm btn-icon" onClick={() => navigate(`/estudiante/${est.id}`)} title="Ver Perfil"><User size={13} /></button>
                               <button className="btn btn-secondary btn-sm btn-icon" onClick={() => openEdit(est)} title="Editar Detalles"><Pencil size={13} /></button>
                               <button className="btn btn-danger btn-sm btn-icon" onClick={() => remove(est.id)} title="Eliminar"><Trash2 size={13} /></button>
                             </div>

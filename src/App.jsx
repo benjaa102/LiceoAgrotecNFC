@@ -16,6 +16,7 @@ import Asistencia      from './pages/Asistencia'
 import Alertas         from './pages/Alertas'
 import Reportes        from './pages/Reportes'
 import Usuarios        from './pages/Usuarios'
+import PerfilEstudiante from './pages/PerfilEstudiante'
 // ─ Módulo Comedor ─────────────────────────────────────────────────────────────
 import DashboardComedor  from './pages/comedor/DashboardComedor'
 import CocinaKiosko      from './pages/comedor/CocinaKiosko'
@@ -43,6 +44,7 @@ const AppRoutes = () => {
           {/* Buses */}
           <Route path="/dashboard"    element={<Dashboard />} />
           <Route path="/estudiantes"  element={<Estudiantes />} />
+          <Route path="/estudiante/:id" element={<PerfilEstudiante />} />
           <Route path="/supervisores" element={<Supervisores />} />
           <Route path="/buses"        element={<Buses />} />
           <Route path="/recorridos"   element={<Recorridos />} />

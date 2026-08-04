@@ -174,142 +174,166 @@ export default function PerfilEstudiante() {
   if (loading || !estudiante) return <div style={{ padding: 40, color: 'white', textAlign: 'center' }}>Cargando perfil...</div>
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-      {/* Header / Nav */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 15, cursor: 'pointer', color: 'var(--text-muted)' }} onClick={() => navigate('/estudiantes')}>
-        <ArrowLeft size={18} />
-        <span style={{ fontSize: 14, fontWeight: 500 }}>Volver a Estudiantes</span>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      {/* Top bar: Back + Tabs + Download */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 10 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 15, cursor: 'pointer', color: 'var(--text-muted)' }} onClick={() => navigate('/estudiantes')}>
+          <ArrowLeft size={16} />
+          <span style={{ fontSize: 13, fontWeight: 500 }}>Volver</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div style={{ background: 'var(--bg-card)', padding: 3, borderRadius: 8, border: '1px solid var(--border)', display: 'flex', gap: 3 }}>
+            {['AMBOS', 'COMEDOR', 'TRANSPORTE'].map(tab => (
+              <button 
+                key={tab} 
+                className="btn btn-sm"
+                style={{ background: viewMode === tab ? 'var(--primary)' : 'transparent', color: viewMode === tab ? 'white' : 'var(--text-muted)', border: 'none', boxShadow: 'none', fontSize: 11, padding: '5px 12px' }}
+                onClick={() => setViewMode(tab)}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+          <button className="btn btn-secondary btn-sm" onClick={downloadPDF} style={{ fontSize: 12 }}>
+            <Download size={13} /> Descargar Ficha
+          </button>
+        </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 20, alignItems: 'start' }}>
+      {/* Main 2-column layout */}
+      <div style={{ display: 'grid', gridTemplateColumns: '280px 1fr', gap: 16, alignItems: 'start' }}>
         
-        {/* Top Col: Profile & Info */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 20 }}>
-          <div className="card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '30px 20px', gap: 15 }}>
-            <div style={{ width: 80, height: 80, borderRadius: '50%', background: 'var(--primary)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 32, fontWeight: 700 }}>
+        {/* ===== LEFT SIDEBAR ===== */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16, position: 'sticky', top: 20 }}>
+          {/* Avatar Card */}
+          <div className="card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '24px 16px', gap: 12 }}>
+            <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'var(--primary)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 700 }}>
               {getInitials(estudiante.nombre)}
             </div>
             <div style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: 18, fontWeight: 700, color: 'white', marginBottom: 5 }}>{estudiante.nombre}</div>
-              <div style={{ fontSize: 13, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: 1 }}>{estudiante.curso}</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: 'white', marginBottom: 3 }}>{estudiante.nombre}</div>
+              <div style={{ fontSize: 12, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: 1 }}>{estudiante.curso}</div>
             </div>
-            <span className="badge badge-success" style={{ padding: '6px 12px', fontSize: 12 }}>{estudiante.estado_autorizacion}</span>
+            <span className="badge badge-success" style={{ padding: '4px 10px', fontSize: 11 }}>{estudiante.estado_autorizacion}</span>
           </div>
 
-          <div className="card">
-            <div className="card-header" style={{ paddingBottom: 10, borderBottom: '1px solid var(--border)', marginBottom: 15 }}>
-              <span className="card-title" style={{ fontSize: 12, color: 'var(--primary)', letterSpacing: 1 }}><FileText size={14} /> INFORMACIÓN PERSONAL</span>
+          {/* Info Card */}
+          <div className="card" style={{ padding: '16px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 14, paddingBottom: 10, borderBottom: '1px solid var(--border)' }}>
+              <FileText size={13} style={{ color: 'var(--primary)' }} />
+              <span style={{ fontSize: 11, color: 'var(--primary)', letterSpacing: 1, fontWeight: 700 }}>INFORMACIÓN PERSONAL</span>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13 }}>
-                <span style={{ color: 'var(--text-muted)' }}>RUT</span>
-                <span style={{ color: 'white', fontWeight: 600 }}>{estudiante.rut || '-'}</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13 }}>
-                <span style={{ color: 'var(--text-muted)' }}>MATRÍCULA</span>
-                <span style={{ color: 'white', fontWeight: 600 }}>{estudiante.matricula || '-'}</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13 }}>
-                <span style={{ color: 'var(--text-muted)' }}>TIPO</span>
-                <span style={{ color: 'white', fontWeight: 600 }}>{estudiante.tipo || '-'}</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13 }}>
-                <span style={{ color: 'var(--text-muted)' }}>RECORRIDO</span>
-                <span style={{ color: 'white', fontWeight: 600, textAlign: 'right' }}>{estudiante.id_recorrido ? 'Asignado' : 'Sin Asignar'}</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13 }}>
-                <span style={{ color: 'var(--text-muted)' }}>DIRECCIÓN</span>
-                <span style={{ color: 'white', fontWeight: 600 }}>{estudiante.direccion || '-'}</span>
-              </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {[
+                ['RUT', estudiante.rut],
+                ['MATRÍCULA', estudiante.matricula],
+                ['TIPO', estudiante.tipo],
+                ['RECORRIDO', estudiante.id_recorrido ? 'Asignado' : 'Sin Asignar'],
+                ['DIRECCIÓN', estudiante.direccion],
+              ].map(([label, value]) => (
+                <div key={label} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12 }}>
+                  <span style={{ color: 'var(--text-muted)' }}>{label}</span>
+                  <span style={{ color: 'white', fontWeight: 600, textAlign: 'right', maxWidth: 140, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{value || '-'}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Bottom Col: Metrics & Calendar */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-          
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div className="btn-group" style={{ background: 'var(--bg-card)', padding: 4, borderRadius: 8, border: '1px solid var(--border)', display: 'flex', gap: 4 }}>
-              {['AMBOS', 'COMEDOR', 'TRANSPORTE'].map(tab => (
-                <button 
-                  key={tab} 
-                  className={`btn btn-sm ${viewMode === tab ? 'btn-primary' : ''}`}
-                  style={{ background: viewMode === tab ? 'var(--primary)' : 'transparent', color: viewMode === tab ? 'white' : 'var(--text-muted)', border: 'none', boxShadow: 'none' }}
-                  onClick={() => setViewMode(tab)}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-            <button className="btn btn-secondary btn-sm" onClick={downloadPDF}>
-              <Download size={14} /> Descargar Ficha
-            </button>
-          </div>
+        {/* ===== RIGHT CONTENT ===== */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
 
-          {/* Metrics */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 15 }}>
-            <div className="card" style={{ padding: '20px', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600, letterSpacing: 1, marginBottom: 5 }}>ASISTENCIA</div>
-              <div style={{ fontSize: 28, fontWeight: 800, color: metrics.porcentaje > 75 ? 'var(--success)' : metrics.porcentaje > 40 ? 'var(--warning)' : 'var(--danger)' }}>
+          {/* Metrics row */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
+            <div className="card" style={{ padding: '14px 10px', textAlign: 'center' }}>
+              <div style={{ fontSize: 10, color: 'var(--text-muted)', fontWeight: 600, letterSpacing: 1, marginBottom: 4 }}>ASISTENCIA</div>
+              <div style={{ fontSize: 24, fontWeight: 800, color: metrics.porcentaje > 75 ? 'var(--success)' : metrics.porcentaje > 40 ? 'var(--warning)' : 'var(--danger)' }}>
                 {metrics.porcentaje}%
               </div>
+              <div style={{ fontSize: 10, color: 'var(--text-muted)', marginTop: 2 }}>{metrics.porcentaje > 75 ? 'Excelente' : metrics.porcentaje > 40 ? 'Regular' : 'Crítico'}</div>
             </div>
-            <div className="card" style={{ padding: '20px', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600, letterSpacing: 1, marginBottom: 5 }}>PRESENTES</div>
-              <div style={{ fontSize: 28, fontWeight: 800, color: 'var(--success)' }}>{metrics.presentes}</div>
+            <div className="card" style={{ padding: '14px 10px', textAlign: 'center' }}>
+              <div style={{ fontSize: 10, color: 'var(--text-muted)', fontWeight: 600, letterSpacing: 1, marginBottom: 4 }}>PRESENTES</div>
+              <div style={{ fontSize: 24, fontWeight: 800, color: 'var(--success)' }}>{metrics.presentes}</div>
             </div>
-            <div className="card" style={{ padding: '20px', textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600, letterSpacing: 1, marginBottom: 5 }}>AUSENTES / RECHAZOS</div>
-              <div style={{ fontSize: 28, fontWeight: 800, color: 'var(--danger)' }}>{metrics.ausentes}</div>
+            <div className="card" style={{ padding: '14px 10px', textAlign: 'center' }}>
+              <div style={{ fontSize: 10, color: 'var(--text-muted)', fontWeight: 600, letterSpacing: 1, marginBottom: 4 }}>AUS. JUSTIF.</div>
+              <div style={{ fontSize: 24, fontWeight: 800, color: 'var(--warning)' }}>{filteredRegistros.filter(r => r.estado === 'AUSENTE').length}</div>
+            </div>
+            <div className="card" style={{ padding: '14px 10px', textAlign: 'center' }}>
+              <div style={{ fontSize: 10, color: 'var(--text-muted)', fontWeight: 600, letterSpacing: 1, marginBottom: 4 }}>AUSENTES</div>
+              <div style={{ fontSize: 24, fontWeight: 800, color: 'var(--danger)' }}>{metrics.ausentes}</div>
             </div>
           </div>
 
-          {/* Calendar */}
+          {/* Calendar — compact */}
           <div className="card">
-            <div className="card-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, color: 'white', fontWeight: 600 }}>
-                <CalendarIcon size={16} /> Asistencia Mensual
+            <div className="card-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 16px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'white', fontWeight: 600, fontSize: 13 }}>
+                <CalendarIcon size={15} /> Asistencia Mensual
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 15, background: 'var(--bg-body)', padding: '4px 8px', borderRadius: 6, border: '1px solid var(--border)' }}>
-                <button className="btn btn-icon btn-sm" style={{ border: 'none', background: 'transparent' }} onClick={prevMonth}>&lt;</button>
-                <span style={{ fontSize: 13, fontWeight: 700, color: 'white', minWidth: 120, textAlign: 'center' }}>{monthNames[month]} {year}</span>
-                <button className="btn btn-icon btn-sm" style={{ border: 'none', background: 'transparent' }} onClick={nextMonth}>&gt;</button>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, background: 'var(--bg-body)', padding: '3px 6px', borderRadius: 6, border: '1px solid var(--border)' }}>
+                <button className="btn btn-icon btn-sm" style={{ border: 'none', background: 'transparent', padding: 4 }} onClick={prevMonth}>&lt;</button>
+                <span style={{ fontSize: 12, fontWeight: 700, color: 'white', minWidth: 110, textAlign: 'center' }}>{monthNames[month]} {year}</span>
+                <button className="btn btn-icon btn-sm" style={{ border: 'none', background: 'transparent', padding: 4 }} onClick={nextMonth}>&gt;</button>
               </div>
             </div>
             
-            <div style={{ padding: '20px' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 10, marginBottom: 15 }}>
+            <div style={{ padding: '12px 16px 16px' }}>
+              {/* Day labels */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 6, marginBottom: 8 }}>
                 {['L', 'M', 'M', 'J', 'V', 'S', 'D'].map((d, i) => (
-                  <div key={i} style={{ textAlign: 'center', fontSize: 12, fontWeight: 600, color: 'var(--text-muted)' }}>{d}</div>
+                  <div key={i} style={{ textAlign: 'center', fontSize: 11, fontWeight: 600, color: 'var(--text-muted)', padding: '4px 0' }}>{d}</div>
                 ))}
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 10 }}>
+              {/* Day cells — compact, no aspect-ratio */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 6 }}>
                 {daysArray.map((day, idx) => {
                   const status = getDayStatus(day)
                   let bg = 'var(--bg-body)'
                   let border = '1px solid var(--border)'
                   let color = 'var(--text-muted)'
                   
-                  if (status === 'presente') { bg = 'rgba(34, 197, 94, 0.1)'; border = '1px solid var(--success)'; color = 'var(--success)' }
-                  if (status === 'ausente')  { bg = 'rgba(245, 158, 11, 0.1)'; border = '1px solid var(--warning)'; color = 'var(--warning)' }
-                  if (status === 'rechazo')  { bg = 'rgba(239, 68, 68, 0.1)'; border = '1px dashed var(--danger)'; color = 'var(--danger)' }
+                  if (status === 'presente') { bg = 'rgba(34, 197, 94, 0.15)'; border = '1px solid var(--success)'; color = 'var(--success)' }
+                  if (status === 'ausente')  { bg = 'rgba(245, 158, 11, 0.15)'; border = '1px solid var(--warning)'; color = 'var(--warning)' }
+                  if (status === 'rechazo')  { bg = 'rgba(239, 68, 68, 0.15)'; border = '1px dashed var(--danger)'; color = 'var(--danger)' }
                   
                   if (!day) return <div key={idx} />
                   
+                  const isToday = day === new Date().getDate() && month === new Date().getMonth() && year === new Date().getFullYear()
+                  
                   return (
-                    <div key={idx} style={{ aspectRatio: '1/1', background: bg, border: border, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', color: color, fontWeight: 600, fontSize: 14 }}>
+                    <div key={idx} style={{ 
+                      height: 36, background: bg, border: border, borderRadius: 6, 
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', 
+                      color: color, fontWeight: isToday ? 800 : 500, fontSize: 13,
+                      boxShadow: isToday ? '0 0 0 2px var(--primary)' : 'none'
+                    }}>
                       {day}
                     </div>
                   )
                 })}
+              </div>
+              {/* Legend */}
+              <div style={{ display: 'flex', gap: 16, marginTop: 12, justifyContent: 'center' }}>
+                {[
+                  { color: 'var(--success)', label: 'Presente' },
+                  { color: 'var(--warning)', label: 'Ausente' },
+                  { color: 'var(--danger)', label: 'Rechazo' },
+                ].map(l => (
+                  <div key={l.label} style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 11, color: 'var(--text-muted)' }}>
+                    <div style={{ width: 8, height: 8, borderRadius: '50%', background: l.color }} />
+                    {l.label}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
 
           {/* Details Table */}
           <div className="card">
-            <div className="card-header">
-              <span className="card-title" style={{ fontSize: 14 }}>Detalle de Registros ({filteredRegistros.length})</span>
+            <div className="card-header" style={{ padding: '12px 16px' }}>
+              <span className="card-title" style={{ fontSize: 13 }}>Detalle de Registros ({filteredRegistros.length})</span>
             </div>
             <div className="table-wrapper">
               <table>
@@ -328,12 +352,12 @@ export default function PerfilEstudiante() {
                   )}
                   {filteredRegistros.map((r, i) => (
                     <tr key={i}>
-                      <td className="font-mono">{r.fecha}</td>
-                      <td className="font-mono">{r.hora}</td>
-                      <td><span className={`chip ${r._source === 'COMEDOR' ? 'bg-primary' : 'bg-info'}`}>{r._source}</span></td>
-                      <td><strong>{r._displayType}</strong></td>
+                      <td className="font-mono" style={{ fontSize: 12 }}>{r.fecha}</td>
+                      <td className="font-mono" style={{ fontSize: 12 }}>{r.hora}</td>
+                      <td><span className={`chip ${r._source === 'COMEDOR' ? 'bg-primary' : 'bg-info'}`} style={{ fontSize: 11 }}>{r._source}</span></td>
+                      <td style={{ fontSize: 12 }}><strong>{r._displayType}</strong></td>
                       <td>
-                        <span className={`badge badge-${(!r.estado || r.estado === 'PRESENTE') ? 'success' : r.estado === 'AUSENTE' ? 'warning' : 'danger'}`}>
+                        <span className={`badge badge-${(!r.estado || r.estado === 'PRESENTE') ? 'success' : r.estado === 'AUSENTE' ? 'warning' : 'danger'}`} style={{ fontSize: 11 }}>
                           {r.estado || 'PRESENTE'}
                         </span>
                       </td>

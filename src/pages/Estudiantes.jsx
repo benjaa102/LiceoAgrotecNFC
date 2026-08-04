@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react'
-import { Plus, Search, Pencil, Trash2, X, Users, RefreshCw, Save, Download } from 'lucide-react'
+import { Plus, Search, Pencil, Trash2, X, Users, RefreshCw, Save, Download, Folder, FolderOpen } from 'lucide-react'
 import { QRCodeSVG } from 'qrcode.react'
 import { supabase } from '../lib/supabase'
 
@@ -18,6 +18,22 @@ export default function Estudiantes() {
   const [filterTipo, setFT]      = useState('')
   const [modal, setModal]       = useState(null) // null | 'new' | {record}
   const [form, setForm]         = useState({})
+  const [collapsedCursos, setCollapsedCursos] = useState(() => {
+    const init = {}
+    CURSOS.forEach(c => init[c] = true)
+    return init
+  })
+
+  // Auto-expandir carpetas si el usuario usa el buscador o filtro de curso
+  useEffect(() => {
+    if (search || filterCurso) {
+      setCollapsedCursos({}) // Expandir todos (al no estar en el objeto, isCollapsed = false)
+    } else {
+      const init = {}
+      CURSOS.forEach(c => init[c] = true)
+      setCollapsedCursos(init)
+    }
+  }, [search, filterCurso])
 
   const loadData = async () => {
     setLoading(true)
@@ -199,17 +215,20 @@ export default function Estudiantes() {
                     return a.localeCompare(b)
                   })
 
-                  return sortedCursos.map(curso => (
+                  return sortedCursos.map(curso => {
+                    const isCollapsed = collapsedCursos[curso]
+                    return (
                     <Fragment key={curso}>
-                      <tr>
+                      <tr onClick={() => setCollapsedCursos(prev => ({...prev, [curso]: !prev[curso]}))} style={{ cursor: 'pointer', transition: 'background 0.2s' }} onMouseEnter={e => e.currentTarget.style.background = 'var(--bg-elevated-hover)'} onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
                         <td colSpan={9} style={{ background: 'var(--bg-elevated)', padding: '12px 16px', fontWeight: 700, color: 'var(--text-primary)', borderBottom: '1px solid var(--border)', fontSize: 14 }}>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                            {isCollapsed ? <Folder size={18} style={{ color: 'var(--primary)' }} /> : <FolderOpen size={18} style={{ color: 'var(--primary)' }} />}
                             <span className="chip" style={{ background: 'var(--primary)', color: 'white', border: 'none' }}>{curso}</span>
-                            <span style={{ fontSize: 12, color: 'var(--text-muted)', fontWeight: 500 }}>{groupedEstudiantes[curso].length} estudiantes</span>
+                            <span style={{ fontSize: 13, color: 'var(--text-muted)', fontWeight: 500 }}>{groupedEstudiantes[curso].length} estudiantes</span>
                           </div>
                         </td>
                       </tr>
-                      {groupedEstudiantes[curso].map(est => (
+                      {!isCollapsed && groupedEstudiantes[curso].map(est => (
                         <tr key={est.id} id={`row-${est.id}`} style={{ transition: 'background 0.5s' }}>
                           <td style={{ whiteSpace: 'nowrap', minWidth: 180, maxWidth: 220, overflow: 'hidden', textOverflow: 'ellipsis' }}><strong>{est.nombre}</strong></td>
                           <td className="font-mono" style={{ fontSize: 13 }}>{est.rut}</td>
@@ -245,7 +264,7 @@ export default function Estudiantes() {
                         </tr>
                       ))}
                     </Fragment>
-                  ))
+                  )})
                 })()}
               </tbody>
             </table>

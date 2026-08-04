@@ -109,66 +109,79 @@ export default function PerfilEstudiante() {
 
   const downloadPDF = async () => {
     if (!estudiante) return
-    const doc = new jsPDF()
-    
-    // Add Logo
-    const logoBase64 = await getBase64Image('/logo-liceo.png')
-    if (logoBase64) {
-      doc.addImage(logoBase64, 'PNG', 14, 10, 20, 25)
-    }
+    try {
+      const doc = new jsPDF()
+      
+      // Try to add Logo (won't fail if image can't load)
+      try {
+        const logoBase64 = await getBase64Image('/logo-liceo.png')
+        if (logoBase64) {
+          doc.addImage(logoBase64, 'PNG', 14, 10, 20, 25)
+        }
+      } catch (logoErr) {
+        console.warn('Logo could not be loaded, continuing without it.')
+      }
 
-    doc.setFontSize(16)
-    doc.setTextColor(40, 40, 40)
-    doc.text('FICHA DE ASISTENCIA ESTUDIANTIL', 40, 20)
-    
-    doc.setFontSize(10)
-    doc.text(`Liceo Bicentenario Agrícola Tecnológico`, 40, 26)
-    doc.text(`Fecha de Emisión: ${new Date().toLocaleDateString('es-CL')}`, 40, 32)
-    
-    doc.setLineWidth(0.5)
-    doc.line(14, 40, 196, 40)
-
-    // Info Estudiante
-    doc.setFontSize(12)
-    doc.setFont("helvetica", "bold")
-    doc.text("DATOS DEL ESTUDIANTE", 14, 50)
-    
-    doc.setFont("helvetica", "normal")
-    doc.setFontSize(10)
-    doc.text(`Nombre: ${estudiante.nombre}`, 14, 58)
-    doc.text(`RUT: ${estudiante.rut || 'N/A'}`, 120, 58)
-    doc.text(`Curso: ${estudiante.curso || 'N/A'}`, 14, 64)
-    doc.text(`Tipo: ${estudiante.tipo || 'N/A'}`, 120, 64)
-    
-    doc.setLineWidth(0.2)
-    doc.line(14, 70, 196, 70)
-
-    doc.setFontSize(12)
-    doc.setFont("helvetica", "bold")
-    doc.text(`REGISTROS DE ASISTENCIA - ${monthNames[month]} ${year}`, 14, 80)
-    if (viewMode !== 'AMBOS') {
+      doc.setFontSize(16)
+      doc.setTextColor(40, 40, 40)
+      doc.text('FICHA DE ASISTENCIA ESTUDIANTIL', 40, 20)
+      
       doc.setFontSize(10)
-      doc.text(`Filtro: ${viewMode}`, 14, 86)
+      doc.text('Liceo Bicentenario Agricola Tecnologico', 40, 26)
+      doc.text('Fecha de Emision: ' + new Date().toLocaleDateString('es-CL'), 40, 32)
+      
+      doc.setLineWidth(0.5)
+      doc.line(14, 40, 196, 40)
+
+      // Info Estudiante
+      doc.setFontSize(12)
+      doc.setFont('helvetica', 'bold')
+      doc.text('DATOS DEL ESTUDIANTE', 14, 50)
+      
+      doc.setFont('helvetica', 'normal')
+      doc.setFontSize(10)
+      doc.text('Nombre: ' + (estudiante.nombre || ''), 14, 58)
+      doc.text('RUT: ' + (estudiante.rut || 'N/A'), 120, 58)
+      doc.text('Curso: ' + (estudiante.curso || 'N/A'), 14, 64)
+      doc.text('Tipo: ' + (estudiante.tipo || 'N/A'), 120, 64)
+      
+      doc.setLineWidth(0.2)
+      doc.line(14, 70, 196, 70)
+
+      doc.setFontSize(12)
+      doc.setFont('helvetica', 'bold')
+      doc.text('REGISTROS DE ASISTENCIA - ' + monthNames[month] + ' ' + year, 14, 80)
+      let startY = 85
+      if (viewMode !== 'AMBOS') {
+        doc.setFontSize(10)
+        doc.setFont('helvetica', 'normal')
+        doc.text('Filtro: ' + viewMode, 14, 86)
+        startY = 90
+      }
+
+      const tableData = filteredRegistros.map(r => [
+        r.fecha || '',
+        r.hora || '',
+        r._source || '',
+        r._displayType || '',
+        r.estado || 'PRESENTE'
+      ])
+
+      doc.autoTable({
+        startY: startY,
+        head: [['Fecha', 'Hora', 'Modulo', 'Servicio / Tipo', 'Estado']],
+        body: tableData.length > 0 ? tableData : [['Sin registros', '', '', '', '']],
+        theme: 'grid',
+        headStyles: { fillColor: [41, 128, 185] },
+        styles: { fontSize: 8 }
+      })
+
+      const filename = 'Ficha_Asistencia_' + (estudiante.rut || estudiante.nombre || 'estudiante').replace(/[^a-zA-Z0-9]/g, '_') + '_' + monthNames[month] + '_' + year + '.pdf'
+      doc.save(filename)
+    } catch (err) {
+      console.error('Error generating PDF:', err)
+      alert('Error al generar el PDF: ' + err.message)
     }
-
-    const tableData = filteredRegistros.map(r => [
-      r.fecha,
-      r.hora,
-      r._source,
-      r._displayType,
-      r.estado || 'PRESENTE'
-    ])
-
-    doc.autoTable({
-      startY: viewMode !== 'AMBOS' ? 90 : 85,
-      head: [['Fecha', 'Hora', 'Módulo', 'Servicio / Tipo', 'Estado']],
-      body: tableData,
-      theme: 'grid',
-      headStyles: { fillColor: [41, 128, 185] },
-      styles: { fontSize: 8 }
-    })
-
-    doc.save(`Ficha_Asistencia_${estudiante.rut || estudiante.nombre.replace(/\s+/g, '_')}_${monthNames[month]}_${year}.pdf`)
   }
 
   if (loading || !estudiante) return <div style={{ padding: 40, color: 'white', textAlign: 'center' }}>Cargando perfil...</div>
@@ -266,8 +279,8 @@ export default function PerfilEstudiante() {
             </div>
           </div>
 
-          {/* Calendar — compact */}
-          <div className="card">
+          {/* Calendar — compact, constrained width */}
+          <div className="card" style={{ maxWidth: 520 }}>
             <div className="card-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 16px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'white', fontWeight: 600, fontSize: 13 }}>
                 <CalendarIcon size={15} /> Asistencia Mensual
@@ -327,44 +340,6 @@ export default function PerfilEstudiante() {
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
-
-          {/* Details Table */}
-          <div className="card">
-            <div className="card-header" style={{ padding: '12px 16px' }}>
-              <span className="card-title" style={{ fontSize: 13 }}>Detalle de Registros ({filteredRegistros.length})</span>
-            </div>
-            <div className="table-wrapper">
-              <table>
-                <thead>
-                  <tr>
-                    <th>FECHA</th>
-                    <th>HORA</th>
-                    <th>MÓDULO</th>
-                    <th>SERVICIO / TIPO</th>
-                    <th>ESTADO</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredRegistros.length === 0 && (
-                    <tr><td colSpan={5} style={{ textAlign: 'center', padding: 30, color: 'var(--text-muted)' }}>No hay registros este mes</td></tr>
-                  )}
-                  {filteredRegistros.map((r, i) => (
-                    <tr key={i}>
-                      <td className="font-mono" style={{ fontSize: 12 }}>{r.fecha}</td>
-                      <td className="font-mono" style={{ fontSize: 12 }}>{r.hora}</td>
-                      <td><span className={`chip ${r._source === 'COMEDOR' ? 'bg-primary' : 'bg-info'}`} style={{ fontSize: 11 }}>{r._source}</span></td>
-                      <td style={{ fontSize: 12 }}><strong>{r._displayType}</strong></td>
-                      <td>
-                        <span className={`badge badge-${(!r.estado || r.estado === 'PRESENTE') ? 'success' : r.estado === 'AUSENTE' ? 'warning' : 'danger'}`} style={{ fontSize: 11 }}>
-                          {r.estado || 'PRESENTE'}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
             </div>
           </div>
           

@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { ArrowLeft, Download, Calendar as CalendarIcon, FileText } from 'lucide-react'
 import { supabase } from '../lib/supabase'
 import jsPDF from 'jspdf'
-import 'jspdf-autotable'
+import autoTable from 'jspdf-autotable'
 
 export default function PerfilEstudiante() {
   const { id } = useParams()
@@ -16,6 +16,7 @@ export default function PerfilEstudiante() {
   
   const [currentDate, setCurrentDate] = useState(new Date())
   const [viewMode, setViewMode] = useState('AMBOS') // 'AMBOS' | 'COMEDOR' | 'TRANSPORTE'
+  const [selectedDay, setSelectedDay] = useState(null)
 
   useEffect(() => {
     const loadData = async () => {
@@ -167,7 +168,7 @@ export default function PerfilEstudiante() {
         r.estado || 'PRESENTE'
       ])
 
-      doc.autoTable({
+      autoTable(doc, {
         startY: startY,
         head: [['Fecha', 'Hora', 'Modulo', 'Servicio / Tipo', 'Estado']],
         body: tableData.length > 0 ? tableData : [['Sin registros', '', '', '', '']],
@@ -320,8 +321,11 @@ export default function PerfilEstudiante() {
                       height: 36, background: bg, border: border, borderRadius: 6, 
                       display: 'flex', alignItems: 'center', justifyContent: 'center', 
                       color: color, fontWeight: isToday ? 800 : 500, fontSize: 13,
-                      boxShadow: isToday ? '0 0 0 2px var(--primary)' : 'none'
-                    }}>
+                      boxShadow: isToday ? '0 0 0 2px var(--primary)' : selectedDay === day ? '0 0 0 2px var(--info)' : 'none',
+                      cursor: 'pointer', transition: 'transform 0.1s'
+                    }}
+                    onClick={() => setSelectedDay(selectedDay === day ? null : day)}
+                    >
                       {day}
                     </div>
                   )
@@ -342,7 +346,43 @@ export default function PerfilEstudiante() {
               </div>
             </div>
           </div>
-          
+
+          {/* Selected Day Detail */}
+          {selectedDay && (() => {
+            const dateStr = year + '-' + String(month + 1).padStart(2, '0') + '-' + String(selectedDay).padStart(2, '0')
+            const dayRecords = filteredRegistros.filter(r => r.fecha === dateStr)
+            const dayNames = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado']
+            const dayOfWeek = dayNames[new Date(year, month, selectedDay).getDay()]
+            return (
+              <div className="card" style={{ maxWidth: 520 }}>
+                <div style={{ padding: '12px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border)' }}>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: 'white' }}>
+                    <CalendarIcon size={13} style={{ marginRight: 6, verticalAlign: -2 }} />
+                    {dayOfWeek} {selectedDay} de {monthNames[month]} {year}
+                  </div>
+                  <button className="btn btn-sm" style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', fontSize: 11, padding: '2px 6px' }} onClick={() => setSelectedDay(null)}>✕</button>
+                </div>
+                <div style={{ padding: '12px 16px' }}>
+                  {dayRecords.length === 0 ? (
+                    <div style={{ fontSize: 12, color: 'var(--text-muted)', padding: '8px 0', textAlign: 'center' }}>Sin registros este dia</div>
+                  ) : (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                      {dayRecords.map((r, i) => (
+                        <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, background: 'var(--bg-elevated)', padding: '8px 12px', borderRadius: 6, border: '1px solid var(--border)' }}>
+                          <span className={'chip ' + (r._source === 'COMEDOR' ? 'bg-primary' : 'bg-info')} style={{ fontSize: 10 }}>{r._source}</span>
+                          <span style={{ fontSize: 12, color: 'white', fontWeight: 600 }}>{r._displayType}</span>
+                          <span className="font-mono" style={{ fontSize: 11, color: 'var(--text-muted)', marginLeft: 'auto' }}>{r.hora}</span>
+                          <span className={'badge badge-' + ((!r.estado || r.estado === 'PRESENTE') ? 'success' : r.estado === 'AUSENTE' ? 'warning' : 'danger')} style={{ fontSize: 10 }}>
+                            {r.estado || 'PRESENTE'}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            )
+          })()}
         </div>
       </div>
     </div>

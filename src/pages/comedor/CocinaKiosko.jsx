@@ -77,8 +77,17 @@ export default function CocinaKiosko() {
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'registros_comedor' }, payload => {
         if (payload.new && payload.new.fecha === HOY) {
           setRegistros(prev => {
-            // Evitar duplicados por optimistic updates locales
-            if (prev.find(r => r.id === payload.new.id)) return prev
+            // Evitar duplicados comparando estudiante, servicio y fecha en lugar del ID (ya que Supabase puede generar un UUID nuevo)
+            const existsIndex = prev.findIndex(r => 
+              r.id_estudiante === payload.new.id_estudiante && 
+              r.tipo_servicio === payload.new.tipo_servicio && 
+              r.fecha === payload.new.fecha
+            )
+            if (existsIndex >= 0) {
+              const newArray = [...prev]
+              newArray[existsIndex] = payload.new
+              return newArray
+            }
             return [...prev, payload.new]
           })
         }
@@ -183,7 +192,6 @@ export default function CocinaKiosko() {
     setResultado('success')
     
     const newReg = {
-      id: 'rc_' + Date.now(),
       id_estudiante: est.id,
       tipo_servicio: servicio.toUpperCase(),
       fecha: HOY,
@@ -193,11 +201,12 @@ export default function CocinaKiosko() {
       observacion: null,
     }
     
-    // Optimistic UI update
-    setRegistros(prev => [...prev, newReg])
+    // Optimistic UI update (con ID temporal solo para UI)
+    const optimisticReg = { ...newReg, id: 'rc_' + Date.now() }
+    setRegistros(prev => [...prev, optimisticReg])
     resetIdle()
     
-    // Save to Supabase
+    // Save to Supabase (sin el ID temporal para que Supabase genere su UUID real)
     supabase.from('registros_comedor').insert([newReg]).then(({error}) => {
       if (error) console.error("Error saving NFC record:", error)
     })

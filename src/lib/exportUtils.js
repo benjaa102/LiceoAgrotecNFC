@@ -205,3 +205,105 @@ export async function exportToPDF(rows, columns, filename, reportTitle = 'Report
     alert("Hubo un error al generar el PDF: " + error.message)
   }
 }
+
+/**
+ * Exporta masivamente las fichas de asistencia de múltiples estudiantes a un solo PDF.
+ */
+export async function exportBulkFichasPDF(estudiantes, registrosComedor, registrosTransporte, month, year) {
+  if (!estudiantes || estudiantes.length === 0) return
+
+  try {
+    const doc = new jsPDF()
+    const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+    const datePrefix = `${year}-${String(month + 1).padStart(2, '0')}`
+
+    let agrotecBase64 = null
+    let snaBase64 = null
+    try {
+      agrotecBase64 = await getImageBase64('/logo-liceo.png') // Note: PerfilEstudiante used logo-liceo.png
+    } catch (e) { }
+    try {
+      snaBase64 = await getImageBase64('/logo_sna.png')
+    } catch (e) { }
+
+    for (let i = 0; i < estudiantes.length; i++) {
+      const est = estudiantes[i]
+
+      // Si no es el primer estudiante, añadimos una página nueva
+      if (i > 0) {
+        doc.addPage()
+      }
+
+      // Dibujar logos
+      if (agrotecBase64) doc.addImage(agrotecBase64, 'PNG', 14, 10, 20, 25)
+      if (snaBase64) doc.addImage(snaBase64, 'PNG', 172, 10, 20, 25)
+
+      doc.setFontSize(16)
+      doc.setTextColor(40, 40, 40)
+      doc.text('FICHA DE ASISTENCIA ESTUDIANTIL', 40, 20)
+      
+      doc.setFontSize(10)
+      doc.setFont('helvetica', 'normal')
+      doc.text('Liceo Bicentenario Agricola Tecnologico', 40, 26)
+      doc.text('Fecha de Emision: ' + new Date().toLocaleDateString('es-CL'), 40, 32)
+      
+      doc.setLineWidth(0.5)
+      doc.line(14, 40, 196, 40)
+
+      // Info Estudiante
+      doc.setFontSize(12)
+      doc.setFont('helvetica', 'bold')
+      doc.text('DATOS DEL ESTUDIANTE', 14, 50)
+      
+      doc.setFont('helvetica', 'normal')
+      doc.setFontSize(10)
+      doc.text('Nombre: ' + (est.nombre || ''), 14, 58)
+      doc.text('RUT: ' + (est.rut || 'N/A'), 120, 58)
+      doc.text('Curso: ' + (est.curso || 'N/A'), 14, 64)
+      doc.text('Tipo: ' + (est.tipo || 'N/A'), 120, 64)
+      
+      doc.setLineWidth(0.2)
+      doc.line(14, 70, 196, 70)
+
+      doc.setFontSize(12)
+      doc.setFont('helvetica', 'bold')
+      doc.text('REGISTROS DE ASISTENCIA - ' + monthNames[month] + ' ' + year, 14, 80)
+      
+      // Filtrar y combinar registros de este estudiante para el mes actual
+      const combined = []
+      registrosComedor
+        .filter(r => r.id_estudiante === est.id && r.fecha?.startsWith(datePrefix))
+        .forEach(r => combined.push({ ...r, _source: 'COMEDOR', _displayType: r.tipo_servicio }))
+        
+      registrosTransporte
+        .filter(r => r.id_estudiante === est.id && r.fecha?.startsWith(datePrefix))
+        .forEach(r => combined.push({ ...r, _source: 'TRANSPORTE', _displayType: r.tipo_registro }))
+
+      // Ordenar por fecha y hora descendente
+      combined.sort((a, b) => b.fecha.localeCompare(a.fecha) || b.hora.localeCompare(a.hora))
+
+      const tableData = combined.map(r => [
+        r.fecha || '',
+        r.hora || '',
+        r._source || '',
+        r._displayType || '',
+        r.estado || 'PRESENTE'
+      ])
+
+      autoTable(doc, {
+        startY: 85,
+        head: [['Fecha', 'Hora', 'Modulo', 'Servicio / Tipo', 'Estado']],
+        body: tableData.length > 0 ? tableData : [['Sin registros', '', '', '', '']],
+        theme: 'grid',
+        headStyles: { fillColor: [41, 128, 185] },
+        styles: { fontSize: 8 }
+      })
+    }
+
+    const filename = `Fichas_Masivas_${monthNames[month]}_${year}.pdf`
+    doc.save(filename)
+  } catch (err) {
+    console.error('Error generating bulk PDF:', err)
+    alert('Error al generar el PDF masivo: ' + err.message)
+  }
+}

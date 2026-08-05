@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Plus, Search, Pencil, Trash2, X, Users, RefreshCw, Save, Download, Folder, FolderOpen, User } from 'lucide-react'
 import { QRCodeSVG } from 'qrcode.react'
 import { supabase } from '../lib/supabase'
+import { exportBulkFichasPDF } from '../lib/exportUtils'
 
 const TIPOS   = ['INTERNO', 'EXTERNO']
 const ESTADOS = ['ACTIVO', 'PENDIENTE', 'REVOCADO']
@@ -13,6 +14,7 @@ export default function Estudiantes() {
   const [data, setData]         = useState([])
   const [recorridos, setRecorridos] = useState([])
   const [loading, setLoading]   = useState(true)
+  const [isDownloading, setIsDownloading] = useState(false)
   const [search, setSearch]     = useState('')
   const [filterEstado, setFE]   = useState('')
   const [filterRecorrido, setFR] = useState('')
@@ -61,6 +63,39 @@ export default function Estudiantes() {
     const matchT = !filterTipo      || e.tipo === filterTipo
     return matchQ && matchE && matchR && matchC && matchT
   })
+
+  const handleDownloadFichas = async () => {
+    if (filtered.length === 0) return alert('No hay estudiantes para descargar.')
+    if (!window.confirm(`¿Descargar las fichas de los ${filtered.length} estudiantes visibles? (Mes actual)`)) return
+    
+    setIsDownloading(true)
+    try {
+      const studentIds = filtered.map(e => e.id)
+      
+      const now = new Date()
+      const month = now.getMonth()
+      const year = now.getFullYear()
+      const datePrefix = `${year}-${String(month + 1).padStart(2, '0')}`
+
+      // Fetch all records for these students for the current month
+      // Supabase in() has a limit, but for ~1000 it should be fine. 
+      // Si son muchos, ideal paginar, pero para un colegio normal suele bastar.
+      const [resComedor, resBuses] = await Promise.all([
+        supabase.from('registros_comedor').select('*').in('id_estudiante', studentIds).like('fecha', `${datePrefix}%`),
+        supabase.from('asistencia_buses').select('*').in('id_estudiante', studentIds).like('fecha', `${datePrefix}%`)
+      ])
+
+      if (resComedor.error) throw resComedor.error
+      if (resBuses.error) throw resBuses.error
+
+      await exportBulkFichasPDF(filtered, resComedor.data || [], resBuses.data || [], month, year)
+    } catch (err) {
+      console.error(err)
+      alert('Error descargando las fichas: ' + err.message)
+    } finally {
+      setIsDownloading(false)
+    }
+  }
 
   const openNew  = () => { setForm({ tipo: 'INTERNO', estado_autorizacion: 'ACTIVO' }); setModal('new') }
   const openEdit = (rec) => { setForm({ ...rec }); setModal(rec) }
@@ -163,6 +198,9 @@ export default function Estudiantes() {
         </div>
         <div className="toolbar-right">
           <span className="text-muted text-sm" style={{ alignSelf: 'center' }}>{filtered.length} estudiantes</span>
+          <button className="btn btn-secondary" onClick={handleDownloadFichas} disabled={isDownloading || filtered.length === 0} title="Descargar Fichas PDF (Mes actual)">
+            <Download size={15} className={isDownloading ? 'spin' : ''} /> {isDownloading ? 'Generando...' : 'Fichas'}
+          </button>
           <button className="btn btn-secondary" onClick={loadData} disabled={loading}>
             <RefreshCw size={15} className={loading ? 'spin' : ''} />
           </button>

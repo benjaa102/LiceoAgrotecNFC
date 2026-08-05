@@ -23,7 +23,7 @@ export default function ControlSemanal() {
     setLoading(true)
     const [resInsc, resReg, resEst] = await Promise.all([
       supabase.from('inscripciones_comedor').select('*').eq('activo', true),
-      supabase.from('asistencia_comedor').select('*').gte('fecha', DIAS_SEMANA[0]).lte('fecha', DIAS_SEMANA[4]),
+      supabase.from('registros_comedor').select('*').gte('fecha', DIAS_SEMANA[0]).lte('fecha', DIAS_SEMANA[4]),
       supabase.from('estudiantes').select('*')
     ])
     if (resInsc.data) setInscripciones(resInsc.data)

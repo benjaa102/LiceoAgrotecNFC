@@ -498,6 +498,19 @@ tbody td {
 
 tbody td strong { color: var(--text-primary); font-weight: 600; }
 
+/* Ensure action buttons inside tables don't get squished or clipped */
+table td .d-flex {
+  min-width: max-content;
+}
+
+thead th:last-child {
+  padding-right: 24px;
+}
+
+tbody td:last-child {
+  padding-right: 24px;
+}
+
 /* ─── FORMS / INPUTS ────────────────────────────────────────────────────────── */
 .input {
   background: var(--bg-input);

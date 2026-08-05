@@ -192,7 +192,7 @@ export default function Estudiantes() {
                   <th>Recorrido</th>
                   <th>Dirección</th>
                   <th>Estado</th>
-                  <th style={{ width: 120, paddingRight: 24 }}></th>
+                  <th style={{ width: 140, textAlign: 'center' }}>Acciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -257,8 +257,8 @@ export default function Estudiantes() {
                             />
                           </td>
                           <td>{estadoBadge(est.estado_autorizacion)}</td>
-                          <td style={{ paddingRight: 24 }}>
-                            <div className="d-flex gap-2" style={{ justifyContent: 'flex-end' }}>
+                          <td style={{ minWidth: 140 }}>
+                            <div className="d-flex gap-2" style={{ justifyContent: 'center' }}>
                               <button className="btn btn-primary btn-sm btn-icon" onClick={() => navigate(`/estudiante/${est.id}`)} title="Ver Perfil"><User size={13} /></button>
                               <button className="btn btn-secondary btn-sm btn-icon" onClick={() => openEdit(est)} title="Editar Detalles"><Pencil size={13} /></button>
                               <button className="btn btn-danger btn-sm btn-icon" onClick={() => remove(est.id)} title="Eliminar"><Trash2 size={13} /></button>

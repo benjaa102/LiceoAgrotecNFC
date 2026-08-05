@@ -288,8 +288,8 @@ export default function PerfilEstudiante() {
             </div>
           </div>
 
-          {/* Calendar — compact, constrained width */}
-          <div className="card" style={{ maxWidth: 520 }}>
+          {/* Calendar — compact */}
+          <div className="card">
             <div className="card-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 16px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'white', fontWeight: 600, fontSize: 13 }}>
                 <CalendarIcon size={15} /> Asistencia Mensual
@@ -362,7 +362,7 @@ export default function PerfilEstudiante() {
             const dayNames = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado']
             const dayOfWeek = dayNames[new Date(year, month, selectedDay).getDay()]
             return (
-              <div className="card" style={{ maxWidth: 520 }}>
+              <div className="card">
                 <div style={{ padding: '12px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border)' }}>
                   <div style={{ fontSize: 13, fontWeight: 700, color: 'white' }}>
                     <CalendarIcon size={13} style={{ marginRight: 6, verticalAlign: -2 }} />

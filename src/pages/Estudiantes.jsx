@@ -85,8 +85,8 @@ export default function Estudiantes() {
         supabase.from('asistencia_buses').select('*').in('id_estudiante', studentIds).like('fecha', `${datePrefix}%`)
       ])
 
-      if (resComedor.error) throw resComedor.error
-      if (resBuses.error) throw resBuses.error
+      if (resComedor.error) console.warn("Error fetching registros_comedor:", resComedor.error)
+      if (resBuses.error) console.warn("Error fetching asistencia_buses:", resBuses.error)
 
       await exportBulkFichasPDF(studentsToDownload, resComedor.data || [], resBuses.data || [], month, year)
     } catch (err) {

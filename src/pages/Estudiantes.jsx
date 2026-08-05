@@ -64,13 +64,13 @@ export default function Estudiantes() {
     return matchQ && matchE && matchR && matchC && matchT
   })
 
-  const handleDownloadFichas = async () => {
-    if (filtered.length === 0) return alert('No hay estudiantes para descargar.')
-    if (!window.confirm(`¿Descargar las fichas de los ${filtered.length} estudiantes visibles? (Mes actual)`)) return
+  const handleDownloadFichas = async (studentsToDownload = filtered, groupName = '') => {
+    if (studentsToDownload.length === 0) return alert('No hay estudiantes para descargar.')
+    if (!window.confirm(`¿Descargar las fichas de los ${studentsToDownload.length} estudiantes ${groupName ? `de ${groupName}` : 'visibles'}? (Mes actual)`)) return
     
     setIsDownloading(true)
     try {
-      const studentIds = filtered.map(e => e.id)
+      const studentIds = studentsToDownload.map(e => e.id)
       
       const now = new Date()
       const month = now.getMonth()
@@ -88,7 +88,7 @@ export default function Estudiantes() {
       if (resComedor.error) throw resComedor.error
       if (resBuses.error) throw resBuses.error
 
-      await exportBulkFichasPDF(filtered, resComedor.data || [], resBuses.data || [], month, year)
+      await exportBulkFichasPDF(studentsToDownload, resComedor.data || [], resBuses.data || [], month, year)
     } catch (err) {
       console.error(err)
       alert('Error descargando las fichas: ' + err.message)
@@ -198,7 +198,7 @@ export default function Estudiantes() {
         </div>
         <div className="toolbar-right">
           <span className="text-muted text-sm" style={{ alignSelf: 'center' }}>{filtered.length} estudiantes</span>
-          <button className="btn btn-secondary" onClick={handleDownloadFichas} disabled={isDownloading || filtered.length === 0} title="Descargar Fichas PDF (Mes actual)">
+          <button className="btn btn-secondary" onClick={() => handleDownloadFichas(filtered)} disabled={isDownloading || filtered.length === 0} title="Descargar Fichas PDF (Mes actual)">
             <Download size={15} className={isDownloading ? 'spin' : ''} /> {isDownloading ? 'Generando...' : 'Fichas'}
           </button>
           <button className="btn btn-secondary" onClick={loadData} disabled={loading}>
@@ -265,6 +265,18 @@ export default function Estudiantes() {
                             {isCollapsed ? <Folder size={18} style={{ color: 'var(--primary)' }} /> : <FolderOpen size={18} style={{ color: 'var(--primary)' }} />}
                             <span className="chip" style={{ background: 'var(--primary)', color: 'white', border: 'none' }}>{curso}</span>
                             <span style={{ fontSize: 13, color: 'var(--text-muted)', fontWeight: 500 }}>{groupedEstudiantes[curso].length} estudiantes</span>
+                            <button 
+                              className="btn btn-secondary btn-sm btn-icon" 
+                              title={`Descargar Fichas de ${curso}`}
+                              style={{ marginLeft: 'auto', background: 'transparent', border: '1px solid var(--border)' }}
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                handleDownloadFichas(groupedEstudiantes[curso], curso)
+                              }}
+                              disabled={isDownloading}
+                            >
+                              <Download size={14} className={isDownloading ? 'spin' : ''} />
+                            </button>
                           </div>
                         </td>
                       </tr>

@@ -31,20 +31,64 @@ export default function Supervisores() {
   })
 
   const openNew = () => { setForm({ estado: 'ACTIVO' }); setModal('new') }
-  const openEdit = (rec) => { setForm({ ...rec }); setModal(rec) }
+  const openEdit = (rec) => { 
+    const cred = credenciales.find(c => c.id_usuario === rec.id)
+    setForm({ ...rec, uid_nfc: cred?.uid_nfc || '', cred_id: cred?.id || null })
+    setModal(rec) 
+  }
   const closeModal = () => { setModal(null); setForm({}) }
 
   const save = async () => {
+    let supervisorId = form.id;
+    let finalSupData = null;
+
     if (modal === 'new') {
-      const id = 's_' + Date.now()
-      const { data: newRow, error } = await supabase.from('supervisores').insert([{ ...form, id }]).select().single()
-      if (!error && newRow) setData(d => [...d, newRow])
-      else if(error) alert('Error al crear: ' + error.message)
+      supervisorId = 's_' + Date.now()
+      const payload = { ...form, id: supervisorId }
+      delete payload.uid_nfc
+      delete payload.cred_id
+      const { data: newRow, error } = await supabase.from('supervisores').insert([payload]).select().single()
+      if (!error && newRow) {
+        setData(d => [...d, newRow])
+        finalSupData = newRow
+      }
+      else return alert('Error al crear: ' + error.message)
     } else {
-      const { error } = await supabase.from('supervisores').update(form).eq('id', form.id)
-      if (!error) setData(d => d.map(s => s.id === form.id ? form : s))
-      else alert('Error al actualizar: ' + error.message)
+      const payload = { ...form }
+      delete payload.uid_nfc
+      delete payload.cred_id
+      const { error } = await supabase.from('supervisores').update(payload).eq('id', supervisorId)
+      if (!error) {
+        setData(d => d.map(s => s.id === supervisorId ? { ...s, ...payload } : s))
+        finalSupData = payload
+      }
+      else return alert('Error al actualizar: ' + error.message)
     }
+
+    // Manejar credencial NFC asociada
+    if (form.uid_nfc && form.uid_nfc.trim() !== '') {
+      const uidUpper = form.uid_nfc.trim().toUpperCase()
+      if (form.cred_id) {
+        await supabase.from('credenciales').update({ uid_nfc: uidUpper }).eq('id', form.cred_id)
+      } else {
+        await supabase.from('credenciales').insert([{
+          id: 'c_' + Date.now(),
+          uid_nfc: uidUpper,
+          tipo_usuario: 'SUPERVISOR',
+          id_usuario: supervisorId,
+          estado: 'ACTIVA',
+          fecha_asignacion: new Date().toISOString().slice(0, 10)
+        }])
+      }
+    } else if (form.cred_id) {
+      await supabase.from('credenciales').delete().eq('id', form.cred_id)
+    }
+
+    // Refrescar credenciales en background
+    supabase.from('credenciales').select('*').then(({ data }) => {
+      if (data) setCredenciales(data)
+    })
+
     closeModal()
   }
 
@@ -165,6 +209,10 @@ export default function Supervisores() {
                     <option value="ACTIVO">ACTIVO</option>
                     <option value="INACTIVO">INACTIVO</option>
                   </select>
+                </div>
+                <div className="form-field full">
+                  <label>Credencial NFC <span className="text-muted text-sm">— (Enfoca aquí y escanea la tarjeta)</span></label>
+                  <input className="input font-mono" value={form.uid_nfc || ''} onChange={e => setForm(f => ({ ...f, uid_nfc: e.target.value }))} placeholder="Ej: A1:B2:C3:D4" />
                 </div>
               </div>
             </div>

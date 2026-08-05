@@ -268,7 +268,7 @@ export default function Estudiantes() {
                             <button 
                               className="btn btn-secondary btn-sm btn-icon" 
                               title={`Descargar Fichas de ${curso}`}
-                              style={{ marginLeft: 'auto', background: 'transparent', border: '1px solid var(--border)' }}
+                              style={{ background: 'transparent', border: '1px solid var(--border)' }}
                               onClick={(e) => {
                                 e.stopPropagation()
                                 handleDownloadFichas(groupedEstudiantes[curso], curso)

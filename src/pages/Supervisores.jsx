@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { Plus, Search, Pencil, Trash2, X, UserCheck, RefreshCw } from 'lucide-react'
+import { useState, useEffect, useRef } from 'react'
+import { Plus, Search, Pencil, Trash2, X, UserCheck, RefreshCw, Wifi } from 'lucide-react'
 import { supabase } from '../lib/supabase'
 
 const CARGOS = ['Chofer Bus', 'Chofer Furgón', 'Supervisor Senior', 'Supervisor Titular', 'Supervisor Suplente']
@@ -11,6 +11,8 @@ export default function Supervisores() {
   const [loading, setLoading] = useState(true)
   const [modal, setModal] = useState(null)
   const [form, setForm] = useState({})
+  const [nfcReading, setNfcReading] = useState(false)
+  const uidRef = useRef(null)
 
   const loadData = async () => {
     setLoading(true)
@@ -97,6 +99,37 @@ export default function Supervisores() {
     const { error } = await supabase.from('supervisores').delete().eq('id', id)
     if (!error) setData(d => d.filter(s => s.id !== id))
     else alert('No se puede eliminar. Probablemente esté asignado a un bus.')
+  }
+
+  // Lectura Nativa con Celular (Web NFC API)
+  const scanNFCWebAPI = async () => {
+    if (!('NDEFReader' in window)) {
+      alert("Tu navegador no soporta lectura NFC nativa. Usa Chrome en Android o un lector USB en PC.")
+      return
+    }
+    
+    try {
+      setNfcReading(true)
+      const ndef = new window.NDEFReader()
+      await ndef.scan()
+      
+      ndef.onreading = event => {
+        const serialNumber = event.serialNumber
+        if (serialNumber) {
+          const uidFormateado = serialNumber.replace(/:/g, '').toUpperCase()
+          setForm(f => ({ ...f, uid_nfc: uidFormateado }))
+          setNfcReading(false)
+        }
+      }
+      
+      ndef.onreadingerror = () => {
+        alert("Error al leer la tarjeta. Intenta de nuevo.")
+        setNfcReading(false)
+      }
+    } catch (error) {
+      alert("Error al iniciar el escáner NFC: " + error.message)
+      setNfcReading(false)
+    }
   }
 
   return (
@@ -210,9 +243,25 @@ export default function Supervisores() {
                     <option value="INACTIVO">INACTIVO</option>
                   </select>
                 </div>
-                <div className="form-field full">
-                  <label>Credencial NFC <span className="text-muted text-sm">— (Enfoca aquí y escanea la tarjeta)</span></label>
-                  <input className="input font-mono" value={form.uid_nfc || ''} onChange={e => setForm(f => ({ ...f, uid_nfc: e.target.value }))} placeholder="Ej: A1:B2:C3:D4" />
+                <div className="form-field full" style={{ background: 'var(--bg-surface)', padding: 16, borderRadius: 'var(--radius-md)', border: '1px dashed var(--primary)', position: 'relative' }}>
+                  <label style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
+                    <span>UID NFC de la Tarjeta</span>
+                    <div style={{ display: 'flex', gap: 8 }}>
+                      <button className="btn btn-primary btn-sm" onClick={scanNFCWebAPI} disabled={nfcReading}>
+                        <Wifi size={14} /> Leer con Celular
+                      </button>
+                    </div>
+                  </label>
+                  <input 
+                    autoFocus
+                    ref={uidRef}
+                    className="input font-mono" 
+                    style={{ fontSize: 20, textAlign: 'center', letterSpacing: 2, padding: 12, background: nfcReading ? 'var(--primary-glow)' : 'var(--bg-input)' }} 
+                    value={form.uid_nfc || ''} 
+                    onChange={e => setForm(f => ({ ...f, uid_nfc: e.target.value.toUpperCase() }))} 
+                    placeholder="Ej: A1B2C3D4" 
+                  />
+                  {nfcReading && <div style={{ textAlign: 'center', fontSize: 11, color: 'var(--primary)', marginTop: 8 }}>Acerca la tarjeta a tu celular o usa el lector USB...</div>}
                 </div>
               </div>
             </div>

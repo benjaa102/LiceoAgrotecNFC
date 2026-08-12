@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Plus, CreditCard, Lock, X, Wifi, Search, Pencil, Trash2, RefreshCw, CheckCircle } from 'lucide-react'
+import { Plus, CreditCard, Lock, X, Wifi, Search, Pencil, Trash2, RefreshCw, CheckCircle, ChevronDown, ChevronRight, Users } from 'lucide-react'
 import { supabase } from '../lib/supabase'
 
 const ESTADOS = ['ACTIVA', 'BLOQUEADA', 'PERDIDA']
@@ -19,13 +19,14 @@ export default function CredencialesNFC() {
   const [form, setForm]           = useState({})
   const [userSearch, setUserSearch] = useState('')
   const [nfcReading, setNfcReading] = useState(false)
+  const [selectedCurso, setSelectedCurso] = useState('')
   const uidRef = useRef(null)
 
   const loadData = async () => {
     setLoading(true)
     const [resCred, resEst, resSup] = await Promise.all([
       supabase.from('credenciales').select('*').order('fecha_asignacion', { ascending: false }),
-      supabase.from('estudiantes').select('id, nombre, rut, curso'),
+      supabase.from('estudiantes').select('id, nombre, rut, curso, matricula'),
       supabase.from('supervisores').select('id, nombre, rut')
     ])
     if (resCred.data) setData(resCred.data)
@@ -50,13 +51,21 @@ export default function CredencialesNFC() {
     return matchQ && matchT && matchE
   })
 
-  const openNew  = () => { setForm({ estado: 'ACTIVA', tipo_usuario: 'ESTUDIANTE', fecha_asignacion: new Date().toISOString().slice(0, 10) }); setModal('new'); setUserSearch('') }
+  const openNew  = () => { setForm({ estado: 'ACTIVA', tipo_usuario: 'ESTUDIANTE', fecha_asignacion: new Date().toISOString().slice(0, 10) }); setModal('new'); setUserSearch(''); setSelectedCurso('') }
   const openEdit = (rec) => { 
     setForm({ ...rec }); 
     setModal(rec); 
     setUserSearch(getUsuarioNombre(rec.tipo_usuario, rec.id_usuario)); 
+    setSelectedCurso('')
   }
-  const closeModal = () => { setModal(null); setForm({}); setNfcReading(false); setUserSearch('') }
+  const closeModal = () => { setModal(null); setForm({}); setNfcReading(false); setUserSearch(''); setSelectedCurso('') }
+
+  // Get unique sorted courses
+  const cursos = [...new Set(estudiantes.map(e => e.curso).filter(Boolean))].sort((a, b) => {
+    const numA = parseInt(a); const numB = parseInt(b)
+    if (numA !== numB) return numA - numB
+    return a.localeCompare(b)
+  })
 
   const save = async () => {
     if (modal === 'new') {
@@ -246,62 +255,125 @@ export default function CredencialesNFC() {
                   </select>
                 </div>
 
-                <div className="form-field" style={{ gridColumn: '1 / -1', position: 'relative' }}>
+                <div className="form-field" style={{ gridColumn: '1 / -1' }}>
                   <label>Buscar y Seleccionar Usuario</label>
-                  <input 
-                    type="text" 
-                    className="input" 
-                    placeholder="Escribe el nombre, RUT o curso para buscar..." 
-                    value={userSearch}
-                    onChange={e => {
-                      setUserSearch(e.target.value)
-                      if (form.id_usuario) setForm(f => ({ ...f, id_usuario: '' }))
-                    }}
-                  />
+                  
+                  {/* Selected user indicator */}
                   {form.id_usuario && (
-                    <div style={{ position: 'absolute', right: 12, top: 38, color: 'var(--success)' }}>
-                      <CheckCircle size={18} />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px', background: 'rgba(34,197,94,0.1)', border: '1px solid var(--success)', borderRadius: 8, marginBottom: 10 }}>
+                      <CheckCircle size={16} style={{ color: 'var(--success)', flexShrink: 0 }} />
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontWeight: 700, fontSize: 13 }}>{userSearch}</div>
+                        <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>Seleccionado</div>
+                      </div>
+                      <button className="btn btn-secondary btn-sm btn-icon" onClick={() => { setForm(f => ({ ...f, id_usuario: '' })); setUserSearch(''); setSelectedCurso('') }}><X size={13} /></button>
                     </div>
                   )}
-                  
-                  {userSearch && !form.id_usuario && (
-                    <div style={{
-                      position: 'absolute', top: '100%', left: 0, right: 0, 
-                      background: 'var(--bg-surface)', border: '1px solid var(--border)', 
-                      borderRadius: 8, marginTop: 4, maxHeight: 200, overflowY: 'auto', 
-                      zIndex: 10, boxShadow: '0 8px 24px rgba(0,0,0,0.3)'
-                    }}>
+
+                  {!form.id_usuario && (
+                    <>
+                      {/* Search input */}
+                      <div style={{ position: 'relative', marginBottom: 10 }}>
+                        <Search size={14} style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
+                        <input 
+                          type="text" 
+                          className="input" 
+                          style={{ paddingLeft: 34 }}
+                          placeholder={form.tipo_usuario === 'ESTUDIANTE' ? 'Buscar por nombre, RUT o N° matrícula...' : 'Buscar por nombre o RUT...'}
+                          value={userSearch}
+                          onChange={e => {
+                            setUserSearch(e.target.value)
+                            if (e.target.value) setSelectedCurso('')
+                          }}
+                        />
+                      </div>
+
+                      {/* Course selector (only for students) */}
+                      {form.tipo_usuario === 'ESTUDIANTE' && !userSearch && (
+                        <div style={{ marginBottom: 10 }}>
+                          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: selectedCurso ? 8 : 0 }}>
+                            {cursos.map(c => (
+                              <button key={c} onClick={() => setSelectedCurso(sc => sc === c ? '' : c)}
+                                style={{
+                                  padding: '5px 12px', borderRadius: 6, border: '1px solid ' + (selectedCurso === c ? 'var(--primary)' : 'var(--border)'),
+                                  background: selectedCurso === c ? 'var(--primary)' : 'var(--bg-input)', color: selectedCurso === c ? 'white' : 'var(--text-secondary)',
+                                  cursor: 'pointer', fontSize: 12, fontWeight: 600, fontFamily: 'inherit', transition: 'all 0.15s'
+                                }}>
+                                {c}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Results list */}
                       {(() => {
                         const norm = str => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
-                        const searchTokens = norm(userSearch).split(/\s+/).filter(Boolean)
-                        
-                        const matchUser = (u) => {
-                          const searchText = norm(u.nombre + ' ' + (u.rut||'') + ' ' + (u.curso||''))
-                          return searchTokens.every(token => searchText.includes(token))
+                        let results = []
+
+                        if (form.tipo_usuario === 'SUPERVISOR') {
+                          if (userSearch) {
+                            const tokens = norm(userSearch).split(/\s+/).filter(Boolean)
+                            results = supervisores.filter(u => {
+                              const txt = norm(u.nombre + ' ' + (u.rut || ''))
+                              return tokens.every(t => txt.includes(t))
+                            })
+                          }
+                        } else {
+                          if (userSearch) {
+                            const tokens = norm(userSearch).split(/\s+/).filter(Boolean)
+                            results = estudiantes.filter(u => {
+                              const txt = norm(u.nombre + ' ' + (u.rut || '') + ' ' + (u.curso || '') + ' ' + (u.matricula || ''))
+                              return tokens.every(t => txt.includes(t))
+                            })
+                          } else if (selectedCurso) {
+                            results = estudiantes.filter(e => e.curso === selectedCurso).sort((a, b) => a.nombre.localeCompare(b.nombre))
+                          }
                         }
 
-                        const results = form.tipo_usuario === 'ESTUDIANTE' 
-                          ? estudiantes.filter(matchUser)
-                          : supervisores.filter(matchUser);
-                        
-                        if (results.length === 0) return <div style={{ padding: 12, color: 'var(--text-muted)' }}>No se encontraron resultados</div>
-                        
-                        return results.map(u => (
-                          <div key={u.id} 
-                            onClick={() => {
-                              setForm(f => ({ ...f, id_usuario: u.id }))
-                              setUserSearch(u.nombre)
-                            }}
-                            style={{ padding: '10px 12px', borderBottom: '1px solid var(--border-bright)', cursor: 'pointer', transition: 'background 0.2s' }}
-                            onMouseOver={e => e.currentTarget.style.background = 'var(--bg-card)'}
-                            onMouseOut={e => e.currentTarget.style.background = 'transparent'}
-                          >
-                            <div style={{ fontWeight: 600 }}>{u.nombre}</div>
-                            <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>{u.rut || 'Sin RUT'} {u.curso ? `• ${u.curso}` : ''}</div>
+                        if (!userSearch && !selectedCurso && form.tipo_usuario === 'ESTUDIANTE') return null
+                        if (!userSearch && form.tipo_usuario === 'SUPERVISOR') return null
+
+                        return (
+                          <div style={{
+                            background: 'var(--bg-app)', border: '1px solid var(--border)',
+                            borderRadius: 8, maxHeight: 220, overflowY: 'auto'
+                          }}>
+                            {selectedCurso && !userSearch && (
+                              <div style={{ padding: '8px 12px', borderBottom: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: 8, position: 'sticky', top: 0, background: 'var(--bg-surface)', zIndex: 2 }}>
+                                <Users size={13} style={{ color: 'var(--primary)' }} />
+                                <span style={{ fontWeight: 700, fontSize: 12, color: 'var(--text-primary)' }}>{selectedCurso}</span>
+                                <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>— {results.length} estudiantes</span>
+                              </div>
+                            )}
+                            {results.length === 0 && <div style={{ padding: 16, textAlign: 'center', color: 'var(--text-muted)', fontSize: 13 }}>No se encontraron resultados</div>}
+                            {results.map(u => (
+                              <div key={u.id}
+                                onClick={() => {
+                                  setForm(f => ({ ...f, id_usuario: u.id }))
+                                  setUserSearch(u.nombre + (u.curso ? ` (${u.curso})` : ''))
+                                }}
+                                style={{ padding: '9px 12px', borderBottom: '1px solid var(--border-bright)', cursor: 'pointer', transition: 'background 0.15s', display: 'flex', alignItems: 'center', gap: 10 }}
+                                onMouseOver={e => e.currentTarget.style.background = 'var(--bg-card)'}
+                                onMouseOut={e => e.currentTarget.style.background = 'transparent'}
+                              >
+                                <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'linear-gradient(135deg, var(--primary), var(--purple))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700, color: 'white', flexShrink: 0 }}>
+                                  {u.nombre ? u.nombre.split(' ').map(n => n[0]).slice(0, 2).join('') : '?'}
+                                </div>
+                                <div style={{ flex: 1, minWidth: 0 }}>
+                                  <div style={{ fontWeight: 600, fontSize: 13, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{u.nombre}</div>
+                                  <div style={{ fontSize: 11, color: 'var(--text-muted)', display: 'flex', gap: 8 }}>
+                                    <span className="font-mono">{u.rut || 'Sin RUT'}</span>
+                                    {u.curso && <span>• {u.curso}</span>}
+                                    {u.matricula && <span>• Mat: {u.matricula}</span>}
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
                           </div>
-                        ))
+                        )
                       })()}
-                    </div>
+                    </>
                   )}
                 </div>
 

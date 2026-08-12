@@ -272,26 +272,10 @@ export default function CredencialesNFC() {
 
                   {!form.id_usuario && (
                     <>
-                      {/* Search input */}
-                      <div style={{ position: 'relative', marginBottom: 10 }}>
-                        <Search size={14} style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
-                        <input 
-                          type="text" 
-                          className="input" 
-                          style={{ paddingLeft: 34 }}
-                          placeholder={form.tipo_usuario === 'ESTUDIANTE' ? 'Buscar por nombre, RUT o N° matrícula...' : 'Buscar por nombre o RUT...'}
-                          value={userSearch}
-                          onChange={e => {
-                            setUserSearch(e.target.value)
-                            if (e.target.value) setSelectedCurso('')
-                          }}
-                        />
-                      </div>
-
                       {/* Course selector (only for students) */}
-                      {form.tipo_usuario === 'ESTUDIANTE' && !userSearch && (
+                      {form.tipo_usuario === 'ESTUDIANTE' && (
                         <div style={{ marginBottom: 10 }}>
-                          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: selectedCurso ? 8 : 0 }}>
+                          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
                             {cursos.map(c => (
                               <button key={c} onClick={() => setSelectedCurso(sc => sc === c ? '' : c)}
                                 style={{
@@ -303,6 +287,26 @@ export default function CredencialesNFC() {
                               </button>
                             ))}
                           </div>
+                        </div>
+                      )}
+
+                      {/* Search input - shown when a course is selected or for supervisors */}
+                      {(selectedCurso || form.tipo_usuario === 'SUPERVISOR') && (
+                        <div style={{ position: 'relative', marginBottom: 10 }}>
+                          <Search size={14} style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
+                          <input 
+                            type="text" 
+                            className="input" 
+                            style={{ paddingLeft: 34 }}
+                            placeholder={form.tipo_usuario === 'ESTUDIANTE' ? `Buscar en ${selectedCurso} por nombre, RUT o N° matrícula...` : 'Buscar por nombre o RUT...'}
+                            value={userSearch}
+                            onChange={e => setUserSearch(e.target.value)}
+                          />
+                          {userSearch && (
+                            <button onClick={() => setUserSearch('')} style={{ position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)', padding: 2 }}>
+                              <X size={14} />
+                            </button>
+                          )}
                         </div>
                       )}
 
@@ -320,18 +324,21 @@ export default function CredencialesNFC() {
                             })
                           }
                         } else {
-                          if (userSearch) {
-                            const tokens = norm(userSearch).split(/\s+/).filter(Boolean)
-                            results = estudiantes.filter(u => {
-                              const txt = norm(u.nombre + ' ' + (u.rut || '') + ' ' + (u.curso || '') + ' ' + (u.matricula || ''))
-                              return tokens.every(t => txt.includes(t))
-                            })
-                          } else if (selectedCurso) {
-                            results = estudiantes.filter(e => e.curso === selectedCurso).sort((a, b) => a.nombre.localeCompare(b.nombre))
+                          if (selectedCurso) {
+                            // Filter by course first, then by search if provided
+                            results = estudiantes.filter(e => e.curso === selectedCurso)
+                            if (userSearch) {
+                              const tokens = norm(userSearch).split(/\s+/).filter(Boolean)
+                              results = results.filter(u => {
+                                const txt = norm(u.nombre + ' ' + (u.rut || '') + ' ' + (u.matricula || ''))
+                                return tokens.every(t => txt.includes(t))
+                              })
+                            }
+                            results.sort((a, b) => a.nombre.localeCompare(b.nombre))
                           }
                         }
 
-                        if (!userSearch && !selectedCurso && form.tipo_usuario === 'ESTUDIANTE') return null
+                        if (!selectedCurso && form.tipo_usuario === 'ESTUDIANTE') return null
                         if (!userSearch && form.tipo_usuario === 'SUPERVISOR') return null
 
                         return (

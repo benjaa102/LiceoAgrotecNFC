@@ -47,10 +47,14 @@ export default function ControlSemanal() {
     !(isViernesIndex(idx) && servicio !== 'DESAYUNO')
   )
 
-  // Estudiantes inscritos en el servicio
-  const inscritos = inscripciones
-    .filter(i => i.tipo_servicio === servicio && i.activo)
-    .map(i => getEstudianteById(i.id_estudiante))
+  // Estudiantes inscritos en el servicio o que tengan algún registro esta semana
+  const inscritosIds = new Set([
+    ...inscripciones.filter(i => i.tipo_servicio === servicio && i.activo).map(i => i.id_estudiante),
+    ...registros.filter(r => r.tipo_servicio === servicio).map(r => r.id_estudiante)
+  ])
+
+  const inscritos = Array.from(inscritosIds)
+    .map(id => getEstudianteById(id))
     .filter(Boolean)
     .filter(e => !search || e.nombre.toLowerCase().includes(search.toLowerCase()) || e.curso.toLowerCase().includes(search.toLowerCase()))
     .sort((a, b) => a.nombre.localeCompare(b.nombre))

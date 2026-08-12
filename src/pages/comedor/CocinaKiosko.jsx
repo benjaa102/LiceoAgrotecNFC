@@ -192,6 +192,7 @@ export default function CocinaKiosko() {
     setResultado('success')
     
     const newReg = {
+      id: 'rc_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
       id_estudiante: est.id,
       tipo_servicio: servicio.toUpperCase(),
       fecha: HOY,
@@ -201,12 +202,11 @@ export default function CocinaKiosko() {
       observacion: null,
     }
     
-    // Optimistic UI update (con ID temporal solo para UI)
-    const optimisticReg = { ...newReg, id: 'rc_' + Date.now() }
-    setRegistros(prev => [...prev, optimisticReg])
+    // Optimistic UI update
+    setRegistros(prev => [...prev, newReg])
     resetIdle()
     
-    // Save to Supabase (sin el ID temporal para que Supabase genere su UUID real)
+    // Save to Supabase
     supabase.from('registros_comedor').insert([newReg]).then(({error}) => {
       if (error) console.error("Error saving NFC record:", error)
     })

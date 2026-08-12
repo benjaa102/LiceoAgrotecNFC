@@ -4,7 +4,7 @@ import { supabase } from '../lib/supabase'
 import { formatFecha, makeFilename } from '../lib/csvExport'
 import { exportToExcel, exportToPDF } from '../lib/exportUtils'
 
-const CURSOS = ['7° Básico', '8° Básico', '1°A', '1°B', '1°C', '1°D', '2°A', '2°B', '2°C', '2°D', '3°A', '3°B', '3°C', '3°D', '4°A', '4°B', '4°C', '4°D']
+const CURSOS = ['7°', '8°', '1°A', '1°B', '1°C', '1°D', '2°A', '2°B', '2°C', '2°D', '3°A', '3°B', '3°C', '3°D', '4°A', '4°B', '4°C', '4°D']
 
 export default function Asistencia() {
   const [asistencia, setAsistencia] = useState([])

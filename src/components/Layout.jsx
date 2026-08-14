@@ -2,11 +2,13 @@ import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import {
   LayoutDashboard, Users, UserCheck, Bus, MapPin,
-  CreditCard, ClipboardList, Bell, BarChart3, LogOut, Wifi,
+  CreditCard, ClipboardList, Bell, BarChart3, LogOut, Wifi, WifiOff,
   UtensilsCrossed, Scan, CalendarDays, BookOpen, Menu, Printer
 } from 'lucide-react'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../context/AuthContext'
+import ConnectionStatus from './ConnectionStatus'
+import { subscribe as subscribeOffline } from '../lib/offlineManager'
 
 const getNavBuses = (alertCount = 0) => [
   { to: '/dashboard',    icon: LayoutDashboard, label: 'Dashboard' },
@@ -55,6 +57,11 @@ export default function Layout() {
   const { user, profile, signOut } = useAuth()
   const [alertCount, setAlertCount] = useState(0)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [offlineStatus, setOfflineStatus] = useState({ online: navigator.onLine, syncing: false, pendingCount: 0 })
+
+  useEffect(() => {
+    return subscribeOffline(setOfflineStatus)
+  }, [])
   
   const meta = PAGE_META[pathname] ?? { title: '', desc: '' }
   const now = new Date().toLocaleDateString('es-CL', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
@@ -158,8 +165,10 @@ export default function Layout() {
             </div>
           </div>
           <div className="topbar-actions">
-            <div className="d-flex gap-1" style={{ fontSize: 12, color: 'var(--success)', background: 'var(--success-bg)', padding: '5px 10px', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(34,197,94,0.2)' }}>
-              <Wifi size={13} /> Conectado
+            <div className="d-flex gap-1" style={{ fontSize: 12, color: offlineStatus.online ? 'var(--success)' : 'var(--danger)', background: offlineStatus.online ? 'var(--success-bg)' : 'var(--danger-bg)', padding: '5px 10px', borderRadius: 'var(--radius-sm)', border: `1px solid ${offlineStatus.online ? 'rgba(34,197,94,0.2)' : 'rgba(239,68,68,0.2)'}` }}>
+              {offlineStatus.online ? <Wifi size={13} /> : <WifiOff size={13} />}
+              {offlineStatus.online ? 'Conectado' : 'Sin conexión'}
+              {offlineStatus.pendingCount > 0 && <span style={{ marginLeft: 4, fontWeight: 700 }}>({offlineStatus.pendingCount} pendientes)</span>}
             </div>
             <div className="topbar-date">{now}</div>
           </div>
@@ -169,6 +178,7 @@ export default function Layout() {
           <Outlet />
         </main>
       </div>
+      <ConnectionStatus />
     </div>
   )
 }

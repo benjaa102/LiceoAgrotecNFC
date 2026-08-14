@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { Wifi, CheckCircle, XCircle, AlertTriangle, Search, Clock, RotateCcw } from 'lucide-react'
+import { Wifi, WifiOff, CheckCircle, XCircle, AlertTriangle, Search, Clock, RotateCcw } from 'lucide-react'
 import { supabase } from '../../lib/supabase'
+import { fetchWithCache, saveRecord, subscribe as subscribeOffline, getPendingCount, cacheData } from '../../lib/offlineManager'
 
 const HOY = new Date().toISOString().slice(0, 10)
 const HOY_DISPLAY = new Date().toLocaleDateString('es-CL', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
@@ -62,40 +63,58 @@ export default function CocinaKiosko() {
   const recentScansRef = useRef({}) // { id_estudiante: timestamp }
   const [isWebNfcReading, setIsWebNfcReading] = useState(false)
 
+  // Estado de conexión para mostrar en UI
+  const [offlineStatus, setOfflineStatus] = useState({ online: true, syncing: false, pendingCount: 0 })
+
   useEffect(() => {
-    supabase.from('estudiantes').select('*').then(({data}) => {
+    // Cargar datos con soporte offline (caché automático)
+    fetchWithCache('estudiantes', () => supabase.from('estudiantes').select('*')).then(({ data }) => {
       if (data) setEstudiantesDb(data)
     })
-    supabase.from('credenciales').select('*').then(({data}) => {
+    fetchWithCache('credenciales', () => supabase.from('credenciales').select('*')).then(({ data }) => {
       if (data) setCredencialesDb(data)
     })
-    supabase.from('registros_comedor').select('*').eq('fecha', HOY).then(({data}) => {
-      if (data) setRegistros(data)
+    fetchWithCache('registros_comedor_' + HOY, () => supabase.from('registros_comedor').select('*').eq('fecha', HOY)).then(({ data }) => {
+      if (data) {
+        // Merge con registros pendientes que están en localStorage
+        setRegistros(prev => {
+          const ids = new Set(data.map(r => r.id))
+          const pending = prev.filter(r => !ids.has(r.id))
+          return [...data, ...pending]
+        })
+      }
     })
 
-    const channel = supabase.channel('realtime_comedor')
-      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'registros_comedor' }, payload => {
-        if (payload.new && payload.new.fecha === HOY) {
-          setRegistros(prev => {
-            // Evitar duplicados comparando estudiante, servicio y fecha en lugar del ID (ya que Supabase puede generar un UUID nuevo)
-            const existsIndex = prev.findIndex(r => 
-              r.id_estudiante === payload.new.id_estudiante && 
-              r.tipo_servicio === payload.new.tipo_servicio && 
-              r.fecha === payload.new.fecha
-            )
-            if (existsIndex >= 0) {
-              const newArray = [...prev]
-              newArray[existsIndex] = payload.new
-              return newArray
-            }
-            return [...prev, payload.new]
-          })
-        }
-      })
-      .subscribe()
+    // Suscribirse a estado de conexión
+    const unsubOffline = subscribeOffline(setOfflineStatus)
+
+    // Realtime solo si hay conexión
+    let channel = null
+    if (navigator.onLine) {
+      channel = supabase.channel('realtime_comedor')
+        .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'registros_comedor' }, payload => {
+          if (payload.new && payload.new.fecha === HOY) {
+            setRegistros(prev => {
+              const existsIndex = prev.findIndex(r => 
+                r.id_estudiante === payload.new.id_estudiante && 
+                r.tipo_servicio === payload.new.tipo_servicio && 
+                r.fecha === payload.new.fecha
+              )
+              if (existsIndex >= 0) {
+                const newArray = [...prev]
+                newArray[existsIndex] = payload.new
+                return newArray
+              }
+              return [...prev, payload.new]
+            })
+          }
+        })
+        .subscribe()
+    }
 
     return () => {
-      supabase.removeChannel(channel)
+      unsubOffline()
+      if (channel) supabase.removeChannel(channel)
     }
   }, [])
 
@@ -206,10 +225,12 @@ export default function CocinaKiosko() {
     setRegistros(prev => [...prev, newReg])
     resetIdle()
     
-    // Save to Supabase
-    supabase.from('registros_comedor').insert([newReg]).then(({error}) => {
-      if (error) console.error("Error saving NFC record:", error)
+    // Save to Supabase (or queue if offline)
+    saveRecord('registros_comedor', newReg).then(({ queued }) => {
+      if (queued) console.log('[Offline] NFC record queued for later sync')
     })
+    // Update local cache
+    cacheData('registros_comedor_' + HOY, [...registros, newReg])
   }, [servicio, registros, resetIdle, credencialesDb, estudiantesDb])
 
   useEffect(() => {
@@ -322,10 +343,12 @@ export default function CocinaKiosko() {
     // Optimistic update
     setRegistros(prev => [...prev, newReg])
     
-    // Save to Supabase
-    supabase.from('registros_comedor').insert([newReg]).then(({error}) => {
-      if (error) console.error("Error saving manual record:", error)
+    // Save to Supabase (or queue if offline)
+    saveRecord('registros_comedor', newReg).then(({ queued }) => {
+      if (queued) console.log('[Offline] Manual record queued for later sync')
     })
+    // Update local cache
+    cacheData('registros_comedor_' + HOY, [...registros, newReg])
     
     setBusqueda({ rut: '', nombre: '', matricula: '' })
     setObsManual('')

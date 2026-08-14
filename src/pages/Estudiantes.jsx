@@ -68,7 +68,13 @@ export default function Estudiantes() {
 
   const handleDownloadFichas = async (studentsToDownload = filtered, groupName = '', separadas = true) => {
     if (studentsToDownload.length === 0) return alert('No hay estudiantes para descargar.')
-    if (!window.confirm(`¿Descargar las fichas de los ${studentsToDownload.length} estudiantes ${groupName ? `de ${groupName}` : 'visibles'}? (Mes actual)\n\nSe generará un PDF por cada curso dentro de un archivo ZIP.`)) return
+    
+    // Safety check to prevent Out of Memory browser crashes
+    if (studentsToDownload.length > 80) {
+      return alert('⚠️ LÍMITE SUPERADO\n\nEstás intentando generar más de 80 fichas PDF simultáneamente. Esto causará que tu navegador se quede sin memoria y se congele.\n\nPor favor, descarga las fichas curso por curso. Usa el botón de descarga 📥 que aparece al lado de cada curso en la tabla de abajo, o usa el filtro superior para seleccionar un curso en específico.')
+    }
+
+    if (!window.confirm(`¿Descargar las fichas de los ${studentsToDownload.length} estudiantes ${groupName ? `de ${groupName}` : 'visibles'}? (Mes actual)\n\nSe generará un PDF por cada alumno dentro de un archivo ZIP.`)) return
     
     setIsDownloading(true)
     setDownloadProgress('Cargando registros...')

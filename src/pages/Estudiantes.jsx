@@ -212,9 +212,6 @@ export default function Estudiantes() {
         </div>
         <div className="toolbar-right">
           <span className="text-muted text-sm" style={{ alignSelf: 'center' }}>{filtered.length} estudiantes</span>
-          <button className="btn btn-secondary" onClick={() => handleDownloadFichas(filtered)} disabled={isDownloading || filtered.length === 0} title="Descargar Fichas PDF por Curso (ZIP)">
-            <Download size={15} className={isDownloading ? 'spin' : ''} /> {isDownloading ? (downloadProgress || 'Generando...') : 'Fichas por Curso'}
-          </button>
           <button className="btn btn-secondary" onClick={loadData} disabled={loading}>
             <RefreshCw size={15} className={loading ? 'spin' : ''} />
           </button>

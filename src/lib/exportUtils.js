@@ -310,8 +310,8 @@ export async function exportBulkFichasPDF(estudiantes, registrosComedor, registr
 }
 
 /**
- * Exporta fichas de asistencia separadas por curso en un ZIP.
- * Genera un PDF por cada curso y los empaqueta en un ZIP que se descarga automáticamente.
+ * Exporta fichas de asistencia individuales por alumno, organizadas en carpetas por curso dentro de un ZIP.
+ * Estructura: Curso/NombreAlumno.pdf
  */
 export async function exportFichasPorCursoZIP(estudiantes, registrosComedor, registrosTransporte, month, year, onProgress) {
   if (!estudiantes || estudiantes.length === 0) return
@@ -335,18 +335,17 @@ export async function exportFichasPorCursoZIP(estudiantes, registrosComedor, reg
       porCurso[curso].push(est)
     })
 
-    // Ordenar cursos
     const cursosOrdenados = Object.keys(porCurso).sort()
     let processed = 0
+    const totalStudents = estudiantes.length
 
     for (const curso of cursosOrdenados) {
       const estudiantesCurso = porCurso[curso].sort((a, b) => a.nombre.localeCompare(b.nombre))
-      const doc = new jsPDF()
+      const cleanCurso = curso.replace(/[°]/g, '').replace(/\s+/g, '_')
 
-      for (let i = 0; i < estudiantesCurso.length; i++) {
-        const est = estudiantesCurso[i]
-
-        if (i > 0) doc.addPage()
+      for (const est of estudiantesCurso) {
+        // Crear un PDF individual por cada alumno
+        const doc = new jsPDF()
 
         // Logos
         if (agrotecBase64) doc.addImage(agrotecBase64, 'PNG', 14, 10, 20, 25)
@@ -413,15 +412,21 @@ export async function exportFichasPorCursoZIP(estudiantes, registrosComedor, reg
           headStyles: { fillColor: [41, 128, 185] },
           styles: { fontSize: 8 }
         })
+
+        // Nombre limpio para el archivo PDF
+        const cleanName = (est.nombre || 'Sin_Nombre')
+          .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^a-zA-Z0-9\s,]/g, '')
+          .replace(/\s+/g, '_')
+          .substring(0, 60)
+
+        // Guardar en carpeta del curso: "1A/APELLIDO_Nombre.pdf"
+        const pdfBlob = doc.output('arraybuffer')
+        zip.file(`${cleanCurso}/${cleanName}.pdf`, pdfBlob)
+
+        processed++
+        if (onProgress) onProgress(processed, totalStudents, est.nombre)
       }
-
-      // Añadir PDF al ZIP (usar nombre limpio para el archivo)
-      const cleanCurso = curso.replace(/[°]/g, '').replace(/\s+/g, '_')
-      const pdfBlob = doc.output('arraybuffer')
-      zip.file(`Fichas_${cleanCurso}_${monthNames[month]}_${year}.pdf`, pdfBlob)
-
-      processed++
-      if (onProgress) onProgress(processed, cursosOrdenados.length, curso)
     }
 
     // Generar y descargar el ZIP
@@ -429,14 +434,15 @@ export async function exportFichasPorCursoZIP(estudiantes, registrosComedor, reg
     const url = URL.createObjectURL(zipBlob)
     const a = document.createElement('a')
     a.href = url
-    a.download = `Fichas_PorCurso_${monthNames[month]}_${year}.zip`
+    a.download = `Fichas_Individuales_${monthNames[month]}_${year}.zip`
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)
     URL.revokeObjectURL(url)
 
   } catch (err) {
-    console.error('Error generating per-course PDFs:', err)
-    alert('Error al generar las fichas por curso: ' + err.message)
+    console.error('Error generating individual PDFs:', err)
+    alert('Error al generar las fichas individuales: ' + err.message)
   }
 }
+

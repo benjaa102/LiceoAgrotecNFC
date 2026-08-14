@@ -426,11 +426,19 @@ export async function exportFichasPorCursoZIP(estudiantes, registrosComedor, reg
 
         processed++
         if (onProgress) onProgress(processed, totalStudents, est.nombre)
+        
+        // Ceder el control al navegador cada 5 estudiantes para evitar que la UI se congele
+        if (processed % 5 === 0) {
+          await new Promise(resolve => setTimeout(resolve, 0))
+        }
       }
     }
 
-    // Generar y descargar el ZIP
-    const zipBlob = await zip.generateAsync({ type: 'blob' })
+    if (onProgress) onProgress(processed, totalStudents, 'Empaquetando ZIP (esto puede tomar unos segundos)...')
+    await new Promise(resolve => setTimeout(resolve, 100))
+
+    // Generar y descargar el ZIP (sin compresión para evitar bloqueos y exceso de memoria)
+    const zipBlob = await zip.generateAsync({ type: 'blob', compression: 'STORE' })
     const url = URL.createObjectURL(zipBlob)
     const a = document.createElement('a')
     a.href = url

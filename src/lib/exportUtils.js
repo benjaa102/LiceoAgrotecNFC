@@ -1,6 +1,7 @@
 import ExcelJS from 'exceljs'
 import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
+import JSZip from 'jszip'
 
 /**
  * Convierte la imagen desde la carpeta public a Base64
@@ -305,5 +306,137 @@ export async function exportBulkFichasPDF(estudiantes, registrosComedor, registr
   } catch (err) {
     console.error('Error generating bulk PDF:', err)
     alert('Error al generar el PDF masivo: ' + err.message)
+  }
+}
+
+/**
+ * Exporta fichas de asistencia separadas por curso en un ZIP.
+ * Genera un PDF por cada curso y los empaqueta en un ZIP que se descarga automáticamente.
+ */
+export async function exportFichasPorCursoZIP(estudiantes, registrosComedor, registrosTransporte, month, year, onProgress) {
+  if (!estudiantes || estudiantes.length === 0) return
+
+  try {
+    const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+    const datePrefix = `${year}-${String(month + 1).padStart(2, '0')}`
+    const zip = new JSZip()
+
+    // Cargar logos una sola vez
+    let agrotecBase64 = null
+    let snaBase64 = null
+    try { agrotecBase64 = await getImageBase64('/logo-liceo.png') } catch (e) { }
+    try { snaBase64 = await getImageBase64('/logo_sna.png') } catch (e) { }
+
+    // Agrupar estudiantes por curso
+    const porCurso = {}
+    estudiantes.forEach(est => {
+      const curso = est.curso || 'Sin Curso'
+      if (!porCurso[curso]) porCurso[curso] = []
+      porCurso[curso].push(est)
+    })
+
+    // Ordenar cursos
+    const cursosOrdenados = Object.keys(porCurso).sort()
+    let processed = 0
+
+    for (const curso of cursosOrdenados) {
+      const estudiantesCurso = porCurso[curso].sort((a, b) => a.nombre.localeCompare(b.nombre))
+      const doc = new jsPDF()
+
+      for (let i = 0; i < estudiantesCurso.length; i++) {
+        const est = estudiantesCurso[i]
+
+        if (i > 0) doc.addPage()
+
+        // Logos
+        if (agrotecBase64) doc.addImage(agrotecBase64, 'PNG', 14, 10, 20, 25)
+        if (snaBase64) doc.addImage(snaBase64, 'PNG', 172, 10, 20, 25)
+
+        // Header
+        doc.setFontSize(16)
+        doc.setTextColor(40, 40, 40)
+        doc.text('FICHA DE ASISTENCIA ESTUDIANTIL', 40, 20)
+
+        doc.setFontSize(10)
+        doc.setFont('helvetica', 'normal')
+        doc.text('Liceo Bicentenario Agricola Tecnologico', 40, 26)
+        doc.text('Fecha de Emision: ' + new Date().toLocaleDateString('es-CL'), 40, 32)
+
+        doc.setLineWidth(0.5)
+        doc.line(14, 40, 196, 40)
+
+        // Student info
+        doc.setFontSize(12)
+        doc.setFont('helvetica', 'bold')
+        doc.text('DATOS DEL ESTUDIANTE', 14, 50)
+
+        doc.setFont('helvetica', 'normal')
+        doc.setFontSize(10)
+        doc.text('Nombre: ' + (est.nombre || ''), 14, 58)
+        doc.text('RUT: ' + (est.rut || 'N/A'), 120, 58)
+        doc.text('Curso: ' + (est.curso || 'N/A'), 14, 64)
+        doc.text('Tipo: ' + (est.tipo || 'N/A'), 120, 64)
+        doc.text('Matricula: ' + (est.matricula || 'N/A'), 14, 70)
+
+        doc.setLineWidth(0.2)
+        doc.line(14, 76, 196, 76)
+
+        doc.setFontSize(12)
+        doc.setFont('helvetica', 'bold')
+        doc.text('REGISTROS DE ASISTENCIA - ' + monthNames[month] + ' ' + year, 14, 86)
+
+        // Records
+        const combined = []
+        registrosComedor
+          .filter(r => r.id_estudiante === est.id && r.fecha?.startsWith(datePrefix))
+          .forEach(r => combined.push({ ...r, _source: 'COMEDOR', _displayType: r.tipo_servicio }))
+
+        registrosTransporte
+          .filter(r => r.id_estudiante === est.id && r.fecha?.startsWith(datePrefix))
+          .forEach(r => combined.push({ ...r, _source: 'TRANSPORTE', _displayType: r.tipo_registro }))
+
+        combined.sort((a, b) => b.fecha.localeCompare(a.fecha) || b.hora.localeCompare(a.hora))
+
+        const tableData = combined.map(r => [
+          r.fecha || '',
+          r.hora || '',
+          r._source || '',
+          r._displayType || '',
+          r.estado || 'PRESENTE'
+        ])
+
+        autoTable(doc, {
+          startY: 91,
+          head: [['Fecha', 'Hora', 'Modulo', 'Servicio / Tipo', 'Estado']],
+          body: tableData.length > 0 ? tableData : [['Sin registros', '', '', '', '']],
+          theme: 'grid',
+          headStyles: { fillColor: [41, 128, 185] },
+          styles: { fontSize: 8 }
+        })
+      }
+
+      // Añadir PDF al ZIP (usar nombre limpio para el archivo)
+      const cleanCurso = curso.replace(/[°]/g, '').replace(/\s+/g, '_')
+      const pdfBlob = doc.output('arraybuffer')
+      zip.file(`Fichas_${cleanCurso}_${monthNames[month]}_${year}.pdf`, pdfBlob)
+
+      processed++
+      if (onProgress) onProgress(processed, cursosOrdenados.length, curso)
+    }
+
+    // Generar y descargar el ZIP
+    const zipBlob = await zip.generateAsync({ type: 'blob' })
+    const url = URL.createObjectURL(zipBlob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `Fichas_PorCurso_${monthNames[month]}_${year}.zip`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+
+  } catch (err) {
+    console.error('Error generating per-course PDFs:', err)
+    alert('Error al generar las fichas por curso: ' + err.message)
   }
 }

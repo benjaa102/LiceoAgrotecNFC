@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Plus, Search, Pencil, Trash2, X, Users, RefreshCw, Save, Download, Folder, FolderOpen, User } from 'lucide-react'
 import { QRCodeSVG } from 'qrcode.react'
 import { supabase } from '../lib/supabase'
-import { exportBulkFichasPDF } from '../lib/exportUtils'
+import { exportBulkFichasPDF, exportFichasPorCursoZIP } from '../lib/exportUtils'
 
 const TIPOS   = ['INTERNO', 'EXTERNO']
 const ESTADOS = ['ACTIVO', 'PENDIENTE', 'REVOCADO']
@@ -64,11 +64,14 @@ export default function Estudiantes() {
     return matchQ && matchE && matchR && matchC && matchT
   })
 
-  const handleDownloadFichas = async (studentsToDownload = filtered, groupName = '') => {
+  const [downloadProgress, setDownloadProgress] = useState('')
+
+  const handleDownloadFichas = async (studentsToDownload = filtered, groupName = '', separadas = true) => {
     if (studentsToDownload.length === 0) return alert('No hay estudiantes para descargar.')
-    if (!window.confirm(`¿Descargar las fichas de los ${studentsToDownload.length} estudiantes ${groupName ? `de ${groupName}` : 'visibles'}? (Mes actual)`)) return
+    if (!window.confirm(`¿Descargar las fichas de los ${studentsToDownload.length} estudiantes ${groupName ? `de ${groupName}` : 'visibles'}? (Mes actual)\n\nSe generará un PDF por cada curso dentro de un archivo ZIP.`)) return
     
     setIsDownloading(true)
+    setDownloadProgress('Cargando registros...')
     try {
       const studentIds = studentsToDownload.map(e => e.id)
       
@@ -77,9 +80,6 @@ export default function Estudiantes() {
       const year = now.getFullYear()
       const datePrefix = `${year}-${String(month + 1).padStart(2, '0')}`
 
-      // Fetch all records for these students for the current month
-      // Supabase in() has a limit, but for ~1000 it should be fine. 
-      // Si son muchos, ideal paginar, pero para un colegio normal suele bastar.
       const [resComedor, resBuses] = await Promise.all([
         supabase.from('registros_comedor').select('*').in('id_estudiante', studentIds).like('fecha', `${datePrefix}%`),
         supabase.from('asistencia_buses').select('*').in('id_estudiante', studentIds).like('fecha', `${datePrefix}%`)
@@ -88,12 +88,20 @@ export default function Estudiantes() {
       if (resComedor.error) console.warn("Error fetching registros_comedor:", resComedor.error)
       if (resBuses.error) console.warn("Error fetching asistencia_buses:", resBuses.error)
 
-      await exportBulkFichasPDF(studentsToDownload, resComedor.data || [], resBuses.data || [], month, year)
+      if (separadas) {
+        await exportFichasPorCursoZIP(
+          studentsToDownload, resComedor.data || [], resBuses.data || [], month, year,
+          (done, total, curso) => setDownloadProgress(`Generando ${curso}... (${done}/${total})`)
+        )
+      } else {
+        await exportBulkFichasPDF(studentsToDownload, resComedor.data || [], resBuses.data || [], month, year)
+      }
     } catch (err) {
       console.error(err)
       alert('Error descargando las fichas: ' + err.message)
     } finally {
       setIsDownloading(false)
+      setDownloadProgress('')
     }
   }
 
@@ -198,8 +206,8 @@ export default function Estudiantes() {
         </div>
         <div className="toolbar-right">
           <span className="text-muted text-sm" style={{ alignSelf: 'center' }}>{filtered.length} estudiantes</span>
-          <button className="btn btn-secondary" onClick={() => handleDownloadFichas(filtered)} disabled={isDownloading || filtered.length === 0} title="Descargar Fichas PDF (Mes actual)">
-            <Download size={15} className={isDownloading ? 'spin' : ''} /> {isDownloading ? 'Generando...' : 'Fichas'}
+          <button className="btn btn-secondary" onClick={() => handleDownloadFichas(filtered)} disabled={isDownloading || filtered.length === 0} title="Descargar Fichas PDF por Curso (ZIP)">
+            <Download size={15} className={isDownloading ? 'spin' : ''} /> {isDownloading ? (downloadProgress || 'Generando...') : 'Fichas por Curso'}
           </button>
           <button className="btn btn-secondary" onClick={loadData} disabled={loading}>
             <RefreshCw size={15} className={loading ? 'spin' : ''} />

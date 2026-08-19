@@ -18,10 +18,10 @@ const getNavBuses = (alertCount = 0) => [
   { to: '/recorridos',   icon: MapPin,          label: 'Recorridos' },
   { to: '/credenciales', icon: CreditCard,      label: 'Credenciales NFC' },
   { to: '/imprimir-qr',  icon: Printer,         label: 'Imprimir QR' },
-  { to: '/buses/kiosko', icon: Scan,             label: 'Kiosko Buses' },
-  { to: '/asistencia',   icon: ClipboardList,   label: 'Asistencia Buses' },
-  { to: '/alertas',      icon: Bell,            label: 'Alertas', badge: alertCount, badgeType: 'danger' },
+  { to: '/buses/kiosko', icon: Scan,            label: 'Terminal Asistencia' },
+  { to: '/asistencia',   icon: ClipboardList,   label: 'Historial Asistencia' },
   { to: '/reportes',     icon: BarChart3,       label: 'Reportes Buses' },
+  { to: '/alertas',      icon: Bell,            label: 'Alertas', badge: alertCount, badgeType: 'danger' },
   { to: '/usuarios',     icon: Users,           label: 'Usuarios' },
 ]
 
@@ -41,10 +41,10 @@ const PAGE_META = {
   '/recorridos':          { title: 'Recorridos',            desc: 'Rutas y horarios de transporte' },
   '/credenciales':        { title: 'Credenciales NFC',      desc: 'Registro y asignación de tarjetas NTAG213' },
   '/imprimir-qr':         { title: 'Imprimir Credenciales QR', desc: 'Generación masiva de credenciales QR' },
-  '/asistencia':          { title: 'Asistencia Buses',      desc: 'Historial de registros — Módulo Buses' },
+  '/asistencia':          { title: 'Historial Asistencia',  desc: 'Historial de registros — Módulo Buses' },
   '/alertas':             { title: 'Alertas',               desc: 'Intentos no autorizados y buses incorrectos' },
   '/reportes':            { title: 'Reportes Buses',        desc: 'Exportación y estadísticas del módulo buses' },
-  '/buses/kiosko':        { title: 'Kiosko Buses',           desc: 'Registro NFC de asistencia al transporte escolar' },
+  '/buses/kiosko':        { title: 'Terminal Asistencia',   desc: 'Registro NFC de asistencia al transporte escolar' },
   '/usuarios':            { title: 'Gestión de Usuarios',   desc: 'Administración de accesos y roles' },
   '/comedor/dashboard':   { title: 'Dashboard Comedor',     desc: 'Resumen en vivo del uso del comedor' },
   '/comedor/kiosko':      { title: 'Comedor',                desc: 'Lectura NFC de asistencia al comedor en tiempo real' },
@@ -118,13 +118,13 @@ export default function Layout() {
               {navBuses.slice(0, 1).map(item => <NavItem key={item.to} {...item} />)}
 
               <span className="nav-section-label">Gestión</span>
-              {navBuses.slice(1, 6).map(item => <NavItem key={item.to} {...item} />)}
+              {navBuses.slice(1, 7).map(item => <NavItem key={item.to} {...item} />)}
 
               <span className="nav-section-label">Operación</span>
-              {navBuses.slice(6, 9).map(item => <NavItem key={item.to} {...item} />)}
+              {navBuses.slice(7, 10).map(item => <NavItem key={item.to} {...item} />)}
 
               <span className="nav-section-label">Sistema</span>
-              {navBuses.slice(9).map(item => <NavItem key={item.to} {...item} />)}
+              {navBuses.slice(10).map(item => <NavItem key={item.to} {...item} />)}
 
               {/* ── Separador ── */}
               <div style={{ margin: '12px 0', height: 1, background: 'var(--border)' }} />

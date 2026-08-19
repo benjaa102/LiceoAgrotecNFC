@@ -16,6 +16,7 @@ import Asistencia      from './pages/Asistencia'
 import Alertas         from './pages/Alertas'
 import Reportes        from './pages/Reportes'
 import Usuarios        from './pages/Usuarios'
+import BusesKiosko     from './pages/BusesKiosko'
 import PerfilEstudiante from './pages/PerfilEstudiante'
 // ─ Módulo Comedor ─────────────────────────────────────────────────────────────
 import DashboardComedor  from './pages/comedor/DashboardComedor'
@@ -51,6 +52,7 @@ const AppRoutes = () => {
           <Route path="/credenciales" element={<CredencialesNFC />} />
           <Route path="/imprimir-qr"  element={<ImprimirCredenciales />} />
           <Route path="/asistencia"   element={<Asistencia />} />
+          <Route path="/buses/kiosko" element={<BusesKiosko />} />
           <Route path="/alertas"      element={<Alertas />} />
           <Route path="/reportes"     element={<Reportes />} />
           <Route path="/usuarios"     element={<Usuarios />} />

@@ -186,6 +186,7 @@ export default function Usuarios() {
                   <label className="label">Rol de Acceso</label>
                   <select required className="input" style={{ width: '100%' }} value={formData.cargo} onChange={e => setFormData({...formData, cargo: e.target.value})}>
                     <option value="Encargado Comedor">Encargado Comedor (Solo módulo comedor)</option>
+                    <option value="Encargado Bus">Encargado Bus (Solo módulo buses)</option>
                     <option value="Administrador">Administrador (Acceso total)</option>
                   </select>
                 </div>

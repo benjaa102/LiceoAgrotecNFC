@@ -83,7 +83,8 @@ export default function Layout() {
   const displayName = profile?.nombre ?? user?.email?.split('@')[0] ?? 'Usuario'
   const displayRole = profile?.cargo ?? 'Administrador'
   const initials = displayName.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2)
-  const isAdmin = displayRole === 'Administrador'
+  const isBusRole = displayRole === 'Administrador' || displayRole === 'Encargado Bus'
+  const isComedorRole = displayRole === 'Administrador' || displayRole === 'Encargado Comedor'
 
   const handleLogout = async () => {
     await signOut()
@@ -108,7 +109,7 @@ export default function Layout() {
         </div>
 
         <nav className="sidebar-nav">
-          {isAdmin && (
+          {isBusRole && (
             <>
               {/* ── Módulo Buses ── */}
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '12px 8px 6px' }}>
@@ -131,12 +132,15 @@ export default function Layout() {
             </>
           )}
 
-          {/* ── Módulo Comedor ── */}
+          {isComedorRole && (
+            <>
+              {/* ── Módulo Comedor ── */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '4px 8px 6px' }}>
             <UtensilsCrossed size={12} style={{ color: 'var(--warning)' }} />
             <span className="nav-section-label" style={{ padding: 0 }}>Módulo Comedor</span>
           </div>
           {navComedor.map(item => <NavItem key={item.to} {...item} />)}
+          )}
         </nav>
 
         <div className="sidebar-footer">

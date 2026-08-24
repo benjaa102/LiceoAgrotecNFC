@@ -27,7 +27,7 @@ import ReportesComedor   from './pages/comedor/ReportesComedor'
 
 const AppRoutes = () => {
   const { profile } = useAuth()
-  const isAdmin = profile?.cargo === 'Administrador'
+  const isComedorRole = profile?.cargo === 'Encargado Comedor'
 
   return (
     <Routes>
@@ -41,7 +41,7 @@ const AppRoutes = () => {
             <Layout />
           </ProtectedRoute>
         }>
-          <Route index element={<Navigate to={isAdmin ? "/dashboard" : "/comedor/dashboard"} replace />} />
+          <Route index element={<Navigate to={isComedorRole ? "/comedor/dashboard" : "/dashboard"} replace />} />
           {/* Buses */}
           <Route path="/dashboard"    element={<Dashboard />} />
           <Route path="/estudiantes"  element={<Estudiantes />} />

@@ -1293,3 +1293,192 @@ select.input {
     color: black;
   }
 }
+
+/* ── Kiosko Buses Responsive ── */
+.kiosko-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.kiosko-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.kiosko-header-right {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.kiosko-clock {
+  font-size: 38px;
+  font-weight: 800;
+  font-family: var(--font-mono);
+}
+
+.kiosko-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.kiosko-nfc-zone {
+  min-height: 200px;
+  padding: 30px;
+}
+
+.kiosko-route-name {
+  font-weight: 800;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kiosko-route-selector {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.kiosko-route-selector-container {
+  padding: 30px;
+  max-width: 700px;
+  width: 100%;
+}
+
+.kiosko-clock-selector {
+  font-size: 42px;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  letter-spacing: -1px;
+}
+
+.kiosko-stat-box {
+  padding: 8px 16px;
+  text-align: center;
+  min-width: 70px;
+}
+
+.kiosko-stat-number {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.kiosko-student-list {
+  overflow-y: auto;
+  max-height: 500px;
+  flex: 1;
+}
+
+.kiosko-list-toggle {
+  display: none;
+}
+
+.kiosko-btns {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .kiosko-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kiosko-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .kiosko-header-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .kiosko-header-right {
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .kiosko-clock {
+    font-size: 26px;
+  }
+
+  .kiosko-nfc-zone {
+    min-height: 150px;
+    padding: 20px 16px;
+  }
+
+  .kiosko-route-name {
+    font-size: 15px;
+  }
+
+  .kiosko-route-selector {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 8px;
+  }
+
+  .kiosko-route-selector-container {
+    padding: 16px;
+  }
+
+  .kiosko-clock-selector {
+    font-size: 30px;
+  }
+
+  .kiosko-stat-box {
+    padding: 6px 10px;
+    min-width: 55px;
+  }
+
+  .kiosko-stat-number {
+    font-size: 18px;
+  }
+
+  .kiosko-student-list {
+    max-height: 400px;
+  }
+
+  .kiosko-list-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    padding: 10px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .kiosko-btns {
+    flex-direction: column;
+  }
+
+  .kiosko-btns .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .kiosko-student-panel {
+    display: none;
+  }
+
+  .kiosko-student-panel.show {
+    display: flex;
+  }
+}

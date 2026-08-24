@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { Wifi, WifiOff, CheckCircle, XCircle, AlertTriangle, Search, Clock, RotateCcw, Users, Bus, MapPin } from 'lucide-react'
+import { Wifi, WifiOff, CheckCircle, XCircle, AlertTriangle, Search, Clock, RotateCcw, Users, Bus, MapPin, ChevronDown, ChevronUp } from 'lucide-react'
 import { supabase } from '../lib/supabase'
 import { fetchWithCache, saveRecord, subscribe as subscribeOffline, cacheData } from '../lib/offlineManager'
 
@@ -34,6 +34,7 @@ export default function BusesKiosko() {
   const [estudiantesDb, setEstudiantesDb] = useState([])
   const [credencialesDb, setCredencialesDb] = useState([])
   const [searchList, setSearchList] = useState('')
+  const [showList, setShowList] = useState(false)
   const nfcRef = useRef(null)
   const timerRef = useRef(null)
   const bufferRef = useRef('')
@@ -324,16 +325,16 @@ export default function BusesKiosko() {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24, padding: '20px 0' }}>
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: 42, fontWeight: 800, fontFamily: 'var(--font-mono)', letterSpacing: -1 }}>{horaActual}</div>
+          <div className="kiosko-clock-selector">{horaActual}</div>
           <div style={{ fontSize: 13, color: 'var(--text-muted)', textTransform: 'capitalize' }}>{HOY_DISPLAY}</div>
         </div>
 
-        <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius)', padding: 30, maxWidth: 700, width: '100%' }}>
+        <div className="kiosko-route-selector-container" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius)' }}>
           <h3 style={{ margin: '0 0 20px', display: 'flex', alignItems: 'center', gap: 10, fontSize: 18 }}>
             <MapPin size={20} style={{ color: 'var(--primary)' }} />
             Selecciona un Recorrido
           </h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 12 }}>
+          <div className="kiosko-route-selector">
             {recorridos.map(rec => {
               const bus = buses.find(b => b.id_recorrido === rec.id)
               const studentCount = getStudentsForRoute(rec.id).length
@@ -380,8 +381,8 @@ export default function BusesKiosko() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
       {/* Header with route info */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+      <div className="kiosko-header">
+        <div className="kiosko-header-left">
           <button
             onClick={() => { setRecorridoSel(null); setModoManual(false); setResultado('idle') }}
             style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)', padding: '6px 12px', cursor: 'pointer', color: 'var(--text-muted)', fontSize: 12, fontFamily: 'inherit', fontWeight: 600 }}
@@ -389,7 +390,7 @@ export default function BusesKiosko() {
             ← Cambiar Recorrido
           </button>
           <div>
-            <div style={{ fontWeight: 800, fontSize: 18, display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div className="kiosko-route-name">
               <MapPin size={18} style={{ color: 'var(--primary)' }} />
               {recorridoSel.nombre}
             </div>
@@ -400,33 +401,31 @@ export default function BusesKiosko() {
           </div>
         </div>
 
-        <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-          <div style={{ fontSize: 38, fontWeight: 800, fontFamily: 'var(--font-mono)' }}>{horaActual}</div>
+        <div className="kiosko-header-right">
+          <div className="kiosko-clock">{horaActual}</div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <div style={{ background: 'var(--success-bg)', border: '1px solid rgba(34,197,94,0.2)', borderRadius: 'var(--radius-sm)', padding: '8px 16px', textAlign: 'center', minWidth: 70 }}>
-              <div style={{ fontSize: 22, fontWeight: 800, color: 'var(--success)' }}>{totalPresentes}</div>
+            <div className="kiosko-stat-box" style={{ background: 'var(--success-bg)', border: '1px solid rgba(34,197,94,0.2)', borderRadius: 'var(--radius-sm)' }}>
+              <div className="kiosko-stat-number" style={{ color: 'var(--success)' }}>{totalPresentes}</div>
               <div style={{ fontSize: 10, color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 600 }}>Presentes</div>
             </div>
-            <div style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)', padding: '8px 16px', textAlign: 'center', minWidth: 70 }}>
-              <div style={{ fontSize: 22, fontWeight: 800, color: 'var(--text-primary)' }}>{totalEsperados}</div>
+            <div className="kiosko-stat-box" style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)' }}>
+              <div className="kiosko-stat-number" style={{ color: 'var(--text-primary)' }}>{totalEsperados}</div>
               <div style={{ fontSize: 10, color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 600 }}>Total</div>
             </div>
           </div>
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+      <div className="kiosko-grid">
         {/* Left: NFC zone + Manual */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           {/* NFC Zone */}
-          <div style={{
+          <div className="kiosko-nfc-zone" style={{
             border: `2px solid ${estadoInfo.border}`,
             borderRadius: 'var(--radius)',
-            padding: 30,
             textAlign: 'center',
             background: estadoInfo.bg,
             transition: 'all 0.3s',
-            minHeight: 200,
             display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 10,
             position: 'relative'
           }}>
@@ -482,7 +481,7 @@ export default function BusesKiosko() {
           </div>
 
           {/* Buttons */}
-          <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
+          <div className="kiosko-btns">
             <button className="btn" style={{ background: 'transparent', border: '1px solid var(--primary)', color: 'var(--primary)' }} onClick={() => { setModoManual(!modoManual); setResultManual(null); setErrorManual('') }}>
               <Search size={15} /> {modoManual ? 'Cerrar Manual' : 'Registro Manual'}
             </button>
@@ -498,10 +497,9 @@ export default function BusesKiosko() {
             <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius)', padding: 16 }}>
               <h4 style={{ margin: '0 0 12px', fontSize: 14, fontWeight: 700 }}>Registro Manual — {recorridoSel.nombre}</h4>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 10 }}>
-                <input className="input" placeholder="RUT" value={busqueda.rut} onChange={e => setBusqueda(b => ({ ...b, rut: e.target.value }))} style={{ flex: 1, minWidth: 100 }} />
-                <input className="input" placeholder="Nombre" value={busqueda.nombre} onChange={e => setBusqueda(b => ({ ...b, nombre: e.target.value }))} style={{ flex: 2, minWidth: 140 }} />
-                <input className="input" placeholder="Matrícula" value={busqueda.matricula} onChange={e => setBusqueda(b => ({ ...b, matricula: e.target.value }))} style={{ flex: 1, minWidth: 80 }} />
-                <button className="btn btn-primary" onClick={buscarManual}><Search size={14} /> Buscar</button>
+                <input className="input" placeholder="RUT" value={busqueda.rut} onChange={e => setBusqueda(b => ({ ...b, rut: e.target.value }))} style={{ flex: 1, minWidth: 80 }} />
+                <input className="input" placeholder="Nombre" value={busqueda.nombre} onChange={e => setBusqueda(b => ({ ...b, nombre: e.target.value }))} style={{ flex: 2, minWidth: 120 }} />
+                <button className="btn btn-primary" onClick={buscarManual} style={{ width: '100%' }}><Search size={14} /> Buscar</button>
               </div>
 
               {errorManual && <div style={{ padding: '8px 12px', background: 'var(--danger-bg)', color: 'var(--danger)', borderRadius: 6, fontSize: 13, fontWeight: 600, marginBottom: 8 }}>{errorManual}</div>}
@@ -511,7 +509,7 @@ export default function BusesKiosko() {
                   {resultManual.map(est => {
                     const yaReg = registros.find(r => r.id_estudiante === est.id && r.id_recorrido === recorridoSel.id && r.fecha === HOY)
                     return (
-                      <div key={est.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 10px', borderBottom: '1px solid var(--border)' }}>
+                      <div key={est.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 10px', borderBottom: '1px solid var(--border)', gap: 8, flexWrap: 'wrap' }}>
                         <div>
                           <div style={{ fontWeight: 600, fontSize: 14 }}>{est.nombre}</div>
                           <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>{est.curso} · {est.rut}</div>
@@ -535,10 +533,16 @@ export default function BusesKiosko() {
               )}
             </div>
           )}
+
+          {/* Mobile toggle for student list */}
+          <button className="kiosko-list-toggle" onClick={() => setShowList(!showList)}>
+            {showList ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+            {showList ? 'Ocultar Lista' : `Ver Lista (${totalPresentes}/${totalEsperados})`}
+          </button>
         </div>
 
         {/* Right: Student list for this route */}
-        <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius)', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+        <div className={`kiosko-student-panel ${showList ? 'show' : ''}`} style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius)', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
           <div style={{ padding: '12px 16px', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <h4 style={{ margin: 0, fontSize: 14, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 8 }}>
               <Users size={16} /> Lista — {recorridoSel.nombre}
@@ -561,7 +565,7 @@ export default function BusesKiosko() {
           </div>
 
           {/* Student rows */}
-          <div style={{ overflowY: 'auto', maxHeight: 500, flex: 1 }}>
+          <div className="kiosko-student-list">
             {filteredStudents.map(est => {
               const isPresente = presenteIds.has(est.id)
               const reg = regHoy.find(r => r.id_estudiante === est.id)
@@ -585,16 +589,17 @@ export default function BusesKiosko() {
                       fontSize: 12, fontWeight: 700,
                       background: isPresente ? 'var(--success)' : 'var(--bg-elevated)',
                       color: isPresente ? 'white' : 'var(--text-muted)',
-                      border: isPresente ? 'none' : '1px solid var(--border)'
+                      border: isPresente ? 'none' : '1px solid var(--border)',
+                      flexShrink: 0
                     }}>
                       {isPresente ? '✓' : '—'}
                     </div>
-                    <div>
-                      <div style={{ fontWeight: 600, fontSize: 13 }}>{est.nombre}</div>
+                    <div style={{ minWidth: 0 }}>
+                      <div style={{ fontWeight: 600, fontSize: 13, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{est.nombre}</div>
                       <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{est.curso} · {est.rut}</div>
                     </div>
                   </div>
-                  <div style={{ fontSize: 11, color: isPresente ? 'var(--success)' : 'var(--text-muted)', fontWeight: 600 }}>
+                  <div style={{ fontSize: 11, color: isPresente ? 'var(--success)' : 'var(--text-muted)', fontWeight: 600, flexShrink: 0, marginLeft: 8 }}>
                     {isPresente ? `${reg?.hora || ''} · ${reg?.metodo || ''}` : 'Pendiente'}
                   </div>
                 </div>
@@ -630,3 +635,4 @@ export default function BusesKiosko() {
     </div>
   )
 }
+

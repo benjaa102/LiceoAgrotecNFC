@@ -109,7 +109,7 @@ export default function Layout() {
         </div>
 
         <nav className="sidebar-nav">
-          {isBusRole && (
+          {isAdmin && (
             <>
               {/* ── Módulo Buses ── */}
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '12px 8px 6px' }}>
@@ -120,10 +120,18 @@ export default function Layout() {
 
               <span className="nav-section-label">Gestión</span>
               {navBuses.slice(1, 7).map(item => <NavItem key={item.to} {...item} />)}
+            </>
+          )}
 
+          {isBusRole && (
+            <>
               <span className="nav-section-label">Operación</span>
               {navBuses.slice(7, 10).map(item => <NavItem key={item.to} {...item} />)}
+            </>
+          )}
 
+          {isAdmin && (
+            <>
               <span className="nav-section-label">Sistema</span>
               {navBuses.slice(10).map(item => <NavItem key={item.to} {...item} />)}
 

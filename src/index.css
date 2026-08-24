@@ -1249,16 +1249,29 @@ select.input {
   }
   
   .page-content {
-    padding: 16px;
+    padding: 12px;
   }
   
   .card-header {
     flex-direction: column;
     align-items: flex-start;
+    gap: 8px;
   }
   
-  .table-container {
+  .card-header .btn,
+  .card-header .badge {
+    font-size: 11px;
+  }
+  
+  .table-container,
+  .table-wrapper {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .table-container table,
+  .table-wrapper table {
+    min-width: 600px;
   }
   
   .modal {
@@ -1269,6 +1282,152 @@ select.input {
   
   .form-grid {
     grid-template-columns: 1fr;
+  }
+
+  /* ── Stats cards ── */
+  .stat-grid,
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px;
+  }
+
+  .stat-card {
+    padding: 12px !important;
+  }
+
+  .stat-card .stat-number,
+  .stat-card h2 {
+    font-size: 20px !important;
+  }
+
+  /* ── Filter bars ── */
+  .filter-bar,
+  .toolbar {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .filter-bar .input,
+  .filter-bar select,
+  .toolbar .input,
+  .toolbar select {
+    min-width: 0;
+    flex: 1 1 120px;
+  }
+
+  /* ── Card grid layouts ── */
+  .card-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── General typography scaling ── */
+  h1, .page-title {
+    font-size: 22px !important;
+  }
+
+  h2 {
+    font-size: 18px !important;
+  }
+
+  h3 {
+    font-size: 16px !important;
+  }
+
+  /* ── Buttons ── */
+  .btn {
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+
+  .btn-sm {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+
+  /* ── CocinaKiosko responsive ── */
+  .comedor-header-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    align-items: stretch !important;
+  }
+
+  .comedor-services-row {
+    justify-content: center;
+  }
+
+  .comedor-clock {
+    font-size: 28px !important;
+    text-align: center;
+  }
+
+  .comedor-stats-row {
+    justify-content: center !important;
+  }
+
+  .comedor-nfc-zone {
+    min-height: 240px !important;
+    padding: 20px 16px !important;
+    border-radius: 14px !important;
+  }
+
+  .comedor-nfc-zone .nfc-title {
+    font-size: 18px !important;
+  }
+
+  .comedor-manual-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .comedor-manual-result-item {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+
+  .comedor-manual-result-item button {
+    width: 100%;
+  }
+
+  .comedor-btns-row {
+    flex-direction: column;
+  }
+
+  .comedor-btns-row .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* ── Credenciales NFC page ── */
+  .cred-filter-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .cred-summary-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* ── QR Print page ── */
+  .qr-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important;
+  }
+
+  .qr-card {
+    padding: 12px !important;
+  }
+
+  /* ── Usuarios page ── */
+  .users-stat-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px;
+  }
+
+  /* ── General flex gap adjustments ── */
+  [style*="gap: 20px"],
+  [style*="gap: 24px"] {
+    gap: 12px !important;
   }
 }
 

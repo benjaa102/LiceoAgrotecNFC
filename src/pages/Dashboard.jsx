@@ -98,7 +98,7 @@ export default function Dashboard() {
         ))}
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+      <div className="dashboard-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
         {/* Columna Izquierda: Gráfico y Alertas */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
           {/* Gráfico buses */}

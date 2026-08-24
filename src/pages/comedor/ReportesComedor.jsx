@@ -227,7 +227,7 @@ export default function ReportesComedor() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
 
       {/* ─── Stats dinámicos ─── */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 14 }}>
+      <div className="stat-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 14 }}>
         {[
           { label: 'Total',           v: totalRegs,     color: 'var(--text-primary)', icon: '📋' },
           { label: 'Almuerzos',       v: totalAlmuerzo, color: 'var(--primary)',       icon: '🍽' },
@@ -344,7 +344,7 @@ export default function ReportesComedor() {
       </div>
 
       {/* ─── Charts ─── */}
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 20 }}>
+      <div className="dashboard-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 20 }}>
         <div className="card">
           <div className="card-header">
             <span className="card-title"><BarChart3 size={16} /> Asistencia Diaria {hayFiltrosActivos ? '(Filtrada)' : ''}</span>

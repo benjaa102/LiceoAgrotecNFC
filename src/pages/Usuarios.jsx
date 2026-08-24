@@ -74,7 +74,7 @@ export default function Usuarios() {
         </button>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
+      <div className="users-stat-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
         <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 12, padding: '20px', textAlign: 'center' }}>
           <div style={{ fontSize: 28, fontWeight: 800, color: 'var(--primary)' }}>{admins}</div>
           <div style={{ fontSize: 13, color: 'var(--text-muted)' }}>Administradores</div>

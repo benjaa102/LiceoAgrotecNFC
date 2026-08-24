@@ -251,7 +251,7 @@ export default function Reportes() {
       </div>
 
       {/* Charts */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+      <div className="dashboard-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
         <div className="card">
           <div className="card-header">
             <span className="card-title"><BarChart3 size={16} /> Asistencia por Bus</span>

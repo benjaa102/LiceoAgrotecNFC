@@ -104,7 +104,7 @@ export default function Asistencia() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
       {/* Mini stats */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 12 }}>
+      <div className="stat-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 12 }}>
         {[
           { label: 'Total',       v: total,     color: 'var(--text-primary)' },
           { label: 'Presentes',   v: presentes, color: 'var(--success)' },

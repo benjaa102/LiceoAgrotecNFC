@@ -203,7 +203,7 @@ export default function ControlSemanal() {
 
       {/* Resumen de la semana */}
       {!loading && (
-        <div style={{ display: 'grid', gridTemplateColumns: `repeat(${labelsActivos.length}, 1fr)`, gap: 12 }}>
+        <div className="stat-grid" style={{ display: 'grid', gridTemplateColumns: `repeat(${labelsActivos.length}, 1fr)`, gap: 12 }}>
           {labelsActivos.map((lbl, i) => {
             const pct = inscritos.length > 0 ? Math.round((totalesPorDia[i] / inscritos.length) * 100) : 0
             return (

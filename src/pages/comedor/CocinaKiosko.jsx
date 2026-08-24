@@ -368,9 +368,9 @@ export default function CocinaKiosko() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20, maxWidth: 900, margin: '0 auto' }}>
 
       {/* ── Header del quiosco ─── */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 16 }}>
+      <div className="comedor-header-grid" style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 16 }}>
         {/* Selector de servicio */}
-        <div style={{ display: 'flex', gap: 8 }}>
+        <div className="comedor-services-row" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           {serviciosComedor.map(s => {
             const esViernes = new Date().getDay() === 5
             const isDisabled = esViernes && s.nombre !== 'Desayuno'
@@ -395,12 +395,12 @@ export default function CocinaKiosko() {
 
         {/* Hora central */}
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: 36, fontWeight: 800, letterSpacing: -2, color: 'var(--text-primary)', fontVariantNumeric: 'tabular-nums' }}>{horaActual}</div>
+          <div className="comedor-clock" style={{ fontSize: 36, fontWeight: 800, letterSpacing: -2, color: 'var(--text-primary)', fontVariantNumeric: 'tabular-nums' }}>{horaActual}</div>
           <div style={{ fontSize: 12, color: 'var(--text-muted)', textTransform: 'capitalize' }}>{HOY_DISPLAY}</div>
         </div>
 
         {/* Contador del día */}
-        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 12 }}>
+        <div className="comedor-stats-row" style={{ display: 'flex', justifyContent: 'flex-end', gap: 12 }}>
           <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 12, padding: '10px 18px', textAlign: 'center' }}>
             <div style={{ fontSize: 24, fontWeight: 800, color: servColor }}>{regHoy.length}</div>
             <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>Registrados hoy</div>
@@ -426,7 +426,7 @@ export default function CocinaKiosko() {
 
       {/* ── Zona principal de resultado ─── */}
       {!modoManual ? (
-        <div style={{ border: `2px solid ${estado.border}`, borderRadius: 20, background: estado.bg, transition: 'all 0.3s ease', minHeight: 340, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 20, padding: 32, position: 'relative', overflow: 'hidden' }}>
+        <div className="comedor-nfc-zone" style={{ border: `2px solid ${estado.border}`, borderRadius: 20, background: estado.bg, transition: 'all 0.3s ease', minHeight: 340, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 20, padding: 32, position: 'relative', overflow: 'hidden' }}>
 
           {resultado === 'idle' && <IdleScreen servicio={servicio} servColor={servColor} isWebNfcReading={isWebNfcReading} />}
           {resultado === 'reading' && <ReadingScreen />}
@@ -443,7 +443,7 @@ export default function CocinaKiosko() {
             <span style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-primary)' }}>Búsqueda Manual de Estudiante</span>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, marginBottom: 16 }}>
+          <div className="comedor-manual-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, marginBottom: 16 }}>
             {[['rut', 'RUT', 'Ej: 20.111.111-1'], ['nombre', 'Nombre', 'Ej: Valentina'], ['matricula', 'N° Matrícula', 'Ej: 2024001']].map(([k, lbl, ph]) => (
               <div className="form-field" key={k}>
                 <label>{lbl}</label>
@@ -478,7 +478,7 @@ export default function CocinaKiosko() {
               {resultManual.map(est => {
                 const estInscripto = checkInscripcion(est, servicio)
                 return (
-                  <div key={est.id} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: 12, background: 'var(--bg-card)', borderRadius: 10, border: '1px solid var(--border)' }}>
+                  <div key={est.id} className="comedor-manual-result-item" style={{ display: 'flex', alignItems: 'center', gap: 14, padding: 12, background: 'var(--bg-card)', borderRadius: 10, border: '1px solid var(--border)' }}>
                     <div style={{ width: 44, height: 44, borderRadius: 10, background: 'var(--primary)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, fontWeight: 800 }}>
                       {est.nombre.split(' ').map(n => n[0]).join('').slice(0, 2)}
                     </div>
@@ -516,7 +516,7 @@ export default function CocinaKiosko() {
       )}
 
       {/* ── Botón modo manual ─── */}
-      <div style={{ display: 'flex', justifyContent: 'center', gap: 12 }}>
+      <div className="comedor-btns-row" style={{ display: 'flex', justifyContent: 'center', gap: 12 }}>
         <button className={`btn ${modoManual ? 'btn-secondary' : 'btn-warning'}`} onClick={() => { setModoManual(m => !m); setResultManual(null); setBusqueda({ rut: '', nombre: '', matricula: '' }) }}>
           {modoManual ? <><RotateCcw size={14} /> Volver a lectura NFC</> : <><Search size={14} /> Registro Manual</>}
         </button>
@@ -575,7 +575,7 @@ function IdleScreen({ servicio, servColor, isWebNfcReading }) {
         <Wifi size={40} style={{ color: servColor, position: 'relative', zIndex: 1 }} />
       </div>
       <div style={{ textAlign: 'center' }}>
-        <div style={{ fontSize: 22, fontWeight: 800, color: 'var(--text-primary)', marginBottom: 6 }}>
+        <div className="nfc-title" style={{ fontSize: 22, fontWeight: 800, color: 'var(--text-primary)', marginBottom: 6 }}>
           Acerque su credencial NFC
         </div>
         <div style={{ fontSize: 14, color: 'var(--text-muted)' }}>

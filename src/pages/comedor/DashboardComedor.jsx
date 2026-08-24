@@ -99,7 +99,7 @@ export default function DashboardComedor() {
       </div>
 
       {/* ── Stats de Hoy ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
+      <div className="stat-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
         <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 14, padding: '20px' }}>
           <div style={{ fontSize: 24, marginBottom: 8 }}>🍽️</div>
           <div style={{ fontSize: 32, fontWeight: 800, color: 'var(--text-primary)', letterSpacing: -1 }}>{stats.hoy}</div>
@@ -122,7 +122,7 @@ export default function DashboardComedor() {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 24 }}>
+      <div className="dashboard-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 24 }}>
         {/* ── Gráfico de Tendencia ── */}
         <div className="card">
           <div className="card-header">

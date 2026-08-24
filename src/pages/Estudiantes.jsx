@@ -270,7 +270,21 @@ export default function Estudiantes() {
                     const isCollapsed = collapsedCursos[curso]
                     return (
                     <Fragment key={curso}>
-                      <tr onClick={() => setCollapsedCursos(prev => ({...prev, [curso]: !prev[curso]}))} style={{ cursor: 'pointer', transition: 'background 0.2s' }} onMouseEnter={e => e.currentTarget.style.background = 'var(--bg-elevated-hover)'} onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+                      <tr onClick={() => {
+                        setCollapsedCursos(prev => {
+                          const isCurrentlyCollapsed = prev[curso] !== false; // true if collapsed or undefined
+                          if (isCurrentlyCollapsed) {
+                            // Expand this one, collapse all others
+                            const newState = {};
+                            CURSOS.forEach(c => newState[c] = true);
+                            newState[curso] = false;
+                            return newState;
+                          } else {
+                            // Collapse this one
+                            return { ...prev, [curso]: true };
+                          }
+                        })
+                      }} style={{ cursor: 'pointer', transition: 'background 0.2s' }} onMouseEnter={e => e.currentTarget.style.background = 'var(--bg-elevated-hover)'} onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
                         <td colSpan={9} style={{ background: 'var(--bg-elevated)', padding: '12px 16px', fontWeight: 700, color: 'var(--text-primary)', borderBottom: '1px solid var(--border)', fontSize: 14 }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                             {isCollapsed ? <Folder size={18} style={{ color: 'var(--primary)' }} /> : <FolderOpen size={18} style={{ color: 'var(--primary)' }} />}

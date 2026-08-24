@@ -87,6 +87,7 @@ export default function Layout() {
       : 'Sin Rol'
   )
   const initials = displayName.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2)
+  const isAdmin = displayRole === 'Administrador'
   const isBusRole = displayRole === 'Administrador' || displayRole === 'Encargado Bus'
   const isComedorRole = displayRole === 'Administrador' || displayRole === 'Encargado Comedor'
 

@@ -9,16 +9,31 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true)
 
   // Cargar perfil del usuario desde la tabla 'usuarios_sistema'
-  const loadProfile = async (userId) => {
+  const loadProfile = async (sessionUser) => {
     try {
-      const { data } = await supabase
+      let { data } = await supabase
         .from('usuarios_sistema')
         .select('*')
-        .eq('auth_id', userId)
-        .single()
-      setProfile(data)
-    } catch {
-      // Si no existe tabla o perfil, usar datos del auth
+        .eq('auth_id', sessionUser.id)
+        .maybeSingle()
+
+      if (!data && sessionUser.email) {
+        // Buscar por email para linkear la cuenta
+        const { data: dataByEmail } = await supabase
+          .from('usuarios_sistema')
+          .select('*')
+          .eq('email', sessionUser.email)
+          .maybeSingle()
+        
+        if (dataByEmail) {
+          // Linkear auth_id
+          await supabase.from('usuarios_sistema').update({ auth_id: sessionUser.id }).eq('id', dataByEmail.id)
+          data = { ...dataByEmail, auth_id: sessionUser.id }
+        }
+      }
+      setProfile(data || null)
+    } catch (err) {
+      console.warn("Error cargando perfil:", err)
       setProfile(null)
     }
   }
@@ -27,7 +42,7 @@ export function AuthProvider({ children }) {
     // Verificar sesión existente
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null)
-      if (session?.user) loadProfile(session.user.id)
+      if (session?.user) loadProfile(session.user)
       setLoading(false)
     })
 
@@ -36,7 +51,7 @@ export function AuthProvider({ children }) {
       async (_event, session) => {
         setUser(session?.user ?? null)
         if (session?.user) {
-          await loadProfile(session.user.id)
+          await loadProfile(session.user)
         } else {
           setProfile(null)
         }

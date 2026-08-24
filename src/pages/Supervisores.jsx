@@ -79,7 +79,7 @@ export default function Supervisores() {
           tipo_usuario: 'SUPERVISOR',
           id_usuario: supervisorId,
           estado: 'ACTIVA',
-          fecha_asignacion: new Date().toISOString().slice(0, 10)
+          fecha_asignacion: (() => { const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 10); })()
         }])
       }
     } else if (form.cred_id) {

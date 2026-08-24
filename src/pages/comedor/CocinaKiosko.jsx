@@ -3,8 +3,11 @@ import { Wifi, WifiOff, CheckCircle, XCircle, AlertTriangle, Search, Clock, Rota
 import { supabase } from '../../lib/supabase'
 import { fetchWithCache, saveRecord, subscribe as subscribeOffline, getPendingCount, cacheData } from '../../lib/offlineManager'
 
-const HOY = new Date().toISOString().slice(0, 10)
-const HOY_DISPLAY = new Date().toLocaleDateString('es-CL', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
+function getLocalToday() {
+  const d = new Date()
+  d.setMinutes(d.getMinutes() - d.getTimezoneOffset())
+  return d.toISOString().slice(0, 10)
+}
 
 const serviciosComedor = [
   { id: 'sv1', nombre: 'Desayuno', hora_inicio: '06:00', hora_fin: '11:30', color: '#f59e0b', activo: true },
@@ -42,6 +45,8 @@ const ESTADOS = {
 }
 
 export default function CocinaKiosko() {
+  const HOY = getLocalToday()
+  const HOY_DISPLAY = new Date().toLocaleDateString('es-CL', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
   const [servicio, setServicio]     = useState(getServicioActivo)
   const [resultado, setResultado]   = useState('idle')
   const [estudiante, setEstudiante] = useState(null)
@@ -116,7 +121,7 @@ export default function CocinaKiosko() {
       unsubOffline()
       if (channel) supabase.removeChannel(channel)
     }
-  }, [])
+  }, [HOY])
 
   // Hora en tiempo real y auto-cambio de servicio
   useEffect(() => {

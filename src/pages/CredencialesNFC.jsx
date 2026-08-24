@@ -51,7 +51,11 @@ export default function CredencialesNFC() {
     return matchQ && matchT && matchE
   })
 
-  const openNew  = () => { setForm({ estado: 'ACTIVA', tipo_usuario: 'ESTUDIANTE', fecha_asignacion: new Date().toISOString().slice(0, 10) }); setModal('new'); setUserSearch(''); setSelectedCurso('') }
+  const openNew  = () => { 
+    const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+    setForm({ estado: 'ACTIVA', tipo_usuario: 'ESTUDIANTE', fecha_asignacion: d.toISOString().slice(0, 10) }); 
+    setModal('new'); setUserSearch(''); setSelectedCurso('') 
+  }
   const openEdit = (rec) => { 
     setForm({ ...rec }); 
     setModal(rec); 

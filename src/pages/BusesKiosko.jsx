@@ -3,8 +3,11 @@ import { Wifi, WifiOff, CheckCircle, XCircle, AlertTriangle, Search, Clock, Rota
 import { supabase } from '../lib/supabase'
 import { fetchWithCache, saveRecord, subscribe as subscribeOffline, cacheData } from '../lib/offlineManager'
 
-const HOY = new Date().toISOString().slice(0, 10)
-const HOY_DISPLAY = new Date().toLocaleDateString('es-CL', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
+function getLocalToday() {
+  const d = new Date()
+  d.setMinutes(d.getMinutes() - d.getTimezoneOffset())
+  return d.toISOString().slice(0, 10)
+}
 
 // Estado visual del resultado NFC
 const ESTADOS = {
@@ -17,6 +20,9 @@ const ESTADOS = {
 }
 
 export default function BusesKiosko() {
+  const HOY = getLocalToday()
+  const HOY_DISPLAY = new Date().toLocaleDateString('es-CL', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
+
   const [recorridos, setRecorridos] = useState([])
   const [buses, setBuses] = useState([])
   const [recorridoSel, setRecorridoSel] = useState(null)

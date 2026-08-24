@@ -81,7 +81,11 @@ export default function Layout() {
   }, [pathname])
 
   const displayName = profile?.nombre ?? user?.email?.split('@')[0] ?? 'Usuario'
-  const displayRole = profile?.cargo ?? (user?.email === 'benjamindelgado@liceoagrotec.cl' ? 'Administrador' : 'Sin Rol')
+  const displayRole = profile?.cargo ?? (
+    user?.email === 'benjamindelgado@liceoagrotec.cl' || user?.email?.includes('benjamindelgado154') 
+      ? 'Administrador' 
+      : 'Sin Rol'
+  )
   const initials = displayName.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2)
   const isBusRole = displayRole === 'Administrador' || displayRole === 'Encargado Bus'
   const isComedorRole = displayRole === 'Administrador' || displayRole === 'Encargado Comedor'

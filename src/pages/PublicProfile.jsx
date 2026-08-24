@@ -156,7 +156,7 @@ export default function PublicProfile() {
         {/* Footer */}
         <div style={{ padding: '16px', textAlign: 'center', borderTop: '1px solid rgba(255,255,255,0.05)', background: 'rgba(0,0,0,0.2)' }}>
           <div style={{ fontSize: 11, color: '#64748b', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase' }}>
-            Liceo Bicentenario Agrotecnológico
+            Liceo Agrotec
           </div>
         </div>
       </div>

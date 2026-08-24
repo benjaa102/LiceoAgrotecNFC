@@ -194,7 +194,7 @@ export default function ImprimirCredenciales() {
                 </div>
                 
                 <div style={{ marginTop: 12, fontSize: 11, fontWeight: 700, color: isActivo ? '#10b981' : '#ef4444', textTransform: 'uppercase' }}>
-                  Liceo Bicentenario Agrotecnológico
+                  Liceo Agrotec
                 </div>
               </div>
             )

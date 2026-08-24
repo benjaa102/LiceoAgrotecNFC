@@ -140,6 +140,7 @@ export default function Layout() {
             <span className="nav-section-label" style={{ padding: 0 }}>Módulo Comedor</span>
           </div>
           {navComedor.map(item => <NavItem key={item.to} {...item} />)}
+            </>
           )}
         </nav>
 

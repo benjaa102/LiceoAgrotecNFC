@@ -251,71 +251,75 @@ export default function SalasKiosko() {
 
         {/* Active Class State */}
         {status === 'active' && (
-          <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12, width: '100%', padding: 40 }}>
-            <div style={{ background: 'var(--primary-glow)', color: 'var(--primary)', padding: '6px 16px', borderRadius: 20, fontSize: 14, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              Asistencia Abierta
-            </div>
-            <h1 style={{ fontSize: 40, margin: '10px 0', color: 'var(--text-primary)', lineHeight: 1.1 }}>
-              {activeDocente.asignatura}
-            </h1>
-            <h2 style={{ fontSize: 24, margin: 0, color: 'var(--text-secondary)', fontWeight: 500 }}>
-              Prof. {activeDocente.nombre}
-            </h2>
+          <div style={{ display: 'flex', width: '100%', height: '100%' }}>
             
-            <div style={{ marginTop: 40, width: '100%', maxWidth: 500, height: 180, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              {!lastScan && (
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, opacity: 0.5 }}>
-                  <Wifi size={48} className="pulse-fast" />
-                  <span style={{ fontSize: 18, fontWeight: 500 }}>Esperando estudiantes...</span>
-                </div>
-              )}
+            {/* Left Column: Info & Scanning Area */}
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 40, borderRight: '1px solid var(--border)' }}>
+              <div style={{ background: 'var(--primary-glow)', color: 'var(--primary)', padding: '6px 16px', borderRadius: 20, fontSize: 14, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 12 }}>
+                Asistencia Abierta
+              </div>
+              <h1 style={{ fontSize: 44, margin: '0 0 10px', color: 'var(--text-primary)', lineHeight: 1.1, textAlign: 'center' }}>
+                {activeDocente.asignatura}
+              </h1>
+              <h2 style={{ fontSize: 20, margin: 0, color: 'var(--text-secondary)', fontWeight: 500, textAlign: 'center' }}>
+                Prof. {activeDocente.nombre}
+              </h2>
               
-              {lastScan && (
-                <div className="fade-in" style={{ background: lastScan.type === 'success' ? 'var(--success-bg)' : 'var(--danger-bg)', border: `2px solid ${lastScan.type === 'success' ? 'var(--success)' : 'var(--danger)'}`, borderRadius: 20, padding: 30, width: '100%', display: 'flex', alignItems: 'center', gap: 24, boxShadow: `0 10px 40px ${lastScan.type === 'success' ? 'rgba(34,197,94,0.1)' : 'rgba(239,68,68,0.1)'}` }}>
-                  {lastScan.type === 'success' ? <CheckCircle2 size={48} style={{ color: 'var(--success)' }} /> : <XCircle size={48} style={{ color: 'var(--danger)' }} />}
-                  <div style={{ textAlign: 'left', flex: 1 }}>
-                    <div style={{ fontSize: 22, fontWeight: 800, color: lastScan.type === 'success' ? 'var(--success)' : 'var(--danger)', marginBottom: 6 }}>{lastScan.title}</div>
-                    <div style={{ fontSize: 16, color: 'var(--text-primary)' }}>{lastScan.desc}</div>
+              <div style={{ marginTop: 60, width: '100%', maxWidth: 500, height: 180, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                {!lastScan && (
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, opacity: 0.5 }}>
+                    <Wifi size={56} className="pulse-fast" />
+                    <span style={{ fontSize: 20, fontWeight: 500 }}>Esperando estudiantes...</span>
                   </div>
-                </div>
-              )}
+                )}
+                
+                {lastScan && (
+                  <div className="fade-in" style={{ background: lastScan.type === 'success' ? 'var(--success-bg)' : 'var(--danger-bg)', border: `2px solid ${lastScan.type === 'success' ? 'var(--success)' : 'var(--danger)'}`, borderRadius: 20, padding: 30, width: '100%', display: 'flex', alignItems: 'center', gap: 24, boxShadow: `0 10px 40px ${lastScan.type === 'success' ? 'rgba(34,197,94,0.1)' : 'rgba(239,68,68,0.1)'}` }}>
+                    {lastScan.type === 'success' ? <CheckCircle2 size={48} style={{ color: 'var(--success)' }} /> : <XCircle size={48} style={{ color: 'var(--danger)' }} />}
+                    <div style={{ textAlign: 'left', flex: 1 }}>
+                      <div style={{ fontSize: 22, fontWeight: 800, color: lastScan.type === 'success' ? 'var(--success)' : 'var(--danger)', marginBottom: 6 }}>{lastScan.title}</div>
+                      <div style={{ fontSize: 16, color: 'var(--text-primary)' }}>{lastScan.desc}</div>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
 
-            {/* Lista de Alumnos Presentes */}
-            <div style={{ marginTop: 40, width: '100%', maxWidth: 700 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, borderBottom: '1px solid var(--border)', paddingBottom: 12 }}>
-                <h3 style={{ margin: 0, fontSize: 18, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <Users size={20} style={{ color: 'var(--primary)' }} />
+            {/* Right Column: Present Students List */}
+            <div style={{ width: 400, background: 'var(--bg-body)', display: 'flex', flexDirection: 'column' }}>
+              <div style={{ padding: '24px 24px 16px', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <h3 style={{ margin: 0, fontSize: 16, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <Users size={18} style={{ color: 'var(--primary)' }} />
                   Estudiantes Presentes
                 </h3>
-                <div style={{ background: 'var(--primary-glow)', color: 'var(--primary)', padding: '4px 12px', borderRadius: 20, fontSize: 14, fontWeight: 700 }}>
-                  {sessionStudents.length} {sessionStudents.length === 1 ? 'alumno' : 'alumnos'}
+                <div style={{ background: 'var(--bg-card)', color: 'var(--text-secondary)', padding: '4px 10px', borderRadius: 20, fontSize: 12, fontWeight: 700, border: '1px solid var(--border)' }}>
+                  {sessionStudents.length}
                 </div>
               </div>
 
-              {sessionStudents.length === 0 ? (
-                <div style={{ padding: 30, textAlign: 'center', color: 'var(--text-muted)', background: 'var(--bg-body)', borderRadius: 12, border: '1px dashed var(--border)' }}>
-                  Aún no hay estudiantes registrados en esta clase.
-                </div>
-              ) : (
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: 12, maxHeight: 400, overflowY: 'auto', paddingRight: 8 }}>
-                  {sessionStudents.map((reg, idx) => {
+              <div style={{ flex: 1, overflowY: 'auto', padding: 24, display: 'flex', flexDirection: 'column', gap: 12 }}>
+                {sessionStudents.length === 0 ? (
+                  <div style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: 14, marginTop: 40 }}>
+                    Aún no hay registros en esta clase.
+                  </div>
+                ) : (
+                  sessionStudents.map((reg, idx) => {
                     const student = estudiantesDb.find(e => e.id === reg.id_estudiante)
                     if (!student) return null
                     return (
-                      <div key={idx} className="fade-in" style={{ background: 'var(--bg-body)', border: '1px solid var(--border)', padding: 12, borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                        <div>
-                          <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--text-primary)' }}>{student.nombre}</div>
-                          <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>{student.curso}</div>
+                      <div key={idx} className="fade-in" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', padding: '12px 16px', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                          <div style={{ fontWeight: 700, fontSize: 14, color: 'var(--text-primary)' }}>{student.nombre}</div>
+                          <div style={{ fontSize: 12, color: 'var(--primary-light)', fontWeight: 600 }}>{student.curso}</div>
                         </div>
-                        <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-secondary)' }}>
+                        <div style={{ fontSize: 13, fontWeight: 800, color: 'var(--text-muted)' }}>
                           {reg.hora.slice(0,5)}
                         </div>
                       </div>
                     )
-                  })}
-                </div>
-              )}
+                  })
+                )}
+              </div>
             </div>
 
           </div>

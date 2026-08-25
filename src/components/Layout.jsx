@@ -33,6 +33,12 @@ const navComedor = [
   { to: '/comedor/reportes',  icon: BarChart3,      label: 'Reportes' },
 ]
 
+const navSalas = [
+  { to: '/salas/kiosko',      icon: Scan,          label: 'Terminal Asistencia' },
+  { to: '/salas/asistencia',  icon: ClipboardList, label: 'Historial Salas' },
+  { to: '/salas/docentes',    icon: BookOpen,      label: 'Docentes' }
+]
+
 const PAGE_META = {
   '/dashboard':           { title: 'Dashboard',             desc: 'Resumen general del sistema' },
   '/estudiantes':         { title: 'Estudiantes',           desc: 'Gestión de estudiantes y autorizaciones' },
@@ -51,6 +57,9 @@ const PAGE_META = {
   '/comedor/asistencia':  { title: 'Asistencia Comedor',    desc: 'Historial de registros — Módulo Comedor' },
   '/comedor/semanal':     { title: 'Control Semanal',       desc: 'Vista semanal de asistencia al almuerzo y desayuno' },
   '/comedor/reportes':    { title: 'Reportes Comedor',      desc: 'Estadísticas y exportación del módulo comedor' },
+  '/salas/kiosko':        { title: 'Terminal Asistencia',   desc: 'Registro rápido en salas de clases' },
+  '/salas/asistencia':    { title: 'Historial Salas',       desc: 'Registro de asistencia a salas y grupos' },
+  '/salas/docentes':      { title: 'Gestión de Docentes',   desc: 'Administración de profesores y credenciales' },
 }
 
 export default function Layout() {
@@ -153,6 +162,17 @@ export default function Layout() {
             <span className="nav-section-label" style={{ padding: 0 }}>Módulo Comedor</span>
           </div>
           {navComedor.map(item => <NavItem key={item.to} {...item} />)}
+            </>
+          )}
+
+          {isAdmin && (
+            <>
+              {/* ── Módulo Salas ── */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '12px 8px 6px' }}>
+                <BookOpen size={12} style={{ color: 'var(--purple)' }} />
+                <span className="nav-section-label" style={{ padding: 0 }}>Módulo Salas</span>
+              </div>
+              {navSalas.map(item => <NavItem key={item.to} {...item} />)}
             </>
           )}
         </nav>

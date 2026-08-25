@@ -24,6 +24,10 @@ import CocinaKiosko      from './pages/comedor/CocinaKiosko'
 import AsistenciaComedor from './pages/comedor/AsistenciaComedor'
 import ControlSemanal    from './pages/comedor/ControlSemanal'
 import ReportesComedor   from './pages/comedor/ReportesComedor'
+// ─ Módulo Salas ───────────────────────────────────────────────────────────────
+import Docentes          from './pages/salas/Docentes'
+import SalasKiosko       from './pages/salas/SalasKiosko'
+import AsistenciaSalas   from './pages/salas/AsistenciaSalas'
 
 const AppRoutes = () => {
   const { profile } = useAuth()
@@ -63,6 +67,10 @@ const AppRoutes = () => {
           <Route path="/comedor/asistencia" element={<AsistenciaComedor />} />
           <Route path="/comedor/semanal"    element={<ControlSemanal />} />
           <Route path="/comedor/reportes"   element={<ReportesComedor />} />
+          {/* Salas */}
+          <Route path="/salas/docentes"     element={<Docentes />} />
+          <Route path="/salas/kiosko"       element={<SalasKiosko />} />
+          <Route path="/salas/asistencia"   element={<AsistenciaSalas />} />
         </Route>
 
         {/* Fallback: redirigir al login */}

@@ -170,7 +170,7 @@ export default function SalasKiosko() {
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [inputBuffer, status, activeDocente, credencialesDb, estudiantesDb, docentesDb])
+  }, [inputBuffer, status, activeDocente, credencialesDb, estudiantesDb, docentesDb, selectedSalaId, salasDb])
 
   // Native WebNFC support
   useEffect(() => {
@@ -196,7 +196,7 @@ export default function SalasKiosko() {
     startNfc()
     
     return () => abortController.abort()
-  }, [status, activeDocente, credencialesDb, estudiantesDb, docentesDb])
+  }, [status, activeDocente, credencialesDb, estudiantesDb, docentesDb, selectedSalaId, salasDb])
 
   return (
     <div style={{ height: 'calc(100vh - 100px)', display: 'flex', flexDirection: 'column', gap: 20 }}>
@@ -288,6 +288,9 @@ export default function SalasKiosko() {
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 40, borderRight: '1px solid var(--border)' }}>
               <div style={{ background: 'var(--primary-glow)', color: 'var(--primary)', padding: '6px 16px', borderRadius: 20, fontSize: 14, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 12 }}>
                 Asistencia Abierta
+              </div>
+              <div style={{ fontSize: 13, color: 'var(--text-muted)', fontWeight: 600, marginBottom: 8 }}>
+                {salasDb.find(s => s.id === selectedSalaId)?.nombre || 'Sin sala'}
               </div>
               <h1 style={{ fontSize: 44, margin: '0 0 10px', color: 'var(--text-primary)', lineHeight: 1.1, textAlign: 'center' }}>
                 {activeDocente.asignatura}

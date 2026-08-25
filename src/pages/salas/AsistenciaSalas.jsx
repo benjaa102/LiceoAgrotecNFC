@@ -40,10 +40,10 @@ export default function AsistenciaSalas() {
     const q = search.toLowerCase()
     
     const matchSearch = !q || 
-      est?.nombre.toLowerCase().includes(q) || 
+      est?.nombre?.toLowerCase().includes(q) || 
       est?.rut?.includes(q) || 
       est?.curso?.toLowerCase().includes(q) ||
-      doc?.nombre.toLowerCase().includes(q)
+      doc?.nombre?.toLowerCase().includes(q)
       
     const matchDocente = !filterDocente || reg.id_docente === filterDocente
     const matchSala = !filterSala || reg.id_sala === filterSala
@@ -52,16 +52,32 @@ export default function AsistenciaSalas() {
     return matchSearch && matchDocente && matchSala && matchFecha
   })
 
-  // Group by Docente/Asignatura to show totals quickly
   const sessionCounts = filtered.reduce((acc, curr) => {
     const doc = getDocente(curr.id_docente)
-    const key = `${curr.id_docente}_${curr.fecha}`
-    if (!acc[key]) acc[key] = { docente: doc?.nombre, asignatura: doc?.asignatura, fecha: curr.fecha, count: 0 }
+    const sala = salas.find(s => s.id === curr.id_sala)
+    const key = `${curr.id_docente}_${curr.fecha}_${curr.id_sala || 'none'}`
+    if (!acc[key]) acc[key] = { docente: doc?.nombre, asignatura: doc?.asignatura, fecha: curr.fecha, sala: sala?.nombre || 'S/E', count: 0 }
     acc[key].count++
     return acc
   }, {})
   
   const topSessions = Object.values(sessionCounts).sort((a,b) => b.count - a.count).slice(0, 4)
+
+  const exportCSV = () => {
+    const headers = ['Estudiante','RUT','Curso','Asignatura','Profesor','Sala','Fecha','Hora']
+    const rows = filtered.map(reg => {
+      const est = getEstudiante(reg.id_estudiante)
+      const doc = getDocente(reg.id_docente)
+      const sala = salas.find(s => s.id === reg.id_sala)
+      return [est?.nombre || '', est?.rut || '', est?.curso || '', doc?.asignatura || '', doc?.nombre || '', sala?.nombre || '', reg.fecha, reg.hora?.slice(0,5) || '']
+    })
+    const csv = [headers, ...rows].map(r => r.map(c => `"${c}"`).join(',')).join('\n')
+    const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' })
+    const a = document.createElement('a')
+    a.href = URL.createObjectURL(blob)
+    a.download = `asistencia_salas_${new Date().toISOString().slice(0,10)}.csv`
+    a.click()
+  }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
@@ -89,6 +105,9 @@ export default function AsistenciaSalas() {
         <button className="btn btn-secondary" onClick={loadData} disabled={loading}>
           <RefreshCw size={15} className={loading ? 'spin' : ''} />
         </button>
+        <button className="btn btn-secondary" onClick={exportCSV} disabled={filtered.length === 0} title="Exportar CSV">
+          <Download size={15} /> CSV
+        </button>
       </div>
 
       {/* Summary Cards */}
@@ -99,6 +118,7 @@ export default function AsistenciaSalas() {
               <div style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }}>{ts.fecha}</div>
               <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--primary)' }}>{ts.asignatura}</div>
               <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>Prof. {ts.docente}</div>
+              <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{ts.sala}</div>
               <div style={{ fontSize: 24, fontWeight: 800, color: 'var(--text-primary)', marginTop: 4 }}>{ts.count} <span style={{fontSize: 12, color: 'var(--text-muted)', fontWeight: 600}}>alumnos</span></div>
             </div>
           ))}
@@ -131,7 +151,7 @@ export default function AsistenciaSalas() {
               </thead>
               <tbody>
                 {filtered.length === 0 && (
-                  <tr><td colSpan={6}><div className="empty-state"><ClipboardList size={32} /><p>No se encontraron registros</p></div></td></tr>
+                  <tr><td colSpan={7}><div className="empty-state"><ClipboardList size={32} /><p>No se encontraron registros</p></div></td></tr>
                 )}
                 {filtered.map(reg => {
                   const est = getEstudiante(reg.id_estudiante)

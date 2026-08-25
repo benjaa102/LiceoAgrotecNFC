@@ -86,7 +86,9 @@ export default function Docentes() {
   }
 
   const deleteRecord = async (id) => {
-    if (!confirm('¿Seguro que deseas eliminar este docente? Se borrará todo su historial.')) return
+    if (!confirm('¿Seguro que deseas eliminar este docente? Se borrará todo su historial y credenciales.')) return
+    // Delete associated credentials first
+    await supabase.from('credenciales').delete().eq('id_usuario', id).eq('tipo_usuario', 'DOCENTE')
     await supabase.from('docentes').delete().eq('id', id)
     loadData()
   }

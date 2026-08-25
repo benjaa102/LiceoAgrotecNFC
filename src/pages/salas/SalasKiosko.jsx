@@ -32,7 +32,17 @@ export default function SalasKiosko() {
     
     // Auto refresh every 5 mins to catch new credentials
     const intv = setInterval(loadCaches, 300000)
-    return () => clearInterval(intv)
+    
+    // Refresh on tab focus
+    const onFocus = () => {
+      if (document.visibilityState === 'visible') loadCaches()
+    }
+    document.addEventListener('visibilitychange', onFocus)
+    
+    return () => {
+      clearInterval(intv)
+      document.removeEventListener('visibilitychange', onFocus)
+    }
   }, [])
 
   const resetIdle = () => {
@@ -199,13 +209,26 @@ export default function SalasKiosko() {
         
         {/* Waiting for Teacher State */}
         {status === 'waiting_teacher' && (
-          <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24 }}>
+          <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24, width: '100%', padding: 40 }}>
             <div style={{ width: 100, height: 100, borderRadius: '50%', background: 'var(--bg-body)', border: '4px dashed var(--border-bright)', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'pulse 2s infinite' }}>
               <UserCheck size={40} style={{ color: 'var(--text-muted)' }} />
             </div>
             <div>
               <h1 style={{ fontSize: 32, margin: '0 0 12px', color: 'var(--text-primary)' }}>Esperando Docente</h1>
               <p style={{ fontSize: 16, color: 'var(--text-muted)', margin: 0 }}>Por favor, acerca tu credencial de profesor al lector para abrir la clase.</p>
+            </div>
+            
+            {/* Show scan feedback in waiting mode */}
+            <div style={{ marginTop: 20, width: '100%', maxWidth: 500, height: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              {lastScan && (
+                <div className="fade-in" style={{ background: lastScan.type === 'success' ? 'var(--success-bg)' : 'var(--danger-bg)', border: `2px solid ${lastScan.type === 'success' ? 'var(--success)' : 'var(--danger)'}`, borderRadius: 20, padding: 20, width: '100%', display: 'flex', alignItems: 'center', gap: 16, boxShadow: `0 10px 40px ${lastScan.type === 'success' ? 'rgba(34,197,94,0.1)' : 'rgba(239,68,68,0.1)'}` }}>
+                  {lastScan.type === 'success' ? <CheckCircle2 size={32} style={{ color: 'var(--success)' }} /> : <XCircle size={32} style={{ color: 'var(--danger)' }} />}
+                  <div style={{ textAlign: 'left', flex: 1 }}>
+                    <div style={{ fontSize: 18, fontWeight: 800, color: lastScan.type === 'success' ? 'var(--success)' : 'var(--danger)' }}>{lastScan.title}</div>
+                    <div style={{ fontSize: 14, color: 'var(--text-primary)' }}>{lastScan.desc}</div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         )}

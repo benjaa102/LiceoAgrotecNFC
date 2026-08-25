@@ -4,12 +4,13 @@ import { supabase } from '../lib/supabase'
 
 const ESTADOS = ['ACTIVA', 'BLOQUEADA', 'PERDIDA']
 const estadoColor = { ACTIVA: 'success', BLOQUEADA: 'danger', PERDIDA: 'warning' }
-const tipoColor   = { ESTUDIANTE: 'info', SUPERVISOR: 'purple' }
+const tipoColor   = { ESTUDIANTE: 'info', SUPERVISOR: 'purple', DOCENTE: 'warning' }
 
 export default function CredencialesNFC() {
   const [data, setData] = useState([])
   const [estudiantes, setEstudiantes] = useState([])
   const [supervisores, setSupervisores] = useState([])
+  const [docentes, setDocentes] = useState([])
   const [loading, setLoading] = useState(true)
 
   const [search, setSearch]       = useState('')
@@ -24,14 +25,16 @@ export default function CredencialesNFC() {
 
   const loadData = async () => {
     setLoading(true)
-    const [resCred, resEst, resSup] = await Promise.all([
+    const [resCred, resEst, resSup, resDoc] = await Promise.all([
       supabase.from('credenciales').select('*').order('fecha_asignacion', { ascending: false }),
       supabase.from('estudiantes').select('id, nombre, rut, curso, matricula'),
-      supabase.from('supervisores').select('id, nombre, rut')
+      supabase.from('supervisores').select('id, nombre, rut'),
+      supabase.from('docentes').select('id, nombre, rut, asignatura')
     ])
     if (resCred.data) setData(resCred.data)
     if (resEst.data) setEstudiantes(resEst.data)
     if (resSup.data) setSupervisores(resSup.data)
+    if (resDoc.data) setDocentes(resDoc.data)
     setLoading(false)
   }
 
@@ -39,6 +42,7 @@ export default function CredencialesNFC() {
 
   const getUsuarioNombre = (tipo, id) => {
     if (tipo === 'ESTUDIANTE') return estudiantes.find(e => e.id === id)?.nombre ?? '—'
+    if (tipo === 'DOCENTE') return docentes.find(d => d.id === id)?.nombre ?? '—'
     return supervisores.find(s => s.id === id)?.nombre ?? '—'
   }
 
@@ -256,6 +260,7 @@ export default function CredencialesNFC() {
                   }}>
                     <option value="ESTUDIANTE">ESTUDIANTE</option>
                     <option value="SUPERVISOR">SUPERVISOR (Chofer)</option>
+                    <option value="DOCENTE">DOCENTE (Salas)</option>
                   </select>
                 </div>
 
@@ -294,8 +299,8 @@ export default function CredencialesNFC() {
                         </div>
                       )}
 
-                      {/* Search input - shown when a course is selected or for supervisors */}
-                      {(selectedCurso || form.tipo_usuario === 'SUPERVISOR') && (
+                      {/* Search input - shown when a course is selected or for non-students */}
+                      {(selectedCurso || form.tipo_usuario !== 'ESTUDIANTE') && (
                         <div style={{ position: 'relative', marginBottom: 10 }}>
                           <Search size={14} style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
                           <input 
@@ -327,6 +332,14 @@ export default function CredencialesNFC() {
                               return tokens.every(t => txt.includes(t))
                             })
                           }
+                        } else if (form.tipo_usuario === 'DOCENTE') {
+                          if (userSearch) {
+                            const tokens = norm(userSearch).split(/\s+/).filter(Boolean)
+                            results = docentes.filter(u => {
+                              const txt = norm(u.nombre + ' ' + (u.rut || ''))
+                              return tokens.every(t => txt.includes(t))
+                            })
+                          }
                         } else {
                           if (selectedCurso) {
                             // Filter by course first, then by search if provided
@@ -343,7 +356,7 @@ export default function CredencialesNFC() {
                         }
 
                         if (!selectedCurso && form.tipo_usuario === 'ESTUDIANTE') return null
-                        if (!userSearch && form.tipo_usuario === 'SUPERVISOR') return null
+                        if (!userSearch && form.tipo_usuario !== 'ESTUDIANTE') return null
 
                         return (
                           <div style={{

@@ -226,26 +226,27 @@ export default function Docentes() {
                 <input className="input" value={form.asignatura || ''} onChange={e => setForm({...form, asignatura: e.target.value})} placeholder="Ej: Electivo Biología, Taller Computación..." />
               </div>
 
-              <div style={{ padding: 12, background: 'var(--bg-body)', borderRadius: 8, border: '1px solid var(--border)' }}>
-                <label style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8, fontSize: 13, fontWeight: 600 }}>
-                  <Wifi size={14} style={{ color: 'var(--primary)' }}/> Vincular Credencial NFC (Opcional)
+              <div style={{ background: 'var(--bg-surface)', padding: 16, borderRadius: 'var(--radius-md)', border: '1px dashed var(--primary)', position: 'relative' }}>
+                <label style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8, marginBottom: 8 }}>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                    <Wifi size={14} style={{ color: 'var(--primary)' }}/> UID NFC de la Tarjeta (Opcional)
+                  </span>
+                  <div style={{ display: 'flex', gap: 8 }}>
+                    <button className="btn btn-primary btn-sm" onClick={startNfcRead} disabled={nfcReading}>
+                      <Wifi size={14} /> Leer con Celular
+                    </button>
+                  </div>
                 </label>
-                <div style={{ display: 'flex', gap: 8 }}>
-                  <input 
-                    ref={uidRef}
-                    className="input" 
-                    value={form.uid_nfc || ''} 
-                    onChange={e => setForm({...form, uid_nfc: e.target.value})}
-                    placeholder="UID de la tarjeta..."
-                    style={{ fontFamily: 'monospace' }}
-                  />
-                  <button className={`btn ${nfcReading ? 'btn-danger' : 'btn-secondary'}`} onClick={startNfcRead}>
-                    {nfcReading ? 'Leyendo...' : 'Leer NFC'}
-                  </button>
-                </div>
-                <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 8 }}>
-                  El docente usará esta tarjeta para abrir las sesiones en las salas.
-                </div>
+                <input 
+                  ref={uidRef}
+                  className="input font-mono" 
+                  style={{ fontSize: 20, textAlign: 'center', letterSpacing: 2, padding: 12, background: nfcReading ? 'var(--primary-glow)' : 'var(--bg-input)' }} 
+                  value={form.uid_nfc || ''} 
+                  onChange={e => setForm({...form, uid_nfc: e.target.value.toUpperCase()})}
+                  placeholder="Ej: A1B2C3D4" 
+                />
+                {nfcReading && <div style={{ textAlign: 'center', fontSize: 11, color: 'var(--primary)', marginTop: 8 }}>Acerca la tarjeta a tu celular o usa el lector USB...</div>}
+                {!nfcReading && <div style={{ textAlign: 'center', fontSize: 11, color: 'var(--text-muted)', marginTop: 8 }}>El docente usará esta tarjeta para abrir las sesiones en las salas.</div>}
               </div>
 
             </div>

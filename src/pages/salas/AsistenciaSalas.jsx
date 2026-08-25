@@ -6,22 +6,26 @@ export default function AsistenciaSalas() {
   const [asistencia, setAsistencia] = useState([])
   const [estudiantes, setEstudiantes] = useState([])
   const [docentes, setDocentes] = useState([])
+  const [salas, setSalas] = useState([])
   const [loading, setLoading] = useState(true)
   
   const [search, setSearch] = useState('')
   const [filterDocente, setFilterDocente] = useState('')
+  const [filterSala, setFilterSala] = useState('')
   const [filterFecha, setFilterFecha] = useState('')
 
   const loadData = async () => {
     setLoading(true)
-    const [resAsis, resEst, resDoc] = await Promise.all([
+    const [resAsis, resEst, resDoc, resSalas] = await Promise.all([
       supabase.from('asistencia_salas').select('*').order('fecha', { ascending: false }).order('hora', { ascending: false }).limit(500),
       supabase.from('estudiantes').select('*'),
-      supabase.from('docentes').select('*')
+      supabase.from('docentes').select('*'),
+      supabase.from('salas').select('*')
     ])
     if (resAsis.data) setAsistencia(resAsis.data)
     if (resEst.data) setEstudiantes(resEst.data)
     if (resDoc.data) setDocentes(resDoc.data)
+    if (resSalas.data) setSalas(resSalas.data)
     setLoading(false)
   }
 
@@ -42,9 +46,10 @@ export default function AsistenciaSalas() {
       doc?.nombre.toLowerCase().includes(q)
       
     const matchDocente = !filterDocente || reg.id_docente === filterDocente
+    const matchSala = !filterSala || reg.id_sala === filterSala
     const matchFecha = !filterFecha || reg.fecha === filterFecha
     
-    return matchSearch && matchDocente && matchFecha
+    return matchSearch && matchDocente && matchSala && matchFecha
   })
 
   // Group by Docente/Asignatura to show totals quickly
@@ -70,6 +75,10 @@ export default function AsistenciaSalas() {
         <select className="input" style={{ width: 200 }} value={filterDocente} onChange={e => setFilterDocente(e.target.value)}>
           <option value="">Todos los docentes</option>
           {docentes.map(d => <option key={d.id} value={d.id}>{d.nombre} - {d.asignatura}</option>)}
+        </select>
+        <select className="input" style={{ width: 150 }} value={filterSala} onChange={e => setFilterSala(e.target.value)}>
+          <option value="">Todas las salas</option>
+          {salas.map(s => <option key={s.id} value={s.id}>{s.nombre}</option>)}
         </select>
         
         <div className="input-with-icon">
@@ -115,6 +124,7 @@ export default function AsistenciaSalas() {
                   <th>Curso Orig.</th>
                   <th>Asignatura / Módulo</th>
                   <th>Profesor</th>
+                  <th>Sala / Espacio</th>
                   <th>Fecha</th>
                   <th>Hora</th>
                 </tr>
@@ -126,12 +136,14 @@ export default function AsistenciaSalas() {
                 {filtered.map(reg => {
                   const est = getEstudiante(reg.id_estudiante)
                   const doc = getDocente(reg.id_docente)
+                  const sala = salas.find(s => s.id === reg.id_sala)
                   return (
                     <tr key={reg.id}>
                       <td><strong>{est?.nombre || 'Desconocido'}</strong> <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>{est?.rut}</div></td>
                       <td><span className="chip">{est?.curso || 'S/C'}</span></td>
                       <td><strong style={{ color: 'var(--primary)' }}>{doc?.asignatura || 'Desconocida'}</strong></td>
                       <td style={{ color: 'var(--text-secondary)' }}>{doc?.nombre || 'Desconocido'}</td>
+                      <td><span className="badge badge-secondary">{sala?.nombre || 'S/E'}</span></td>
                       <td>{reg.fecha}</td>
                       <td style={{ fontWeight: 600 }}>{reg.hora.slice(0,5)}</td>
                     </tr>

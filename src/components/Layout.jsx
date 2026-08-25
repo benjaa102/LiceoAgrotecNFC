@@ -36,7 +36,8 @@ const navComedor = [
 const navSalas = [
   { to: '/salas/kiosko',      icon: Scan,          label: 'Terminal Asistencia' },
   { to: '/salas/asistencia',  icon: ClipboardList, label: 'Historial Salas' },
-  { to: '/salas/docentes',    icon: BookOpen,      label: 'Docentes' }
+  { to: '/salas/docentes',    icon: BookOpen,      label: 'Docentes' },
+  { to: '/salas/gestion-salas', icon: LayoutDashboard, label: 'Gestión de Salas' }
 ]
 
 const PAGE_META = {
@@ -60,6 +61,7 @@ const PAGE_META = {
   '/salas/kiosko':        { title: 'Terminal Asistencia',   desc: 'Registro rápido en salas de clases' },
   '/salas/asistencia':    { title: 'Historial Salas',       desc: 'Registro de asistencia a salas y grupos' },
   '/salas/docentes':      { title: 'Gestión de Docentes',   desc: 'Administración de profesores y credenciales' },
+  '/salas/gestion-salas': { title: 'Gestión de Salas',      desc: 'Administración de espacios físicos' },
 }
 
 export default function Layout() {

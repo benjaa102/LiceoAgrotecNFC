@@ -28,6 +28,7 @@ import ReportesComedor   from './pages/comedor/ReportesComedor'
 import Docentes          from './pages/salas/Docentes'
 import SalasKiosko       from './pages/salas/SalasKiosko'
 import AsistenciaSalas   from './pages/salas/AsistenciaSalas'
+import Salas             from './pages/salas/Salas'
 
 const AppRoutes = () => {
   const { profile } = useAuth()
@@ -60,6 +61,10 @@ const AppRoutes = () => {
           <Route path="/buses/kiosko" element={<BusesKiosko />} />
           <Route path="/alertas"      element={<Alertas />} />
           <Route path="/reportes"     element={<Reportes />} />
+          <Route path="/salas/kiosko" element={<SalasKiosko />} />
+          <Route path="/salas/asistencia" element={<AsistenciaSalas />} />
+          <Route path="/salas/docentes" element={<Docentes />} />
+          <Route path="/salas/gestion-salas" element={<Salas />} />
           <Route path="/usuarios"     element={<Usuarios />} />
           {/* Comedor */}
           <Route path="/comedor/dashboard"  element={<DashboardComedor />} />

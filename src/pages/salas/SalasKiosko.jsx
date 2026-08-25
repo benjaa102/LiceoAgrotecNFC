@@ -11,6 +11,9 @@ export default function SalasKiosko() {
   const [credencialesDb, setCredencialesDb] = useState([])
   const [estudiantesDb, setEstudiantesDb] = useState([])
   const [docentesDb, setDocentesDb] = useState([])
+  const [salasDb, setSalasDb] = useState([])
+  
+  const [selectedSalaId, setSelectedSalaId] = useState(localStorage.getItem('kiosko_sala_id') || '')
   
   const [inputBuffer, setInputBuffer] = useState('')
   const [nfcActive, setNfcActive] = useState(false)
@@ -18,14 +21,16 @@ export default function SalasKiosko() {
 
   useEffect(() => {
     const loadCaches = async () => {
-      const [resC, resE, resD] = await Promise.all([
+      const [resC, resE, resD, resS] = await Promise.all([
         supabase.from('credenciales').select('*'),
         supabase.from('estudiantes').select('*'),
-        supabase.from('docentes').select('*')
+        supabase.from('docentes').select('*'),
+        supabase.from('salas').select('*').eq('estado', 'ACTIVA')
       ])
       if (resC.data) setCredencialesDb(resC.data)
       if (resE.data) setEstudiantesDb(resE.data)
       if (resD.data) setDocentesDb(resD.data)
+      if (resS.data) setSalasDb(resS.data)
     }
     loadCaches()
     
@@ -122,6 +127,7 @@ export default function SalasKiosko() {
       await supabase.from('asistencia_salas').insert([{
         id_docente: activeDocente.id,
         id_estudiante: est.id,
+        id_sala: selectedSalaId,
         fecha,
         hora,
         metodo: 'NFC'
@@ -139,6 +145,10 @@ export default function SalasKiosko() {
   }
 
   const processScan = (uid) => {
+    if (!selectedSalaId) {
+      alert("Por favor, selecciona una Sala en la parte superior antes de registrar asistencia.")
+      return
+    }
     if (status === 'waiting_teacher') {
       handleTeacherScan(uid)
     } else {
@@ -206,7 +216,22 @@ export default function SalasKiosko() {
           </div>
         </div>
 
-        <div style={{ display: 'flex', gap: 12 }}>
+        <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+          <select 
+            className="input" 
+            style={{ width: 220, background: 'var(--bg-surface)', fontWeight: 600 }}
+            value={selectedSalaId}
+            onChange={e => {
+              const val = e.target.value
+              setSelectedSalaId(val)
+              localStorage.setItem('kiosko_sala_id', val)
+            }}
+            disabled={status === 'active'}
+          >
+            <option value="">-- Seleccionar Sala --</option>
+            {salasDb.map(s => <option key={s.id} value={s.id}>{s.nombre}</option>)}
+          </select>
+
           {nfcActive && (
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: 'var(--success-bg)', color: 'var(--success)', padding: '8px 16px', borderRadius: 20, fontSize: 13, fontWeight: 700 }}>
               <Wifi size={16} /> NFC Lector Activo
@@ -230,8 +255,14 @@ export default function SalasKiosko() {
               <UserCheck size={40} style={{ color: 'var(--text-muted)' }} />
             </div>
             <div>
-              <h1 style={{ fontSize: 32, margin: '0 0 12px', color: 'var(--text-primary)' }}>Esperando Docente</h1>
-              <p style={{ fontSize: 16, color: 'var(--text-muted)', margin: 0 }}>Por favor, acerca tu credencial de profesor al lector para abrir la clase.</p>
+              <h1 style={{ fontSize: 32, margin: '0 0 12px', color: 'var(--text-primary)' }}>
+                {selectedSalaId ? (salasDb.find(s => s.id === selectedSalaId)?.nombre || 'Esperando Docente') : 'Configuración Incompleta'}
+              </h1>
+              <p style={{ fontSize: 16, color: 'var(--text-muted)', margin: 0 }}>
+                {selectedSalaId 
+                  ? 'Por favor, acerca tu credencial de profesor al lector para abrir la clase.' 
+                  : 'Debes seleccionar una sala en el menú superior antes de comenzar.'}
+              </p>
             </div>
             
             {/* Show scan feedback in waiting mode */}

@@ -1,0 +1,18 @@
+name: Keep Supabase Alive
+
+on:
+  schedule:
+    # Corre todos los días a las 09:00 UTC (05:00 o 06:00 hora de Chile)
+    - cron: '0 9 * * *'
+  # Permite correr el workflow manualmente si se necesita
+  workflow_dispatch:
+
+jobs:
+  ping_supabase:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase API
+        run: |
+          curl -s -o /dev/null -w "%{http_code}" -X GET 'https://fnacgcrdxnauqhgeuqlp.supabase.co/rest/v1/estudiantes?select=id&limit=1' \
+            -H 'apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZuYWNnY3JkeG5hdXFoZ2V1cWxwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ3NDAzNzAsImV4cCI6MjEwMDMxNjM3MH0.agDHdngVkvz1C2arRf3Cul-KW1RnwncNg3lGBYO2FIQ' \
+            -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZuYWNnY3JkeG5hdXFoZ2V1cWxwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ3NDAzNzAsImV4cCI6MjEwMDMxNjM3MH0.agDHdngVkvz1C2arRf3Cul-KW1RnwncNg3lGBYO2FIQ'

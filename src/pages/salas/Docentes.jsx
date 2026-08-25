@@ -46,12 +46,14 @@ export default function Docentes() {
       const payload = { ...form, id: docenteId }
       delete payload.uid_nfc
       delete payload.cred_id
-      await supabase.from('docentes').insert([payload])
+      const { error } = await supabase.from('docentes').insert([payload])
+      if (error) { alert('Error insertando docente: ' + error.message); return; }
     } else {
       const payload = { ...form }
       delete payload.uid_nfc
       delete payload.cred_id
-      await supabase.from('docentes').update(payload).eq('id', docenteId)
+      const { error } = await supabase.from('docentes').update(payload).eq('id', docenteId)
+      if (error) { alert('Error actualizando docente: ' + error.message); return; }
     }
 
     // Handle Credential linking
@@ -59,18 +61,21 @@ export default function Docentes() {
     
     if (uidUpper) {
       if (form.cred_id) {
-        await supabase.from('credenciales').update({ uid_nfc: uidUpper }).eq('id', form.cred_id)
+        const { error } = await supabase.from('credenciales').update({ uid_nfc: uidUpper }).eq('id', form.cred_id)
+        if (error) alert('Error actualizando credencial: ' + error.message)
       } else {
-        await supabase.from('credenciales').insert([{
+        const { error } = await supabase.from('credenciales').insert([{
           uid_nfc: uidUpper,
           id_usuario: docenteId,
           tipo_usuario: 'DOCENTE',
           estado: 'ACTIVA'
         }])
+        if (error) alert('Error insertando credencial: ' + error.message)
       }
     } else if (form.cred_id) {
       // If cleared, delete credential
-      await supabase.from('credenciales').delete().eq('id', form.cred_id)
+      const { error } = await supabase.from('credenciales').delete().eq('id', form.cred_id)
+      if (error) alert('Error eliminando credencial: ' + error.message)
     }
 
     // Refresh everything

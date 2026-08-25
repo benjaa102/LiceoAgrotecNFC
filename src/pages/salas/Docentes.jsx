@@ -64,7 +64,9 @@ export default function Docentes() {
         const { error } = await supabase.from('credenciales').update({ uid_nfc: uidUpper }).eq('id', form.cred_id)
         if (error) alert('Error actualizando credencial: ' + error.message)
       } else {
+        const credId = 'c_' + Date.now()
         const { error } = await supabase.from('credenciales').insert([{
+          id: credId,
           uid_nfc: uidUpper,
           id_usuario: docenteId,
           tipo_usuario: 'DOCENTE',

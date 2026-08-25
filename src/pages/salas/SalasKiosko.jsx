@@ -1,13 +1,12 @@
 import { useState, useEffect, useRef } from 'react'
-import { Monitor, Wifi, UserCheck, XCircle, LogOut, CheckCircle2 } from 'lucide-react'
+import { Monitor, Wifi, UserCheck, XCircle, LogOut, CheckCircle2, Users } from 'lucide-react'
 import { supabase } from '../../lib/supabase'
 
 export default function SalasKiosko() {
   const [status, setStatus] = useState('waiting_teacher') // waiting_teacher | active
   const [activeDocente, setActiveDocente] = useState(null)
-  
   const [lastScan, setLastScan] = useState(null) // { type: 'success' | 'error', title, desc }
-  
+  const [sessionStudents, setSessionStudents] = useState([])
   // Db caches
   const [credencialesDb, setCredencialesDb] = useState([])
   const [estudiantesDb, setEstudiantesDb] = useState([])
@@ -65,7 +64,23 @@ export default function SalasKiosko() {
       resetIdle()
       return
     }
-    
+    // Fetch already registered students for this session (today)
+    const loadSession = async () => {
+      const now = new Date()
+      const fecha = now.toLocaleDateString('en-CA', { timeZone: 'America/Santiago' })
+      const { data } = await supabase
+        .from('asistencia_salas')
+        .select('*')
+        .eq('id_docente', doc.id)
+        .eq('fecha', fecha)
+        .order('hora', { ascending: false })
+      
+      if (data) {
+        setSessionStudents(data)
+      }
+    }
+    loadSession()
+
     // Activate session
     setActiveDocente(doc)
     setStatus('active')
@@ -113,6 +128,7 @@ export default function SalasKiosko() {
       }])
 
       setLastScan({ type: 'success', title: 'Asistencia Registrada', desc: `${est.nombre} (${est.curso})` })
+      setSessionStudents(prev => [{ id_estudiante: est.id, fecha, hora }, ...prev])
       resetIdle()
 
     } catch (e) {
@@ -197,7 +213,7 @@ export default function SalasKiosko() {
             </div>
           )}
           {status === 'active' && (
-            <button className="btn btn-danger" onClick={() => { setStatus('waiting_teacher'); setActiveDocente(null); setLastScan(null) }}>
+            <button className="btn btn-danger" onClick={() => { setStatus('waiting_teacher'); setActiveDocente(null); setLastScan(null); setSessionStudents([]) }}>
               <LogOut size={16} /> Cerrar Sesión
             </button>
           )}
@@ -264,6 +280,44 @@ export default function SalasKiosko() {
                 </div>
               )}
             </div>
+
+            {/* Lista de Alumnos Presentes */}
+            <div style={{ marginTop: 40, width: '100%', maxWidth: 700 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, borderBottom: '1px solid var(--border)', paddingBottom: 12 }}>
+                <h3 style={{ margin: 0, fontSize: 18, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <Users size={20} style={{ color: 'var(--primary)' }} />
+                  Estudiantes Presentes
+                </h3>
+                <div style={{ background: 'var(--primary-glow)', color: 'var(--primary)', padding: '4px 12px', borderRadius: 20, fontSize: 14, fontWeight: 700 }}>
+                  {sessionStudents.length} {sessionStudents.length === 1 ? 'alumno' : 'alumnos'}
+                </div>
+              </div>
+
+              {sessionStudents.length === 0 ? (
+                <div style={{ padding: 30, textAlign: 'center', color: 'var(--text-muted)', background: 'var(--bg-body)', borderRadius: 12, border: '1px dashed var(--border)' }}>
+                  Aún no hay estudiantes registrados en esta clase.
+                </div>
+              ) : (
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: 12, maxHeight: 400, overflowY: 'auto', paddingRight: 8 }}>
+                  {sessionStudents.map((reg, idx) => {
+                    const student = estudiantesDb.find(e => e.id === reg.id_estudiante)
+                    if (!student) return null
+                    return (
+                      <div key={idx} className="fade-in" style={{ background: 'var(--bg-body)', border: '1px solid var(--border)', padding: 12, borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <div>
+                          <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--text-primary)' }}>{student.nombre}</div>
+                          <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>{student.curso}</div>
+                        </div>
+                        <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-secondary)' }}>
+                          {reg.hora.slice(0,5)}
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              )}
+            </div>
+
           </div>
         )}
 

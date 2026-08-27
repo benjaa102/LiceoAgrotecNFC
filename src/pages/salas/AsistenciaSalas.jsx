@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { ClipboardList, Search, RefreshCw, Calendar, Download, Users, X } from 'lucide-react'
+import { ClipboardList, Search, RefreshCw, Calendar, Users, X } from 'lucide-react'
 import { supabase } from '../../lib/supabase'
 
 export default function AsistenciaSalas() {
@@ -75,54 +75,35 @@ export default function AsistenciaSalas() {
     return `${reg.id_docente}_${reg.fecha}_${reg.id_sala || 'none'}` === selectedSessionKey
   }).sort((a,b) => b.hora.localeCompare(a.hora)) : []
 
-  const exportCSV = () => {
-    const headers = ['Estudiante','RUT','Curso','Asignatura','Profesor','Sala','Fecha','Hora']
-    const rows = filtered.map(reg => {
-      const est = getEstudiante(reg.id_estudiante)
-      const doc = getDocente(reg.id_docente)
-      const sala = salas.find(s => s.id === reg.id_sala)
-      return [est?.nombre || '', est?.rut || '', est?.curso || '', doc?.asignatura || '', doc?.nombre || '', sala?.nombre || '', reg.fecha, reg.hora?.slice(0,5) || '']
-    })
-    const csv = [headers, ...rows].map(r => r.map(c => `"${c}"`).join(',')).join('\n')
-    const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' })
-    const a = document.createElement('a')
-    a.href = URL.createObjectURL(blob)
-    a.download = `asistencia_salas_${new Date().toISOString().slice(0,10)}.csv`
-    a.click()
-  }
-
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
       {/* Toolbar */}
       <div className="responsive-controls-bar" style={{ background: 'var(--bg-card)', padding: 16, borderRadius: 'var(--radius-md)', border: '1px solid var(--border)' }}>
-        <div className="responsive-controls-group">
-          <div className="input-group" style={{ maxWidth: 280, width: '100%' }}>
+        <div className="responsive-controls-group" style={{ flex: 1, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 12 }}>
+          <div className="input-group" style={{ width: '100%' }}>
             <Search size={15} className="input-group-icon" />
             <input className="input" placeholder="Buscar por alumno, rut o profesor..." value={search} onChange={e => setSearch(e.target.value)} />
           </div>
           
-          <select className="input" value={filterDocente} onChange={e => setFilterDocente(e.target.value)}>
+          <select className="input" style={{ width: '100%' }} value={filterDocente} onChange={e => setFilterDocente(e.target.value)}>
             <option value="">Todos los docentes</option>
             {docentes.map(d => <option key={d.id} value={d.id}>{d.nombre} - {d.asignatura}</option>)}
           </select>
-          <select className="input" value={filterSala} onChange={e => setFilterSala(e.target.value)}>
+          <select className="input" style={{ width: '100%' }} value={filterSala} onChange={e => setFilterSala(e.target.value)}>
             <option value="">Todas las salas</option>
             {salas.map(s => <option key={s.id} value={s.id}>{s.nombre}</option>)}
           </select>
           
-          <div className="input-group">
+          <div className="input-group" style={{ width: '100%' }}>
             <Calendar size={15} className="input-group-icon" />
             <input type="date" className="input" value={filterFecha} onChange={e => setFilterFecha(e.target.value)} />
           </div>
         </div>
         
-        <div className="responsive-controls-group" style={{ justifyContent: 'flex-end' }}>
-          <span className="text-muted text-sm" style={{ alignSelf: 'center' }}>{allSessions.length} sesiones encontradas</span>
+        <div className="responsive-controls-group" style={{ justifyContent: 'flex-end', flexShrink: 0 }}>
+          <span className="text-muted text-sm" style={{ alignSelf: 'center', marginRight: 8 }}>{allSessions.length} sesiones encontradas</span>
           <button className="btn btn-secondary btn-icon" onClick={loadData} disabled={loading} title="Actualizar">
             <RefreshCw size={15} className={loading ? 'spin' : ''} />
-          </button>
-          <button className="btn btn-secondary" onClick={exportCSV} disabled={filtered.length === 0} title="Exportar CSV Completo">
-            <Download size={15} /> CSV
           </button>
         </div>
       </div>

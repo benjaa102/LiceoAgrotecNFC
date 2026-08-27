@@ -104,6 +104,12 @@ export default function SalasKiosko() {
     const est = estudiantesDb.find(e => e.id === cred.id_usuario)
     if (!est) return
 
+    if (est.estado_autorizacion === 'REVOCADO') {
+      setLastScan({ type: 'error', title: 'Credencial Revocada', desc: 'Esta credencial ha sido revocada en el sistema.' })
+      resetIdle()
+      return
+    }
+
     try {
       const now = new Date()
       const fecha = now.toLocaleDateString('en-CA', { timeZone: 'America/Santiago' })

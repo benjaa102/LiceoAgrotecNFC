@@ -42,6 +42,7 @@ const ESTADOS = {
   duplicate:    { bg: 'rgba(245,158,11,0.08)', border: 'var(--warning)', label: '⚠ YA REGISTRADO' },
   noInscripto:  { bg: 'rgba(239,68,68,0.08)', border: 'var(--danger)',  label: '✗ SIN INSCRIPCIÓN' },
   unknown:      { bg: 'rgba(239,68,68,0.08)', border: 'var(--danger)',  label: '✗ TARJETA DESCONOCIDA' },
+  revoked:      { bg: 'rgba(239,68,68,0.08)', border: 'var(--danger)',  label: '✗ CREDENCIAL REVOCADA' },
 }
 
 export default function CocinaKiosko() {
@@ -189,6 +190,12 @@ export default function CocinaKiosko() {
 
     const est = estudiantesDb.find(e => e.id === cred.id_usuario)
     setEstudiante(est)
+
+    if (est.estado_autorizacion === 'REVOCADO') {
+      setResultado('revoked')
+      resetIdle()
+      return
+    }
 
     const nowMs = Date.now()
     if (recentScansRef.current[est.id] && nowMs - recentScansRef.current[est.id] < 5000) {
@@ -439,6 +446,7 @@ export default function CocinaKiosko() {
           {resultado === 'duplicate' && estudiante && <DuplicateScreen est={estudiante} servicio={servicio} hora={prevHora} />}
           {resultado === 'noInscripto' && estudiante && <NoInscriptoScreen est={estudiante} servicio={servicio} />}
           {resultado === 'unknown' && <UnknownScreen />}
+          {resultado === 'revoked' && <RevokedScreen />}
         </div>
       ) : (
         /* ── Modo Manual ─── */
@@ -647,6 +655,16 @@ function UnknownScreen() {
       <XCircle size={52} style={{ color: 'var(--danger)' }} />
       <div style={{ fontSize: 18, fontWeight: 800, color: 'var(--danger)' }}>✗ TARJETA DESCONOCIDA</div>
       <div style={{ fontSize: 13, color: 'var(--text-muted)' }}>El UID leído no está registrado en el sistema</div>
+    </>
+  )
+}
+
+function RevokedScreen() {
+  return (
+    <>
+      <XCircle size={52} style={{ color: 'var(--danger)' }} />
+      <div style={{ fontSize: 18, fontWeight: 800, color: 'var(--danger)' }}>✗ CREDENCIAL REVOCADA</div>
+      <div style={{ fontSize: 13, color: 'var(--text-muted)' }}>Esta credencial ha sido revocada en el sistema.</div>
     </>
   )
 }

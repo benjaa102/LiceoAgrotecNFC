@@ -17,6 +17,7 @@ const ESTADOS = {
   duplicate:    { bg: 'rgba(245,158,11,0.08)', border: 'var(--warning)', label: '⚠ YA REGISTRADO' },
   noRecorrido:  { bg: 'rgba(239,68,68,0.08)', border: 'var(--danger)',  label: '✗ NO PERTENECE A ESTE RECORRIDO' },
   unknown:      { bg: 'rgba(239,68,68,0.08)', border: 'var(--danger)',  label: '✗ TARJETA DESCONOCIDA' },
+  revoked:      { bg: 'rgba(239,68,68,0.08)', border: 'var(--danger)',  label: '✗ CREDENCIAL REVOCADA' },
 }
 
 export default function BusesKiosko() {
@@ -157,6 +158,12 @@ export default function BusesKiosko() {
 
     const est = estudiantesDb.find(e => e.id === cred.id_usuario)
     setEstudiante(est)
+
+    if (est.estado_autorizacion === 'REVOCADO') {
+      setResultado('revoked')
+      resetIdle()
+      return
+    }
 
     const nowMs = Date.now()
     if (recentScansRef.current[est.id] && nowMs - recentScansRef.current[est.id] < 5000) return
@@ -482,6 +489,14 @@ export default function BusesKiosko() {
                 <XCircle size={48} style={{ color: 'var(--danger)' }} />
                 <div style={{ fontWeight: 800, fontSize: 18, color: 'var(--danger)' }}>✗ TARJETA DESCONOCIDA</div>
                 <div style={{ fontSize: 13, color: 'var(--text-muted)' }}>Esta tarjeta no está registrada en el sistema</div>
+              </>
+            )}
+
+            {resultado === 'revoked' && (
+              <>
+                <XCircle size={48} style={{ color: 'var(--danger)' }} />
+                <div style={{ fontWeight: 800, fontSize: 18, color: 'var(--danger)' }}>✗ CREDENCIAL REVOCADA</div>
+                <div style={{ fontSize: 13, color: 'var(--text-muted)' }}>Esta credencial ha sido revocada en el sistema.</div>
               </>
             )}
           </div>

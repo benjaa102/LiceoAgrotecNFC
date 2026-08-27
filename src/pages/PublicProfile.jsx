@@ -46,6 +46,16 @@ export default function PublicProfile() {
     )
   }
 
+  if (estudiante.estado_autorizacion === 'REVOCADO') {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh', background: '#0f172a', color: 'white', padding: 20, textAlign: 'center' }}>
+        <ShieldAlert size={64} style={{ color: '#ef4444', marginBottom: 20 }} />
+        <h1 style={{ margin: '0 0 10px', fontSize: 24, fontWeight: 800 }}>Credencial Revocada</h1>
+        <p style={{ margin: 0, color: '#94a3b8' }}>Esta credencial ha sido revocada en el sistema.</p>
+      </div>
+    )
+  }
+
   const isActivo = estudiante.estado_autorizacion === 'ACTIVO'
 
   return (

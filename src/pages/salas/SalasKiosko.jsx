@@ -222,7 +222,7 @@ export default function SalasKiosko() {
           </div>
         </div>
 
-        <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+        <div className="kiosko-topbar-controls">
           <select 
             className="input" 
             style={{ width: 220, background: 'var(--bg-surface)', fontWeight: 600 }}
@@ -288,10 +288,10 @@ export default function SalasKiosko() {
 
         {/* Active Class State */}
         {status === 'active' && (
-          <div style={{ display: 'flex', width: '100%', height: '100%', zIndex: 1 }}>
+          <div className="kiosko-layout">
             
             {/* Left Column: Info & Scanning Area */}
-            <div style={{ flex: '0 0 450px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 40, borderRight: '1px solid var(--border)', background: 'linear-gradient(to right, rgba(15, 23, 41, 0.8), rgba(20, 30, 53, 0.4))', backdropFilter: 'blur(10px)' }}>
+            <div className="kiosko-left">
               
               <div className="glass-panel" style={{ padding: '24px', borderRadius: 24, width: '100%', textAlign: 'center', marginBottom: 40 }}>
                 <div style={{ background: 'var(--success-bg)', color: 'var(--success)', padding: '6px 16px', borderRadius: 20, fontSize: 12, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 16, display: 'inline-block' }}>
@@ -338,7 +338,7 @@ export default function SalasKiosko() {
             </div>
 
             {/* Right Column: Present Students Grid */}
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: 'rgba(15, 23, 41, 0.4)' }}>
+            <div className="kiosko-right">
               <div style={{ padding: '24px', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backdropFilter: 'blur(10px)' }}>
                 <h3 style={{ margin: 0, fontSize: 18, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: 10 }}>
                   <Users size={20} style={{ color: 'var(--primary)' }} />

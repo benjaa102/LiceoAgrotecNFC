@@ -94,29 +94,29 @@ export default function AsistenciaSalas() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
       {/* Toolbar */}
-      <div className="toolbar">
-        <div className="toolbar-left">
-          <div className="input-group" style={{ maxWidth: 280 }}>
+      <div className="responsive-controls-bar" style={{ background: 'var(--bg-card)', padding: 16, borderRadius: 'var(--radius-md)', border: '1px solid var(--border)' }}>
+        <div className="responsive-controls-group">
+          <div className="input-group" style={{ maxWidth: 280, width: '100%' }}>
             <Search size={15} className="input-group-icon" />
             <input className="input" placeholder="Buscar por alumno, rut o profesor..." value={search} onChange={e => setSearch(e.target.value)} />
           </div>
           
-          <select className="input" style={{ width: 180 }} value={filterDocente} onChange={e => setFilterDocente(e.target.value)}>
+          <select className="input" value={filterDocente} onChange={e => setFilterDocente(e.target.value)}>
             <option value="">Todos los docentes</option>
             {docentes.map(d => <option key={d.id} value={d.id}>{d.nombre} - {d.asignatura}</option>)}
           </select>
-          <select className="input" style={{ width: 150 }} value={filterSala} onChange={e => setFilterSala(e.target.value)}>
+          <select className="input" value={filterSala} onChange={e => setFilterSala(e.target.value)}>
             <option value="">Todas las salas</option>
             {salas.map(s => <option key={s.id} value={s.id}>{s.nombre}</option>)}
           </select>
           
-          <div className="input-group" style={{ width: 160 }}>
+          <div className="input-group">
             <Calendar size={15} className="input-group-icon" />
             <input type="date" className="input" value={filterFecha} onChange={e => setFilterFecha(e.target.value)} />
           </div>
         </div>
         
-        <div className="toolbar-right">
+        <div className="responsive-controls-group" style={{ justifyContent: 'flex-end' }}>
           <span className="text-muted text-sm" style={{ alignSelf: 'center' }}>{allSessions.length} sesiones encontradas</span>
           <button className="btn btn-secondary btn-icon" onClick={loadData} disabled={loading} title="Actualizar">
             <RefreshCw size={15} className={loading ? 'spin' : ''} />
@@ -197,7 +197,7 @@ export default function AsistenciaSalas() {
                 )}
                 <div>Total Presentes: <strong style={{ color: 'var(--primary)' }}>{selectedSessionData.count}</strong></div>
               </div>
-              <div className="table-wrapper" style={{ margin: 0, borderRadius: 0, border: 'none' }}>
+              <div className="table-responsive-wrapper" style={{ margin: 0, borderRadius: 0, border: 'none' }}>
                 <table style={{ margin: 0 }}>
                   <thead style={{ position: 'sticky', top: 0, zIndex: 1, background: 'var(--bg-card)' }}>
                     <tr>

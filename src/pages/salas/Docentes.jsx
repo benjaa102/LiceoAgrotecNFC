@@ -123,9 +123,9 @@ export default function Docentes() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
       {/* Header & Controls */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div className="input-group" style={{ maxWidth: 280 }}>
+      <div className="responsive-controls-bar">
+        <div className="responsive-controls-group">
+          <div className="input-group" style={{ maxWidth: 280, width: '100%' }}>
             <Search size={15} className="input-group-icon" />
             <input className="input" placeholder="Buscar por nombre o RUT..." value={search} onChange={e => setSearch(e.target.value)} />
           </div>
@@ -144,7 +144,7 @@ export default function Docentes() {
           <span className="card-title"><BookOpen size={16} /> Docentes Registrados</span>
           <span className="text-muted text-sm">{filtered.length} docentes</span>
         </div>
-        <div className="table-wrapper">
+        <div className="table-responsive-wrapper">
           {loading ? (
             <div style={{ padding: 40, textAlign: 'center', color: 'var(--text-muted)' }}>Cargando docentes...</div>
           ) : (

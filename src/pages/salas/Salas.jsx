@@ -54,9 +54,9 @@ export default function Salas() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
       {/* Header & Controls */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div className="input-group" style={{ maxWidth: 280 }}>
+      <div className="responsive-controls-bar">
+        <div className="responsive-controls-group">
+          <div className="input-group" style={{ maxWidth: 280, width: '100%' }}>
             <Search size={15} className="input-group-icon" />
             <input className="input" placeholder="Buscar por nombre..." value={search} onChange={e => setSearch(e.target.value)} />
           </div>

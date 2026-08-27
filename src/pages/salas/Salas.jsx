@@ -87,11 +87,14 @@ export default function Salas() {
                     </div>
                     <div>
                       <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>{sala.nombre}</div>
-                      <div style={{ marginTop: 6, display: 'flex', alignItems: 'center', gap: 6 }}>
+                      <div style={{ marginTop: 6, display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
                         <span style={{ display: 'inline-block', width: 8, height: 8, borderRadius: '50%', background: sala.estado === 'ACTIVA' ? 'var(--success)' : 'var(--danger)', boxShadow: `0 0 10px ${sala.estado === 'ACTIVA' ? 'var(--success)' : 'var(--danger)'}` }} />
-                        <span style={{ fontSize: 13, fontWeight: 700, color: sala.estado === 'ACTIVA' ? 'var(--success)' : 'var(--danger)', letterSpacing: '0.05em' }}>
+                        <span style={{ fontSize: 13, fontWeight: 700, color: sala.estado === 'ACTIVA' ? 'var(--success)' : 'var(--danger)', letterSpacing: '0.05em', marginRight: 8 }}>
                           {sala.estado}
                         </span>
+                        {sala.tipo_sala && <span className="chip" style={{ fontSize: 11, background: 'rgba(255,255,255,0.05)' }}>{sala.tipo_sala}</span>}
+                        {sala.ubicacion && <span className="chip" style={{ fontSize: 11, background: 'rgba(255,255,255,0.05)' }}>{sala.ubicacion}</span>}
+                        {sala.capacidad && <span className="chip" style={{ fontSize: 11, background: 'rgba(255,255,255,0.05)' }}>Cap: {sala.capacidad}</span>}
                       </div>
                     </div>
                   </div>
@@ -128,6 +131,23 @@ export default function Salas() {
                 <input className="input" value={form.nombre || ''} onChange={e => setForm({...form, nombre: e.target.value})} placeholder="Ej: Laboratorio 1, Sala 2A, Taller Cocina..." />
               </div>
               
+              <div className="form-group">
+                <label>Tipo de Sala</label>
+                <input className="input" value={form.tipo_sala || ''} onChange={e => setForm({...form, tipo_sala: e.target.value})} placeholder="Ej: Laboratorio, Taller, Aula común..." />
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+                <div className="form-group">
+                  <label>Ubicación / Pabellón</label>
+                  <input className="input" value={form.ubicacion || ''} onChange={e => setForm({...form, ubicacion: e.target.value})} placeholder="Ej: Pabellón A" />
+                </div>
+                
+                <div className="form-group">
+                  <label>Capacidad</label>
+                  <input type="number" className="input" value={form.capacidad || ''} onChange={e => setForm({...form, capacidad: e.target.value})} placeholder="Ej: 30" />
+                </div>
+              </div>
+
               <div className="form-group">
                 <label>Estado</label>
                 <select className="input" value={form.estado || 'ACTIVA'} onChange={e => setForm({...form, estado: e.target.value})}>

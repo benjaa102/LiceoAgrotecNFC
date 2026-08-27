@@ -125,9 +125,9 @@ export default function Docentes() {
       {/* Header & Controls */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div className="input-with-icon" style={{ minWidth: 260 }}>
-            <Search size={16} />
-            <input className="input" placeholder="Buscar docente..." value={search} onChange={e => setSearch(e.target.value)} />
+          <div className="input-group" style={{ minWidth: 260 }}>
+            <Search size={15} className="input-group-icon" />
+            <input className="input" placeholder="Buscar por nombre o RUT..." value={search} onChange={e => setSearch(e.target.value)} />
           </div>
           <button className="btn btn-secondary btn-sm" onClick={loadData} disabled={loading} title="Actualizar">
             <RefreshCw size={15} className={loading ? 'spin' : ''} />

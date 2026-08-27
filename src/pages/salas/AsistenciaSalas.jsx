@@ -81,33 +81,37 @@ export default function AsistenciaSalas() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-      {/* Top Controls */}
-      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-        <div className="input-with-icon" style={{ flex: 1, minWidth: 250 }}>
-          <Search size={16} />
-          <input className="input" placeholder="Buscar por alumno, rut o profesor..." value={search} onChange={e => setSearch(e.target.value)} />
+      {/* Toolbar */}
+      <div className="toolbar">
+        <div className="toolbar-left">
+          <div className="input-group" style={{ minWidth: 250 }}>
+            <Search size={15} className="input-group-icon" />
+            <input className="input" placeholder="Buscar por alumno, rut o profesor..." value={search} onChange={e => setSearch(e.target.value)} />
+          </div>
+          
+          <select className="input" style={{ minWidth: 180 }} value={filterDocente} onChange={e => setFilterDocente(e.target.value)}>
+            <option value="">Todos los docentes</option>
+            {docentes.map(d => <option key={d.id} value={d.id}>{d.nombre} - {d.asignatura}</option>)}
+          </select>
+          <select className="input" style={{ minWidth: 150 }} value={filterSala} onChange={e => setFilterSala(e.target.value)}>
+            <option value="">Todas las salas</option>
+            {salas.map(s => <option key={s.id} value={s.id}>{s.nombre}</option>)}
+          </select>
+          
+          <div className="input-group" style={{ minWidth: 160 }}>
+            <Calendar size={15} className="input-group-icon" />
+            <input type="date" className="input" value={filterFecha} onChange={e => setFilterFecha(e.target.value)} />
+          </div>
         </div>
         
-        <select className="input" style={{ width: 200 }} value={filterDocente} onChange={e => setFilterDocente(e.target.value)}>
-          <option value="">Todos los docentes</option>
-          {docentes.map(d => <option key={d.id} value={d.id}>{d.nombre} - {d.asignatura}</option>)}
-        </select>
-        <select className="input" style={{ width: 150 }} value={filterSala} onChange={e => setFilterSala(e.target.value)}>
-          <option value="">Todas las salas</option>
-          {salas.map(s => <option key={s.id} value={s.id}>{s.nombre}</option>)}
-        </select>
-        
-        <div className="input-with-icon">
-          <Calendar size={16} />
-          <input type="date" className="input" value={filterFecha} onChange={e => setFilterFecha(e.target.value)} />
+        <div className="toolbar-right">
+          <button className="btn btn-secondary btn-icon" onClick={loadData} disabled={loading} title="Actualizar">
+            <RefreshCw size={15} className={loading ? 'spin' : ''} />
+          </button>
+          <button className="btn btn-secondary" onClick={exportCSV} disabled={filtered.length === 0} title="Exportar CSV">
+            <Download size={15} /> CSV
+          </button>
         </div>
-        
-        <button className="btn btn-secondary" onClick={loadData} disabled={loading}>
-          <RefreshCw size={15} className={loading ? 'spin' : ''} />
-        </button>
-        <button className="btn btn-secondary" onClick={exportCSV} disabled={filtered.length === 0} title="Exportar CSV">
-          <Download size={15} /> CSV
-        </button>
       </div>
 
       {/* Summary Cards */}

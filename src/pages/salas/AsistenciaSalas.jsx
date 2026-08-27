@@ -189,9 +189,12 @@ export default function AsistenciaSalas() {
               </button>
             </div>
             <div className="modal-body" style={{ padding: 0, maxHeight: '60vh', overflowY: 'auto' }}>
-              <div style={{ padding: '16px 20px', background: 'var(--bg-app)', borderBottom: '1px solid var(--border)', display: 'flex', gap: 20, fontSize: 13 }}>
+              <div style={{ padding: '16px 20px', background: 'var(--bg-app)', borderBottom: '1px solid var(--border)', display: 'flex', gap: 20, fontSize: 13, flexWrap: 'wrap' }}>
                 <div>Profesor: <strong>{selectedSessionData.docente?.nombre || 'Desconocido'}</strong></div>
                 <div>Sala: <strong>{selectedSessionData.sala?.nombre || 'S/E'}</strong></div>
+                {selectedSessionData.docente?.hora_inicio && selectedSessionData.docente?.hora_fin && (
+                  <div>Horario: <strong>{selectedSessionData.docente.hora_inicio.slice(0,5)} - {selectedSessionData.docente.hora_fin.slice(0,5)}</strong></div>
+                )}
                 <div>Total Presentes: <strong style={{ color: 'var(--primary)' }}>{selectedSessionData.count}</strong></div>
               </div>
               <div className="table-wrapper" style={{ margin: 0, borderRadius: 0, border: 'none' }}>

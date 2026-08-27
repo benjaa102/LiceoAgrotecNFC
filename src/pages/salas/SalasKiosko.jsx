@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Monitor, Wifi, UserCheck, XCircle, LogOut, CheckCircle2, Users } from 'lucide-react'
+import { Monitor, Wifi, UserCheck, XCircle, LogOut, CheckCircle2, Users, Clock } from 'lucide-react'
 import { supabase } from '../../lib/supabase'
 
 export default function SalasKiosko() {
@@ -301,9 +301,15 @@ export default function SalasKiosko() {
               <h1 style={{ fontSize: 44, margin: '0 0 10px', color: 'var(--text-primary)', lineHeight: 1.1, textAlign: 'center' }}>
                 {activeDocente.asignatura}
               </h1>
-              <h2 style={{ fontSize: 20, margin: 0, color: 'var(--text-secondary)', fontWeight: 500, textAlign: 'center' }}>
+              <h2 style={{ fontSize: 20, margin: '0 0 12px', color: 'var(--text-secondary)', fontWeight: 500, textAlign: 'center' }}>
                 Prof. {activeDocente.nombre}
               </h2>
+              {activeDocente.hora_inicio && activeDocente.hora_fin && (
+                <div style={{ background: 'var(--bg-body)', border: '1px solid var(--border)', padding: '6px 16px', borderRadius: 20, fontSize: 14, color: 'var(--text-primary)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                  <Clock size={16} style={{ color: 'var(--primary)' }}/>
+                  {activeDocente.hora_inicio.slice(0,5)} - {activeDocente.hora_fin.slice(0,5)}
+                </div>
+              )}
               
               <div style={{ marginTop: 60, width: '100%', maxWidth: 500, height: 180, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 {!lastScan && (

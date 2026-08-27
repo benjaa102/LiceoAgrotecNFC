@@ -114,39 +114,41 @@ export default function AsistenciaSalas() {
       ) : (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 16 }}>
           {allSessions.map((session) => (
-            <div key={session.key} className="card">
-              <div style={{ padding: '18px 20px', borderBottom: '1px solid var(--border)' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                    <div style={{ width: 42, height: 42, borderRadius: 10, background: 'var(--primary-glow)', color: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <ClipboardList size={20} />
-                    </div>
-                    <div>
-                      <div style={{ fontWeight: 800, fontSize: 16, color: 'var(--text-primary)' }}>{session.asignatura}</div>
-                      <div style={{ fontSize: 13, color: 'var(--text-secondary)' }}>Prof. {session.docente?.nombre || 'Desconocido'}</div>
-                    </div>
+            <div key={session.key} className="card fade-in" style={{ overflow: 'hidden', position: 'relative', border: '1px solid var(--border)', transition: 'all 0.3s ease', padding: 0 }}>
+              {/* Subtle background glow */}
+              <div style={{ position: 'absolute', top: -30, right: -30, width: 120, height: 120, background: 'var(--primary-bg)', borderRadius: '50%', filter: 'blur(40px)', pointerEvents: 'none' }} />
+              
+              <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: 20, position: 'relative', zIndex: 1 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                  <div style={{ width: 56, height: 56, borderRadius: 16, background: 'linear-gradient(135deg, rgba(79,142,247,0.15), rgba(79,142,247,0.02))', border: '1px solid rgba(79,142,247,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 0 20px rgba(79,142,247,0.1)' }}>
+                    <ClipboardList size={26} color="var(--primary)" />
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>{session.asignatura}</div>
+                    <div style={{ fontSize: 13, color: 'var(--text-secondary)', marginTop: 4 }}>Prof. {session.docente?.nombre || 'Desconocido'}</div>
                   </div>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: 'var(--text-muted)', marginTop: 8 }}>
-                  <Calendar size={13} />
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--text-muted)' }}>
+                  <Calendar size={14} />
                   <span>Fecha: <strong style={{ color: 'var(--text-secondary)' }}>{session.fecha}</strong></span>
                 </div>
-              </div>
-              <div style={{ padding: '14px 20px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-                <div style={{ display: 'flex', gap: 20 }}>
-                  <div style={{ flex: 1, textAlign: 'center', padding: '8px 0' }}>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, borderTop: '1px solid var(--border)', paddingTop: 16 }}>
+                  <div>
                     <div style={{ fontSize: 24, fontWeight: 800, color: 'var(--primary)', letterSpacing: -1 }}>{session.count}</div>
                     <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>Estudiantes</div>
                   </div>
-                  <div style={{ flex: 1, textAlign: 'center', padding: '8px 0', borderLeft: '1px solid var(--border)' }}>
-                    <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--text-primary)', marginTop: 6 }}>{session.sala?.nombre || 'S/E'}</div>
+                  <div style={{ borderLeft: '1px solid var(--border)', paddingLeft: 16, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                    <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--text-primary)' }}>{session.sala?.nombre || 'S/E'}</div>
                     <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 2 }}>Sala / Espacio</div>
                   </div>
                 </div>
               </div>
-              <div style={{ borderTop: '1px solid var(--border)', padding: '12px 20px', display: 'flex', justifyContent: 'center' }}>
-                <button className="btn btn-secondary btn-sm" style={{ width: '100%' }} onClick={() => setSelectedSessionKey(session.key)}>
-                  <Users size={14} style={{ marginRight: 6 }}/> Ver Lista de Asistencia
+              
+              <div style={{ padding: '0 24px 24px 24px', position: 'relative', zIndex: 1 }}>
+                <button className="btn btn-secondary w-full" style={{ background: 'var(--bg-app)', border: '1px solid var(--border-bright)' }} onClick={() => setSelectedSessionKey(session.key)}>
+                  <Users size={15} style={{ marginRight: 6 }}/> Ver Lista de Asistencia
                 </button>
               </div>
             </div>

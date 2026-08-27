@@ -249,32 +249,31 @@ export default function SalasKiosko() {
             </button>
           )}
         </div>
-      </div>
-
-      {/* Main Terminal View */}
+      </      {/* Main Terminal View */}
       <div style={{ flex: 1, background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
+        <div className="ambient-glow" />
         
         {/* Waiting for Teacher State */}
         {status === 'waiting_teacher' && (
-          <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24, width: '100%', padding: 40 }}>
-            <div style={{ width: 100, height: 100, borderRadius: '50%', background: 'var(--bg-body)', border: '4px dashed var(--border-bright)', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'pulse 2s infinite' }}>
-              <UserCheck size={40} style={{ color: 'var(--text-muted)' }} />
+          <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24, width: '100%', padding: 40, zIndex: 1 }}>
+            <div className="animate-radar" style={{ width: 100, height: 100, borderRadius: '50%', background: 'var(--primary-glow)', border: '2px solid var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Wifi size={40} style={{ color: 'var(--primary)' }} />
             </div>
-            <div>
+            <div className="glass-panel" style={{ padding: '30px 50px', borderRadius: 24, marginTop: 20 }}>
               <h1 style={{ fontSize: 32, margin: '0 0 12px', color: 'var(--text-primary)' }}>
                 {selectedSalaId ? (salasDb.find(s => s.id === selectedSalaId)?.nombre || 'Esperando Docente') : 'Configuración Incompleta'}
               </h1>
-              <p style={{ fontSize: 16, color: 'var(--text-muted)', margin: 0 }}>
+              <p style={{ fontSize: 16, color: 'var(--text-secondary)', margin: 0 }}>
                 {selectedSalaId 
-                  ? 'Por favor, acerca tu credencial de profesor al lector para abrir la clase.' 
+                  ? 'Acerca tu credencial de profesor al lector NFC para abrir la clase.' 
                   : 'Debes seleccionar una sala en el menú superior antes de comenzar.'}
               </p>
             </div>
             
             {/* Show scan feedback in waiting mode */}
-            <div style={{ marginTop: 20, width: '100%', maxWidth: 500, height: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ marginTop: 20, width: '100%', maxWidth: 500, minHeight: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               {lastScan && (
-                <div className="fade-in" style={{ background: lastScan.type === 'success' ? 'var(--success-bg)' : 'var(--danger-bg)', border: `2px solid ${lastScan.type === 'success' ? 'var(--success)' : 'var(--danger)'}`, borderRadius: 20, padding: 20, width: '100%', display: 'flex', alignItems: 'center', gap: 16, boxShadow: `0 10px 40px ${lastScan.type === 'success' ? 'rgba(34,197,94,0.1)' : 'rgba(239,68,68,0.1)'}` }}>
+                <div className={lastScan.type === 'success' ? 'animate-slide-up' : 'animate-shake'} style={{ background: lastScan.type === 'success' ? 'var(--success-bg)' : 'var(--danger-bg)', border: `1px solid ${lastScan.type === 'success' ? 'var(--success)' : 'var(--danger)'}`, borderRadius: 20, padding: 20, width: '100%', display: 'flex', alignItems: 'center', gap: 16, backdropFilter: 'blur(10px)' }}>
                   {lastScan.type === 'success' ? <CheckCircle2 size={32} style={{ color: 'var(--success)' }} /> : <XCircle size={32} style={{ color: 'var(--danger)' }} />}
                   <div style={{ textAlign: 'left', flex: 1 }}>
                     <div style={{ fontSize: 18, fontWeight: 800, color: lastScan.type === 'success' ? 'var(--success)' : 'var(--danger)' }}>{lastScan.title}</div>
@@ -288,78 +287,100 @@ export default function SalasKiosko() {
 
         {/* Active Class State */}
         {status === 'active' && (
-          <div style={{ display: 'flex', width: '100%', height: '100%' }}>
+          <div style={{ display: 'flex', width: '100%', height: '100%', zIndex: 1 }}>
             
             {/* Left Column: Info & Scanning Area */}
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 40, borderRight: '1px solid var(--border)' }}>
-              <div style={{ background: 'var(--primary-glow)', color: 'var(--primary)', padding: '6px 16px', borderRadius: 20, fontSize: 14, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 12 }}>
-                Asistencia Abierta
-              </div>
-              <div style={{ fontSize: 13, color: 'var(--text-muted)', fontWeight: 600, marginBottom: 8 }}>
-                {salasDb.find(s => s.id === selectedSalaId)?.nombre || 'Sin sala'}
-              </div>
-              <h1 style={{ fontSize: 44, margin: '0 0 10px', color: 'var(--text-primary)', lineHeight: 1.1, textAlign: 'center' }}>
-                {activeDocente.asignatura}
-              </h1>
-              <h2 style={{ fontSize: 20, margin: '0 0 12px', color: 'var(--text-secondary)', fontWeight: 500, textAlign: 'center' }}>
-                Prof. {activeDocente.nombre}
-              </h2>
-              {activeDocente.hora_inicio && activeDocente.hora_fin && (
-                <div style={{ background: 'var(--bg-body)', border: '1px solid var(--border)', padding: '6px 16px', borderRadius: 20, fontSize: 14, color: 'var(--text-primary)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                  <Clock size={16} style={{ color: 'var(--primary)' }}/>
-                  {activeDocente.hora_inicio.slice(0,5)} - {activeDocente.hora_fin.slice(0,5)}
-                </div>
-              )}
+            <div style={{ flex: '0 0 450px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 40, borderRight: '1px solid var(--border)', background: 'linear-gradient(to right, rgba(15, 23, 41, 0.8), rgba(20, 30, 53, 0.4))', backdropFilter: 'blur(10px)' }}>
               
-              <div style={{ marginTop: 60, width: '100%', maxWidth: 500, height: 180, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div className="glass-panel" style={{ padding: '24px', borderRadius: 24, width: '100%', textAlign: 'center', marginBottom: 40 }}>
+                <div style={{ background: 'var(--success-bg)', color: 'var(--success)', padding: '6px 16px', borderRadius: 20, fontSize: 12, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 16, display: 'inline-block' }}>
+                  <span style={{ display: 'inline-block', width: 8, height: 8, background: 'var(--success)', borderRadius: '50%', marginRight: 6, animation: 'pulse 2s infinite' }}></span>
+                  Asistencia Abierta
+                </div>
+                <div style={{ fontSize: 13, color: 'var(--text-muted)', fontWeight: 600, marginBottom: 8, textTransform: 'uppercase', letterSpacing: 1 }}>
+                  {salasDb.find(s => s.id === selectedSalaId)?.nombre || 'Sin sala'}
+                </div>
+                <h1 style={{ fontSize: 36, margin: '0 0 10px', color: 'var(--text-primary)', lineHeight: 1.1 }}>
+                  {activeDocente.asignatura}
+                </h1>
+                <h2 style={{ fontSize: 18, margin: '0 0 16px', color: 'var(--text-secondary)', fontWeight: 500 }}>
+                  Prof. {activeDocente.nombre}
+                </h2>
+                {activeDocente.hora_inicio && activeDocente.hora_fin && (
+                  <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', padding: '6px 16px', borderRadius: 20, fontSize: 13, color: 'var(--text-primary)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                    <Clock size={14} style={{ color: 'var(--primary)' }}/>
+                    {activeDocente.hora_inicio.slice(0,5)} - {activeDocente.hora_fin.slice(0,5)}
+                  </div>
+                )}
+              </div>
+              
+              <div style={{ width: '100%', minHeight: 180, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 {!lastScan && (
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, opacity: 0.5 }}>
-                    <Wifi size={56} className="pulse-fast" />
-                    <span style={{ fontSize: 20, fontWeight: 500 }}>Esperando estudiantes...</span>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
+                    <div className="animate-radar" style={{ width: 80, height: 80, borderRadius: '50%', background: 'var(--primary-glow)', border: '2px solid var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <Wifi size={32} style={{ color: 'var(--primary)' }} />
+                    </div>
+                    <span style={{ fontSize: 16, fontWeight: 500, color: 'var(--text-secondary)' }}>Acerca tu tarjeta para ingresar...</span>
                   </div>
                 )}
                 
                 {lastScan && (
-                  <div className="fade-in" style={{ background: lastScan.type === 'success' ? 'var(--success-bg)' : 'var(--danger-bg)', border: `2px solid ${lastScan.type === 'success' ? 'var(--success)' : 'var(--danger)'}`, borderRadius: 20, padding: 30, width: '100%', display: 'flex', alignItems: 'center', gap: 24, boxShadow: `0 10px 40px ${lastScan.type === 'success' ? 'rgba(34,197,94,0.1)' : 'rgba(239,68,68,0.1)'}` }}>
-                    {lastScan.type === 'success' ? <CheckCircle2 size={48} style={{ color: 'var(--success)' }} /> : <XCircle size={48} style={{ color: 'var(--danger)' }} />}
+                  <div className={lastScan.type === 'success' ? 'animate-slide-up' : 'animate-shake'} style={{ background: lastScan.type === 'success' ? 'var(--success-bg)' : 'var(--danger-bg)', border: `1px solid ${lastScan.type === 'success' ? 'var(--success)' : 'var(--danger)'}`, borderRadius: 20, padding: '24px 20px', width: '100%', display: 'flex', alignItems: 'center', gap: 20, backdropFilter: 'blur(10px)' }}>
+                    {lastScan.type === 'success' ? <CheckCircle2 size={40} style={{ color: 'var(--success)' }} /> : <XCircle size={40} style={{ color: 'var(--danger)' }} />}
                     <div style={{ textAlign: 'left', flex: 1 }}>
-                      <div style={{ fontSize: 22, fontWeight: 800, color: lastScan.type === 'success' ? 'var(--success)' : 'var(--danger)', marginBottom: 6 }}>{lastScan.title}</div>
-                      <div style={{ fontSize: 16, color: 'var(--text-primary)' }}>{lastScan.desc}</div>
+                      <div style={{ fontSize: 20, fontWeight: 800, color: lastScan.type === 'success' ? 'var(--success)' : 'var(--danger)', marginBottom: 4 }}>{lastScan.title}</div>
+                      <div style={{ fontSize: 14, color: 'var(--text-primary)' }}>{lastScan.desc}</div>
                     </div>
                   </div>
                 )}
               </div>
             </div>
 
-            {/* Right Column: Present Students List */}
-            <div style={{ width: 400, background: 'var(--bg-body)', display: 'flex', flexDirection: 'column' }}>
-              <div style={{ padding: '24px 24px 16px', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <h3 style={{ margin: 0, fontSize: 16, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <Users size={18} style={{ color: 'var(--primary)' }} />
+            {/* Right Column: Present Students Grid */}
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: 'rgba(15, 23, 41, 0.4)' }}>
+              <div style={{ padding: '24px', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backdropFilter: 'blur(10px)' }}>
+                <h3 style={{ margin: 0, fontSize: 18, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <Users size={20} style={{ color: 'var(--primary)' }} />
                   Estudiantes Presentes
                 </h3>
-                <div style={{ background: 'var(--bg-card)', color: 'var(--text-secondary)', padding: '4px 10px', borderRadius: 20, fontSize: 12, fontWeight: 700, border: '1px solid var(--border)' }}>
-                  {sessionStudents.length}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <span style={{ fontSize: 14, color: 'var(--text-muted)' }}>Total:</span>
+                  <div style={{ background: 'var(--primary-glow)', color: 'var(--primary)', padding: '4px 14px', borderRadius: 20, fontSize: 16, fontWeight: 800, border: '1px solid rgba(79, 142, 247, 0.3)' }}>
+                    {sessionStudents.length}
+                  </div>
                 </div>
               </div>
 
-              <div style={{ flex: 1, overflowY: 'auto', padding: 24, display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <div className="student-grid" style={{ flex: 1 }}>
                 {sessionStudents.length === 0 ? (
-                  <div style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: 14, marginTop: 40 }}>
-                    Aún no hay registros en esta clase.
+                  <div style={{ gridColumn: '1 / -1', textAlign: 'center', color: 'var(--text-muted)', fontSize: 15, marginTop: 60, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
+                    <Users size={48} style={{ opacity: 0.2 }} />
+                    La sala está vacía.
                   </div>
                 ) : (
                   sessionStudents.map((reg, idx) => {
                     const student = estudiantesDb.find(e => e.id === reg.id_estudiante)
                     if (!student) return null
+                    // Get initials
+                    const initials = student.nombre.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase()
+                    
                     return (
-                      <div key={idx} className="fade-in" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', padding: '12px 16px', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-                          <div style={{ fontWeight: 700, fontSize: 14, color: 'var(--text-primary)' }}>{student.nombre}</div>
-                          <div style={{ fontSize: 12, color: 'var(--primary-light)', fontWeight: 600 }}>{student.curso}</div>
+                      <div key={idx} className="student-card-mini animate-slide-up" style={{ animationDelay: `${Math.min(idx * 0.05, 0.5)}s` }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                          <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--primary-glow)', color: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 800 }}>
+                            {initials}
+                          </div>
+                          <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--text-muted)', background: 'var(--bg-input)', padding: '2px 8px', borderRadius: 10 }}>
+                            {reg.hora.slice(0,5)}
+                          </div>
                         </div>
-                        <div style={{ fontSize: 13, fontWeight: 800, color: 'var(--text-muted)' }}>
-                          {reg.hora.slice(0,5)}
+                        <div style={{ marginTop: 4 }}>
+                          <div style={{ fontWeight: 700, fontSize: 13, color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={student.nombre}>
+                            {student.nombre}
+                          </div>
+                          <div style={{ fontSize: 11, color: 'var(--primary-light)', fontWeight: 600, marginTop: 2 }}>
+                            {student.curso}
+                          </div>
                         </div>
                       </div>
                     )
@@ -370,8 +391,7 @@ export default function SalasKiosko() {
 
           </div>
         )}
-
-      </div>
+      </div>   </div>
     </div>
   )
 }

@@ -154,6 +154,7 @@ export default function Docentes() {
                   <th>Nombre Completo</th>
                   <th>RUT</th>
                   <th>Asignatura Principal</th>
+                  <th>Horario</th>
                   <th>Estado</th>
                   <th>Credencial NFC</th>
                   <th style={{ textAlign: 'right' }}>Acciones</th>
@@ -170,6 +171,9 @@ export default function Docentes() {
                       <td><strong>{doc.nombre}</strong></td>
                       <td style={{ color: 'var(--text-secondary)' }}>{doc.rut}</td>
                       <td><span className="chip">{doc.asignatura}</span></td>
+                      <td style={{ fontSize: 13, color: 'var(--text-secondary)', fontWeight: 600 }}>
+                        {doc.hora_inicio && doc.hora_fin ? `${doc.hora_inicio.slice(0,5)} - ${doc.hora_fin.slice(0,5)}` : 'No definido'}
+                      </td>
                       <td>
                         <span className={`badge badge-${doc.estado === 'ACTIVO' ? 'success' : 'danger'}`}>
                           {doc.estado}
@@ -233,6 +237,17 @@ export default function Docentes() {
               <div className="form-group">
                 <label>Asignatura / Módulo que Imparte</label>
                 <input className="input" value={form.asignatura || ''} onChange={e => setForm({...form, asignatura: e.target.value})} placeholder="Ej: Electivo Biología, Taller Computación..." />
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                <div className="form-group">
+                  <label>Hora de Inicio</label>
+                  <input type="time" className="input font-mono" value={form.hora_inicio || ''} onChange={e => setForm({...form, hora_inicio: e.target.value})} />
+                </div>
+                <div className="form-group">
+                  <label>Hora de Finalización</label>
+                  <input type="time" className="input font-mono" value={form.hora_fin || ''} onChange={e => setForm({...form, hora_fin: e.target.value})} />
+                </div>
               </div>
 
               <div style={{ background: 'var(--bg-surface)', padding: 16, borderRadius: 'var(--radius-md)', border: '1px dashed var(--primary)', position: 'relative' }}>

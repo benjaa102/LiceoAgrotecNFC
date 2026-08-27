@@ -392,7 +392,7 @@ export default function SalasKiosko() {
 
           </div>
         )}
-      </div>   </div>
+      </div>
     </div>
   )
 }

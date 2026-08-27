@@ -75,25 +75,33 @@ export default function Salas() {
       ) : (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 16 }}>
           {filtered.map(sala => (
-            <div key={sala.id} className="card" style={{ overflow: 'visible' }}>
-              <div style={{ padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-                  <div style={{ width: 48, height: 48, borderRadius: 12, background: 'linear-gradient(135deg, var(--primary), var(--primary-dark))', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: 'var(--shadow-glow)' }}>
-                    <Box size={22} color="white" />
-                  </div>
-                  <div>
-                    <div style={{ fontSize: 16, fontWeight: 800, color: 'var(--text-primary)' }}>{sala.nombre}</div>
-                    <div style={{ marginTop: 4 }}>
-                      <span className={`badge badge-${sala.estado === 'ACTIVA' ? 'success' : 'danger'}`}>
-                        {sala.estado}
-                      </span>
+            <div key={sala.id} className="card fade-in" style={{ overflow: 'hidden', position: 'relative', border: `1px solid ${sala.estado === 'ACTIVA' ? 'var(--border-bright)' : 'var(--border)'}`, transition: 'all 0.3s ease' }}>
+              {/* Subtle background glow */}
+              <div style={{ position: 'absolute', top: -30, right: -30, width: 120, height: 120, background: sala.estado === 'ACTIVA' ? 'var(--success-bg)' : 'var(--danger-bg)', borderRadius: '50%', filter: 'blur(40px)', pointerEvents: 'none' }} />
+              
+              <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: 20 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                    <div style={{ width: 56, height: 56, borderRadius: 16, background: sala.estado === 'ACTIVA' ? 'linear-gradient(135deg, rgba(34,197,94,0.15), rgba(34,197,94,0.02))' : 'linear-gradient(135deg, rgba(239,68,68,0.15), rgba(239,68,68,0.02))', border: `1px solid ${sala.estado === 'ACTIVA' ? 'rgba(34,197,94,0.3)' : 'rgba(239,68,68,0.3)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: sala.estado === 'ACTIVA' ? '0 0 20px rgba(34,197,94,0.1)' : '0 0 20px rgba(239,68,68,0.1)' }}>
+                      <Box size={26} color={sala.estado === 'ACTIVA' ? 'var(--success)' : 'var(--danger)'} />
+                    </div>
+                    <div>
+                      <div style={{ fontSize: 20, fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>{sala.nombre}</div>
+                      <div style={{ marginTop: 6, display: 'flex', alignItems: 'center', gap: 6 }}>
+                        <span style={{ display: 'inline-block', width: 8, height: 8, borderRadius: '50%', background: sala.estado === 'ACTIVA' ? 'var(--success)' : 'var(--danger)', boxShadow: `0 0 10px ${sala.estado === 'ACTIVA' ? 'var(--success)' : 'var(--danger)'}` }} />
+                        <span style={{ fontSize: 13, fontWeight: 700, color: sala.estado === 'ACTIVA' ? 'var(--success)' : 'var(--danger)', letterSpacing: '0.05em' }}>
+                          {sala.estado}
+                        </span>
+                      </div>
                     </div>
                   </div>
+                  
+                  {/* Actions */}
+                  <div style={{ display: 'flex', gap: 6 }}>
+                    <button className="btn btn-secondary btn-icon" style={{ borderRadius: '50%', width: 36, height: 36, border: 'none', background: 'var(--bg-surface)' }} onClick={() => openEdit(sala)} title="Editar"><Pencil size={16} style={{ color: 'var(--text-secondary)' }} /></button>
+                    <button className="btn btn-danger btn-icon" style={{ borderRadius: '50%', width: 36, height: 36, border: 'none', background: 'var(--danger-bg)' }} onClick={() => deleteRecord(sala.id)} title="Eliminar"><Trash2 size={16} style={{ color: 'var(--danger)' }} /></button>
+                  </div>
                 </div>
-              </div>
-              <div style={{ borderTop: '1px solid var(--border)', padding: '12px 20px', display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
-                <button className="btn btn-secondary btn-sm" onClick={() => openEdit(sala)}><Pencil size={13} /> Editar</button>
-                <button className="btn btn-danger btn-sm" onClick={() => deleteRecord(sala.id)}><Trash2 size={13} /> Eliminar</button>
               </div>
             </div>
           ))}

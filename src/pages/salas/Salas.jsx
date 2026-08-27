@@ -69,51 +69,41 @@ export default function Salas() {
         </button>
       </div>
 
-      {/* Main Table */}
-      <div className="card">
-        <div className="card-header">
-          <span className="card-title"><Box size={16} /> Salas Físicas</span>
-          <span className="text-muted text-sm">{filtered.length} salas</span>
-        </div>
-        <div className="table-wrapper">
-          {loading ? (
-            <div style={{ padding: 40, textAlign: 'center', color: 'var(--text-muted)' }}>Cargando salas...</div>
-          ) : (
-            <table>
-              <thead>
-                <tr>
-                  <th>Nombre de Sala / Espacio</th>
-                  <th>Estado</th>
-                  <th style={{ textAlign: 'right' }}>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filtered.length === 0 && (
-                  <tr><td colSpan={3}><div className="empty-state"><Box size={32} /><p>No hay salas registradas</p></div></td></tr>
-                )}
-                {filtered.map(sala => (
-                  <tr key={sala.id}>
-                    <td><strong>{sala.nombre}</strong></td>
-                    <td>
+      {/* Main Grid */}
+      {loading ? (
+        <div style={{ padding: 40, textAlign: 'center', color: 'var(--text-muted)' }}>Cargando salas...</div>
+      ) : (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 16 }}>
+          {filtered.map(sala => (
+            <div key={sala.id} className="card" style={{ overflow: 'visible' }}>
+              <div style={{ padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                  <div style={{ width: 48, height: 48, borderRadius: 12, background: 'linear-gradient(135deg, var(--primary), var(--primary-dark))', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: 'var(--shadow-glow)' }}>
+                    <Box size={22} color="white" />
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 16, fontWeight: 800, color: 'var(--text-primary)' }}>{sala.nombre}</div>
+                    <div style={{ marginTop: 4 }}>
                       <span className={`badge badge-${sala.estado === 'ACTIVA' ? 'success' : 'danger'}`}>
                         {sala.estado}
                       </span>
-                    </td>
-                    <td style={{ textAlign: 'right' }}>
-                      <button className="btn btn-secondary btn-sm" style={{ padding: '6px', marginRight: 6 }} onClick={() => openEdit(sala)} title="Editar">
-                        <Pencil size={14} />
-                      </button>
-                      <button className="btn btn-secondary btn-sm" style={{ padding: '6px', color: 'var(--danger)' }} onClick={() => deleteRecord(sala.id)} title="Eliminar">
-                        <Trash2 size={14} />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div style={{ borderTop: '1px solid var(--border)', padding: '12px 20px', display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+                <button className="btn btn-secondary btn-sm" onClick={() => openEdit(sala)}><Pencil size={13} /> Editar</button>
+                <button className="btn btn-danger btn-sm" onClick={() => deleteRecord(sala.id)}><Trash2 size={13} /> Eliminar</button>
+              </div>
+            </div>
+          ))}
+          {filtered.length === 0 && (
+            <div style={{ gridColumn: '1 / -1', padding: 40, textAlign: 'center', color: 'var(--text-muted)' }}>
+              <div className="empty-state"><Box size={48} /><p>No hay salas registradas</p></div>
+            </div>
           )}
         </div>
-      </div>
+      )}
 
       {/* Modal Form */}
       {modal && (

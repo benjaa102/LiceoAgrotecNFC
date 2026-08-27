@@ -431,7 +431,6 @@ export default function CocinaKiosko() {
           onKeyDown={handleNFCKeyDown}
           style={{ position: 'absolute', opacity: 0, width: 1, height: 1, pointerEvents: 'none' }}
           readOnly
-          aria-hidden="true"
           tabIndex={-1}
         />
       )}

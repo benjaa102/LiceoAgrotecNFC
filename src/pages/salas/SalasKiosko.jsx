@@ -249,6 +249,7 @@ export default function SalasKiosko() {
             </button>
           )}
         </div>
+      </div>
 
       <div style={{ flex: 1, background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
         <div className="ambient-glow" />

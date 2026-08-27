@@ -22,7 +22,7 @@ export default function Alertas() {
     const [resAlertas, resEst, resBus] = await Promise.all([
       supabase.from('alertas_buses').select('*').order('timestamp', { ascending: false }).limit(200),
       supabase.from('estudiantes').select('id, nombre, curso, rut'),
-      supabase.from('buses').select('id, numero_bus, nombre')
+      supabase.from('buses').select('id, numero_bus')
     ])
     if (resAlertas.data) setData(resAlertas.data)
     if (resEst.data) setEstudiantes(resEst.data)

@@ -84,21 +84,21 @@ export default function AsistenciaSalas() {
       {/* Toolbar */}
       <div className="toolbar">
         <div className="toolbar-left">
-          <div className="input-group" style={{ minWidth: 250 }}>
+          <div className="input-group" style={{ maxWidth: 280 }}>
             <Search size={15} className="input-group-icon" />
             <input className="input" placeholder="Buscar por alumno, rut o profesor..." value={search} onChange={e => setSearch(e.target.value)} />
           </div>
           
-          <select className="input" style={{ minWidth: 180 }} value={filterDocente} onChange={e => setFilterDocente(e.target.value)}>
+          <select className="input" style={{ width: 180 }} value={filterDocente} onChange={e => setFilterDocente(e.target.value)}>
             <option value="">Todos los docentes</option>
             {docentes.map(d => <option key={d.id} value={d.id}>{d.nombre} - {d.asignatura}</option>)}
           </select>
-          <select className="input" style={{ minWidth: 150 }} value={filterSala} onChange={e => setFilterSala(e.target.value)}>
+          <select className="input" style={{ width: 150 }} value={filterSala} onChange={e => setFilterSala(e.target.value)}>
             <option value="">Todas las salas</option>
             {salas.map(s => <option key={s.id} value={s.id}>{s.nombre}</option>)}
           </select>
           
-          <div className="input-group" style={{ minWidth: 160 }}>
+          <div className="input-group" style={{ width: 160 }}>
             <Calendar size={15} className="input-group-icon" />
             <input type="date" className="input" value={filterFecha} onChange={e => setFilterFecha(e.target.value)} />
           </div>

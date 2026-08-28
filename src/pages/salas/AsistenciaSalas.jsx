@@ -196,7 +196,34 @@ export default function AsistenciaSalas() {
                     return <div>Horario: <strong>{selectedSessionData.docente.hora_inicio.slice(0,5)} - {selectedSessionData.docente.hora_fin.slice(0,5)}</strong></div>
                   } else if (selectedSessionStudents.length > 0) {
                     const times = selectedSessionStudents.map(s => s.hora).sort()
-                    return <div>Horario Activo: <strong>{times[0].slice(0,5)} - {times[times.length-1].slice(0,5)}</strong></div>
+                    const firstTime = times[0]
+                    const [h, m] = firstTime.split(':')
+                    const minutes = parseInt(h) * 60 + parseInt(m)
+                    
+                    const bloques = [
+                      { id: 'ingreso', m: 8*60+10, label: '08:10 - 08:30' }, { id: '1', m: 8*60+30, label: '08:30 - 09:15' }, { id: '2', m: 9*60+15, label: '09:15 - 10:00' },
+                      { id: '3', m: 10*60+15, label: '10:15 - 11:00' }, { id: '4', m: 11*60+0, label: '11:00 - 11:45' }, { id: '5', m: 11*60+55, label: '11:55 - 12:40' },
+                      { id: '6', m: 12*60+40, label: '12:40 - 13:25' }, { id: 'ingreso2', m: 14*60+0, label: '14:00 - 14:15' }, { id: '7', m: 14*60+15, label: '14:15 - 15:00' },
+                      { id: '8', m: 15*60+0, label: '15:00 - 15:45' }, { id: '9', m: 16*60+0, label: '16:00 - 16:45' }, { id: '10', m: 16*60+45, label: '16:45 - 17:30' },
+                      { id: '11', m: 17*60+30, label: '17:30 - 18:15' }
+                    ]
+                    
+                    let minDiff = Infinity
+                    let activeBlockLabel = null
+                    for (const b of bloques) {
+                      const diff = minutes - b.m
+                      if (diff >= -15 && diff < 45) {
+                        if (Math.abs(diff) < minDiff) {
+                          minDiff = Math.abs(diff)
+                          activeBlockLabel = b.label
+                        }
+                      }
+                    }
+                    
+                    if (activeBlockLabel) {
+                      return <div>Horario de Bloque: <strong>{activeBlockLabel}</strong></div>
+                    }
+                    return <div>Horario Activo: <strong>{firstTime.slice(0,5)} - {times[times.length-1].slice(0,5)}</strong></div>
                   }
                   return null
                 })()}

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Monitor, Wifi, UserCheck, XCircle, LogOut, CheckCircle2, Users, Clock, ArrowRight, MessageSquare } from 'lucide-react'
+import { Monitor, Wifi, UserCheck, XCircle, LogOut, CheckCircle2, Users, Clock, ArrowRight, MessageSquare, X } from 'lucide-react'
 import { supabase } from '../../lib/supabase'
 
 export default function SalasKiosko() {
@@ -484,61 +484,66 @@ export default function SalasKiosko() {
 
       {showObsModal && (
         <div className="modal-overlay" onClick={() => setShowObsModal(false)}>
-          <div className="modal-content" onClick={e => e.stopPropagation()} style={{ maxWidth: 500 }}>
+          <div className="modal fade-in" onClick={e => e.stopPropagation()} style={{ maxWidth: 500, width: '100%' }}>
             <div className="modal-header">
-              <h2>Observaciones de Sesión</h2>
-              <button className="btn btn-icon" onClick={() => setShowObsModal(false)}><XCircle size={20}/></button>
+              <h3>Observaciones de Sesión</h3>
+              <button className="close-btn" onClick={() => setShowObsModal(false)}><X size={20}/></button>
             </div>
-            <div className="modal-body">
-              <label className="label">Docente Ausente (Autocompletar clase)</label>
-              <select 
-                className="input" 
-                value={absentDocenteId}
-                onChange={e => {
-                  const val = e.target.value
-                  setAbsentDocenteId(val)
-                  if (val) {
-                    const absentDoc = docentesDb.find(d => d.id === val)
-                    if (absentDoc) {
-                      const match = detectCurrentClass(absentDoc)
-                      setObservacion(`Reemplazo a ${absentDoc.nombre}`)
-                      if (match?.curso) {
-                        setManualCurso(match.curso)
+            <div className="modal-body" style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+              <div className="form-group">
+                <label>Reemplazando a: (Autocompleta el curso)</label>
+                <select 
+                  className="input" 
+                  value={absentDocenteId}
+                  onChange={e => {
+                    const val = e.target.value
+                    setAbsentDocenteId(val)
+                    if (val) {
+                      const absentDoc = docentesDb.find(d => d.id === val)
+                      if (absentDoc) {
+                        const match = detectCurrentClass(absentDoc)
+                        setObservacion(`Reemplazo a ${absentDoc.nombre}`)
+                        if (match?.curso) {
+                          setManualCurso(match.curso)
+                        }
                       }
+                    } else {
+                      setObservacion('')
                     }
-                  } else {
-                    setObservacion('')
-                  }
-                }}
-                style={{ marginBottom: 16 }}
-              >
-                <option value="">-- Seleccionar Docente Ausente --</option>
-                {docentesDb.filter(d => d.id !== activeDocente?.id && d.estado === 'ACTIVO').map(d => (
-                  <option key={d.id} value={d.id}>{d.nombre} - {d.asignatura}</option>
-                ))}
-              </select>
+                  }}
+                >
+                  <option value="">-- No es reemplazo --</option>
+                  {docentesDb.filter(d => d.id !== activeDocente?.id && d.estado === 'ACTIVO').map(d => (
+                    <option key={d.id} value={d.id}>{d.nombre} - {d.asignatura}</option>
+                  ))}
+                </select>
+              </div>
 
-              <label className="label">Curso (Manual)</label>
-              <input 
-                className="input" 
-                value={manualCurso}
-                onChange={e => setManualCurso(e.target.value)}
-                placeholder="Ej: 1°A-C, 3°D"
-                style={{ marginBottom: 16 }}
-              />
-              <label className="label">Comentario (Ej: Reemplazo a otro profesor, Cambio de sala)</label>
-              <textarea 
-                className="input" 
-                rows="4"
-                value={observacion}
-                onChange={e => setObservacion(e.target.value)}
-                placeholder="Escribe la observación aquí..."
-              ></textarea>
+              <div className="form-group">
+                <label>Curso / Nivel</label>
+                <input 
+                  className="input" 
+                  value={manualCurso}
+                  onChange={e => setManualCurso(e.target.value)}
+                  placeholder="Ej: 1°A-C, 3°D"
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Observaciones Adicionales</label>
+                <textarea 
+                  className="input" 
+                  rows="3"
+                  value={observacion}
+                  onChange={e => setObservacion(e.target.value)}
+                  placeholder="Escribe la observación aquí..."
+                ></textarea>
+              </div>
             </div>
             <div className="modal-footer">
               <button className="btn btn-secondary" onClick={() => setShowObsModal(false)}>Cancelar</button>
-              <button className="btn btn-primary" onClick={saveObservacion} disabled={savingObs || !observacion.trim()}>
-                {savingObs ? 'Guardando...' : 'Guardar Observación'}
+              <button className="btn btn-primary" onClick={saveObservacion} disabled={savingObs || (!observacion.trim() && !manualCurso.trim())}>
+                {savingObs ? 'Guardando...' : 'Guardar'}
               </button>
             </div>
           </div>

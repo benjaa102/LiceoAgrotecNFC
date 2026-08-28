@@ -209,19 +209,47 @@ export default function AsistenciaSalas() {
                     ]
                     
                     let minDiff = Infinity
+                    let activeBlockId = null
                     let activeBlockLabel = null
                     for (const b of bloques) {
                       const diff = minutes - b.m
                       if (diff >= -15 && diff < 45) {
                         if (Math.abs(diff) < minDiff) {
                           minDiff = Math.abs(diff)
+                          activeBlockId = b.id
                           activeBlockLabel = b.label
                         }
                       }
                     }
                     
-                    if (activeBlockLabel) {
-                      return <div>Horario de Bloque: <strong>{activeBlockLabel}</strong></div>
+                    let finalLabel = activeBlockLabel
+                    
+                    if (activeBlockId && Array.isArray(selectedSessionData.docente?.horario)) {
+                      const [y, mStr, dStr] = selectedSessionData.fecha.split('-')
+                      const dObj = new Date(y, parseInt(mStr)-1, dStr)
+                      let dayStr = dObj.toLocaleDateString('es-ES', { weekday: 'long' })
+                      dayStr = dayStr.charAt(0).toUpperCase() + dayStr.slice(1)
+                      if (dayStr === 'Miercoles') dayStr = 'Miércoles'
+
+                      const currentEntry = selectedSessionData.docente.horario.find(h => h.dia === dayStr && h.bloque === activeBlockId)
+                      if (currentEntry && (currentEntry.curso || currentEntry.actividad)) {
+                        const matchingBlocks = selectedSessionData.docente.horario.filter(h => 
+                          h.dia === dayStr && 
+                          h.curso === currentEntry.curso && 
+                          h.actividad === currentEntry.actividad
+                        ).map(h => h.bloque)
+                        
+                        const matchingTimeBlocks = bloques.filter(b => matchingBlocks.includes(b.id))
+                        if (matchingTimeBlocks.length > 0) {
+                          const startTimes = matchingTimeBlocks.map(b => b.label.split(' - ')[0]).sort()
+                          const endTimes = matchingTimeBlocks.map(b => b.label.split(' - ')[1]).sort()
+                          finalLabel = `${startTimes[0]} - ${endTimes[endTimes.length-1]}`
+                        }
+                      }
+                    }
+                    
+                    if (finalLabel) {
+                      return <div>Horario de Bloque: <strong>{finalLabel}</strong></div>
                     }
                     return <div>Horario Activo: <strong>{firstTime.slice(0,5)} - {times[times.length-1].slice(0,5)}</strong></div>
                   }

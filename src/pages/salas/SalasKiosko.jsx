@@ -16,6 +16,7 @@ export default function SalasKiosko() {
   const [selectedSalaId, setSelectedSalaId] = useState(localStorage.getItem('kiosko_sala_id') || '')
   const [activeClase, setActiveClase] = useState(null)
   const [observacion, setObservacion] = useState('')
+  const [manualCurso, setManualCurso] = useState('')
   const [showObsModal, setShowObsModal] = useState(false)
   const [savingObs, setSavingObs] = useState(false)
   
@@ -134,6 +135,7 @@ export default function SalasKiosko() {
     // Activate session
     setActiveDocente(doc)
     setActiveClase(detectedClass)
+    setManualCurso(detectedClass?.curso || '')
     setObservacion('')
     setStatus('active')
     setLastScan(null)
@@ -220,9 +222,10 @@ export default function SalasKiosko() {
         id_docente: activeDocente.id,
         id_sala: selectedSalaId,
         fecha,
-        curso: activeClase?.curso || '',
+        curso: manualCurso,
         comentario: observacion
       }])
+      setActiveClase(prev => ({ ...prev, curso: manualCurso }))
       setShowObsModal(false)
       alert("Observación guardada correctamente.")
     } catch(e) {
@@ -483,6 +486,14 @@ export default function SalasKiosko() {
               <button className="btn btn-icon" onClick={() => setShowObsModal(false)}><XCircle size={20}/></button>
             </div>
             <div className="modal-body">
+              <label className="label">Curso (Manual)</label>
+              <input 
+                className="input" 
+                value={manualCurso}
+                onChange={e => setManualCurso(e.target.value)}
+                placeholder="Ej: 1°A-C, 3°D"
+                style={{ marginBottom: 16 }}
+              />
               <label className="label">Comentario (Ej: Reemplazo a otro profesor, Cambio de sala)</label>
               <textarea 
                 className="input" 

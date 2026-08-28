@@ -196,6 +196,17 @@ export default function AsistenciaSalas() {
                 )}
                 <div>Total Presentes: <strong style={{ color: 'var(--primary)' }}>{selectedSessionData.count}</strong></div>
               </div>
+              {selectedSessionData.obs && (
+                <div style={{ padding: '12px 20px', background: 'rgba(79, 142, 247, 0.05)', borderBottom: '1px solid var(--border)', fontSize: 13 }}>
+                  {selectedSessionData.obs.curso && (
+                    <div style={{ color: 'var(--primary)', fontWeight: 700, marginBottom: 4 }}>Curso/Nivel: {selectedSessionData.obs.curso}</div>
+                  )}
+                  <div style={{ color: 'var(--text-secondary)', fontStyle: 'italic' }}>
+                    <span style={{ fontWeight: 600, color: 'var(--text-primary)', fontStyle: 'normal' }}>Observación: </span> 
+                    "{selectedSessionData.obs.comentario}"
+                  </div>
+                </div>
+              )}
               <div className="table-responsive-wrapper" style={{ margin: 0, borderRadius: 0, border: 'none' }}>
                 <table style={{ margin: 0 }}>
                   <thead style={{ position: 'sticky', top: 0, zIndex: 1, background: 'var(--bg-card)' }}>

@@ -7,6 +7,7 @@ export default function AsistenciaSalas() {
   const [estudiantes, setEstudiantes] = useState([])
   const [docentes, setDocentes] = useState([])
   const [salas, setSalas] = useState([])
+  const [observaciones, setObservaciones] = useState([])
   const [loading, setLoading] = useState(true)
   
   const [search, setSearch] = useState('')
@@ -16,16 +17,18 @@ export default function AsistenciaSalas() {
 
   const loadData = async () => {
     setLoading(true)
-    const [resAsis, resEst, resDoc, resSalas] = await Promise.all([
+    const [resAsis, resEst, resDoc, resSalas, resObs] = await Promise.all([
       supabase.from('asistencia_salas').select('*').order('fecha', { ascending: false }).order('hora', { ascending: false }).limit(500),
       supabase.from('estudiantes').select('*'),
       supabase.from('docentes').select('*'),
-      supabase.from('salas').select('*')
+      supabase.from('salas').select('*'),
+      supabase.from('observaciones_sesion').select('*').order('created_at', { ascending: false }).limit(100)
     ])
     if (resAsis.data) setAsistencia(resAsis.data)
     if (resEst.data) setEstudiantes(resEst.data)
     if (resDoc.data) setDocentes(resDoc.data)
     if (resSalas.data) setSalas(resSalas.data)
+    if (resObs.data) setObservaciones(resObs.data)
     setLoading(false)
   }
 
@@ -56,13 +59,17 @@ export default function AsistenciaSalas() {
     const doc = getDocente(curr.id_docente)
     const sala = salas.find(s => s.id === curr.id_sala)
     const key = `${curr.id_docente}_${curr.fecha}_${curr.id_sala || 'none'}`
-    if (!acc[key]) acc[key] = { 
-      key, 
-      docente: doc, 
-      asignatura: doc?.asignatura || 'Sin Asignatura', 
-      fecha: curr.fecha, 
-      sala: sala, 
-      count: 0 
+    if (!acc[key]) {
+      const obs = observaciones.find(o => o.id_docente === curr.id_docente && o.fecha === curr.fecha && o.id_sala === curr.id_sala)
+      acc[key] = { 
+        key, 
+        docente: doc, 
+        asignatura: doc?.asignatura || 'Sin Asignatura', 
+        fecha: curr.fecha, 
+        sala: sala, 
+        obs,
+        count: 0 
+      }
     }
     acc[key].count++
     return acc
@@ -133,6 +140,15 @@ export default function AsistenciaSalas() {
                   <Calendar size={14} />
                   <span>Fecha: <strong style={{ color: 'var(--text-secondary)' }}>{session.fecha}</strong></span>
                 </div>
+
+                {session.obs && (
+                  <div style={{ background: 'var(--bg-input)', padding: 12, borderRadius: 8, borderLeft: '3px solid var(--primary)', fontSize: 13 }}>
+                    {session.obs.curso && (
+                      <div style={{ color: 'var(--primary)', fontWeight: 700, marginBottom: 4 }}>Curso: {session.obs.curso}</div>
+                    )}
+                    <div style={{ color: 'var(--text-secondary)', fontStyle: 'italic' }}>"{session.obs.comentario}"</div>
+                  </div>
+                )}
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, borderTop: '1px solid var(--border)', paddingTop: 16 }}>
                   <div>

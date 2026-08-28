@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Monitor, Wifi, UserCheck, XCircle, LogOut, CheckCircle2, Users, Clock } from 'lucide-react'
+import { Monitor, Wifi, UserCheck, XCircle, LogOut, CheckCircle2, Users, Clock, ArrowRight, MessageSquare } from 'lucide-react'
 import { supabase } from '../../lib/supabase'
 
 export default function SalasKiosko() {
@@ -14,6 +14,10 @@ export default function SalasKiosko() {
   const [salasDb, setSalasDb] = useState([])
   
   const [selectedSalaId, setSelectedSalaId] = useState(localStorage.getItem('kiosko_sala_id') || '')
+  const [activeClase, setActiveClase] = useState(null)
+  const [observacion, setObservacion] = useState('')
+  const [showObsModal, setShowObsModal] = useState(false)
+  const [savingObs, setSavingObs] = useState(false)
   
   const [inputBuffer, setInputBuffer] = useState('')
   const [nfcActive, setNfcActive] = useState(false)
@@ -86,8 +90,51 @@ export default function SalasKiosko() {
     }
     loadSession()
 
+    // Detect current class from schedule
+    const now = new Date()
+    const optionsDay = { weekday: 'long', timeZone: 'America/Santiago' }
+    let currentDayStr = now.toLocaleDateString('es-ES', optionsDay)
+    currentDayStr = currentDayStr.charAt(0).toUpperCase() + currentDayStr.slice(1)
+    if (currentDayStr === 'Miercoles') currentDayStr = 'Miércoles' // Fix accent
+
+    // Block logic
+    const currHour = parseInt(now.toLocaleTimeString('es-CL', { hour: '2-digit', hour12: false, timeZone: 'America/Santiago' }))
+    const currMin = parseInt(now.toLocaleTimeString('es-CL', { minute: '2-digit', timeZone: 'America/Santiago' }))
+    const minutesSinceMidnight = currHour * 60 + currMin
+
+    const bloques = [
+      { id: 'ingreso', m: 8*60+10 }, { id: '1', m: 8*60+30 }, { id: '2', m: 9*60+15 },
+      { id: '3', m: 10*60+15 }, { id: '4', m: 11*60+0 }, { id: '5', m: 11*60+55 },
+      { id: '6', m: 12*60+40 }, { id: 'ingreso2', m: 14*60+0 }, { id: '7', m: 14*60+15 },
+      { id: '8', m: 15*60+0 }, { id: '9', m: 16*60+0 }, { id: '10', m: 16*60+45 },
+      { id: '11', m: 17*60+30 }
+    ]
+
+    let activeBlockId = null
+    let minDiff = Infinity
+    for (const b of bloques) {
+      // Find the block that started most recently or starts in the next 15 mins
+      const diff = minutesSinceMidnight - b.m
+      if (diff >= -15 && diff < 45) {
+        if (Math.abs(diff) < minDiff) {
+          minDiff = Math.abs(diff)
+          activeBlockId = b.id
+        }
+      }
+    }
+
+    let detectedClass = null
+    if (activeBlockId && Array.isArray(doc.horario)) {
+      const match = doc.horario.find(h => h.dia === currentDayStr && h.bloque === activeBlockId)
+      if (match && (match.curso || match.actividad)) {
+        detectedClass = match
+      }
+    }
+
     // Activate session
     setActiveDocente(doc)
+    setActiveClase(detectedClass)
+    setObservacion('')
     setStatus('active')
     setLastScan(null)
   }
@@ -160,6 +207,29 @@ export default function SalasKiosko() {
     } else {
       handleStudentScan(uid)
     }
+  }
+
+  const saveObservacion = async () => {
+    if (!activeDocente || !selectedSalaId) return
+    setSavingObs(true)
+    const now = new Date()
+    const fecha = now.toLocaleDateString('en-CA', { timeZone: 'America/Santiago' })
+    
+    try {
+      await supabase.from('observaciones_sesion').insert([{
+        id_docente: activeDocente.id,
+        id_sala: selectedSalaId,
+        fecha,
+        curso: activeClase?.curso || '',
+        comentario: observacion
+      }])
+      setShowObsModal(false)
+      alert("Observación guardada correctamente.")
+    } catch(e) {
+      console.error(e)
+      alert("Error al guardar la observación.")
+    }
+    setSavingObs(false)
   }
 
   // Keyboard emulation support (USB NFC readers)
@@ -244,7 +314,7 @@ export default function SalasKiosko() {
             </div>
           )}
           {status === 'active' && (
-            <button className="btn btn-danger" onClick={() => { setStatus('waiting_teacher'); setActiveDocente(null); setLastScan(null); setSessionStudents([]) }}>
+            <button className="btn btn-danger" onClick={() => { setStatus('waiting_teacher'); setActiveDocente(null); setActiveClase(null); setLastScan(null); setSessionStudents([]) }}>
               <LogOut size={16} /> Cerrar Sesión
             </button>
           )}
@@ -302,17 +372,28 @@ export default function SalasKiosko() {
                   {salasDb.find(s => s.id === selectedSalaId)?.nombre || 'Sin sala'}
                 </div>
                 <h1 style={{ fontSize: 36, margin: '0 0 10px', color: 'var(--text-primary)', lineHeight: 1.1 }}>
-                  {activeDocente.asignatura}
+                  {activeClase?.actividad || activeDocente.asignatura}
                 </h1>
-                <h2 style={{ fontSize: 18, margin: '0 0 16px', color: 'var(--text-secondary)', fontWeight: 500 }}>
-                  Prof. {activeDocente.nombre}
-                </h2>
-                {activeDocente.hora_inicio && activeDocente.hora_fin && (
-                  <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', padding: '6px 16px', borderRadius: 20, fontSize: 13, color: 'var(--text-primary)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                    <Clock size={14} style={{ color: 'var(--primary)' }}/>
-                    {activeDocente.hora_inicio.slice(0,5)} - {activeDocente.hora_fin.slice(0,5)}
-                  </div>
+                {activeClase?.curso && (
+                  <h2 style={{ fontSize: 24, margin: '0 0 12px', color: 'var(--primary)', fontWeight: 800 }}>
+                    Curso: {activeClase.curso}
+                  </h2>
                 )}
+                <p style={{ fontSize: 18, color: 'var(--text-secondary)', margin: '0 0 16px', fontWeight: 500 }}>
+                  Prof. {activeDocente.nombre}
+                </p>
+                
+                <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap' }}>
+                  {(activeClase || activeDocente.hora_inicio) && (
+                    <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', padding: '6px 16px', borderRadius: 20, fontSize: 13, color: 'var(--text-primary)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                      <Clock size={14} style={{ color: 'var(--primary)' }}/>
+                      {activeClase ? 'Horario detectado' : `${activeDocente.hora_inicio.slice(0,5)} - ${activeDocente.hora_fin.slice(0,5)}`}
+                    </div>
+                  )}
+                  <button className="btn btn-secondary btn-sm" style={{ borderRadius: 20, fontSize: 12 }} onClick={() => setShowObsModal(true)}>
+                    <MessageSquare size={14} /> Observaciones
+                  </button>
+                </div>
               </div>
               
               <div style={{ width: '100%', minHeight: 180, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -393,6 +474,33 @@ export default function SalasKiosko() {
           </div>
         )}
       </div>
+
+      {showObsModal && (
+        <div className="modal-overlay" onClick={() => setShowObsModal(false)}>
+          <div className="modal-content" onClick={e => e.stopPropagation()} style={{ maxWidth: 500 }}>
+            <div className="modal-header">
+              <h2>Observaciones de Sesión</h2>
+              <button className="btn btn-icon" onClick={() => setShowObsModal(false)}><XCircle size={20}/></button>
+            </div>
+            <div className="modal-body">
+              <label className="label">Comentario (Ej: Reemplazo a otro profesor, Cambio de sala)</label>
+              <textarea 
+                className="input" 
+                rows="4"
+                value={observacion}
+                onChange={e => setObservacion(e.target.value)}
+                placeholder="Escribe la observación aquí..."
+              ></textarea>
+            </div>
+            <div className="modal-footer">
+              <button className="btn btn-secondary" onClick={() => setShowObsModal(false)}>Cancelar</button>
+              <button className="btn btn-primary" onClick={saveObservacion} disabled={savingObs || !observacion.trim()}>
+                {savingObs ? 'Guardando...' : 'Guardar Observación'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

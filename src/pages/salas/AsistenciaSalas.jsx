@@ -191,9 +191,15 @@ export default function AsistenciaSalas() {
               <div style={{ padding: '16px 20px', background: 'var(--bg-app)', borderBottom: '1px solid var(--border)', display: 'flex', gap: 20, fontSize: 13, flexWrap: 'wrap' }}>
                 <div>Profesor: <strong>{selectedSessionData.docente?.nombre || 'Desconocido'}</strong></div>
                 <div>Sala: <strong>{selectedSessionData.sala?.nombre || 'S/E'}</strong></div>
-                {selectedSessionData.docente?.hora_inicio && selectedSessionData.docente?.hora_fin && (
-                  <div>Horario: <strong>{selectedSessionData.docente.hora_inicio.slice(0,5)} - {selectedSessionData.docente.hora_fin.slice(0,5)}</strong></div>
-                )}
+                {(() => {
+                  if (selectedSessionData.docente?.hora_inicio && selectedSessionData.docente?.hora_fin) {
+                    return <div>Horario: <strong>{selectedSessionData.docente.hora_inicio.slice(0,5)} - {selectedSessionData.docente.hora_fin.slice(0,5)}</strong></div>
+                  } else if (selectedSessionStudents.length > 0) {
+                    const times = selectedSessionStudents.map(s => s.hora).sort()
+                    return <div>Horario Activo: <strong>{times[0].slice(0,5)} - {times[times.length-1].slice(0,5)}</strong></div>
+                  }
+                  return null
+                })()}
                 <div>Total Presentes: <strong style={{ color: 'var(--primary)' }}>{selectedSessionData.count}</strong></div>
               </div>
               {selectedSessionData.obs && (

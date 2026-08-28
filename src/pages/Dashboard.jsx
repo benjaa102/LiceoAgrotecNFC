@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Users, UserCheck, Bus, Bell, CreditCard, TrendingUp, AlertTriangle, Wifi, UtensilsCrossed, Coffee } from 'lucide-react'
+import { Users, UserCheck, Bus, Bell, CreditCard, TrendingUp, AlertTriangle, Wifi, UtensilsCrossed, Coffee, CheckCircle2 } from 'lucide-react'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
 import { supabase } from '../lib/supabase'
 

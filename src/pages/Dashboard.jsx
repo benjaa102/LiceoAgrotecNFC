@@ -107,17 +107,11 @@ export default function Dashboard() {
               <span className="card-title"><TrendingUp size={16} /> Asistencia Buses — Semanal</span>
             </div>
             <div className="card-body">
-              <div className="chart-container" style={{ height: 260 }}>
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={mockChartData} barGap={4}>
-                    <XAxis dataKey="dia" tick={{ fill: 'var(--text-muted)', fontSize: 11 }} axisLine={false} tickLine={false} />
-                    <YAxis tick={{ fill: 'var(--text-muted)', fontSize: 11 }} axisLine={false} tickLine={false} />
-                    <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(79,142,247,0.05)' }} />
-                    <Bar dataKey="presentes" name="Presentes" fill="var(--primary)" radius={[4,4,0,0]} />
-                    <Bar dataKey="ausentes"  name="Ausentes"  fill="var(--warning)" radius={[4,4,0,0]} />
-                    <Bar dataKey="rechazos"  name="Rechazos"  fill="var(--danger)"  radius={[4,4,0,0]} />
-                  </BarChart>
-                </ResponsiveContainer>
+              <div className="chart-container" style={{ height: 260, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ textAlign: 'center', color: 'var(--text-muted)' }}>
+                  <TrendingUp size={32} style={{ opacity: 0.5, marginBottom: 12 }} />
+                  <p style={{ margin: 0 }}>No hay datos suficientes para mostrar estadísticas.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -127,32 +121,10 @@ export default function Dashboard() {
             <div className="card-header">
               <span className="card-title"><Bell size={16} /> Alertas y Novedades</span>
             </div>
-            <div className="card-body" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <div style={{ display: 'flex', gap: 12, alignItems: 'center', padding: '14px 16px', background: 'rgba(239, 68, 68, 0.08)', borderRadius: 12, border: '1px solid rgba(239, 68, 68, 0.15)' }}>
-                <AlertTriangle size={20} color="var(--danger)" />
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--danger)', marginBottom: 2 }}>Rechazo de Credencial</div>
-                  <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>Juan Pérez (2°A) intentó subir al Bus 2. Tarjeta inactiva.</div>
-                </div>
-                <div style={{ fontSize: 11, color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>Hace 5 min</div>
-              </div>
-              
-              <div style={{ display: 'flex', gap: 12, alignItems: 'center', padding: '14px 16px', background: 'rgba(14, 165, 233, 0.08)', borderRadius: 12, border: '1px solid rgba(14, 165, 233, 0.15)' }}>
-                <Wifi size={20} color="var(--info)" />
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--info)', marginBottom: 2 }}>Sincronización Pendiente</div>
-                  <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>Furgón 1 (Mashue) tiene 14 registros sin sincronizar.</div>
-                </div>
-                <div style={{ fontSize: 11, color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>Hace 1 hora</div>
-              </div>
-
-              <div style={{ display: 'flex', gap: 12, alignItems: 'center', padding: '14px 16px', background: 'rgba(34, 197, 94, 0.08)', borderRadius: 12, border: '1px solid rgba(34, 197, 94, 0.15)' }}>
-                <Bus size={20} color="var(--success)" />
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--success)', marginBottom: 2 }}>Recorrido Completado</div>
-                  <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>Bus 3 (Daiber) finalizó su ruta matutina exitosamente.</div>
-                </div>
-                <div style={{ fontSize: 11, color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>Hace 2 horas</div>
+            <div className="card-body" style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'center', justifyContent: 'center', minHeight: 180 }}>
+              <div style={{ textAlign: 'center', color: 'var(--text-muted)' }}>
+                <CheckCircle2 size={32} style={{ opacity: 0.5, marginBottom: 12, color: 'var(--success)' }} />
+                <p style={{ margin: 0 }}>Todo está al día. No hay alertas nuevas.</p>
               </div>
             </div>
           </div>

@@ -364,6 +364,7 @@ export default function Docentes() {
                   </table>
                 </div>
               )}
+            </div>
             <div className="modal-footer">
               <button className="btn btn-secondary" onClick={closeModal}>Cancelar</button>
               <button className="btn btn-primary" onClick={save} disabled={!form.nombre || !form.rut || !form.asignatura}>Guardar</button>

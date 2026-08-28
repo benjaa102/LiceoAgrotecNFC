@@ -17,8 +17,50 @@ export default function SalasKiosko() {
   const [activeClase, setActiveClase] = useState(null)
   const [observacion, setObservacion] = useState('')
   const [manualCurso, setManualCurso] = useState('')
+  const [absentDocenteId, setAbsentDocenteId] = useState('')
   const [showObsModal, setShowObsModal] = useState(false)
   const [savingObs, setSavingObs] = useState(false)
+
+  const detectCurrentClass = (doc) => {
+    if (!doc || !Array.isArray(doc.horario)) return null
+    const now = new Date()
+    const optionsDay = { weekday: 'long', timeZone: 'America/Santiago' }
+    let currentDayStr = now.toLocaleDateString('es-ES', optionsDay)
+    currentDayStr = currentDayStr.charAt(0).toUpperCase() + currentDayStr.slice(1)
+    if (currentDayStr === 'Miercoles') currentDayStr = 'Miércoles'
+
+    const currHour = parseInt(now.toLocaleTimeString('es-CL', { hour: '2-digit', hour12: false, timeZone: 'America/Santiago' }))
+    const currMin = parseInt(now.toLocaleTimeString('es-CL', { minute: '2-digit', timeZone: 'America/Santiago' }))
+    const minutesSinceMidnight = currHour * 60 + currMin
+
+    const bloques = [
+      { id: 'ingreso', m: 8*60+10 }, { id: '1', m: 8*60+30 }, { id: '2', m: 9*60+15 },
+      { id: '3', m: 10*60+15 }, { id: '4', m: 11*60+0 }, { id: '5', m: 11*60+55 },
+      { id: '6', m: 12*60+40 }, { id: 'ingreso2', m: 14*60+0 }, { id: '7', m: 14*60+15 },
+      { id: '8', m: 15*60+0 }, { id: '9', m: 16*60+0 }, { id: '10', m: 16*60+45 },
+      { id: '11', m: 17*60+30 }
+    ]
+
+    let activeBlockId = null
+    let minDiff = Infinity
+    for (const b of bloques) {
+      const diff = minutesSinceMidnight - b.m
+      if (diff >= -15 && diff < 45) {
+        if (Math.abs(diff) < minDiff) {
+          minDiff = Math.abs(diff)
+          activeBlockId = b.id
+        }
+      }
+    }
+
+    if (activeBlockId) {
+      const match = doc.horario.find(h => h.dia === currentDayStr && h.bloque === activeBlockId)
+      if (match && (match.curso || match.actividad)) {
+        return match
+      }
+    }
+    return null
+  }
   
   const [inputBuffer, setInputBuffer] = useState('')
   const [nfcActive, setNfcActive] = useState(false)
@@ -92,45 +134,7 @@ export default function SalasKiosko() {
     loadSession()
 
     // Detect current class from schedule
-    const now = new Date()
-    const optionsDay = { weekday: 'long', timeZone: 'America/Santiago' }
-    let currentDayStr = now.toLocaleDateString('es-ES', optionsDay)
-    currentDayStr = currentDayStr.charAt(0).toUpperCase() + currentDayStr.slice(1)
-    if (currentDayStr === 'Miercoles') currentDayStr = 'Miércoles' // Fix accent
-
-    // Block logic
-    const currHour = parseInt(now.toLocaleTimeString('es-CL', { hour: '2-digit', hour12: false, timeZone: 'America/Santiago' }))
-    const currMin = parseInt(now.toLocaleTimeString('es-CL', { minute: '2-digit', timeZone: 'America/Santiago' }))
-    const minutesSinceMidnight = currHour * 60 + currMin
-
-    const bloques = [
-      { id: 'ingreso', m: 8*60+10 }, { id: '1', m: 8*60+30 }, { id: '2', m: 9*60+15 },
-      { id: '3', m: 10*60+15 }, { id: '4', m: 11*60+0 }, { id: '5', m: 11*60+55 },
-      { id: '6', m: 12*60+40 }, { id: 'ingreso2', m: 14*60+0 }, { id: '7', m: 14*60+15 },
-      { id: '8', m: 15*60+0 }, { id: '9', m: 16*60+0 }, { id: '10', m: 16*60+45 },
-      { id: '11', m: 17*60+30 }
-    ]
-
-    let activeBlockId = null
-    let minDiff = Infinity
-    for (const b of bloques) {
-      // Find the block that started most recently or starts in the next 15 mins
-      const diff = minutesSinceMidnight - b.m
-      if (diff >= -15 && diff < 45) {
-        if (Math.abs(diff) < minDiff) {
-          minDiff = Math.abs(diff)
-          activeBlockId = b.id
-        }
-      }
-    }
-
-    let detectedClass = null
-    if (activeBlockId && Array.isArray(doc.horario)) {
-      const match = doc.horario.find(h => h.dia === currentDayStr && h.bloque === activeBlockId)
-      if (match && (match.curso || match.actividad)) {
-        detectedClass = match
-      }
-    }
+    const detectedClass = detectCurrentClass(doc)
 
     // Activate session
     setActiveDocente(doc)
@@ -486,6 +490,34 @@ export default function SalasKiosko() {
               <button className="btn btn-icon" onClick={() => setShowObsModal(false)}><XCircle size={20}/></button>
             </div>
             <div className="modal-body">
+              <label className="label">Docente Ausente (Autocompletar clase)</label>
+              <select 
+                className="input" 
+                value={absentDocenteId}
+                onChange={e => {
+                  const val = e.target.value
+                  setAbsentDocenteId(val)
+                  if (val) {
+                    const absentDoc = docentesDb.find(d => d.id === val)
+                    if (absentDoc) {
+                      const match = detectCurrentClass(absentDoc)
+                      setObservacion(`Reemplazo a ${absentDoc.nombre}`)
+                      if (match?.curso) {
+                        setManualCurso(match.curso)
+                      }
+                    }
+                  } else {
+                    setObservacion('')
+                  }
+                }}
+                style={{ marginBottom: 16 }}
+              >
+                <option value="">-- Seleccionar Docente Ausente --</option>
+                {docentesDb.filter(d => d.id !== activeDocente?.id && d.estado === 'ACTIVO').map(d => (
+                  <option key={d.id} value={d.id}>{d.nombre} - {d.asignatura}</option>
+                ))}
+              </select>
+
               <label className="label">Curso (Manual)</label>
               <input 
                 className="input" 

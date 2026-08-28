@@ -201,10 +201,15 @@ export default function AsistenciaSalas() {
                   {selectedSessionData.obs.curso && (
                     <div style={{ color: 'var(--primary)', fontWeight: 700, marginBottom: 4 }}>Curso/Nivel: {selectedSessionData.obs.curso}</div>
                   )}
-                  <div style={{ color: 'var(--text-secondary)', fontStyle: 'italic' }}>
+                  <div style={{ color: 'var(--text-secondary)', fontStyle: 'italic', marginBottom: 6 }}>
                     <span style={{ fontWeight: 600, color: 'var(--text-primary)', fontStyle: 'normal' }}>Observación: </span> 
                     "{selectedSessionData.obs.comentario}"
                   </div>
+                  {selectedSessionData.obs.created_at && (
+                    <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>
+                      Registrado el {new Date(selectedSessionData.obs.created_at).toLocaleDateString('es-CL')} a las {new Date(selectedSessionData.obs.created_at).toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' })}
+                    </div>
+                  )}
                 </div>
               )}
               <div className="table-responsive-wrapper" style={{ margin: 0, borderRadius: 0, border: 'none' }}>

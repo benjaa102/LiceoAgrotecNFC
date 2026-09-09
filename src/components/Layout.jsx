@@ -101,6 +101,7 @@ export default function Layout() {
   const isAdmin = displayRole === 'Administrador'
   const isBusRole = displayRole === 'Administrador' || displayRole === 'Encargado Bus'
   const isComedorRole = displayRole === 'Administrador' || displayRole === 'Encargado Comedor'
+  const isSalasRole = displayRole === 'Administrador' || displayRole === 'Encargado Salas'
 
   const handleLogout = async () => {
     await signOut()
@@ -167,7 +168,7 @@ export default function Layout() {
             </>
           )}
 
-          {isAdmin && (
+          {isSalasRole && (
             <>
               {/* ── Módulo Salas ── */}
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '12px 8px 6px' }}>

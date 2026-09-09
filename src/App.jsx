@@ -34,6 +34,7 @@ const AppRoutes = () => {
   const { profile } = useAuth()
   const isComedorRole = profile?.cargo === 'Encargado Comedor'
   const isBusRole = profile?.cargo === 'Encargado Bus'
+  const isSalasRole = profile?.cargo === 'Encargado Salas'
 
   return (
     <Routes>
@@ -47,7 +48,7 @@ const AppRoutes = () => {
             <Layout />
           </ProtectedRoute>
         }>
-          <Route index element={<Navigate to={isComedorRole ? "/comedor/dashboard" : (isBusRole ? "/asistencia" : "/dashboard")} replace />} />
+          <Route index element={<Navigate to={isComedorRole ? "/comedor/dashboard" : (isBusRole ? "/asistencia" : (isSalasRole ? "/salas/kiosko" : "/dashboard"))} replace />} />
           {/* Buses */}
           <Route path="/dashboard"    element={<Dashboard />} />
           <Route path="/estudiantes"  element={<Estudiantes />} />

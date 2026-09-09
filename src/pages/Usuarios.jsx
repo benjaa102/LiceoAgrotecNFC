@@ -106,11 +106,14 @@ export default function Usuarios() {
                 <tr><td colSpan="5" style={{ textAlign: 'center', padding: 20 }}>Cargando usuarios...</td></tr>
               ) : usuarios.map(u => {
                 const isAdmin = u.cargo === 'Administrador'
+                const isSalas = u.cargo === 'Encargado Salas'
+                const badgeBg = isAdmin ? 'var(--primary-bg)' : isSalas ? 'var(--purple-bg)' : 'var(--success-bg)'
+                const badgeColor = isAdmin ? 'var(--primary)' : isSalas ? 'var(--purple)' : 'var(--success)'
                 return (
                   <tr key={u.id}>
                     <td>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                        <div style={{ width: 36, height: 36, borderRadius: '50%', background: isAdmin ? 'var(--primary-bg)' : 'var(--success-bg)', color: isAdmin ? 'var(--primary)' : 'var(--success)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 13 }}>
+                        <div style={{ width: 36, height: 36, borderRadius: '50%', background: badgeBg, color: badgeColor, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 13 }}>
                           {u.nombre.slice(0, 2).toUpperCase()}
                         </div>
                         <div>
@@ -124,9 +127,9 @@ export default function Usuarios() {
                     <td>
                       <span style={{ 
                         padding: '4px 10px', borderRadius: 20, fontSize: 11, fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 6,
-                        background: isAdmin ? 'var(--primary-bg)' : 'var(--success-bg)',
-                        color: isAdmin ? 'var(--primary)' : 'var(--success)',
-                        border: `1px solid ${isAdmin ? 'var(--primary)' : 'var(--success)'}40`
+                        background: badgeBg,
+                        color: badgeColor,
+                        border: `1px solid ${badgeColor}40`
                       }}>
                         {isAdmin ? <Shield size={12} /> : <UserCog size={12} />}
                         {u.cargo.toUpperCase()}
@@ -187,6 +190,7 @@ export default function Usuarios() {
                   <select required className="input" style={{ width: '100%' }} value={formData.cargo} onChange={e => setFormData({...formData, cargo: e.target.value})}>
                     <option value="Encargado Comedor">Encargado Comedor (Solo módulo comedor)</option>
                     <option value="Encargado Bus">Encargado Bus (Solo módulo buses)</option>
+                    <option value="Encargado Salas">Encargado Salas (Solo módulo salas)</option>
                     <option value="Administrador">Administrador (Acceso total)</option>
                   </select>
                 </div>

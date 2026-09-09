@@ -335,7 +335,11 @@ export default function Estudiantes() {
                           <td style={{ whiteSpace: 'nowrap', minWidth: 180, maxWidth: 220, overflow: 'hidden', textOverflow: 'ellipsis' }}><strong>{est.nombre}</strong></td>
                           <td className="font-mono" style={{ fontSize: 13 }}>{est.rut}</td>
                           <td className="font-mono" style={{ fontSize: 13 }}>{est.matricula}</td>
-                          <td><span className="chip" style={{ whiteSpace: 'nowrap', padding: '4px 10px', fontSize: 12 }}>{est.curso}</span></td>
+                          <td>
+                            <select className="input" style={{ padding: '4px 28px 4px 10px', fontSize: 12, height: '28px', background: 'var(--primary-glow)', color: 'var(--primary)', border: 'none', fontWeight: 600, minWidth: 70 }} value={est.curso || ''} onChange={e => quickUpdate(est.id, 'curso', e.target.value)}>
+                              {CURSOS.map(c => <option key={c} value={c}>{c}</option>)}
+                            </select>
+                          </td>
                           <td>
                             <select className="input" style={{ padding: '4px 28px 4px 10px', fontSize: 12, height: '28px', background: est.tipo === 'INTERNO' ? 'var(--info-bg)' : 'var(--purple-bg)', color: est.tipo === 'INTERNO' ? 'var(--info)' : 'var(--purple)', border: 'none', fontWeight: 600, minWidth: 100 }} value={est.tipo} onChange={e => quickUpdate(est.id, 'tipo', e.target.value)}>
                               {TIPOS.map(t => <option key={t} value={t}>{t}</option>)}

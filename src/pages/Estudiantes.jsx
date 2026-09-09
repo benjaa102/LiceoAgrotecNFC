@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Plus, Search, Pencil, Trash2, X, Users, RefreshCw, Save, Download, Folder, FolderOpen, User } from 'lucide-react'
+import { Plus, Search, Pencil, Trash2, X, Users, RefreshCw, Save, Download, Folder, FolderOpen, User, ArrowUpCircle, GraduationCap, ChevronRight, AlertTriangle, CheckCircle2, UserX } from 'lucide-react'
 import { QRCodeSVG } from 'qrcode.react'
 import { supabase } from '../lib/supabase'
 import { exportBulkFichasPDF, exportFichasPorCursoZIP } from '../lib/exportUtils'
@@ -8,6 +8,16 @@ import { exportBulkFichasPDF, exportFichasPorCursoZIP } from '../lib/exportUtils
 const TIPOS   = ['INTERNO', 'EXTERNO']
 const ESTADOS = ['ACTIVO', 'PENDIENTE', 'REVOCADO']
 const CURSOS  = ['7°', '8°', '1°A', '1°B', '1°C', '1°D', '2°A', '2°B', '2°C', '2°D', '3°A', '3°B', '3°C', '3°D', '4°A', '4°B', '4°C', '4°D']
+
+// Mapa de promoción natural (curso actual → curso siguiente)
+const PROMOCION_MAP = {
+  '7°': '8°',
+  '8°': '1°A', // Por defecto, se puede cambiar
+  '1°A': '2°A', '1°B': '2°B', '1°C': '2°C', '1°D': '2°D',
+  '2°A': '3°A', '2°B': '3°B', '2°C': '3°C', '2°D': '3°D',
+  '3°A': '4°A', '3°B': '4°B', '3°C': '4°C', '3°D': '4°D',
+}
+const CURSOS_4MEDIO = ['4°A', '4°B', '4°C', '4°D']
 
 export default function Estudiantes() {
   const navigate = useNavigate()
@@ -27,6 +37,15 @@ export default function Estudiantes() {
     CURSOS.forEach(c => init[c] = true)
     return init
   })
+  const [showGestionModal, setShowGestionModal] = useState(null) // null | 'promocion' | 'egreso'
+  const [promoCursoOrigen, setPromoCursoOrigen] = useState('')
+  const [promoCursoDestino, setPromoCursoDestino] = useState('')
+  const [promoProcessing, setPromoProcessing] = useState(false)
+  const [promoResult, setPromoResult] = useState(null)
+  const [egresoAction, setEgresoAction] = useState('desactivar') // 'desactivar' | 'eliminar'
+  const [egresoProcessing, setEgresoProcessing] = useState(false)
+  const [egresoResult, setEgresoResult] = useState(null)
+  const [egresoSelectedCursos, setEgresoSelectedCursos] = useState([...CURSOS_4MEDIO])
 
   // Auto-expandir carpetas si el usuario usa el buscador o filtro de curso
   useEffect(() => {
@@ -214,6 +233,12 @@ export default function Estudiantes() {
           <span className="text-muted text-sm" style={{ alignSelf: 'center' }}>{filtered.length} estudiantes</span>
           <button className="btn btn-secondary" onClick={loadData} disabled={loading}>
             <RefreshCw size={15} className={loading ? 'spin' : ''} />
+          </button>
+          <button className="btn btn-secondary" onClick={() => setShowGestionModal('promocion')} style={{ borderColor: 'var(--info)', color: 'var(--info)' }}>
+            <ArrowUpCircle size={15} /> Promover Curso
+          </button>
+          <button className="btn btn-secondary" onClick={() => setShowGestionModal('egreso')} style={{ borderColor: 'var(--warning)', color: 'var(--warning)' }}>
+            <GraduationCap size={15} /> Egreso 4° Medio
           </button>
           <button className="btn btn-primary" onClick={openNew}>
             <Plus size={15} /> Nuevo Estudiante
@@ -427,6 +452,250 @@ export default function Estudiantes() {
             <div className="modal-footer">
               <button className="btn btn-secondary" onClick={closeModal}>Cancelar</button>
               <button className="btn btn-primary" onClick={save}><Save size={15} /> Guardar Cambios</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── Modal Gestión Masiva ─────────────────────────── */}
+      {showGestionModal && (
+        <div className="modal-overlay" onClick={e => e.target === e.currentTarget && !promoProcessing && !egresoProcessing && (setShowGestionModal(null), setPromoResult(null), setEgresoResult(null))}>
+          <div className="modal" style={{ maxWidth: 540 }}>
+            <div className="modal-header">
+              <span className="modal-title">
+                {showGestionModal === 'promocion' 
+                  ? <><ArrowUpCircle size={18} /> Promoción Masiva de Curso</>
+                  : <><GraduationCap size={18} /> Egreso de 4° Medio</>
+                }
+              </span>
+              <button className="btn btn-secondary btn-icon btn-sm" onClick={() => { if (!promoProcessing && !egresoProcessing) { setShowGestionModal(null); setPromoResult(null); setEgresoResult(null) } }}><X size={15} /></button>
+            </div>
+            <div className="modal-body" style={{ padding: 24 }}>
+              {/* Tabs */}
+              <div style={{ display: 'flex', gap: 8, marginBottom: 24 }}>
+                <button 
+                  className={`btn ${showGestionModal === 'promocion' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => { setShowGestionModal('promocion'); setPromoResult(null); setEgresoResult(null) }}
+                  style={{ flex: 1 }}
+                >
+                  <ArrowUpCircle size={15} /> Promover
+                </button>
+                <button 
+                  className={`btn ${showGestionModal === 'egreso' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => { setShowGestionModal('egreso'); setPromoResult(null); setEgresoResult(null) }}
+                  style={{ flex: 1 }}
+                >
+                  <GraduationCap size={15} /> Egreso
+                </button>
+              </div>
+
+              {/* ── Tab: Promoción ─────────────────── */}
+              {showGestionModal === 'promocion' && (
+                <div>
+                  {promoResult ? (
+                    <div style={{ textAlign: 'center', padding: 20 }}>
+                      <CheckCircle2 size={48} style={{ color: 'var(--success)', marginBottom: 12 }} />
+                      <h3 style={{ margin: '0 0 8px', color: 'var(--success)' }}>¡Promoción Exitosa!</h3>
+                      <p style={{ color: 'var(--text-secondary)', margin: 0 }}>
+                        Se promovieron <strong>{promoResult.count}</strong> estudiantes de <strong>{promoResult.from}</strong> a <strong>{promoResult.to}</strong>.
+                      </p>
+                    </div>
+                  ) : (
+                    <>
+                      <p style={{ color: 'var(--text-secondary)', fontSize: 13, marginBottom: 20, lineHeight: 1.6 }}>
+                        Selecciona el curso de origen y el curso de destino. <strong>Todos los estudiantes activos</strong> del curso origen serán movidos al curso destino de forma masiva.
+                      </p>
+
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 20 }}>
+                        <div style={{ flex: 1 }}>
+                          <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', marginBottom: 6, display: 'block' }}>Curso Origen</label>
+                          <select className="input" value={promoCursoOrigen} onChange={e => {
+                            const val = e.target.value
+                            setPromoCursoOrigen(val)
+                            setPromoCursoDestino(PROMOCION_MAP[val] || '')
+                          }}>
+                            <option value="">Seleccionar curso...</option>
+                            {CURSOS.filter(c => !CURSOS_4MEDIO.includes(c)).map(c => {
+                              const count = data.filter(est => est.curso === c && est.estado_autorizacion === 'ACTIVO').length
+                              return <option key={c} value={c}>{c} ({count} estudiantes)</option>
+                            })}
+                          </select>
+                        </div>
+                        <ChevronRight size={24} style={{ color: 'var(--primary)', marginTop: 18, flexShrink: 0 }} />
+                        <div style={{ flex: 1 }}>
+                          <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', marginBottom: 6, display: 'block' }}>Curso Destino</label>
+                          <select className="input" value={promoCursoDestino} onChange={e => setPromoCursoDestino(e.target.value)}>
+                            <option value="">Seleccionar destino...</option>
+                            {CURSOS.map(c => <option key={c} value={c}>{c}</option>)}
+                          </select>
+                        </div>
+                      </div>
+
+                      {promoCursoOrigen && promoCursoDestino && (
+                        <div style={{ padding: '14px 16px', background: 'rgba(79, 142, 247, 0.08)', borderRadius: 12, border: '1px solid rgba(79, 142, 247, 0.15)', marginBottom: 20 }}>
+                          <div style={{ fontSize: 13, color: 'var(--text-primary)' }}>
+                            <strong>{data.filter(est => est.curso === promoCursoOrigen && est.estado_autorizacion === 'ACTIVO').length}</strong> estudiantes activos de <strong>{promoCursoOrigen}</strong> serán promovidos a <strong>{promoCursoDestino}</strong>.
+                          </div>
+                        </div>
+                      )}
+
+                      <button 
+                        className="btn btn-primary" 
+                        style={{ width: '100%' }}
+                        disabled={!promoCursoOrigen || !promoCursoDestino || promoCursoOrigen === promoCursoDestino || promoProcessing}
+                        onClick={async () => {
+                          const affected = data.filter(est => est.curso === promoCursoOrigen && est.estado_autorizacion === 'ACTIVO')
+                          if (affected.length === 0) return alert('No hay estudiantes activos en ese curso.')
+                          if (!window.confirm(`¿Confirmar promoción de ${affected.length} estudiantes de ${promoCursoOrigen} a ${promoCursoDestino}?\n\nEsta acción es irreversible.`)) return
+                          
+                          setPromoProcessing(true)
+                          const ids = affected.map(e => e.id)
+                          const { error } = await supabase.from('estudiantes').update({ curso: promoCursoDestino }).in('id', ids)
+                          if (error) {
+                            alert('Error: ' + error.message)
+                          } else {
+                            setPromoResult({ count: affected.length, from: promoCursoOrigen, to: promoCursoDestino })
+                            setData(d => d.map(e => ids.includes(e.id) ? { ...e, curso: promoCursoDestino } : e))
+                          }
+                          setPromoProcessing(false)
+                        }}
+                      >
+                        {promoProcessing ? <><RefreshCw size={15} className="spin" /> Procesando...</> : <><ArrowUpCircle size={15} /> Promover Estudiantes</>}
+                      </button>
+                    </>
+                  )}
+                </div>
+              )}
+
+              {/* ── Tab: Egreso ─────────────────── */}
+              {showGestionModal === 'egreso' && (
+                <div>
+                  {egresoResult ? (
+                    <div style={{ textAlign: 'center', padding: 20 }}>
+                      <CheckCircle2 size={48} style={{ color: 'var(--success)', marginBottom: 12 }} />
+                      <h3 style={{ margin: '0 0 8px', color: 'var(--success)' }}>¡Egreso Completado!</h3>
+                      <p style={{ color: 'var(--text-secondary)', margin: 0 }}>
+                        {egresoResult.action === 'desactivar' 
+                          ? <>Se desactivaron <strong>{egresoResult.count}</strong> estudiantes de 4° Medio.</>
+                          : <>Se eliminaron <strong>{egresoResult.count}</strong> estudiantes y sus credenciales de 4° Medio.</>
+                        }
+                      </p>
+                    </div>
+                  ) : (
+                    <>
+                      <div style={{ padding: '14px 16px', background: 'rgba(239, 68, 68, 0.08)', borderRadius: 12, border: '1px solid rgba(239, 68, 68, 0.15)', marginBottom: 20, display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+                        <AlertTriangle size={20} style={{ color: 'var(--danger)', flexShrink: 0, marginTop: 2 }} />
+                        <div style={{ fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                          Los estudiantes de <strong>4° Medio</strong> son los que terminan su ciclo escolar. Puedes <strong>desactivarlos</strong> (se marcan como REVOCADO pero se conservan sus datos) o <strong>eliminarlos</strong> completamente.
+                        </div>
+                      </div>
+
+                      <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', marginBottom: 8, display: 'block' }}>Cursos a Egresar</label>
+                      <div style={{ display: 'flex', gap: 8, marginBottom: 20, flexWrap: 'wrap' }}>
+                        {CURSOS_4MEDIO.map(c => {
+                          const count = data.filter(est => est.curso === c && est.estado_autorizacion === 'ACTIVO').length
+                          const isSelected = egresoSelectedCursos.includes(c)
+                          return (
+                            <button 
+                              key={c}
+                              className={`btn ${isSelected ? 'btn-primary' : 'btn-secondary'}`}
+                              style={{ fontSize: 13 }}
+                              onClick={() => {
+                                setEgresoSelectedCursos(prev => 
+                                  isSelected ? prev.filter(x => x !== c) : [...prev, c]
+                                )
+                              }}
+                            >
+                              {c} ({count})
+                            </button>
+                          )
+                        })}
+                      </div>
+
+                      <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', marginBottom: 8, display: 'block' }}>Acción</label>
+                      <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
+                        <button 
+                          className={`btn ${egresoAction === 'desactivar' ? 'btn-primary' : 'btn-secondary'}`}
+                          style={{ flex: 1 }}
+                          onClick={() => setEgresoAction('desactivar')}
+                        >
+                          <UserX size={15} /> Desactivar
+                        </button>
+                        <button 
+                          className={`btn ${egresoAction === 'eliminar' ? 'btn-primary' : 'btn-secondary'}`}
+                          style={{ flex: 1, ...(egresoAction === 'eliminar' ? { background: 'var(--danger)', borderColor: 'var(--danger)' } : {}) }}
+                          onClick={() => setEgresoAction('eliminar')}
+                        >
+                          <Trash2 size={15} /> Eliminar Todo
+                        </button>
+                      </div>
+
+                      {(() => {
+                        const total = data.filter(est => egresoSelectedCursos.includes(est.curso) && est.estado_autorizacion === 'ACTIVO').length
+                        return (
+                          <div style={{ padding: '14px 16px', background: egresoAction === 'eliminar' ? 'rgba(239, 68, 68, 0.08)' : 'rgba(245, 158, 11, 0.08)', borderRadius: 12, border: `1px solid ${egresoAction === 'eliminar' ? 'rgba(239, 68, 68, 0.15)' : 'rgba(245, 158, 11, 0.15)'}`, marginBottom: 20 }}>
+                            <div style={{ fontSize: 13, color: 'var(--text-primary)' }}>
+                              {egresoAction === 'desactivar' 
+                                ? <>Se cambiarán <strong>{total}</strong> estudiantes a estado <strong>REVOCADO</strong>. Sus datos se conservarán.</>
+                                : <>Se eliminarán permanentemente <strong>{total}</strong> estudiantes y todas sus credenciales NFC asociadas. <strong style={{ color: 'var(--danger)' }}>Esta acción NO se puede deshacer.</strong></>
+                              }
+                            </div>
+                          </div>
+                        )
+                      })()}
+
+                      <button 
+                        className="btn" 
+                        style={{ width: '100%', background: egresoAction === 'eliminar' ? 'var(--danger)' : 'var(--warning)', borderColor: egresoAction === 'eliminar' ? 'var(--danger)' : 'var(--warning)', color: 'white' }}
+                        disabled={egresoSelectedCursos.length === 0 || egresoProcessing}
+                        onClick={async () => {
+                          const affected = data.filter(est => egresoSelectedCursos.includes(est.curso) && est.estado_autorizacion === 'ACTIVO')
+                          if (affected.length === 0) return alert('No hay estudiantes activos en los cursos seleccionados.')
+                          
+                          const confirmMsg = egresoAction === 'desactivar'
+                            ? `¿Desactivar ${affected.length} estudiantes de 4° Medio?\n\nSus datos se conservarán pero sus credenciales quedarán inactivas.`
+                            : `⚠️ ¿ELIMINAR PERMANENTEMENTE ${affected.length} estudiantes de 4° Medio?\n\nSe borrarán todos sus datos, credenciales y registros de asistencia.\n\nEsta acción NO SE PUEDE DESHACER.`
+                          
+                          if (!window.confirm(confirmMsg)) return
+                          if (egresoAction === 'eliminar' && !window.confirm('¿Estás COMPLETAMENTE SEGURO? Escribe OK para confirmar.')) return
+                          
+                          setEgresoProcessing(true)
+                          const ids = affected.map(e => e.id)
+                          
+                          if (egresoAction === 'desactivar') {
+                            const { error } = await supabase.from('estudiantes').update({ estado_autorizacion: 'REVOCADO' }).in('id', ids)
+                            if (error) {
+                              alert('Error: ' + error.message)
+                            } else {
+                              setEgresoResult({ count: affected.length, action: 'desactivar' })
+                              setData(d => d.map(e => ids.includes(e.id) ? { ...e, estado_autorizacion: 'REVOCADO' } : e))
+                            }
+                          } else {
+                            // Primero eliminar credenciales asociadas
+                            await supabase.from('credenciales').delete().in('id_usuario', ids)
+                            // Luego eliminar estudiantes
+                            const { error } = await supabase.from('estudiantes').delete().in('id', ids)
+                            if (error) {
+                              alert('Error: ' + error.message)
+                            } else {
+                              setEgresoResult({ count: affected.length, action: 'eliminar' })
+                              setData(d => d.filter(e => !ids.includes(e.id)))
+                            }
+                          }
+                          setEgresoProcessing(false)
+                        }}
+                      >
+                        {egresoProcessing 
+                          ? <><RefreshCw size={15} className="spin" /> Procesando...</>
+                          : egresoAction === 'desactivar' 
+                            ? <><UserX size={15} /> Desactivar {egresoSelectedCursos.join(', ')}</>
+                            : <><Trash2 size={15} /> Eliminar Permanentemente</>
+                        }
+                      </button>
+                    </>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>
